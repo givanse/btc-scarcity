@@ -1,11 +1,8 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
-import Header from './header';
-
 // Code-splitting is automated for routes
 import Home from '../routes/home';
-import Profile from '../routes/profile';
 
 export default class App extends Component {
 	
@@ -14,17 +11,15 @@ export default class App extends Component {
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = e => {
+	//handleRoute(e) {
 		this.currentUrl = e.url;
 	};
 
 	render() {
 		return (
 			<div id="app">
-				<Header />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
 				</Router>
 			</div>
 		);

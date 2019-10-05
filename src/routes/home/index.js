@@ -1,11 +1,9 @@
 import { h } from 'preact';
 import style from './style';
+import TheForm from '../../components/the-form'
 
 const Home = () => (
-	<div class={style.home}>
-		<h1>Home</h1>
-		<p>This is the Home component.</p>
-	</div>
+	  <TheForm />
 );
 
 export default Home;
