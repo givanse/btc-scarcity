@@ -3,7 +3,7 @@ import style from './style';
 import TheForm from '../../components/the-form'
 
 const Home = () => (
-	  <TheForm />
+	<TheForm />
 );
 
 export default Home;
