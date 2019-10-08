@@ -1,98 +1,54 @@
 import { h, Component } from 'preact';
 import style from './style';
-import { tsImportEqualsDeclaration } from '@babel/types';
+import f from './formatter';
+import staticData from './static-data';
 
-const KILO = 1000;
-const MILLION = 1000000;
-const USA_BILLION = MILLION * 1000;
-const USA_TRILLION = USA_BILLION * 1000;
+const {
+  UNITS,
+  btcTCap,
+	btcLostPerc,
+	btcLost,
+  btcRemainTSupply,
+  worldPopulation,
+	btcPerPerson,
+	btcHodlInIndividualShares,
+	btcHodlPercOfRemainTSupply,
+	goldAboveGround,
+	goldPerPersonKgPercentage,
+	goldPerPersonKg,
+	carsPerPerson,
+	landPerPerson,
+	earthLandSurface,
+	broadMoneyPerCapita,
+	moneySupply,
+	usaMillionaireMedian,
+  usaMillionaireMedianNarrowPercent,
+  usaMillionaireMedianNarrowPercentInBtc,
+  usaMillionaireMedianBroadPercent,
+	usaMillionaireMedianBroadPercentInBtc,
+	cars,
+	personsPerCar,
+} = staticData;
 
-const TROY_OUNCE = 32.150747; // 1 kg
-const ACRE = 247.10538; // 1 km^2
-const SQUARE_FEET = 10763910; // 1 km^2
-
-const f = {
-	_usd: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}),
-	usd: function(number) {
-	  return this._usd.format(number);
-  },
-	_btc: new Intl.NumberFormat('en-US', {style: 'decimal'}),
-	btc: function(number) {
-		return this._btc.format(number);
-	},
-	_dec: new Intl.NumberFormat('en-US', {style: 'decimal', minimumSignificantDigits: 2}),
-	dec: function(number) {
-		return this._dec.format(number);
-	},
-	_sat: new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 8}),
-	sat: function(number) {
-		return this._sat.format(number);
-	},
-	_per: new Intl.NumberFormat('en-US', {
-		style: 'percent',
-		//minimumFractionDigits: 8, maximumFractionDigits: 8,
-		//minimumSignificantDigits: 2,
-		maximumSignificantDigits: 3}),
-	per: function(number) {
-		// times 100 because I rather do the rule of thirds myself
-		return this._per.format(number / 100);
-	}
-};
+const {
+  KILO,
+  MILLION,
+  USA_BILLION,
+  USA_TRILLION,
+  TROY_OUNCE,
+  ACRE,
+  SQUARE_FEET,
+} = UNITS;
 
 export default class TheForm extends Component {
 
 	state = {
 		btcHodl: 0.00000001,
-		btcTCap: 21000000,
-		// 20% 
-		btcLostPerc: 0.2,
 	};
 
 	render() {
 		const btcHodl = this.state.btcHodl;
-		const btcTCap = this.state.btcTCap;
-		let btcLost = this.state.btcTCap * this.state.btcLostPerc;
-		const btcRemainTSupply = this.state.btcTCap - btcLost;
-		const worldPopulation = 7.7 * USA_BILLION;
-		const btcPerPerson = btcRemainTSupply / worldPopulation;
-		const btcHodlInIndividualShares = btcHodl / btcPerPerson;
-
-		const btcHodlPercOfRemainTSupply = (this.state.btcHodl * 100) / btcRemainTSupply;
-
-		// https://www.universetoday.com/25756/surface-area-of-the-earth/
-		// inludes inhabitable land
-		const earthLandSurface = 149 * MILLION; // km^2
-		const landPerPerson = earthLandSurface / worldPopulation;
-
-		// https://en.wikipedia.org/wiki/Gold#cite_note-7
-		// https://www.gold.org/about-gold/gold-supply
-		const goldAboveGround = 186700 /* tons */ * KILO; // kg
-		const goldPerPersonKg = goldAboveGround / worldPopulation;
-		const goldPerPersonKgPercentage = (goldPerPersonKg * 100) / goldAboveGround; 
-
-		// https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
-		const moneySupply = {
-			narrowMoney: 36.8 * USA_TRILLION,
-			broadMoney: 90.4 * USA_TRILLION,
-		};
-		const coinsAndBankNotes = moneySupply.narrowMoney * USA_TRILLION;
-		const coinsAndBankNotesPerPerson = coinsAndBankNotes / worldPopulation;
-		const broadMoneyPerCapita = moneySupply.broadMoney / worldPopulation;
-
-		// https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza
-		const gizaPyramidMass = 5.9 * MILLION * 1000; // kg
-		const gizaPyramidPerPerson = gizaPyramidMass / worldPopulation;
-
-		// https://www.carsguide.com.au/car-advice/how-many-cars-are-there-in-the-world-70629
-		const cars = 1.4 * USA_BILLION;
-		const carsPerPerson = cars / worldPopulation;
-		const personsPerCar = 1 / carsPerPerson;
-
-		const usaMillionaireMedian = 1.87 * MILLION;
-		const usaMillionaireMedianNarrowPercent = (usaMillionaireMedian * 100) / moneySupply.narrowMoney;
-		const usaMillionaireMedianNarrowPercentInBtc = usaMillionaireMedianNarrowPercent * btcRemainTSupply;
-		const usaMillionaireMedianBroadPercent = (usaMillionaireMedian * 100) / moneySupply.broadMoney;
-		const usaMillionaireMedianBroadPercentInBtc = (usaMillionaireMedianBroadPercent * btcRemainTSupply) / 100;
+		//const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
 			<div>
@@ -104,22 +60,22 @@ export default class TheForm extends Component {
 				₿<input name="btc-hodl" value={f.sat(btcHodl)}
 		            onChange={e => this.updateBtcHodl(e)} />
 				<br />
-				{f.dec(btcHodlInIndividualShares)} individual BTC shares
+				{f.dec(btcHodlInIndividualShares(btcHodl))} individual BTC shares
 				<br />
-				or {f.dec(btcHodlInIndividualShares * goldPerPersonKg)} kg of gold
+				or {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg)} kg of gold
 				<br />
-				or {f.dec(btcHodlInIndividualShares * carsPerPerson)} cars
+				or {f.dec(btcHodlInIndividualShares(btcHodl) * carsPerPerson)} cars
 				<br />
-				or {f.dec(btcHodlInIndividualShares * landPerPerson)} km<sup>2</sup> of land
+				or {f.dec(btcHodlInIndividualShares(btcHodl) * landPerPerson)} km<sup>2</sup> of land
 				<br />
-				or {f.usd(btcHodlInIndividualShares * broadMoneyPerCapita)} broad money
+				or {f.usd(btcHodlInIndividualShares(btcHodl) * broadMoneyPerCapita)} broad money
 			</form>
 
 			<div>
 				<h2>BTC stats</h2>
-				Total theoretical supply ₿{btcTCap}
+				Total theoretical supply ₿{f.btc(btcTCap)}
 				<br/>
-				Lost estimate ₿{f.btc(btcLost)} ({this.state.btcLostPerc * 100}%)
+				Lost estimate ₿{f.btc(btcLost)} ({btcLostPerc * 100}%)
 				<br />
 				Remaining supply ₿{f.btc(btcRemainTSupply)}
 				<br />
