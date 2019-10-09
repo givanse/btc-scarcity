@@ -57,7 +57,8 @@ export default class TheForm extends Component {
 					BTC HODL
 				</label>
 				<br />
-				₿<input name="btc-hodl" value={f.sat(btcHodl)}
+				₿<input name="btc-hodl"
+				        value={f.sat(btcHodl)}
 		            onChange={e => this.updateBtcHodl(e)} />
 				<br />
 				{f.dec(btcHodlInIndividualShares(btcHodl))} individual BTC shares
@@ -67,8 +68,6 @@ export default class TheForm extends Component {
 				or {f.dec(btcHodlInIndividualShares(btcHodl) * carsPerPerson)} cars
 				<br />
 				or {f.dec(btcHodlInIndividualShares(btcHodl) * landPerPerson)} km<sup>2</sup> of land
-				<br />
-				or {f.usd(btcHodlInIndividualShares(btcHodl) * broadMoneyPerCapita)} broad money
 			</form>
 
 			<div>

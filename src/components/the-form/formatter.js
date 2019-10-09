@@ -8,7 +8,7 @@ export default {
 	btc: function(number) {
 		return this._btc.format(number);
 	},
-	_dec: new Intl.NumberFormat('en-US', {style: 'decimal', minimumSignificantDigits: 2}),
+	_dec: new Intl.NumberFormat('en-US', {style: 'decimal', maximumSignificantDigits: 3}),
 	dec: function(number) {
 		return this._dec.format(number);
 	},

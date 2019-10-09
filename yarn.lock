@@ -1002,6 +1002,14 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
+babel-jest@22.4.3:
+  version "22.4.3"
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-22.4.3.tgz#4b7a0b6041691bbd422ab49b3b73654a49a6627a"
+  integrity sha512-BgSjmtl3mW3i+VeVHEr9d2zFSAT66G++pJcHQiUjd00pkW+voYXFctIm/indcqOWWXw5a1nUpR1XWszD9fJ1qg==
+  dependencies:
+    babel-plugin-istanbul "^4.1.5"
+    babel-preset-jest "^22.4.3"
+
 babel-jest@^21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-21.2.0.tgz#2ce059519a9374a2c46f2455b6fbef5ad75d863e"
@@ -1046,7 +1054,7 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-istanbul@^4.0.0:
+babel-plugin-istanbul@^4.0.0, babel-plugin-istanbul@^4.1.5:
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-4.1.6.tgz#36c59b2192efce81c5b378321b74175add1c9a45"
   integrity sha512-PWP9FQ1AhZhS01T/4qLSKoHGY/xvkZdVBGlKM/HuxxS3+sC66HhTNR7+MpbO/so/cz/wY94MeSWJuP1hXIPfwQ==
@@ -1070,6 +1078,11 @@ babel-plugin-jest-hoist@^21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-21.2.0.tgz#2cef637259bd4b628a6cace039de5fcd14dbb006"
   integrity sha512-yi5QuiVyyvhBUDLP4ButAnhYzkdrUwWDtvUJv71hjH3fclhnZg4HkDeqaitcR2dZZx/E67kGkRcPVjtVu+SJfQ==
+
+babel-plugin-jest-hoist@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-22.4.4.tgz#b9851906eab34c7bf6f8c895a2b08bea1a844c0b"
+  integrity sha512-DUvGfYaAIlkdnygVIEl0O4Av69NtuQWcrjMOv6DODPuhuGLDnbsARz3AwiiI/EkIMMlxQDUcrZ9yoyJvTNjcVQ==
 
 babel-plugin-jest-hoist@^24.9.0:
   version "24.9.0"
@@ -1458,6 +1471,14 @@ babel-preset-jest@^21.2.0:
   integrity sha512-hm9cBnr2h3J7yXoTtAVV0zg+3vg0Q/gT2GYuzlreTU0EPkJRtlNgKJJ3tBKEn0+VjAi3JykV6xCJkuUYttEEfA==
   dependencies:
     babel-plugin-jest-hoist "^21.2.0"
+    babel-plugin-syntax-object-rest-spread "^6.13.0"
+
+babel-preset-jest@^22.4.3:
+  version "22.4.4"
+  resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-22.4.4.tgz#ec9fbd8bcd7dfd24b8b5320e0e688013235b7c39"
+  integrity sha512-+dxMtOFwnSYWfum0NaEc0O03oSdwBsjx4tMSChRDPGwu/4wSY6Q6ANW3wkjKpJzzguaovRs/DODcT4hbSN8yiA==
+  dependencies:
+    babel-plugin-jest-hoist "^22.4.4"
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
 babel-preset-jest@^24.9.0:
