@@ -14,11 +14,7 @@ const {
 	btcHodlInIndividualShares,
 	btcHodlPercOfRemainTSupply,
 	goldAboveGround,
-	goldPerPersonKgPercentage,
 	goldPerPersonKg,
-	carsPerPerson,
-	landPerPerson,
-	earthLandSurface,
 	broadMoneyPerCapita,
 	moneySupply,
 	usaMillionaireMedian,
@@ -61,13 +57,9 @@ export default class TheForm extends Component {
 				        value={f.sat(btcHodl)}
 		            onChange={e => this.updateBtcHodl(e)} />
 				<br />
-				{f.dec(btcHodlInIndividualShares(btcHodl))} individual BTC shares
+				{f.dec(btcHodlInIndividualShares(btcHodl))} people
 				<br />
 				or {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg)} kg of gold
-				<br />
-				or {f.dec(btcHodlInIndividualShares(btcHodl) * carsPerPerson)} cars
-				<br />
-				or {f.dec(btcHodlInIndividualShares(btcHodl) * landPerPerson)} km<sup>2</sup> of land
 			</form>
 
 			<div>
@@ -86,10 +78,6 @@ export default class TheForm extends Component {
 				broad money: {f.usd(moneySupply.broadMoney)}
 				<br />
 				broad money per capita {f.usd(broadMoneyPerCapita)}
-				<br />
-				broad money per capita {f.per((broadMoneyPerCapita * 100) / moneySupply.broadMoney)}
-				<br/>
-				the same percent per capita in BTC is ₿{f.sat((btcRemainTSupply * (broadMoneyPerCapita * 100) / moneySupply.broadMoney) / 100)}
 			</div>
 
 			<div>
@@ -108,38 +96,11 @@ export default class TheForm extends Component {
 				<br />
 				gold above ground {f.dec(goldAboveGround)} kg
 				<br/>
-				gold per capita {(goldPerPersonKg).toFixed(3)} kg
+				gold per capita 
+				<br/>
+				{(goldPerPersonKg).toFixed(3)} kg
 				&nbsp;or {(goldPerPersonKg * KILO).toFixed(3)} gr
 				&nbsp;or {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} troy ounce
-				<br />
-				gold per capita {f.per(goldPerPersonKgPercentage)}				 
-				<br/>
-				the same percent per capita in BTC is ₿{f.sat((btcRemainTSupply * goldPerPersonKgPercentage) / 100)}
-			</div>
-
-			<br/>
-
-			<div>
-				<h2>Land</h2>
-				earth's surface {f.dec(earthLandSurface)} km<sup>2</sup> (excluding water)
-				<br/>
-				land per person {f.dec(landPerPerson)} km<sup>2</sup>
-				<br/>
-				or {f.dec(landPerPerson * 1000000)} m<sup>2</sup> 
-				<br/>
-				or {f.dec(landPerPerson * ACRE)} acres
-				<br/>
-				or {f.dec(landPerPerson * SQUARE_FEET)} sqft
-			</div>
-			<div>
-				<h2>Cars</h2>
-				cars in the world {f.dec(cars)}
-				<br />
-				cars per capita {f.dec(carsPerPerson)}
-				<br />
-				1 car would be owned by {f.dec(personsPerCar)} people
-				<br />
-				{f.dec(personsPerCar)} individuals's BTC share would be ₿{f.sat(btcPerPerson * personsPerCar)}
 			</div>
 			</div>
 		);
