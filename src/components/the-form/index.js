@@ -36,6 +36,8 @@ const {
   SQUARE_FEET,
 } = UNITS;
 
+const btcPrice =  9000;
+
 export default class TheForm extends Component {
 
 	state = {
@@ -50,13 +52,16 @@ export default class TheForm extends Component {
 		  <div>
 			<form class="text-center"
 			      onSubmit={e => e.preventDefault()}>
-				₿<input name="btc-hodl"
-								class="text-center text-2xl w-1/2 py-2 px-4 m-4 bg-blue-100 focus:bg-white"
-								placeholder="type in a bitcoin amount"
-								onChange={e => this.updateBtcHodl(e)} />
+				<input name="btc-hodl"
+               class="
+							   sm:w-screen md:w-11/12 lg:w-6/12
+								 text-center text-2xl
+								 py-2 px-4 m-4 bg-blue-100 focus:bg-white"
+							 placeholder="bitcoin amount_"
+							 onChange={e => this.updateBtcHodl(e)} />
 			</form>
 
-			<div class="col-50-50 text-center">
+			<div class="col-50-50 text-center m-auto md:max-w-xl">
 				<div>
 					₿ {f.sat(btcPerPerson)}
 					<br />
@@ -94,26 +99,26 @@ export default class TheForm extends Component {
 				<div>
 				  {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
 					<br />
-					median millionaires
+					total median millionaires
 				</div>
 				<div>
 				  {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
 					<br />
-					median millionaires
+					total median millionaires
 				</div>
 			</div>
 
 			<div class="text-center m-2">
-				BTC price {f.usd(9500)}
+				BTC price {f.usd(btcPrice)}
 			</div>
-			<div class="col-50-50 text-center">
+			<div class="col-50-50 text-center m-auto md:max-w-xl">
 				<div>
-					{f.usd(btcPerPerson * 9500)}
+					{f.usd(btcPerPerson * btcPrice)}
 					<br />
 					cost to own somebody's BTC share
 				</div>
 				<div>
-					{f.usd(btcHodl* 9500)}
+					{f.usd(btcHodl* btcPrice)}
 					<br />
 					amount value
 				</div>
@@ -123,7 +128,8 @@ export default class TheForm extends Component {
 			<div class="text-center">
 			  world population {f.dec(worldPopulation)}
 			</div>
-			<div class="col-33-33-33 text-center">
+			<h3>Broad Money</h3>
+			<div class="col-50-50 text-center m-auto md:max-w-xl">
 				<div>
 					{f.usd(moneySupply.broadMoney)}
 				  <br/>
@@ -134,11 +140,6 @@ export default class TheForm extends Component {
 				  <br/>
 				  BTC supply
 				</div>
-        <div>
-				  {f.dec(goldAboveGround)} kg
-				  <br/>
-				  gold above ground
-        </div>
 
 				<div>
 					{f.usd(broadMoneyPerCapita)}
@@ -150,16 +151,36 @@ export default class TheForm extends Component {
 					<br />
 				  BTC per capita
 				</div>
+			</div>
+
+      <h3>Gold</h3>
+			<div class="col-50-50 text-center m-auto md:max-w-xl">
+        <div>
+				  {f.dec(goldAboveGround)} kg
+				  <br/>
+				  gold above ground
+        </div>
+				<div>
+					₿ {f.btc(btcRemainTSupply)}
+				  <br/>
+				  BTC supply
+				</div>
+
         <div>
 					{(goldPerPersonKg).toFixed(3)} kg
 					&nbsp;or {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} troy oz 
 					<br/>
 					gold per capita 
         </div>
+				<div>
+					₿ {btcPerPerson.toFixed(8)}
+					<br />
+				  BTC per capita
+				</div>
 			</div>
 
 		  <h2>Millionaire</h2>
-			<div class="col-50-50 text-center">
+			<div class="col-50-50 text-center m-auto md:max-w-xl">
 		    <div>
 					{f.usd(moneySupply.broadMoney)}
 				  <br/>
