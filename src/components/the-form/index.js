@@ -39,7 +39,7 @@ const {
 export default class TheForm extends Component {
 
 	state = {
-		btcHodl: 0.00000001,
+		btcHodl: 0.00000000,
 	};
 
 	render() {
@@ -52,7 +52,7 @@ export default class TheForm extends Component {
 			      onSubmit={e => e.preventDefault()}>
 				₿<input name="btc-hodl"
 								class="text-center text-2xl w-1/2 py-2 px-4 m-4 bg-blue-100 focus:bg-white"
-								placeholder="type in bitcoin amount"
+								placeholder="type in a bitcoin amount"
 								onChange={e => this.updateBtcHodl(e)} />
 			</form>
 
@@ -65,7 +65,7 @@ export default class TheForm extends Component {
 				<div>
 					₿ {f.sat(btcHodl)}
 					<br />
-					your HODL
+					your Bitcoin 
 				</div>
 
 				<div>
@@ -81,12 +81,12 @@ export default class TheForm extends Component {
 
 
 				<div>
-					{f.dec(goldPerPersonKg)} kg
+					{f.dec(goldPerPersonKg * TROY_OUNCE)} oz
 					<br />
 					gold
 				</div>
 				<div>
-					{f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg)} kg
+					{f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
 					<br />
 					gold
 				</div>
@@ -100,6 +100,22 @@ export default class TheForm extends Component {
 				  {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
 					<br />
 					median millionaires
+				</div>
+			</div>
+
+			<div class="text-center m-2">
+				BTC price {f.usd(9500)}
+			</div>
+			<div class="col-50-50 text-center">
+				<div>
+					{f.usd(btcPerPerson * 9500)}
+					<br />
+					cost to own somebody's BTC share
+				</div>
+				<div>
+					{f.usd(btcHodl* 9500)}
+					<br />
+					amount value
 				</div>
 			</div>
 
