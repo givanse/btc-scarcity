@@ -1,6 +1,7 @@
 h1, h2, h3, h4, h5, h6, h7, h8 {
   text-align: center;
-  font-family: sans-serif;
+	font-family: sans-serif;
+	padding: 0.75rem;
 }
 h1 {
 	font-size: 2rem;
@@ -21,4 +22,9 @@ h5 {
 .col-50-50 {
 	display: grid;
 	grid-template-columns: 50% 50%;
+}
+
+.col-33-33-33 {
+	display: grid;
+	grid-template-columns: 33.33% 33.33% 33.33%;
 }

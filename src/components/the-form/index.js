@@ -47,63 +47,148 @@ export default class TheForm extends Component {
 		//const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
-			<div class="">
-			<form onSubmit={e => e.preventDefault()}>
-				<br />
+		  <div>
+			<form class="text-center"
+			      onSubmit={e => e.preventDefault()}>
 				₿<input name="btc-hodl"
-				        class="w-11/12 border-blue-500 rounded-full py-2 px-4"
-								value={f.sat(btcHodl)}
-								placeholder="bitcoin amount"
-		            onChange={e => this.updateBtcHodl(e)} />
-				<label for="btc-hodl">
-					Bitcoin amount
-				</label>
-				<br />
-				{f.dec(btcHodlInIndividualShares(btcHodl))} people
-				<br />
-				or {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg)} kg of gold
+								class="text-center text-2xl w-1/2 py-2 px-4 m-4 bg-blue-100 focus:bg-white"
+								placeholder="type in bitcoin amount"
+								onChange={e => this.updateBtcHodl(e)} />
 			</form>
 
-			<div>
-				<h2>BTC stats</h2>
-				Total theoretical supply ₿{f.btc(btcTCap)}
-				<br/>
-				Lost estimate ₿{f.btc(btcLost)} ({btcLostPerc * 100}%)
-				<br />
-				Remaining supply ₿{f.btc(btcRemainTSupply)}
-				<br />
-				BTC per person ₿{btcPerPerson.toFixed(8)}
+			<div class="col-50-50 text-center">
+				<div>
+					₿ {f.sat(btcPerPerson)}
+					<br />
+					BTC per person
+				</div>
+				<div>
+					₿ {f.sat(btcHodl)}
+					<br />
+					your HODL
+				</div>
+
+				<div>
+					1
+					<br />
+					person
+				</div>
+				<div>
+					{f.dec(btcHodlInIndividualShares(btcHodl))}
+					<br />
+					people
+				</div>
+
+
+				<div>
+					{f.dec(goldPerPersonKg)} kg
+					<br />
+					gold
+				</div>
+				<div>
+					{f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg)} kg
+					<br />
+					gold
+				</div>
+
+				<div>
+				  {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
+					<br />
+					median millionaires
+				</div>
+				<div>
+				  {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
+					<br />
+					median millionaires
+				</div>
 			</div>
 
-			<div>
-				<h2>Money supply</h2>
-				broad money: {f.usd(moneySupply.broadMoney)}
-				<br />
-				broad money per capita {f.usd(broadMoneyPerCapita)}
+			<h2>Everyone</h2>
+			<div class="text-center">
+			  world population {f.dec(worldPopulation)}
+			</div>
+			<div class="col-33-33-33 text-center">
+				<div>
+					{f.usd(moneySupply.broadMoney)}
+				  <br/>
+					Broad money supply
+				</div>
+				<div>
+					₿ {f.btc(btcRemainTSupply)}
+				  <br/>
+				  BTC supply
+				</div>
+        <div>
+				  {f.dec(goldAboveGround)} kg
+				  <br/>
+				  gold above ground
+        </div>
+
+				<div>
+					{f.usd(broadMoneyPerCapita)}
+					<br />
+					Broad money per capita
+				</div>
+				<div>
+					₿ {btcPerPerson.toFixed(8)}
+					<br />
+				  BTC per capita
+				</div>
+        <div>
+					{(goldPerPersonKg).toFixed(3)} kg
+					&nbsp;or {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} troy oz 
+					<br/>
+					gold per capita 
+        </div>
 			</div>
 
-			<div>
-				<h2>Millionaire net worth</h2>
-				millionaire median net worth {f.usd(usaMillionaireMedian)}
-				<br />
-				equal to {f.per(usaMillionaireMedianBroadPercent)} of the broad money supply
-				<br />
-				the same percentage of wealth in BTC is 
-				₿{f.btc(usaMillionaireMedianBroadPercentInBtc)}
+		  <h2>Millionaire</h2>
+			<div class="col-50-50 text-center">
+		    <div>
+					{f.usd(moneySupply.broadMoney)}
+				  <br/>
+					Broad money supply
+		    </div>
+		    <div>
+					₿ {f.btc(btcRemainTSupply)}
+				  <br/>
+				  BTC supply
+		    </div>
+
+		    <div>
+					{f.per(usaMillionaireMedianBroadPercent)}
+					<br />
+					millionaire median net worth as a percentage of broad money
+		    </div>
+		    <div>
+					{f.per(usaMillionaireMedianBroadPercent)}
+					<br />
+					same percentage
+		    </div>
+
+		    <div>
+					{f.usd(usaMillionaireMedian)}
+					<br />
+					millionaire median net worth
+		    </div>
+		    <div>
+				  ₿ {f.btc(usaMillionaireMedianBroadPercentInBtc)}
+					<br />
+				  same level of wealth in BTC
+		    </div>
 			</div>	
 
-		  <div>
-				<h2>Gold</h2>
-				world population {f.dec(worldPopulation)}
+ 		  <h2>BTC Stats</h2>
+			<div class="text-center">
+				Total theoretical supply ₿ {f.btc(btcTCap)}
+				<br/>
+				Lost estimate ₿ {f.btc(btcLost)} ({btcLostPerc * 100}%)
 				<br />
-				gold above ground {f.dec(goldAboveGround)} kg
-				<br/>
-				gold per capita 
-				<br/>
-				{(goldPerPersonKg).toFixed(3)} kg
-				&nbsp;or {(goldPerPersonKg * KILO).toFixed(3)} gr
-				&nbsp;or {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} troy ounce
+				Remaining supply ₿ {f.btc(btcRemainTSupply)}
+				<br />
+				BTC per person ₿ {btcPerPerson.toFixed(8)}
 			</div>
+
 			</div>
 		);
 	}

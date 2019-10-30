@@ -1,6 +1,6 @@
 
 export default {
-	_usd: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}),
+	_usd: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0}),
 	usd: function(number) {
 	  return this._usd.format(number);
   },
