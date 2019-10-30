@@ -47,15 +47,17 @@ export default class TheForm extends Component {
 		//const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
-			<div>
+			<div class="">
 			<form onSubmit={e => e.preventDefault()}>
-				<label for="btc-hodl">
-					BTC HODL
-				</label>
 				<br />
 				₿<input name="btc-hodl"
-				        value={f.sat(btcHodl)}
+				        class="w-11/12 border-blue-500 rounded-full py-2 px-4"
+								value={f.sat(btcHodl)}
+								placeholder="bitcoin amount"
 		            onChange={e => this.updateBtcHodl(e)} />
+				<label for="btc-hodl">
+					Bitcoin amount
+				</label>
 				<br />
 				{f.dec(btcHodlInIndividualShares(btcHodl))} people
 				<br />
