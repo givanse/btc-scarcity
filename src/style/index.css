@@ -26,5 +26,5 @@ h5 {
 
 .col-33-33-33 {
 	display: grid;
-	grid-template-columns: 33.33% 33.33% 33.33%;
+	grid-template-columns: 40% 20% 40%;
 }
