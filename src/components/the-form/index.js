@@ -53,10 +53,7 @@ export default class TheForm extends Component {
 			<form class="text-center"
 			      onSubmit={e => e.preventDefault()}>
 				<input name="btc-hodl"
-               class="
-							   sm:w-screen md:w-11/12 lg:w-6/12
-								 text-center text-2xl
-								 py-2 px-4 m-4 bg-blue-100 focus:bg-white"
+               class={style['btc-hodl']}
 							 placeholder="bitcoin amount_"
 							 onChange={e => this.updateBtcHodl(e)} />
 			</form>
