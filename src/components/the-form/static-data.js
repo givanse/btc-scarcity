@@ -19,9 +19,8 @@ const btcLost = btcTCap * btcLostPerc;
 const btcRemainTSupply = btcTCap - btcLost;
 const btcPerPerson = btcRemainTSupply / worldPopulation;
 
-// https://en.wikipedia.org/wiki/Gold#cite_note-7
-// https://www.gold.org/about-gold/gold-supply
-const goldAboveGround = 186700 /* tons */ * UNITS.KILO; // kg
+// https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold
+const goldAboveGround = 190040 /* tons */ * UNITS.KILO; // kg
 const goldPerPersonKg = goldAboveGround / worldPopulation;
 
 // https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
