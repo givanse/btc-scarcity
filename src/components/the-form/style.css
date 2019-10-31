@@ -6,6 +6,14 @@
   @apply bg-white;
 }
 
+.foot-note {
+  @apply italic text-gray-700 text-sm font-serif p-2;
+}
+
+.foot-note a {
+  @apply underline;
+}
+
 /* Small (sm) */
 @media (min-width: 640px) {
   .btc-hodl {

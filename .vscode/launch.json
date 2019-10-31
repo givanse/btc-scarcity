@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "build",
       "program": "${workspaceFolder}/node_modules/.bin/preact",
       "args": ["build"]
     },

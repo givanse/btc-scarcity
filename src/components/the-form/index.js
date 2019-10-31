@@ -198,21 +198,23 @@ export default class TheForm extends Component {
 				BTC per person ₿ {btcPerPerson.toFixed(8)}
 			</div>
 
-			<p> 
+      <hr class="my-8" />
+
+			<p class={style['foot-note']}> 
 				* Broad money is the total value of the world's money. This includes coins, banknotes, money market accounts, as well as saving, checking, and time deposits.
 				<br />
 				<a href="https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/">
 					Desjardins, J. (2017, October 26). All of the World's Money and Markets in One Visualization. Retrieved October 30, 2019.
 				</a>
 			</p>
-			<p>
+			<p class={style['foot-note']}>
 				* The best estimates currently available suggest that around 190,040 tonnes of gold has been mined throughout history.
 				<br />
 				<a href="https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold">
 					How much gold has been mined? (2017, December 14). Retrieved October 30, 2019.
 				</a>
 			</p>
-			<p>* millionaire net worth median</p>
+			<p class={style['foot-note']}>* millionaire net worth median</p>
 			</div>
 		);
 	}
