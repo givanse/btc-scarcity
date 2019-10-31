@@ -12,18 +12,16 @@ const {
   worldPopulation,
   btcPerPerson,
   btcHodlInIndividualShares,
-  btcHodlPercOfRemainTSupply,
   goldAboveGround,
   goldPerPersonKg,
   broadMoneyPerCapita,
   moneySupply,
   usaMillionaireMedian,
-  usaMillionaireMedianNarrowPercent,
-  usaMillionaireMedianNarrowPercentInBtc,
   usaMillionaireMedianBroadPercent,
   usaMillionaireMedianBroadPercentInBtc,
-  cars,
-  personsPerCar,
+  netWorth1PercentMedian,
+  netWorth1PercentMedianBroadMoneyPercent,
+  netWorth1PercentMedianBroadMoneyPercentInBtc,
 } = staticData;
 
 const {
@@ -36,16 +34,16 @@ const {
   SQUARE_FEET,
 } = UNITS;
 
-const btcPrice =  9000;
-
 export default class TheForm extends Component {
 
   state = {
     btcHodl: 0.00000000,
+    btcPrice: 9000,
   };
 
   render() {
     const btcHodl = this.state.btcHodl;
+    const btcPrice = this.state.btcPrice;
     //const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
@@ -59,13 +57,18 @@ export default class TheForm extends Component {
       </form>
 
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <h4>per capita</h4>
+        <div></div>
+        <h4>per amount</h4>
+
         <div>
           ₿ {f.sat(btcPerPerson)}
         </div>
         <div>
+          bitcoin
         </div>
-        <div class="bg-blue-100">
-          ₿ {f.sat(btcHodl)}
+        <div>
+          ₿ {btcHodl > 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
         </div>
 
         <div>
@@ -94,39 +97,46 @@ export default class TheForm extends Component {
         <div>
           {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
         </div>
-      </div>
 
-      <div class="text-center m-2">
-        Today's Bitcoin price
-        <br />
-        {f.usd(btcPrice)}
-      </div>
+        <div>
+          {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+        </div>
+        <div class="">
+          1%er 
+        </div>
+        <div>
+          {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+        </div>
 
-      <div class="col-50-50 text-center m-auto md:max-w-xl">
         <div>
           {f.usd(btcPerPerson * btcPrice)}
-          <br />
-          cost to own somebody's BTC share
+        </div>
+        <div>
+          <span class="text-base text-green-500">{f.usd(btcPrice)}</span>
         </div>
         <div>
           {f.usd(btcHodl* btcPrice)}
-          <br />
-          amount value
         </div>
       </div>
 
       <h2>Everyone</h2>
 
       <div class="text-center">
-        The world population is {f.dec(worldPopulation)}.
+        <span class="text-sm text-gray-700">
+          world population
+        </span>
         <br />
-        That is seven billion seven hundred million.
+        {f.dec(worldPopulation)}
+        <br />
+        <span class="text-sm text-gray-700">
+          seven billion seven hundred million
+        </span>
       </div>
 
       <h3>Broad Money</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
-          {f.usd(moneySupply.broadMoney)}<sup>*</sup>
+          {f.usd(moneySupply.broadMoney, 'billion')}<sup>*</sup>
         </div>
         <div>supply</div>
         <div>
@@ -145,7 +155,7 @@ export default class TheForm extends Component {
       <h3>Gold</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
-          {f.dec(goldAboveGround)}<sup>*</sup> kg
+          {f.dec(goldAboveGround * TROY_OUNCE, 'billion')} oz <sup>†</sup>
         </div>
         <div>supply</div>
         <div>
@@ -153,8 +163,7 @@ export default class TheForm extends Component {
         </div>
 
         <div>
-          {(goldPerPersonKg).toFixed(3)} kg
-          &nbsp;or {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} troy oz 
+          {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
         </div>
         <div>per capita</div>
         <div>
@@ -162,10 +171,10 @@ export default class TheForm extends Component {
         </div>
       </div>
 
-      <h2>Millionaire</h2>
+      <h2>Millionaire Median</h2>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
-          {f.usd(moneySupply.broadMoney)}
+          {f.usd(moneySupply.broadMoney, 'billion')}
         </div>
         <div>supply</div>
         <div>
@@ -181,13 +190,43 @@ export default class TheForm extends Component {
         </div>
 
         <div>
-          {f.usd(usaMillionaireMedian)}<sup>*</sup>
+          {f.usd(usaMillionaireMedian)}<sup>‡</sup>
         </div>
         <div>net worth</div>
         <div>
           ₿ {f.btc(usaMillionaireMedianBroadPercentInBtc)}
         </div>
       </div>  
+
+      <h2>1%er Median</h2>
+      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          {f.usd(moneySupply.broadMoney, 'billion')}
+        </div>
+        <div>supply</div>
+        <div>
+          ₿ {f.btc(btcRemainTSupply)}
+        </div>
+
+        <div>
+          {f.per(netWorth1PercentMedianBroadMoneyPercent)}
+        </div>
+        <div>net worth</div>
+        <div>
+          {f.per(netWorth1PercentMedianBroadMoneyPercent)}
+        </div>
+
+        <div>
+          {f.usd(netWorth1PercentMedian)}<sup>†</sup>
+        </div>
+        <div>net worth</div>
+        <div>
+          ₿ {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
+        </div>
+      </div>
+
+
+
 
       <h2>BTC Stats</h2>
       <div class="text-center">
@@ -210,13 +249,26 @@ export default class TheForm extends Component {
         </a>
       </p>
       <p class={style['foot-note']}>
-        * The best estimates currently available suggest that around 190,040 tonnes of gold has been mined throughout history.
+        † The best estimates currently available suggest that around 190,040 tonnes of gold has been mined throughout history.
         <br />
         <a href="https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold">
           How much gold has been mined? (2017, December 14). Retrieved October 30, 2019.
         </a>
       </p>
-      <p class={style['foot-note']}>* millionaire net worth median</p>
+      <p class={style['foot-note']}>
+        ‡ The Fed's most recent survey shows that the top 10% of Americans have a median and average net worth (assets minus liabilities) of $1.87 million and $4.03 million, respectively.
+        <br />
+        <a href="https://www.fool.com/investing/general/2016/01/24/how-does-your-net-worth-compare-to-the-average-ame.aspx">
+          Campbell, T. (2018, March 7). How Does Your Net Worth Compare to the Average American Millionaire? Retrieved October 31, 2019.
+        </a>
+      </p>
+      <p class={style['foot-note']}>
+        § The median net worth for the top 1% is $10.7 million
+        <br />
+        <a href="https://www.financialsamurai.com/top-one-percent-net-worth-amounts-by-age/">
+          Sammuray, F. The Top 1% Net Worth Amounts By Age. Retrieved October 31, 2019.
+        </a>
+      </p>
       </div>
     );
   }
@@ -224,7 +276,15 @@ export default class TheForm extends Component {
   updateBtcHodl(e) {
     const input = e.target;
     const state = Object.assign({}, this.state);
-    state.btcHodl = input.value;
+    let number = Number.parseFloat(input.value);
+
+    if (Number.isNaN(number)) {
+      number = 0;
+      input.value = 0;
+    }
+
+    input.value = number;
+    state.btcHodl = number;
     this.setState(state);
   }
 

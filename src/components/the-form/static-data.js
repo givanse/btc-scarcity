@@ -10,7 +10,7 @@ const UNITS = {
   TROY_OUNCE: 32.150747, // 1 kg
   ACRE: 247.10538, // 1 km^2
   SQUARE_FEET: 10763910, // 1 km^2
-};  
+};
 
 const btcTCap = 21000000;
 const worldPopulation = 7.7 * USA_BILLION;
@@ -25,18 +25,19 @@ const goldPerPersonKg = goldAboveGround / worldPopulation;
 
 // https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
 const moneySupply = {
-  narrowMoney: 36.8 * UNITS.USA_TRILLION,
   broadMoney: 90.4 * UNITS.USA_TRILLION,
 };
-const coinsAndBankNotes = moneySupply.narrowMoney * UNITS.USA_TRILLION;
-const coinsAndBankNotesPerPerson = coinsAndBankNotes / worldPopulation;
 const broadMoneyPerCapita = moneySupply.broadMoney / worldPopulation;
 
+// https://www.fool.com/investing/general/2016/01/24/how-does-your-net-worth-compare-to-the-average-ame.aspx
 const usaMillionaireMedian = 1.87 * MILLION;
-const usaMillionaireMedianNarrowPercent = (usaMillionaireMedian * 100) / moneySupply.narrowMoney;
-const usaMillionaireMedianNarrowPercentInBtc = usaMillionaireMedianNarrowPercent * btcRemainTSupply;
 const usaMillionaireMedianBroadPercent = (usaMillionaireMedian * 100) / moneySupply.broadMoney;
 const usaMillionaireMedianBroadPercentInBtc = (usaMillionaireMedianBroadPercent * btcRemainTSupply) / 100;
+
+// https://www.financialsamurai.com/top-one-percent-net-worth-amounts-by-age/
+const netWorth1PercentMedian = 10.7 * UNITS.MILLION;
+const netWorth1PercentMedianBroadMoneyPercent = (netWorth1PercentMedian * 100) / moneySupply.broadMoney;
+const netWorth1PercentMedianBroadMoneyPercentInBtc = (netWorth1PercentMedianBroadMoneyPercent * btcRemainTSupply) / 100;
 
 export default {
   UNITS,
@@ -51,10 +52,11 @@ export default {
   broadMoneyPerCapita,
   moneySupply,
   usaMillionaireMedian,
-  usaMillionaireMedianNarrowPercent,
-  usaMillionaireMedianNarrowPercentInBtc,
   usaMillionaireMedianBroadPercent,
   usaMillionaireMedianBroadPercentInBtc,
+  netWorth1PercentMedian,
+  netWorth1PercentMedianBroadMoneyPercent,
+  netWorth1PercentMedianBroadMoneyPercentInBtc,
   btcHodlInIndividualShares: function(btcHodl) {
     return btcHodl / btcPerPerson;
   },
