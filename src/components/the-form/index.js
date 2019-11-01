@@ -41,9 +41,27 @@ export default class TheForm extends Component {
     btcPrice: 9000,
   };
 
+  updateBtcPrice() {
+    //const url = 'http://localhost:8888/.netlify/functions/btc-usd';
+    const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd';
+    fetch(url, {method: 'POST'}).then(response => {
+      if (!response.ok) {
+        return;
+      }
+
+      response.json().then(ticker => {
+        const state = Object.assign({}, this.state, {btcPrice: ticker.ask});
+        this.setState(state);
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.updateBtcPrice();
+  }
+
   render() {
     const btcHodl = this.state.btcHodl;
-    const btcPrice = this.state.btcPrice;
     //const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
@@ -109,13 +127,13 @@ export default class TheForm extends Component {
         </div>
 
         <div>
-          {f.usd(btcPerPerson * btcPrice)}
+          {f.usd(btcPerPerson * this.state.btcPrice)}
         </div>
         <div>
-          <span class="text-base text-green-500">{f.usd(btcPrice)}</span>
+          <span class="text-base text-green-500">{f.usd(this.state.btcPrice)}</span>
         </div>
         <div>
-          {f.usd(btcHodl* btcPrice)}
+          {f.usd(btcHodl* this.state.btcPrice)}
         </div>
       </div>
 
