@@ -42,9 +42,12 @@ export default class TheForm extends Component {
   };
 
   updateBtcPrice() {
-    //const url = 'http://localhost:8888/.netlify/functions/btc-usd';
-    const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd';
-    fetch(url, {method: 'POST'}).then(response => {
+    //const url = 'http://localhost:8888/.netlify/functions/btc-usd/btc-usd';
+    const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';
+    const fetchOptions = {
+      method: 'GET', mode: 'cors',
+    };
+    fetch(url, fetchOptions).then(response => {
       if (!response.ok) {
         return;
       }

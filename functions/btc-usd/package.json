@@ -1,0 +1,14 @@
+{
+  "name": "btc-usd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "btc-usd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@givanse",
+  "license": "MIT",
+  "dependencies": {
+    "ccxt": "^1.18.1366"
+  }
+}
