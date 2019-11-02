@@ -1,5 +1,6 @@
 {
   "private": true,
+  "workspaces": ["functions/*"],
   "name": "btc-scarcity",
   "version": "0.0.0",
   "license": "MIT",

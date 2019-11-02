@@ -2127,6 +2127,11 @@ caw@^2.0.1:
     tunnel-agent "^0.6.0"
     url-to-options "^1.0.1"
 
+ccxt@^1.18.1366:
+  version "1.19.3"
+  resolved "https://registry.yarnpkg.com/ccxt/-/ccxt-1.19.3.tgz#532e67b37c9e0d80d9e63110deaf78487eef29f7"
+  integrity sha512-HNfJQceLqHoH/saEt5HQaydFyPJGIhiTuDP8BiInKp8K4i2LtK/SY3tZZ+DcL+0BNjtDy6AXUVJG6c+XfeoMIA==
+
 center-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/center-align/-/center-align-0.1.3.tgz#aa0d32629b6ee972200411cbd4461c907bc2b7ad"
