@@ -5,4 +5,4 @@
   functions = "functions"
 
 [context.production]
-  command = "yarn "
+  command = "yarn build"
