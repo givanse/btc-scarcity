@@ -40,11 +40,16 @@ export default class TheForm extends Component {
     //const url = 'http://localhost:8888/.netlify/functions/btc-usd/btc-usd';
     const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';
     const fetchOptions = {
-      method: 'GET', mode: 'cors',
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        accept: 'application/json',
+      }
     };
     fetch(url, fetchOptions).then(response => {
+      //TODO: figure out why status is 502 even though the response is correct
       if (!response.ok) {
-        return;
+        //return;
       }
 
       response.json().then(ticker => {
@@ -118,7 +123,7 @@ export default class TheForm extends Component {
           {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
         </div>
         <div class="">
-          1%er 
+          1% 
         </div>
         <div>
           {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
@@ -214,7 +219,7 @@ export default class TheForm extends Component {
         </div>
       </div>  
 
-      <h2>1%er Median</h2>
+      <h2>The 1% Median</h2>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
           {f.usd(moneySupply.broadMoney, 'billion')}
