@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import style from './style';
 import f from './formatter';
 import staticData from './static-data';
+import BtcSign from '../btc-sign';
 
 const {
   UNITS,
@@ -25,13 +26,7 @@ const {
 } = staticData;
 
 const {
-  KILO,
-  MILLION,
-  USA_BILLION,
-  USA_TRILLION,
   TROY_OUNCE,
-  ACRE,
-  SQUARE_FEET,
 } = UNITS;
 
 export default class TheForm extends Component {
@@ -83,13 +78,13 @@ export default class TheForm extends Component {
         <h4>per amount</h4>
 
         <div>
-          ₿ {f.sat(btcPerPerson)}
+          <BtcSign /> {f.sat(btcPerPerson)}
         </div>
         <div>
           bitcoin
         </div>
         <div>
-          ₿ {btcHodl > 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
+          <BtcSign /> {btcHodl > 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
         </div>
 
         <div>
@@ -161,7 +156,7 @@ export default class TheForm extends Component {
         </div>
         <div>supply</div>
         <div>
-          ₿ {f.btc(btcRemainTSupply)}
+          <BtcSign /> {f.btc(btcRemainTSupply)}
         </div>
 
         <div>
@@ -169,7 +164,7 @@ export default class TheForm extends Component {
         </div>
         <div>per capita</div>
         <div>
-          ₿ {btcPerPerson.toFixed(8)}
+          <BtcSign /> {btcPerPerson.toFixed(8)}
         </div>
       </div>
 
@@ -180,7 +175,7 @@ export default class TheForm extends Component {
         </div>
         <div>supply</div>
         <div>
-          ₿ {f.btc(btcRemainTSupply)}
+          <BtcSign /> {f.btc(btcRemainTSupply)}
         </div>
 
         <div>
@@ -188,7 +183,7 @@ export default class TheForm extends Component {
         </div>
         <div>per capita</div>
         <div>
-          ₿ {btcPerPerson.toFixed(8)}
+          <BtcSign /> {btcPerPerson.toFixed(8)}
         </div>
       </div>
 
@@ -199,7 +194,7 @@ export default class TheForm extends Component {
         </div>
         <div>supply</div>
         <div>
-          ₿ {f.btc(btcRemainTSupply)}
+          <BtcSign /> {f.btc(btcRemainTSupply)}
         </div>
 
         <div>
@@ -215,7 +210,7 @@ export default class TheForm extends Component {
         </div>
         <div>net worth</div>
         <div>
-          ₿ {f.btc(usaMillionaireMedianBroadPercentInBtc)}
+          <BtcSign /> {f.btc(usaMillionaireMedianBroadPercentInBtc)}
         </div>
       </div>  
 
@@ -226,7 +221,7 @@ export default class TheForm extends Component {
         </div>
         <div>supply</div>
         <div>
-          ₿ {f.btc(btcRemainTSupply)}
+          <BtcSign /> {f.btc(btcRemainTSupply)}
         </div>
 
         <div>
@@ -242,7 +237,7 @@ export default class TheForm extends Component {
         </div>
         <div>net worth</div>
         <div>
-          ₿ {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
+          <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
         </div>
       </div>
 
@@ -251,13 +246,13 @@ export default class TheForm extends Component {
 
       <h2>BTC Stats</h2>
       <div class="text-center">
-        Theoretical total supply ₿ {f.btc(btcTCap)}
+        Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
         <br/>
-        Lost estimate ₿ {f.btc(btcLost)} ({btcLostPerc * 100}%)
+        Lost estimate <BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
         <br />
-        Remaining supply ₿ {f.btc(btcRemainTSupply)}
+        Remaining supply <BtcSign /> {f.btc(btcRemainTSupply)}
         <br />
-        BTC per person ₿ {btcPerPerson.toFixed(8)}
+        BTC per person <BtcSign /> {btcPerPerson.toFixed(8)}
       </div>
 
             <hr class="m-8" />
