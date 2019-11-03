@@ -37,8 +37,15 @@ export default class TheForm extends Component {
   };
 
   updateBtcPrice() {
-    //const url = 'http://localhost:8888/.netlify/functions/btc-usd/btc-usd';
+    const host = process.env.NODE_ENV === 'development' ?
+                // yarn start & yarn lambda
+                'http://localhost:8888':
+                // yarn serve
+                // TODO: https://github.com/preactjs/preact-cli/issues/74#issuecomment-304869323
+                'https://btc-scarcity.netlify.com';
+    //const url = `${host}/.netlify/functions/btc-usd/btc-usd`;
     const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';
+
     const fetchOptions = {
       method: 'GET',
       mode: 'cors',

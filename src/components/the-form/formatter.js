@@ -1,5 +1,3 @@
-import { booleanLiteralTypeAnnotation } from "@babel/types";
-
 const precision = {
   billion: {
     unit: 1000000000,

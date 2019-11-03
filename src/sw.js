@@ -22,9 +22,13 @@ workbox.routing.registerRoute(
   })
 );
 
-const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';
-workbox.routing.registerRoute(url, new workbox.strategies.StaleWhileRevalidate());
+const regex = /^https:\/\/btc-scarcity.netlify.com\/.netlify\/functions.*/;
+workbox.routing.registerRoute(  ({url, event}) => {
+  console.log('sw url', url);
+  return regex.test(url.pathname); 
+}, new workbox.strategies.StaleWhileRevalidate());
 
+// Note: Any custom routing code should be put before
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.setCatchHandler(({ event }) => {
