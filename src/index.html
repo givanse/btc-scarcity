@@ -6,6 +6,28 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<meta name="keywords" content="bitcoin, money, scarcity, personal finance"/>
+    <meta name="description" content=""/>
+    <meta name="summary" content="stack sats and hodl">
+    <meta name="subject" content="bitcoin scarcity">
+    <meta name="topic" content="bitcoin scarcity">
+    <meta name="Classification" content="finance">
+    <meta name="url" content="https://btc.gratis">
+    <meta name="identifier-URL" content="https://btc.gratis">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <meta name="revisit-after" content="7 days">
+    <meta http-equiv="Expires" content="0">
+
+    <meta name="og:title" content="Bitcoin Scarcity"/>
+    <meta name="og:type" content="infographic"/>
+    <meta name="og:url" content="https://btc.gratis"/>
+    <meta name="og:image" content="https://github.com/bitcoin/bitcoin/blob/976cc766c42889b6d1042e4cda39045d5001f406/src/qt/res/icons/bitcoin.png"/>
+    <meta name="og:site_name" content="Bitcoin Scarcity"/>
+    <meta name="og:description" content=""/>
+
 		<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
 		<% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
 			<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
@@ -20,6 +42,7 @@
 				<% } %>
 			<% } %>
 		<% } %>
+		<link rel="shortcut icon" type="image/png" href="https://github.com/bitcoin/bitcoin/blob/976cc766c42889b6d1042e4cda39045d5001f406/src/qt/res/icons/bitcoin.ico"/>
 	</head>
 	<body>
 		<%= htmlWebpackPlugin.options.ssr({
