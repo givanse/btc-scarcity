@@ -7,14 +7,14 @@
     "start": "per-env",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
-    "production": "preact build -p --template src/index.html",
+    "production": "preact build -p --template src/index.html && cd functions/btc-usd; yarn install",
     "build": "preact build --template src/index.html",
     "serve": "preact build --template src/index.html && preact serve --cors https://btc-scarcity.netlify.com",
     "dev": "preact watch --template src/index.html",
     "lint": "eslint src",
     "test": "jest",
     "lambda": "NODE_ENV=development netlify dev",
-    "deploy": "netlify deploy -p"
+    "deploy": "npm run -s production && netlify deploy -p"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"

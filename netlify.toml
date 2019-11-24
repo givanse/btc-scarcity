@@ -5,4 +5,6 @@
   functions = "functions"
 
 [context.production]
-  command = "yarn build"
+  command = "yarn production"
+  environment = { NODE_ENV = "production" }
+

@@ -44,9 +44,11 @@ export default class TheForm extends Component {
   constructor(props) {
     super(props);
 
-    window.onpopstate = (event) => {
-      const {btc, fiatPurchase} = event.state; 
-      this.setSearchState(btc, fiatPurchase);
+    if (typeof window !== 'undefined') {
+      window.onpopstate = (event) => {
+        const {btc, fiatPurchase} = event.state; 
+        this.setSearchState(btc, fiatPurchase);
+      }
     }
   }
 
