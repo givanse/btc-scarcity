@@ -32,7 +32,7 @@ const {
 export default class TheForm extends Component {
 
   state = {
-    btcHodl: 0.00000000,
+    btcHodl: 0.00000001,
     btcPrice: 0,
   };
 
@@ -56,8 +56,11 @@ export default class TheForm extends Component {
       }
 
       response.json().then(ticker => {
-        const state = Object.assign({}, this.state, {btcPrice: ticker.ask});
-        this.setState(state);
+        this.setState(function(state, props) {
+          const s = Object.assign({}, state);
+          s.btcPrice = ticker.ask;
+          return s;
+        });
       });
     });
   }
@@ -75,6 +78,7 @@ export default class TheForm extends Component {
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
         <input name="btc-hodl"
+               value={btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
                class={style['btc-hodl']}
                placeholder="bitcoin amount_"
                onChange={e => this.updateBtcHodl(e)} />
@@ -92,7 +96,7 @@ export default class TheForm extends Component {
           bitcoin
         </div>
         <div>
-          <BtcSign /> {btcHodl > 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
+          <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
         </div>
 
         <div>
@@ -299,17 +303,14 @@ export default class TheForm extends Component {
 
   updateBtcHodl(e) {
     const input = e.target;
-    const state = Object.assign({}, this.state);
     let number = Number.parseFloat(input.value);
+    number = Number.isNaN(number) ? 0 : number;
 
-    if (Number.isNaN(number)) {
-      number = 0;
-      input.value = 0;
-    }
-
-    input.value = number;
-    state.btcHodl = number;
-    this.setState(state);
+    this.setState(function(state, props) {
+      const s = Object.assign({}, state);
+      s.btcHodl = number;
+      return s;
+    });
   }
 
 }
