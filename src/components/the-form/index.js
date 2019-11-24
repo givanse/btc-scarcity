@@ -33,18 +33,14 @@ export default class TheForm extends Component {
 
   state = {
     btcHodl: 0.00000000,
-    btcPrice: 9000,
+    btcPrice: 0,
   };
 
   updateBtcPrice() {
     const host = process.env.NODE_ENV === 'development' ?
-                // yarn start & yarn lambda
-                'http://localhost:8888':
-                // yarn serve
-                // TODO: https://github.com/preactjs/preact-cli/issues/74#issuecomment-304869323
-                'https://btc-scarcity.netlify.com';
-    //const url = `${host}/.netlify/functions/btc-usd/btc-usd`;
-    const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';
+                'http://localhost:8888/.netlify/functions' :
+                'https://btc-scarcity.netlify.com/.netlify/functions';
+    const url = `${host}/btc-usd/btc-usd`;
 
     const fetchOptions = {
       method: 'GET',
@@ -53,10 +49,10 @@ export default class TheForm extends Component {
         accept: 'application/json',
       }
     };
+
     fetch(url, fetchOptions).then(response => {
-      //TODO: figure out why status is 502 even though the response is correct
       if (!response.ok) {
-        //return;
+        return;
       }
 
       response.json().then(ticker => {
