@@ -7,6 +7,7 @@ import {
   fiatToWords,
   btcToWords,
 } from './words';
+import { fetchBtcPrice } from './fetch-btc';
 
 const {
   UNITS,
@@ -83,27 +84,9 @@ export default class TheForm extends Component {
   }
 
   fetchBtcPrice() {
-    const host = process.env.NODE_ENV === 'development' ?
-                'http://localhost:8888/.netlify/functions' :
-                'https://btc-scarcity.netlify.com/.netlify/functions';
-    const url = `${host}/btc-usd/btc-usd`;
-
-    const fetchOptions = {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        accept: 'application/json',
-      }
-    };
-
-    fetch(url, fetchOptions).then(response => {
-      if (!response.ok) {
-        return;
-      }
-
-      response.json().then(ticker => {
-        this.updateBtcPrice(ticker.ask);
-      });
+    fetchBtcPrice().then(btcPrice => {
+      console.log(btcPrice);
+      this.updateBtcPrice(btcPrice);
     });
   }
 
@@ -157,6 +140,7 @@ export default class TheForm extends Component {
         <label for="fiat-purchase">
           If I were to buy today
         </label>
+        <br />
         <input name="fiat-purchase"
                value={f.dec(fiatPurchase)}
                class={style['btc-hodl']}
@@ -181,7 +165,7 @@ export default class TheForm extends Component {
       </form>
 
       <h2>
-        one share
+        per person
       </h2>
 
       <div class="text-center">
@@ -191,6 +175,14 @@ export default class TheForm extends Component {
         {f.dec(worldPopulation)}
         <p class="text-sm text-gray-700 mb-3">
           seven billion seven hundred million
+        </p>
+
+        <p class="text-sm text-gray-700">
+          bitcoin supply
+        </p>
+        {f.btc(btcRemainTSupply)}
+        <p class="text-sm text-gray-700 mb-3">
+          {btcToWords(btcRemainTSupply)}
         </p>
 
         <BtcSign /> {f.btc(btcRemainTSupply)} / {f.dec(worldPopulation)} =
@@ -210,6 +202,7 @@ export default class TheForm extends Component {
         <label for="btc-hodl">
           If I owned today
         </label>
+        <br />
         <input name="btc-hodl"
                value={btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
                class={style['btc-hodl']}

@@ -3,6 +3,19 @@ const ccxt = require('ccxt');
 const accessControlAllowOrigin = process.env.NODE_ENV === 'development' ? '*' : 'https://btc.gratis';
 
 exports.handler = async function(request, context) {
+  if (request.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': accessControlAllowOrigin,
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'access-control-allow-origin,Content-Type',
+        'Access-Control-Max-Age': '1800',
+        'Content-Type': 'application/json',
+      },
+      body: ''
+    };
+  }
 
   if (request.httpMethod !== 'GET') {
     return {
@@ -10,8 +23,6 @@ exports.handler = async function(request, context) {
       body: '',
     };
   }
-
-  console.log(request);
 
   const binance = new ccxt.binance();
   const ticker = await binance.fetchTicker('BTC/USDT');
@@ -27,5 +38,5 @@ exports.handler = async function(request, context) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ask}),
-  }
+  };
 }
