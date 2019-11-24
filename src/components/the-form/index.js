@@ -153,7 +153,7 @@ export default class TheForm extends Component {
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
         <label for="fiat-purchase">
-          If I were to buy
+          If I were to buy today
         </label>
         <input name="fiat-purchase"
                value={f.dec(fiatPurchase)}
@@ -165,13 +165,22 @@ export default class TheForm extends Component {
           <br />
           I would own
         </p>
-        <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
-        <p class="text-sm text-gray-700">
+
+        {f.usd(fiatPurchase)} / {f.usd(btcPrice)} =
+        &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
+
+        <p class="text-sm text-gray-700 mb-3">
           {btcToWords(btcBought)}
+        </p>
+        {f.dec(btcHodlInIndividualShares(btcBought))}
+        <p class="text-sm text-gray-700">
+          individual shares
         </p>
       </form>
 
-      <h2>Everyone</h2>
+      <h2>
+        one share
+      </h2>
 
       <div class="text-center">
         <p class="text-sm text-gray-700">
@@ -181,20 +190,23 @@ export default class TheForm extends Component {
         <p class="text-sm text-gray-700 mb-3">
           seven billion seven hundred million
         </p>
-        <BtcSign /> {f.sat(btcPerPerson)}
+
+        <BtcSign /> {f.btc(btcRemainTSupply)} / {f.dec(worldPopulation)} =
+        &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
+
         <p class="text-sm text-gray-700">
-          bitcoin available for each person.
+          bitcoin available for each person
           <br />
           {btcToWords(btcPerPerson)}
         </p>
       </div>
 
-      <h2>My Share</h2>
+      <h2>my share</h2>
 
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
         <label for="btc-hodl">
-          If I owned
+          If I owned today
         </label>
         <input name="btc-hodl"
                value={btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
@@ -212,7 +224,7 @@ export default class TheForm extends Component {
         </p>
       </form>
 
-      <h2>Comparing</h2>
+      <h2>comparing</h2>
 
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <h4>per person</h4>
@@ -232,7 +244,7 @@ export default class TheForm extends Component {
         <div>
           1
         </div>
-        <div class="">people</div>
+        <div class="">shares</div>
         <div>
           {f.dec(btcHodlInIndividualShares(btcHodl))}
         </div>
