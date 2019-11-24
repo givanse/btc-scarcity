@@ -8,6 +8,9 @@ import {
   btcToWords,
 } from './words';
 import { fetchBtcPrice } from './fetch-btc';
+import getSats from './get-sats';
+
+const P = f.PRECISION;
 
 const {
   UNITS,
@@ -37,9 +40,9 @@ const {
 export default class TheForm extends Component {
 
   state = {
-    btcHodl: 0.00000000,
-    btcPrice: 0,
-    fiatPurchase: 0,
+    btcHodl: 0.00000001,
+    btcPrice: 7000,
+    fiatPurchase: 1,
   };
 
   constructor(props) {
@@ -105,9 +108,9 @@ export default class TheForm extends Component {
 
   readQueryParams() {
     let btc = window.location.search.match(/btc=(\d*[.]?\d*)/);
-    btc = btc && btc[1] ? btc[1] : 0;
+    btc = btc && btc[1] ? btc[1] : this.state.btcHodl;
     let fiatPurchase = location.search.match(/fiat=(\d*[.]?\d*)/);
-    fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : 0;
+    fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : this.state.fiatPurchase;
     this.setSearchState(btc, fiatPurchase);
   }
 
@@ -154,10 +157,12 @@ export default class TheForm extends Component {
 
         {f.usd(fiatPurchase)} / {f.usd(btcPrice)} =
         &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
-
+        <br />
+        {f.btc(getSats(btcBought).sats)}
         <p class="text-sm text-gray-700 mb-3">
           {btcToWords(btcBought)}
         </p>
+
         {f.dec(btcHodlInIndividualShares(btcBought))}
         <p class="text-sm text-gray-700">
           individual shares
@@ -185,12 +190,14 @@ export default class TheForm extends Component {
           {btcToWords(btcRemainTSupply)}
         </p>
 
-        <BtcSign /> {f.btc(btcRemainTSupply)} / {f.dec(worldPopulation)} =
-        &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
-
         <p class="text-sm text-gray-700">
           bitcoin available for each person
-          <br />
+        </p>
+        <BtcSign /> {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
+        &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
+        <br />
+        {f.btc(getSats(btcPerPerson).sats)}
+        <p class="text-sm text-gray-700">
           {btcToWords(btcPerPerson)}
         </p>
       </div>
@@ -208,6 +215,8 @@ export default class TheForm extends Component {
                class={style['btc-hodl']}
                placeholder="bitcoin amount_"
                onChange={e => this.updateBtcHodl(e)} />
+        <br />
+        {f.btc(getSats(btcHodl).sats)}
         <p class="text-sm text-gray-700">
           {btcToWords(btcHodl)}
           <br />

@@ -1,17 +1,22 @@
 const precision = {
-  billion: {
+  MILLION: {
+    unit: 1000000,
+    name: 'M',
+  },
+  BILLION: {
     unit: 1000000000,
-    name: 'billion',
+    name: 'B',
   },
 };
 
 export default {
+  PRECISION: precision,
   _usd: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0}),
   usd: function(number, precisionName) {
     let p;
     switch(precisionName) {
-      case precision.billion.name:
-        p = precision.billion; break;
+      case precision.BILLION.name:
+        p = precision.BILLION; break;
     }
 
     if (p) {
@@ -30,8 +35,10 @@ export default {
   dec: function(number, precisionName) {
     let p;
     switch(precisionName) {
-      case precision.billion.name:
-        p = precision.billion; break;
+      case precision.BILLION.name:
+        p = precision.BILLION; break;
+      case precision.MILLION.name:
+        p = precision.MILLION; break;
     }
 
     if (p) {

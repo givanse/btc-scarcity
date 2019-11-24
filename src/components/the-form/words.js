@@ -1,4 +1,5 @@
 const writtenNumber = require('written-number');
+import getSats from './get-sats';
 
 export function fiatToWords(amount) {
   amount = amount && amount !== Infinity ? amount : 0;
@@ -24,19 +25,15 @@ export function fiatToWords(amount) {
   return text;
 }
 
-// 1 Bitcoin (BTC) = 100,000,000 Satoshis
-const ONE_HUNDRED_MILLION = 100000000;
 export function btcToWords(amount) {
-  amount = amount && amount !== Infinity ? amount : 0;
-  const whole = amount >= 1 ? Number.parseInt(amount) : 0;
+  const {btc, sats} = getSats(amount);
 
   let text;
-  if (whole) {
-    const currText = whole === 1 ? 'bitcoin' : 'bitcoins';
-    text = `${writtenNumber(whole)} ${currText}`;
+  if (btc) {
+    const currText = btc === 1 ? 'bitcoin' : 'bitcoins';
+    text = `${writtenNumber(btc)} ${currText}`;
   }
 
-  const sats = (amount - whole).toFixed(8) * ONE_HUNDRED_MILLION;
   if (sats) {
     const satsCurrText = sats === 1 ? 'satoshi' : 'satoshis';
     const satsText = `${writtenNumber(sats)} ${satsCurrText}`;
