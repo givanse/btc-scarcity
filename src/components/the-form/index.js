@@ -167,7 +167,7 @@ export default class TheForm extends Component {
         </p>
         <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         <p class="text-sm text-gray-700">
-          {btcToWords(btcHodl)}
+          {btcToWords(btcBought)}
         </p>
       </form>
 
@@ -184,6 +184,8 @@ export default class TheForm extends Component {
         <BtcSign /> {f.sat(btcPerPerson)}
         <p class="text-sm text-gray-700">
           bitcoin available for each person.
+          <br />
+          {btcToWords(btcPerPerson)}
         </p>
       </div>
 
