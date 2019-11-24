@@ -1,5 +1,5 @@
 
 footer {
-  @apply h-40 text-center p-4 pt-16 mt-8;
+  @apply h-40 text-center p-4 pt-12 mt-8;
   background-color: theme('colors.btc-orange');
 }

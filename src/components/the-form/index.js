@@ -3,6 +3,10 @@ import style from './style';
 import f from './formatter';
 import staticData from './static-data';
 import BtcSign from '../btc-sign';
+import {
+  fiatToWords,
+  btcToWords,
+} from './words';
 
 const {
   UNITS,
@@ -32,7 +36,7 @@ const {
 export default class TheForm extends Component {
 
   state = {
-    btcHodl: 0.00000001,
+    btcHodl: 0.00000000,
     btcPrice: 0,
     fiatPurchase: 0,
   };
@@ -44,6 +48,21 @@ export default class TheForm extends Component {
       const {btc, fiatPurchase} = event.state; 
       this.setSearchState(btc, fiatPurchase);
     }
+  }
+
+  updateFiatPurchase(e) {
+    const input = e.target;
+    let fiatPurchase = Number.parseFloat(input.value);
+    fiatPurchase = Number.isNaN(fiatPurchase) ? 0 : fiatPurchase;
+
+    this.setState((state, props) => {
+      const s = Object.assign({}, state);
+      s.fiatPurchase = fiatPurchase;
+
+      this.setQueryParams(s);
+
+      return s;
+    });
   }
 
   updateBtcHodl(e) {
@@ -61,7 +80,7 @@ export default class TheForm extends Component {
     });
   }
 
-  updateBtcPrice() {
+  fetchBtcPrice() {
     const host = process.env.NODE_ENV === 'development' ?
                 'http://localhost:8888/.netlify/functions' :
                 'https://btc-scarcity.netlify.com/.netlify/functions';
@@ -81,12 +100,16 @@ export default class TheForm extends Component {
       }
 
       response.json().then(ticker => {
-        this.setState(function(state, props) {
-          const s = Object.assign({}, state);
-          s.btcPrice = ticker.ask;
-          return s;
-        });
+        this.updateBtcPrice(ticker.ask);
       });
+    });
+  }
+
+  updateBtcPrice(btcPrice) {
+    this.setState(function(state, props) {
+      const s = Object.assign({}, state);
+      s.btcPrice = btcPrice;
+      return s;
     });
   }
 
@@ -96,10 +119,10 @@ export default class TheForm extends Component {
   }
 
   readQueryParams() {
-    let btc = window.location.search.match(/btc=(\d*[.]\d*)/);
-    btc = btc && btc[1] ? btc[1] : 0.00000001;
-    let fiatPurchase = location.search.match(/fiat=(\d*[.]\d*)/);
-    fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : 20;
+    let btc = window.location.search.match(/btc=(\d*[.]?\d*)/);
+    btc = btc && btc[1] ? btc[1] : 0;
+    let fiatPurchase = location.search.match(/fiat=(\d*[.]?\d*)/);
+    fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : 0;
     this.setSearchState(btc, fiatPurchase);
   }
 
@@ -113,29 +136,86 @@ export default class TheForm extends Component {
   }
 
   componentDidMount() {
-    this.updateBtcPrice();
+    this.fetchBtcPrice();
     this.readQueryParams();
   }
 
   render() {
-    const btcHodl = this.state.btcHodl;
+    const { btcHodl, btcPrice, fiatPurchase } = this.state;
+    const btcBought = fiatPurchase / btcPrice;
     //const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
       <div>
+
+      <h2>Bitcoin</h2>
+
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
+        <label for="fiat-purchase">
+          If I were to buy
+        </label>
+        <input name="fiat-purchase"
+               value={f.dec(fiatPurchase)}
+               class={style['btc-hodl']}
+               placeholder="purchase amount_"
+               onChange={e => this.updateFiatPurchase(e)} />
+        <p class="text-sm text-gray-700">
+          {fiatToWords(fiatPurchase)}
+          <br />
+          I would own
+        </p>
+        <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcHodl)}
+        </p>
+      </form>
+
+      <h2>Everyone</h2>
+
+      <div class="text-center">
+        <p class="text-sm text-gray-700">
+          world population
+        </p>
+        {f.dec(worldPopulation)}
+        <p class="text-sm text-gray-700 mb-3">
+          seven billion seven hundred million
+        </p>
+        <BtcSign /> {f.sat(btcPerPerson)}
+        <p class="text-sm text-gray-700">
+          bitcoin available for each person.
+        </p>
+      </div>
+
+      <h2>My Share</h2>
+
+      <form class="text-center"
+            onSubmit={e => e.preventDefault()}>
+        <label for="btc-hodl">
+          If I owned
+        </label>
         <input name="btc-hodl"
                value={btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
                class={style['btc-hodl']}
                placeholder="bitcoin amount_"
                onChange={e => this.updateBtcHodl(e)} />
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcHodl)}
+          <br />
+          I would own
+        </p>
+        {f.dec(btcHodlInIndividualShares(btcHodl))}
+        <p class="text-sm text-gray-700">
+          individual shares
+        </p>
       </form>
 
+      <h2>Comparing</h2>
+
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <h4>per capita</h4>
+        <h4>per person</h4>
         <div></div>
-        <h4>per amount</h4>
+        <h4>your amount</h4>
 
         <div>
           <BtcSign /> {f.sat(btcPerPerson)}
@@ -188,29 +268,25 @@ export default class TheForm extends Component {
           {f.usd(btcPerPerson * this.state.btcPrice)}
         </div>
         <div>
-          <span class="text-base text-green-500">{f.usd(this.state.btcPrice)}</span>
+          <span class="text-base font-bold text-green-400">
+            {f.usd(this.state.btcPrice)}
+          </span>
         </div>
         <div>
           {f.usd(btcHodl* this.state.btcPrice)}
         </div>
       </div>
 
-      <h2>Everyone</h2>
-
-      <div class="text-center">
-        <span class="text-sm text-gray-700">
-          world population
-        </span>
-        <br />
-        {f.dec(worldPopulation)}
-        <br />
-        <span class="text-sm text-gray-700">
-          seven billion seven hundred million
-        </span>
-      </div>
-
       <h3>Broad Money</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          money
+        </div>
+        <div></div>
+        <div>
+          bitcoin
+        </div>
+
         <div>
           {f.usd(moneySupply.broadMoney, 'billion')}<sup>*</sup>
         </div>
@@ -222,7 +298,7 @@ export default class TheForm extends Component {
         <div>
           {f.usd(broadMoneyPerCapita)}
         </div>
-        <div>per capita</div>
+        <div>per person</div>
         <div>
           <BtcSign /> {btcPerPerson.toFixed(8)}
         </div>
@@ -230,6 +306,14 @@ export default class TheForm extends Component {
 
       <h3>Gold</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          gold
+        </div>
+        <div></div>
+        <div>
+          bitcoin
+        </div>
+
         <div>
           {f.dec(goldAboveGround * TROY_OUNCE, 'billion')} oz <sup>†</sup>
         </div>
@@ -241,7 +325,7 @@ export default class TheForm extends Component {
         <div>
           {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
         </div>
-        <div>per capita</div>
+        <div>per person</div>
         <div>
           <BtcSign /> {btcPerPerson.toFixed(8)}
         </div>
@@ -249,6 +333,14 @@ export default class TheForm extends Component {
 
       <h2>Millionaire Median</h2>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          money
+        </div>
+        <div></div>
+        <div>
+          bitcoin
+        </div>
+
         <div>
           {f.usd(moneySupply.broadMoney, 'billion')}
         </div>
@@ -276,6 +368,14 @@ export default class TheForm extends Component {
 
       <h2>The 1% Median</h2>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          money
+        </div>
+        <div></div>
+        <div>
+          bitcoin
+        </div>
+
         <div>
           {f.usd(moneySupply.broadMoney, 'billion')}
         </div>
