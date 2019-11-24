@@ -34,7 +34,32 @@ export default class TheForm extends Component {
   state = {
     btcHodl: 0.00000001,
     btcPrice: 0,
+    fiatPurchase: 0,
   };
+
+  constructor(props) {
+    super(props);
+
+    window.onpopstate = (event) => {
+      const {btc, fiatPurchase} = event.state; 
+      this.setSearchState(btc, fiatPurchase);
+    }
+  }
+
+  updateBtcHodl(e) {
+    const input = e.target;
+    let number = Number.parseFloat(input.value);
+    number = Number.isNaN(number) ? 0 : number;
+
+    this.setState((state, props) => {
+      const s = Object.assign({}, state);
+      s.btcHodl = number;
+
+      this.setQueryParams(s);
+
+      return s;
+    });
+  }
 
   updateBtcPrice() {
     const host = process.env.NODE_ENV === 'development' ?
@@ -65,8 +90,31 @@ export default class TheForm extends Component {
     });
   }
 
+  setQueryParams(state) {
+    const search = `?btc=${state.btcHodl}&fiat=${state.fiatPurchase}`;
+    window.history.pushState({btc: state.btcHodl, fiat: state.fiatPurchase}, '', search);
+  }
+
+  readQueryParams() {
+    let btc = window.location.search.match(/btc=(\d*[.]\d*)/);
+    btc = btc && btc[1] ? btc[1] : 0.00000001;
+    let fiatPurchase = location.search.match(/fiat=(\d*[.]\d*)/);
+    fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : 20;
+    this.setSearchState(btc, fiatPurchase);
+  }
+
+  setSearchState(btc, fiat) {
+    this.setState(function(state, props) {
+      const s = Object.assign({}, state);
+      s.btcHodl = btc;
+      s.fiatPurchase = fiat;
+      return s;
+    });
+  }
+
   componentDidMount() {
     this.updateBtcPrice();
+    this.readQueryParams();
   }
 
   render() {
@@ -299,18 +347,6 @@ export default class TheForm extends Component {
       </p>
       </div>
     );
-  }
-
-  updateBtcHodl(e) {
-    const input = e.target;
-    let number = Number.parseFloat(input.value);
-    number = Number.isNaN(number) ? 0 : number;
-
-    this.setState(function(state, props) {
-      const s = Object.assign({}, state);
-      s.btcHodl = number;
-      return s;
-    });
   }
 
 }
