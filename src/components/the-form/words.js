@@ -30,12 +30,12 @@ export function btcToWords(amount) {
 
   let text;
   if (btc) {
-    const currText = btc === 1 ? 'bitcoin' : 'bitcoins';
+    const currText = btc === 1 ? 'Bitcoin' : 'Bitcoins';
     text = `${writtenNumber(btc)} ${currText}`;
   }
 
   if (sats) {
-    const satsCurrText = sats === 1 ? 'satoshi' : 'satoshis';
+    const satsCurrText = sats === 1 ? 'Satoshi' : 'Satoshis';
     const satsText = `${writtenNumber(sats)} ${satsCurrText}`;
 
     if (text) {

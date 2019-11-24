@@ -102,15 +102,20 @@ export default class TheForm extends Component {
   }
 
   setQueryParams(state) {
-    const search = `?btc=${state.btcHodl}&fiat=${state.fiatPurchase}`;
+    const btcHodl = state.btcHodl.toFixed(8);
+    const search = `?btc=${btcHodl}&fiat=${state.fiatPurchase}`;
     window.history.pushState({btc: state.btcHodl, fiat: state.fiatPurchase}, '', search);
   }
 
   readQueryParams() {
     let btc = window.location.search.match(/btc=(\d*[.]?\d*)/);
     btc = btc && btc[1] ? btc[1] : this.state.btcHodl;
+    btc = Number.parseFloat(btc);
+
     let fiatPurchase = location.search.match(/fiat=(\d*[.]?\d*)/);
     fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : this.state.fiatPurchase;
+    fiatPurchase = Number.parseFloat(fiatPurchase);
+
     this.setSearchState(btc, fiatPurchase);
   }
 
@@ -128,6 +133,25 @@ export default class TheForm extends Component {
     this.readQueryParams();
   }
 
+  renderBtcToWords(btcAmount) {
+    const {btc, sats} = getSats(btcAmount);
+    
+    let s = `$${f.btc(sats)}`;
+
+    if (btc) {
+      s = `₿${f.btc(btc)} and ${s}`;
+    }
+    
+    return (
+      <div>
+        {s}
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcAmount)}
+        </p>
+      </div>
+    );
+  }
+
   render() {
     const { btcHodl, btcPrice, fiatPurchase } = this.state;
     const btcBought = fiatPurchase / btcPrice;
@@ -140,32 +164,31 @@ export default class TheForm extends Component {
 
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
-        <label for="fiat-purchase">
+        <p class="">
           If I were to buy today
-        </label>
-        <br />
+        </p>
         <input name="fiat-purchase"
                value={f.dec(fiatPurchase)}
                class={style['btc-hodl']}
                placeholder="purchase amount_"
                onChange={e => this.updateFiatPurchase(e)} />
+        <p class="mb-4">
+          {fiatToWords(fiatPurchase)} worth of Bitcoin
+        </p>
         <p class="text-sm text-gray-700">
-          {fiatToWords(fiatPurchase)}
-          <br />
           I would own
         </p>
-
-        {f.usd(fiatPurchase)} / {f.usd(btcPrice)} =
-        &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
-        <br />
-        {f.btc(getSats(btcBought).sats)}
-        <p class="text-sm text-gray-700 mb-3">
-          {btcToWords(btcBought)}
+        {this.renderBtcToWords(btcBought)}
+        <p class="text-sm text-gray-700 italic mb-4">
+          {f.usd(fiatPurchase)} / {f.usd(btcPrice)} =
+          &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         </p>
 
-        {f.dec(btcHodlInIndividualShares(btcBought))}
-        <p class="text-sm text-gray-700">
-          individual shares
+        <p>
+        ₿1 = ${f.btc(100000000)}
+        </p>
+        <p class="text-sm text-gray-700 mb-3">
+          one Bitcoin = one hundred million Satoshis
         </p>
       </form>
 
@@ -185,21 +208,18 @@ export default class TheForm extends Component {
         <p class="text-sm text-gray-700">
           bitcoin supply
         </p>
-        {f.btc(btcRemainTSupply)}
+        <BtcSign /> {f.btc(btcRemainTSupply)}
         <p class="text-sm text-gray-700 mb-3">
           {btcToWords(btcRemainTSupply)}
         </p>
 
         <p class="text-sm text-gray-700">
           bitcoin available for each person
+          <br />
+          <BtcSign /> {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
+          &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
         </p>
-        <BtcSign /> {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
-        &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
-        <br />
-        {f.btc(getSats(btcPerPerson).sats)}
-        <p class="text-sm text-gray-700">
-          {btcToWords(btcPerPerson)}
-        </p>
+        {this.renderBtcToWords(btcPerPerson)}
       </div>
 
       <h2>my share</h2>
@@ -215,10 +235,8 @@ export default class TheForm extends Component {
                class={style['btc-hodl']}
                placeholder="bitcoin amount_"
                onChange={e => this.updateBtcHodl(e)} />
-        <br />
-        {f.btc(getSats(btcHodl).sats)}
+        {this.renderBtcToWords(btcHodl)}
         <p class="text-sm text-gray-700">
-          {btcToWords(btcHodl)}
           <br />
           I would own
         </p>
@@ -295,33 +313,6 @@ export default class TheForm extends Component {
         </div>
       </div>
 
-      <h3>Broad Money</h3>
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <div>
-          money
-        </div>
-        <div></div>
-        <div>
-          bitcoin
-        </div>
-
-        <div>
-          {f.usd(moneySupply.broadMoney, 'billion')}<sup>*</sup>
-        </div>
-        <div>supply</div>
-        <div>
-          <BtcSign /> {f.btc(btcRemainTSupply)}
-        </div>
-
-        <div>
-          {f.usd(broadMoneyPerCapita)}
-        </div>
-        <div>per person</div>
-        <div>
-          <BtcSign /> {btcPerPerson.toFixed(8)}
-        </div>
-      </div>
-
       <h3>Gold</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
@@ -342,6 +333,33 @@ export default class TheForm extends Component {
 
         <div>
           {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
+        </div>
+        <div>per person</div>
+        <div>
+          <BtcSign /> {btcPerPerson.toFixed(8)}
+        </div>
+      </div>
+
+      <h3>Broad Money</h3>
+      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          money
+        </div>
+        <div></div>
+        <div>
+          bitcoin
+        </div>
+
+        <div>
+          {f.usd(moneySupply.broadMoney, 'billion')}<sup>*</sup>
+        </div>
+        <div>supply</div>
+        <div>
+          <BtcSign /> {f.btc(btcRemainTSupply)}
+        </div>
+
+        <div>
+          {f.usd(broadMoneyPerCapita)}
         </div>
         <div>per person</div>
         <div>
