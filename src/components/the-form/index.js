@@ -11,6 +11,7 @@ import { fetchBtcPrice } from './fetch-btc';
 import getSats from './get-sats';
 
 const P = f.PRECISION;
+const SAT_SIGN = 's';
 
 const {
   UNITS,
@@ -136,7 +137,7 @@ export default class TheForm extends Component {
   renderBtcToWords(btcAmount) {
     const {btc, sats} = getSats(btcAmount);
     
-    let s = `$${f.btc(sats)}`;
+    let s = `${f.btc(sats)}${SAT_SIGN}`;
 
     if (btc) {
       s = `₿${f.btc(btc)} and ${s}`;
@@ -185,7 +186,7 @@ export default class TheForm extends Component {
         </p>
 
         <p>
-        ₿1 = ${f.btc(100000000)}
+        <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
         </p>
         <p class="text-sm text-gray-700 mb-3">
           one Bitcoin = one hundred million Satoshis
@@ -440,7 +441,7 @@ export default class TheForm extends Component {
 
 
 
-      <h2>BTC Stats</h2>
+      <h2>Bitcoin Stats</h2>
       <div class="text-center">
         Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
         <br/>
