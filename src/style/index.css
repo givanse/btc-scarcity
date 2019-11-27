@@ -23,11 +23,15 @@ h5 {
 }
 
 .col-50-50 {
-	display: grid;
-	grid-template-columns: 50% 50%;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .col-33-33-33 {
-	display: grid;
-	grid-template-columns: 40% 20% 40%;
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+}
+
+.background-btc-orange {
+  background-color: theme('colors.btc-orange');
 }

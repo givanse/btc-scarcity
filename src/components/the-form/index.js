@@ -161,7 +161,7 @@ export default class TheForm extends Component {
     return (
       <div>
 
-      <h2>Bitcoin</h2>
+      <h2 class="background-btc-orange text-white">Bitcoin</h2>
 
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
@@ -452,36 +452,39 @@ export default class TheForm extends Component {
         BTC per person <BtcSign /> {btcPerPerson.toFixed(8)}
       </div>
 
-            <hr class="m-8" />
+      <hr class="m-8" />
 
-      <p class={style['foot-note']}> 
-        * Broad money is the total value of the world's money. This includes coins, banknotes, money market accounts, as well as saving, checking, and time deposits.
-        <br />
-        <a href="https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/">
-          Desjardins, J. (2017, October 26). All of the World's Money and Markets in One Visualization. Retrieved October 30, 2019.
-        </a>
-      </p>
-      <p class={style['foot-note']}>
-        † The best estimates currently available suggest that around 190,040 tonnes of gold has been mined throughout history.
-        <br />
-        <a href="https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold">
-          How much gold has been mined? (2017, December 14). Retrieved October 30, 2019.
-        </a>
-      </p>
-      <p class={style['foot-note']}>
-        ‡ The Fed's most recent survey shows that the top 10% of Americans have a median and average net worth (assets minus liabilities) of $1.87 million and $4.03 million, respectively.
-        <br />
-        <a href="https://www.fool.com/investing/general/2016/01/24/how-does-your-net-worth-compare-to-the-average-ame.aspx">
-          Campbell, T. (2018, March 7). How Does Your Net Worth Compare to the Average American Millionaire? Retrieved October 31, 2019.
-        </a>
-      </p>
-      <p class={style['foot-note']}>
-        § The median net worth for the top 1% is $10.7 million
-        <br />
-        <a href="https://www.financialsamurai.com/top-one-percent-net-worth-amounts-by-age/">
-          Sammuray, F. The Top 1% Net Worth Amounts By Age. Retrieved October 31, 2019.
-        </a>
-      </p>
+      <div class={style['footnotes']}>
+        <p class={style['foot-note']}> 
+          * Broad money is the total value of the world's money. This includes coins, banknotes, money market accounts, as well as saving, checking, and time deposits.
+          <br />
+          <a href="https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/">
+            Desjardins, J. (2017, October 26). All of the World's Money and Markets in One Visualization. Retrieved October 30, 2019.
+          </a>
+        </p>
+        <p class={style['foot-note']}>
+          † The best estimates currently available suggest that around 190,040 tonnes of gold has been mined throughout history.
+          <br />
+          <a href="https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold">
+            How much gold has been mined? (2017, December 14). Retrieved October 30, 2019.
+          </a>
+        </p>
+        <p class={style['foot-note']}>
+          ‡ The Fed's most recent survey shows that the top 10% of Americans have a median and average net worth (assets minus liabilities) of $1.87 million and $4.03 million, respectively.
+          <br />
+          <a href="https://www.fool.com/investing/general/2016/01/24/how-does-your-net-worth-compare-to-the-average-ame.aspx">
+            Campbell, T. (2018, March 7). How Does Your Net Worth Compare to the Average American Millionaire? Retrieved October 31, 2019.
+          </a>
+        </p>
+        <p class={style['foot-note']}>
+          § The median net worth for the top 1% is $10.7 million
+          <br />
+          <a href="https://www.financialsamurai.com/top-one-percent-net-worth-amounts-by-age/">
+            Sammuray, F. The Top 1% Net Worth Amounts By Age. Retrieved October 31, 2019.
+          </a>
+        </p>
+      </div>
+
       </div>
     );
   }
