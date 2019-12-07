@@ -8,11 +8,11 @@ import {
   btcToWords,
 } from './words';
 import { fetchBtcPrice } from './fetch-btc';
-import getSats from './get-sats';
 import {
   readQueryParams,
   updateQueryParams,
 } from './query-params';
+import toWords from './to-words';
 
 const P = f.PRECISION;
 const SAT_SIGN = 's';
@@ -121,25 +121,6 @@ export default class TheForm extends Component {
     this.setSearchState(btc, fiatPurchase);
   }
 
-  renderBtcToWords(btcAmount) {
-    const {btc, sats} = getSats(btcAmount);
-    
-    let s = `${f.btc(sats)}${SAT_SIGN}`;
-
-    if (btc) {
-      s = `₿${f.btc(btc)} and ${s}`;
-    }
-    
-    return (
-      <div>
-        {s}
-        <p class="text-sm text-gray-700">
-          {btcToWords(btcAmount)}
-        </p>
-      </div>
-    );
-  }
-
   render() {
     const { btcHodl, btcPrice, fiatPurchase } = this.state;
     const btcBought = fiatPurchase / btcPrice;
@@ -166,7 +147,7 @@ export default class TheForm extends Component {
         <p class="text-sm text-gray-700">
           I would own
         </p>
-        {this.renderBtcToWords(btcBought)}
+        {toWords.btc(btcBought)}
         <p class="text-sm text-gray-700 italic mb-4">
           {f.usd(fiatPurchase)} / {f.usd(btcPrice)} =
           &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
@@ -207,7 +188,7 @@ export default class TheForm extends Component {
           <BtcSign /> {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
           &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
         </p>
-        {this.renderBtcToWords(btcPerPerson)}
+        {toWords.btc(btcPerPerson)}
       </div>
 
       <h2>my share</h2>
@@ -223,7 +204,7 @@ export default class TheForm extends Component {
                class={style['btc-hodl']}
                placeholder="bitcoin amount_"
                onChange={e => this.updateBtcHodl(e)} />
-        {this.renderBtcToWords(btcHodl)}
+        {toWords.btc(btcHodl)}
         <p class="text-sm text-gray-700">
           <br />
           I would own
