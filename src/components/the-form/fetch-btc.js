@@ -1,6 +1,6 @@
 const host = process.env.NODE_ENV === 'development' ?
             'http://localhost:8888/.netlify/functions' :
-            'https://btc-scarcity.netlify.com/.netlify/functions';
+            'https://btc.gratis/.netlify/functions';
 const url = `${host}/btc-usd/btc-usd`;
 // debug line
 //const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';

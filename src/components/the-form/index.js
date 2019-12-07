@@ -9,6 +9,10 @@ import {
 } from './words';
 import { fetchBtcPrice } from './fetch-btc';
 import getSats from './get-sats';
+import {
+  readQueryParams,
+  updateQueryParams,
+} from './query-params';
 
 const P = f.PRECISION;
 const SAT_SIGN = 's';
@@ -66,7 +70,7 @@ export default class TheForm extends Component {
       const s = Object.assign({}, state);
       s.fiatPurchase = fiatPurchase;
 
-      this.setQueryParams(s);
+      updateQueryParams(s);
 
       return s;
     });
@@ -81,7 +85,7 @@ export default class TheForm extends Component {
       const s = Object.assign({}, state);
       s.btcHodl = number;
 
-      this.setQueryParams(s);
+      updateQueryParams(s);
 
       return s;
     });
@@ -102,24 +106,6 @@ export default class TheForm extends Component {
     });
   }
 
-  setQueryParams(state) {
-    const btcHodl = state.btcHodl.toFixed(8);
-    const search = `?btc=${btcHodl}&fiat=${state.fiatPurchase}`;
-    window.history.pushState({btc: state.btcHodl, fiat: state.fiatPurchase}, '', search);
-  }
-
-  readQueryParams() {
-    let btc = window.location.search.match(/btc=(\d*[.]?\d*)/);
-    btc = btc && btc[1] ? btc[1] : this.state.btcHodl;
-    btc = Number.parseFloat(btc);
-
-    let fiatPurchase = location.search.match(/fiat=(\d*[.]?\d*)/);
-    fiatPurchase = fiatPurchase && fiatPurchase[1] ? fiatPurchase[1] : this.state.fiatPurchase;
-    fiatPurchase = Number.parseFloat(fiatPurchase);
-
-    this.setSearchState(btc, fiatPurchase);
-  }
-
   setSearchState(btc, fiat) {
     this.setState(function(state, props) {
       const s = Object.assign({}, state);
@@ -131,7 +117,8 @@ export default class TheForm extends Component {
 
   componentDidMount() {
     this.fetchBtcPrice();
-    this.readQueryParams();
+    const {btc, fiatPurchase} = readQueryParams(this.state);
+    this.setSearchState(btc, fiatPurchase);
   }
 
   renderBtcToWords(btcAmount) {
