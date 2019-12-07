@@ -3,7 +3,7 @@
 [build]
   publish = "build"
   functions = "functions"
-  command = "yarn build"
+  command = "yarn && yarn build && cd functions/btc-usd && yarn"
 
 [context.production.environment]
   NODE_ENV = "production"
