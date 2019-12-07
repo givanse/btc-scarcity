@@ -3,8 +3,7 @@
 [build]
   publish = "build"
   functions = "functions"
-
-[context.production]
   command = "yarn build"
-  environment = { NODE_ENV = "production" }
 
+[context.production.environment]
+  NODE_ENV = "production"

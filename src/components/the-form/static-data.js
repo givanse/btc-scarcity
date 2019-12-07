@@ -7,20 +7,19 @@ const UNITS = {
   MILLION,
   USA_BILLION,
   USA_TRILLION: USA_BILLION * 1000,
-  TROY_OUNCE: 32.150747, // 1 kg
-  ACRE: 247.10538, // 1 km^2
-  SQUARE_FEET: 10763910, // 1 km^2
+  TROY_OUNCE: 31.10348, // g
 };
 
 const btcTCap = 21000000;
 const worldPopulation = 7.7 * USA_BILLION;
-const btcLostPerc = 0.2; // 20%
+//TODO: back this up, 10% seems conservative
+const btcLostPerc = 0.1; // 10%
 const btcLost = btcTCap * btcLostPerc;
 const btcRemainTSupply = btcTCap - btcLost;
 const btcPerPerson = btcRemainTSupply / worldPopulation;
 
 // https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold
-const goldAboveGround = 190040 /* tons */ * UNITS.KILO; // kg
+const goldAboveGround = 190040 /* tons */ * 907.185; // kg
 const goldPerPersonKg = goldAboveGround / worldPopulation;
 
 // https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
@@ -38,6 +37,12 @@ const usaMillionaireMedianBroadPercentInBtc = (usaMillionaireMedianBroadPercent 
 const netWorth1PercentMedian = 10.7 * UNITS.MILLION;
 const netWorth1PercentMedianBroadMoneyPercent = (netWorth1PercentMedian * 100) / moneySupply.broadMoney;
 const netWorth1PercentMedianBroadMoneyPercentInBtc = (netWorth1PercentMedianBroadMoneyPercent * btcRemainTSupply) / 100;
+
+function buyGoldOunces(fiat) {
+  //TODO: fetch from a ticker
+  const goldPricePerOz = 1500;
+  return fiat / goldPricePerOz;
+}
 
 export default {
   UNITS,
@@ -60,7 +65,16 @@ export default {
   btcHodlInIndividualShares: function(btcHodl) {
     return btcHodl / btcPerPerson;
   },
-  btcHodlPercOfRemainTSupply: function(btcHodl) {
-    return (btcHodl * 100) / btcRemainTSupply;
+  btcPercOfRemainTSupply: function(btc) {
+    return (btc * 100) / btcRemainTSupply;
   },
+  fiatPercOfBroadMoney: function(fiat) {
+    return (fiat * 100) / moneySupply.broadMoney;
+  },
+  buyGoldOunces,
+  fiatPercOfGold: function(fiat) {
+    const boughtGoldOz = buyGoldOunces(fiat);
+    const goldKilosBought = boughtGoldOz * 0.03110348;
+    return (goldKilosBought * 100) / goldAboveGround;
+  }
 };

@@ -15,7 +15,9 @@ import {
 import toWords from './to-words';
 
 const P = f.PRECISION;
-const SAT_SIGN = 's';
+
+//TODO: need a `sats` character
+const SAT_SIGN = 'sat';
 
 const {
   UNITS,
@@ -26,6 +28,9 @@ const {
   worldPopulation,
   btcPerPerson,
   btcHodlInIndividualShares,
+  btcPercOfRemainTSupply,
+  fiatPercOfBroadMoney,
+  fiatPercOfGold,
   goldAboveGround,
   goldPerPersonKg,
   broadMoneyPerCapita,
@@ -124,7 +129,6 @@ export default class TheForm extends Component {
   render() {
     const { btcHodl, btcPrice, fiatPurchase } = this.state;
     const btcBought = fiatPurchase / btcPrice;
-    //const btcHodlPercOfRemainTSupply = btcHodlPercOfRemainTSupply(btcHodl);
 
     return (
       <div>
@@ -160,6 +164,18 @@ export default class TheForm extends Component {
           one Bitcoin = one hundred million Satoshis
         </p>
       </form>
+
+      <h2>
+        supply %
+      </h2>
+
+      <div class="text-center">
+        broad money {f.per(fiatPercOfBroadMoney(fiatPurchase))}
+        <br />
+        gold {f.per(fiatPercOfGold(fiatPurchase))}
+        <br />
+        btc {f.per(btcPercOfRemainTSupply(btcBought))}
+      </div>
 
       <h2>
         per person
