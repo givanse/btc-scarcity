@@ -7,7 +7,17 @@ export default class ArrSlider extends Component {
     for (let i = 1; i < values.length; i++) {
       return 
     }
-  } 
+  }
+
+  onChangeHandler(e) {
+    const input = e.target;
+    let number = Number.parseFloat(input.value);
+    number = Number.isNaN(number) ? 0 : number;
+
+    const newValue = this.props.values[number];
+
+    this.props.updateValue(newValue);
+  }
 
   render() {
     const max = this.props.values.length - 1;
@@ -24,7 +34,7 @@ export default class ArrSlider extends Component {
              list={listId}
              min="0" max={max} step="1"
              value={values.indexOf(value)}
-             onChange={this.props.rangeUpdateBtcHodl}
+             onChange={(e) => this.onChangeHandler(e)}
              class="w-11/12" />
 
       <datalist id={listId}>

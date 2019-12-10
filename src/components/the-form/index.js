@@ -43,6 +43,32 @@ const BTC_SLIDER_VALUES = [
   10,
 ];
 
+const FIAT_SLIDER_VALUES = [
+  1,
+  2,
+  5,
+  10,
+  15,
+
+  20,
+  25,
+  30,
+  35,
+  40,
+
+  45,
+  50,
+  75,
+  100,
+  125,
+
+  150,
+  200,
+  250,
+  500,
+  1000,
+];
+
 //TODO: need a `sats` character
 const SAT_SIGN = 'sat';
 
@@ -98,9 +124,13 @@ export default class TheForm extends Component {
     let fiatPurchase = Number.parseFloat(input.value);
     fiatPurchase = Number.isNaN(fiatPurchase) ? 0 : fiatPurchase;
 
+    this._updateFiatPurchase(fiatPurchase);
+  }
+
+  _updateFiatPurchase(fiatAmount) {
     this.setState((state, props) => {
       const s = Object.assign({}, state);
-      s.fiatPurchase = fiatPurchase;
+      s.fiatPurchase = fiatAmount;
 
       updateQueryParams(s);
 
@@ -113,16 +143,6 @@ export default class TheForm extends Component {
     let number = Number.parseFloat(input.value);
     number = Number.isNaN(number) ? 0 : number;
     this._updateBtcHodl(number);
-  }
-
-  rangeUpdateBtcHodl(e) {
-    const input = e.target;
-    let number = Number.parseFloat(input.value);
-    number = Number.isNaN(number) ? 0 : number;
-
-    const btcAmount = BTC_SLIDER_VALUES[number];
-
-    this._updateBtcHodl(btcAmount);
   }
 
   _updateBtcHodl(btcAmount) {
@@ -185,9 +205,17 @@ export default class TheForm extends Component {
                class={style['btc-hodl']}
                placeholder="purchase amount_"
                onChange={e => this.updateFiatPurchase(e)} />
+
+        <br />
+        <ArrSlider name="fiat-purchase-range"
+                   value={fiatPurchase}
+                   values={FIAT_SLIDER_VALUES}
+                   updateValue={this._updateFiatPurchase.bind(this)} />
+
         <p class="mb-4">
           {fiatToWords(fiatPurchase)} worth of Bitcoin
         </p>
+
         <p class="text-sm text-gray-700">
           I would own
         </p>
@@ -265,7 +293,7 @@ export default class TheForm extends Component {
         <ArrSlider name="btc-hodl-range"
                    value={btcHodl}
                    values={BTC_SLIDER_VALUES}
-                   rangeUpdateBtcHodl={this.rangeUpdateBtcHodl.bind(this)} />
+                   updateValue={this._updateBtcHodl.bind(this)} />
 
         {toWords.btc(btcHodl)}
 
