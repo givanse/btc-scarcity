@@ -3,6 +3,7 @@ import style from './style';
 import f from './formatter';
 import staticData from './static-data';
 import BtcSign from '../btc-sign';
+import ArrSlider from '../arr-slider';
 import {
   fiatToWords,
   btcToWords,
@@ -120,7 +121,6 @@ export default class TheForm extends Component {
     number = Number.isNaN(number) ? 0 : number;
 
     const btcAmount = BTC_SLIDER_VALUES[number];
-    console.log('update', number, btcAmount);
 
     this._updateBtcHodl(btcAmount);
   }
@@ -262,23 +262,10 @@ export default class TheForm extends Component {
                onChange={e => this.updateBtcHodl(e)} />
 
         <br />
-        <input type="range" name="btc-hodl-range" list="sats-tickmarks"
-               min="0" max="19" step="1"
-               value={BTC_SLIDER_VALUES.indexOf(btcHodl)}
-               onChange={e => this.rangeUpdateBtcHodl(e)}
-               class="w-11/12" />
-        <datalist id="sats-tickmarks">
-          <option value="1"></option>
-          <option value="3"></option>
-          <option value="5"></option>
-          <option value="7"></option>
-          <option value="9"></option>
-          <option value="11"></option>
-          <option value="13"></option>
-          <option value="15"></option>
-          <option value="17"></option>
-          <option value="19"></option>
-        </datalist>
+        <ArrSlider name="btc-hodl-range"
+                   value={btcHodl}
+                   values={BTC_SLIDER_VALUES}
+                   rangeUpdateBtcHodl={this.rangeUpdateBtcHodl.bind(this)} />
 
         {toWords.btc(btcHodl)}
 
