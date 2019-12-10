@@ -4,6 +4,7 @@ import f from './formatter';
 import staticData from './static-data';
 import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
+import LogBarChart from '../log-bar-chart';
 import {
   fiatToWords,
   btcToWords,
@@ -63,10 +64,10 @@ const FIAT_SLIDER_VALUES = [
   125,
 
   150,
-  200,
   250,
   500,
   1000,
+  10000,
 ];
 
 //TODO: need a `sats` character
@@ -81,9 +82,6 @@ const {
   worldPopulation,
   btcPerPerson,
   btcHodlInIndividualShares,
-  btcPercOfRemainTSupply,
-  fiatPercOfBroadMoney,
-  fiatPercOfGold,
   goldAboveGround,
   goldPerPersonKg,
   broadMoneyPerCapita,
@@ -237,13 +235,8 @@ export default class TheForm extends Component {
         supply %
       </h2>
 
-      <div class="text-center">
-        broad money {f.per(fiatPercOfBroadMoney(fiatPurchase))}
-        <br />
-        gold {f.per(fiatPercOfGold(fiatPurchase))}
-        <br />
-        btc {f.per(btcPercOfRemainTSupply(btcBought))}
-      </div>
+      <LogBarChart fiatPurchase={fiatPurchase}
+                   btcBought={btcBought} />
 
       <h2>
         per person
