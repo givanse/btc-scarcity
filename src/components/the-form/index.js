@@ -16,6 +16,32 @@ import toWords from './to-words';
 
 const P = f.PRECISION;
 
+const BTC_SLIDER_VALUES = [
+  0.00000001,
+  0.00000010,
+  0.00000015,
+  0.00000100,
+  0.00000150,
+
+  0.00001000,
+  0.00001500,
+  0.00010000,
+  0.00015000,
+  0.00100000,
+
+  0.00150000,
+  0.01000000,
+  0.01500000,
+  0.10,
+  0.20,
+
+  0.50,
+  0.75,
+  1,
+  5,
+  10,
+];
+
 //TODO: need a `sats` character
 const SAT_SIGN = 'sat';
 
@@ -85,10 +111,24 @@ export default class TheForm extends Component {
     const input = e.target;
     let number = Number.parseFloat(input.value);
     number = Number.isNaN(number) ? 0 : number;
+    this._updateBtcHodl(number);
+  }
 
+  rangeUpdateBtcHodl(e) {
+    const input = e.target;
+    let number = Number.parseFloat(input.value);
+    number = Number.isNaN(number) ? 0 : number;
+
+    const btcAmount = BTC_SLIDER_VALUES[number];
+    console.log('update', number, btcAmount);
+
+    this._updateBtcHodl(btcAmount);
+  }
+
+  _updateBtcHodl(btcAmount) {
     this.setState((state, props) => {
       const s = Object.assign({}, state);
-      s.btcHodl = number;
+      s.btcHodl = btcAmount;
 
       updateQueryParams(s);
 
@@ -220,7 +260,28 @@ export default class TheForm extends Component {
                class={style['btc-hodl']}
                placeholder="bitcoin amount_"
                onChange={e => this.updateBtcHodl(e)} />
+
+        <br />
+        <input type="range" name="btc-hodl-range" list="sats-tickmarks"
+               min="0" max="19" step="1"
+               value={BTC_SLIDER_VALUES.indexOf(btcHodl)}
+               onChange={e => this.rangeUpdateBtcHodl(e)}
+               class="w-11/12" />
+        <datalist id="sats-tickmarks">
+          <option value="1"></option>
+          <option value="3"></option>
+          <option value="5"></option>
+          <option value="7"></option>
+          <option value="9"></option>
+          <option value="11"></option>
+          <option value="13"></option>
+          <option value="15"></option>
+          <option value="17"></option>
+          <option value="19"></option>
+        </datalist>
+
         {toWords.btc(btcHodl)}
+
         <p class="text-sm text-gray-700">
           <br />
           I would own
