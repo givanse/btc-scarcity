@@ -35,7 +35,7 @@ export default class ArrSlider extends Component {
              min="0" max={max} step="1"
              value={values.indexOf(value)}
              onChange={(e) => this.onChangeHandler(e)}
-             class="w-11/12" />
+             class={style['arr-slide']} />
 
       <datalist id={listId}>
         {values.map((el, i) => {

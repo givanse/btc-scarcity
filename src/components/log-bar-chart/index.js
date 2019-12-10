@@ -39,7 +39,6 @@ export default class LogBarChart extends Component {
     // calc multiplier
     const min = Math.min(broadMoney, gold, btc);
     const mag = magnitud(min);
-    console.log('min mag', min, mag);
     let multiplier;
     switch(mag) {
       case 6: case 5:
@@ -66,6 +65,7 @@ export default class LogBarChart extends Component {
     
     // set canvas dimensions
     canvas.height = y + 20;
+    canvas.width = canvas.parentElement.getBoundingClientRect().width - 6;
 
     // grid & background
     ctx.strokeStyle = '#dbdbdb';
