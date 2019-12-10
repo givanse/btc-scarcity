@@ -19,7 +19,34 @@ function magnitud(num) {
   return -Math.floor( Math.log(num) / Math.log(10) + 1);
 }
 
+function pixelsRuleOfThree(min, x) {
+  const minPixels = 1;
+  const px = (x * minPixels) / min;
+  return px;
+}
+
 export default class LogBarChart extends Component {
+
+  drawColumnText(ctx, colX, colY, colWidth, textArr) {
+    ctx.fillStyle = 'black';
+
+    const lineHeight = 18;
+
+    let text = textArr[0]; 
+    let textWidth = ctx.measureText(text).width;
+    let xText = colX + (colWidth / 2) - (textWidth / 2);
+    ctx.fillText(text, xText , colY - 75 - lineHeight);
+
+    text = textArr[1];
+    textWidth = ctx.measureText(text).width;
+    xText = colX + (colWidth / 2) - (textWidth / 2);
+    ctx.fillText(text, xText, colY - 75);
+
+    text = textArr[2]; 
+    textWidth = ctx.measureText(text).width;
+    xText = colX + (colWidth / 2) - (textWidth / 2);
+    ctx.fillText(text, xText, colY + lineHeight);
+  }
 
   drawBars(ctx, canvas) {
     const fiatPurchase = this.props.fiatPurchase;
@@ -32,88 +59,69 @@ export default class LogBarChart extends Component {
     const btcPerc = btcPercOfRemainTSupply(btcBought);
 
     // logarithmic values
-    const broadMoney = log10(broadMoneyPerc); 
-    const gold = log10(goldPerc);
-    const btc = log10(btcPerc);
+    const broadMoneyLog = log10(broadMoneyPerc); 
+    const goldLog = log10(goldPerc);
+    const btcLog = log10(btcPerc);
 
-    // calc multiplier
-    const min = Math.min(broadMoney, gold, btc);
-    const mag = magnitud(min);
-    let multiplier;
-    switch(mag) {
-      case 6: case 5:
-        multiplier = Math.pow(10, 6); break;
-      case 7:
-        multiplier = Math.pow(10, 7); break;
-      case 8:
-        multiplier = Math.pow(10, 7.6); break;
-      case 9:
-        multiplier = Math.pow(10, 9.2); break;
-      case 10:
-        multiplier = Math.pow(10, 11); break;
-      default:
-        multiplier = Math.pow(10, mag); break;
-    }
-
-    const max = Math.max(broadMoney, gold, btc);
-    const maxHeight = max * multiplier;
+    // min & max
+    const minLog = Math.min(broadMoneyLog, goldLog, btcLog);
+    const maxLog = Math.max(broadMoneyLog, goldLog, btcLog);
+    const maxHeight = pixelsRuleOfThree(minLog, maxLog);
 
     const barSpace = 30;
     const barWidth = 125;
     const y = maxHeight > 250 ? maxHeight + 15 : 300;
-    const lineHeight = 15;
     
     // set canvas dimensions
-    canvas.height = y + 20;
-    canvas.width = canvas.parentElement.getBoundingClientRect().width - 6;
+    const bottomAxis = 30;
+    canvas.height = y + bottomAxis;
+    const maxWidth = canvas.parentElement.getBoundingClientRect().width - 6;
+    canvas.style.maxWidth = `${maxWidth}px`;
 
-    // grid & background
-    ctx.strokeStyle = '#dbdbdb';
-    ctx.moveTo(0, y + 1);
-    ctx.lineTo(canvas.width, y + 1);
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
+    // background
     ctx.fillStyle = '#f6f6f6';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    ctx.fillStyle = '#e5e5e5';
+    ctx.fillRect(0, y, canvas.width, bottomAxis);
+
     // text params
     ctx.font = '12px monospace';
-    const xTextPadding = 7;  
     const yText = y - 75;
+    const lineHeight = 18;
 
     let x = 10;
-    let barHeight = broadMoneyPerc * multiplier;
+    let barHeight = pixelsRuleOfThree(minLog, broadMoneyLog);
     ctx.fillStyle = 'green';
     ctx.fillRect(x, y, barWidth, -barHeight);
-    ctx.fillStyle = 'black';
-    let text = f.usd(fiatPurchase);
-    ctx.fillText(text, x + xTextPadding, yText - lineHeight);
-    text = f.per(broadMoneyPerc);
-    ctx.fillText(text, x + xTextPadding, yText);
-    ctx.fillText('money', x + xTextPadding, y + lineHeight);
+
+    this.drawColumnText(ctx, x, y, barWidth, [
+      f.usd(fiatPurchase),
+      f.per(broadMoneyPerc),
+      'money'
+    ]);
 
     x += barSpace + barWidth;
+    barHeight = pixelsRuleOfThree(minLog, goldLog);
     ctx.fillStyle = '#D4AF37';
-    barHeight = gold * multiplier;
     ctx.fillRect(x, y, barWidth, -barHeight);
-    ctx.fillStyle = 'black';
-    text = f.dec(goldBoughtOz) + 'oz';
-    ctx.fillText(text, x + xTextPadding, yText - lineHeight);
-    text = f.per(goldPerc);
-    ctx.fillText(text, x + xTextPadding, yText);
-    ctx.fillText('gold', x + xTextPadding, y + lineHeight);
+
+    this.drawColumnText(ctx, x, y, barWidth, [
+      f.dec(goldBoughtOz) + 'oz',
+      f.per(goldPerc),
+      'gold',
+    ]);
 
     x += barSpace + barWidth;
     ctx.fillStyle = '#f79319';
-    barHeight = btc * multiplier;
+    barHeight = pixelsRuleOfThree(minLog, btcLog);
     ctx.fillRect(x, y, barWidth, -barHeight);
-    ctx.fillStyle = 'black';
-    text = '₿' + f.sat(btcBought);
-    ctx.fillText(text, x + xTextPadding, yText - lineHeight);
-    text = f.per(btcPerc);
-    ctx.fillText(text, x + xTextPadding, yText);
-    ctx.fillText('bitcoin', x + xTextPadding, y + lineHeight);
+
+    this.drawColumnText(ctx, x, y, barWidth, [
+      '₿' + f.sat(btcBought),
+      f.per(btcPerc),
+      'bitcoin',
+    ]);
   }
 
   componentDidUpdate() {
