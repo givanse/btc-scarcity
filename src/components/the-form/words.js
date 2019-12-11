@@ -1,6 +1,30 @@
 const writtenNumber = require('written-number');
 import getSats from './get-sats';
 
+export function numberToWords(amount) {
+  amount = amount && amount !== Infinity ? amount : 0;
+  const whole = amount >= 1 ? Number.parseInt(amount) : 0;
+
+  let text;
+  if (whole) {
+    text = writtenNumber(whole);
+  }
+
+  const cents = (amount - whole).toFixed(2) * 100;
+  if (cents) {
+    const centsText = `point ${writtenNumber(cents)}`;
+
+    if (text) {
+      return `${text} ${centsText}`;
+    }
+    
+    return centsText;
+  }
+
+  return text;
+
+}
+
 export function fiatToWords(amount) {
   amount = amount && amount !== Infinity ? amount : 0;
   const whole = amount >= 1 ? Number.parseInt(amount) : 0;
@@ -26,6 +50,8 @@ export function fiatToWords(amount) {
 }
 
 export function btcToWords(amount) {
+  amount = amount.toFixed(8);
+
   const {btc, sats} = getSats(amount);
 
   let text;

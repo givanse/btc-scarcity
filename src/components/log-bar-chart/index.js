@@ -28,16 +28,17 @@ function pixelsRuleOfThree(min, x) {
 export default class LogBarChart extends Component {
 
   drawColumnText(ctx, colX, colY, colWidth, textArr) {
-    ctx.font = '12px monospace';
     ctx.fillStyle = 'black';
 
     const lineHeight = 18;
 
+    ctx.font = 'bold 13px monospace';
     let text = textArr[0]; 
     let textWidth = ctx.measureText(text).width;
     let xText = colX + (colWidth / 2) - (textWidth / 2);
     ctx.fillText(text, xText , colY - 75 - lineHeight);
 
+    ctx.font = '12px monospace';
     text = textArr[1];
     textWidth = ctx.measureText(text).width;
     xText = colX + (colWidth / 2) - (textWidth / 2);
@@ -75,12 +76,11 @@ export default class LogBarChart extends Component {
     let oneHundredPercHeight = Math.pow(10, avgMag);
     oneHundredPercHeight = oneHundredPercHeight < 600 ? 600 : oneHundredPercHeight;
     const maxHeight = oneHundredPercHeight * maxLog;
-    console.log(magnitudes);
-    console.log('mag 100% maxH', avgMag, oneHundredPercHeight, maxHeight);
 
     const barSpace = 30;
     const barWidth = 125;
-    const y = maxHeight > 250 ? maxHeight + 15 : 300;
+    const minHeight = 200;
+    const y = maxHeight > minHeight ? maxHeight + 10 : minHeight;
     
     // set canvas dimensions
     const bottomAxis = 30;
@@ -101,9 +101,9 @@ export default class LogBarChart extends Component {
     ctx.fillRect(x, y, barWidth, -barHeight);
 
     this.drawColumnText(ctx, x, y, barWidth, [
-      f.usd(fiatPurchase),
       f.per(broadMoneyPerc),
-      'money'
+      f.usd(fiatPurchase),
+      'broad money'
     ]);
 
     x += barSpace + barWidth;
@@ -112,9 +112,9 @@ export default class LogBarChart extends Component {
     ctx.fillRect(x, y, barWidth, -barHeight);
 
     this.drawColumnText(ctx, x, y, barWidth, [
-      f.dec(goldBoughtOz) + ' oz',
       f.per(goldPerc),
-      'gold',
+      f.dec(goldBoughtOz) + ' oz',
+      'mined gold',
     ]);
 
     x += barSpace + barWidth;
@@ -123,9 +123,9 @@ export default class LogBarChart extends Component {
     ctx.fillRect(x, y, barWidth, -barHeight);
 
     this.drawColumnText(ctx, x, y, barWidth, [
-      '₿ ' + f.sat(btcBought),
       f.per(btcPerc),
-      'bitcoin',
+      '₿ ' + f.sat(btcBought),
+      'bitcoin supply',
     ]);
   }
 
@@ -145,7 +145,7 @@ export default class LogBarChart extends Component {
 
     return (
       <div class="text-center">
-        <canvas id="log-bar-chart" class="m-auto" width="460" height="400">
+        <canvas id="log-bar-chart" class="m-auto" width="440" height="250">
           broad money {f.per(broadMoneyPerc)}
           <br />
           gold {f.per(goldPerc)}

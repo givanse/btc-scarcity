@@ -4,7 +4,7 @@ import {
   btcToWords,
 } from './words';
 
-const SAT_SIGN = 'sat';
+const SAT_SIGN = ' sat';
 
 function btc(btcAmount) {
   const {btc, sats} = getSats(btcAmount);

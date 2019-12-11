@@ -6,6 +6,7 @@ import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import LogBarChart from '../log-bar-chart';
 import {
+  numberToWords,
   fiatToWords,
   btcToWords,
 } from './words';
@@ -15,68 +16,15 @@ import {
   updateQueryParams,
 } from './query-params';
 import toWords from './to-words';
+import {
+  BTC_SLIDER_VALUES,
+  FIAT_SLIDER_VALUES
+} from './sliders-values';
 
 const P = f.PRECISION;
 
-const BTC_SLIDER_VALUES = [
-  0.00000001,
-  0.00000010,
-  0.00000015,
-  0.00000100,
-  0.00000150,
-
-  0.00001000,
-  0.00001500,
-  0.00010000,
-  0.00015000,
-  0.00100000,
-
-  0.00150000,
-  0.01000000,
-  0.01500000,
-  0.10,
-  0.20,
-
-  0.50,
-  0.75,
-  1,
-  5,
-  10,
-];
-
-const FIAT_SLIDER_VALUES = [
-  1,
-  2,
-  5,
-  10,
-  15,
-
-  20,
-  25,
-  50,
-  75,
-  100,
-
-  150,
-  250,
-  500,
-  1000,
-  1500,
-
-  10000,
-  50000,
-  100000,
-  500000,
-  1000000, // million
-  
-  1000000000, // billion
-  50000000000,
-  100000000000,
-  1000000000000,
-];
-
 //TODO: need a `sats` character
-const SAT_SIGN = 'sat';
+const SAT_SIGN = ' sat';
 
 const {
   UNITS,
@@ -103,6 +51,19 @@ const {
   TROY_OUNCE,
 } = UNITS;
 
+function verboseFiatPurchase() {
+  return (
+    <div>
+      <p>
+      <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
+      </p>
+      <p class="text-sm text-gray-700 mb-3">
+        one Bitcoin = one hundred million Satoshis
+      </p>
+    </div>
+  );
+}
+
 export default class TheForm extends Component {
 
   state = {
@@ -124,7 +85,8 @@ export default class TheForm extends Component {
 
   updateFiatPurchase(e) {
     const input = e.target;
-    let fiatPurchase = Number.parseFloat(input.value);
+    const value = input.value.replace(/[^0-9]/g,'');
+    let fiatPurchase = Number.parseFloat(value);
     fiatPurchase = Number.isNaN(fiatPurchase) ? 0 : fiatPurchase;
 
     this._updateFiatPurchase(fiatPurchase);
@@ -143,7 +105,8 @@ export default class TheForm extends Component {
 
   updateBtcHodl(e) {
     const input = e.target;
-    let number = Number.parseFloat(input.value);
+    const value = input.value.replace(/[^0-9]/g, '');
+    let number = Number.parseFloat(value);
     number = Number.isNaN(number) ? 0 : number;
     this._updateBtcHodl(number);
   }
@@ -196,17 +159,18 @@ export default class TheForm extends Component {
     return (
       <div>
 
-      <h2 class="background-btc-orange text-white">Bitcoin</h2>
+      <a name="fiat">
+        <h2 class="background-money text-white mb-8">
+          Purchasing Power
+        </h2>
+      </a>
 
       <form class="text-center"
             onSubmit={e => e.preventDefault()}>
-        <p class="">
-          If I were to buy today
-        </p>
         <input name="fiat-purchase"
-               value={f.dec(fiatPurchase)}
+               value={'$' + f.dec(fiatPurchase)}
                class={style['btc-hodl']}
-               placeholder="purchase amount_"
+               placeholder="dollar amount"
                onChange={e => this.updateFiatPurchase(e)} />
 
         <br />
@@ -215,33 +179,16 @@ export default class TheForm extends Component {
                    values={FIAT_SLIDER_VALUES}
                    updateValue={this._updateFiatPurchase.bind(this)} />
 
-        <p class="mb-4">
-          {fiatToWords(fiatPurchase)} worth of Bitcoin
-        </p>
-
         <p class="text-sm text-gray-700">
-          I would own
+          {fiatToWords(fiatPurchase)} could buy me 
         </p>
         {toWords.btc(btcBought)}
+
         <p class="text-sm text-gray-700 italic mb-4">
-          {f.usd(fiatPurchase)} / {f.usd(btcPrice)} =
+          {f.usd(fiatPurchase)} / <span class="text-green-400">{f.usd(btcPrice)}</span> =
           &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         </p>
-
-        <p>
-        <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
-        </p>
-        <p class="text-sm text-gray-700 mb-3">
-          one Bitcoin = one hundred million Satoshis
-        </p>
       </form>
-
-      <h2>
-        supply %
-      </h2>
-
-      <LogBarChart fiatPurchase={fiatPurchase}
-                   btcBought={btcBought} />
 
       <h2>
         per person
@@ -273,18 +220,17 @@ export default class TheForm extends Component {
         {toWords.btc(btcPerPerson)}
       </div>
 
-      <h2>my share</h2>
+      <a name="bitcoin">
+        <h2 class="background-btc-orange text-white my-8">
+          Bitcoin
+        </h2>
+      </a>
 
-      <form class="text-center"
-            onSubmit={e => e.preventDefault()}>
-        <label for="btc-hodl">
-          If I owned today
-        </label>
-        <br />
+      <form class="text-center" onSubmit={e => e.preventDefault()}>
         <input name="btc-hodl"
-               value={btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
+               value={'₿' + (btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl))}
                class={style['btc-hodl']}
-               placeholder="bitcoin amount_"
+               placeholder="bitcoin amount"
                onChange={e => this.updateBtcHodl(e)} />
 
         <br />
@@ -295,14 +241,6 @@ export default class TheForm extends Component {
 
         {toWords.btc(btcHodl)}
 
-        <p class="text-sm text-gray-700">
-          <br />
-          I would own
-        </p>
-        {f.dec(btcHodlInIndividualShares(btcHodl))}
-        <p class="text-sm text-gray-700">
-          individual shares
-        </p>
       </form>
 
       <h2>comparing</h2>
@@ -368,36 +306,20 @@ export default class TheForm extends Component {
           </span>
         </div>
         <div>
-          {f.usd(btcHodl* this.state.btcPrice)}
+          {f.usd(btcHodl * this.state.btcPrice)}
         </div>
       </div>
 
-      <h3>Gold</h3>
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <div>
-          gold
-        </div>
-        <div></div>
-        <div>
-          bitcoin
-        </div>
+      <h2 class="bg-blue-300 text-white my-8">
+        Supply
+      </h2>
 
-        <div>
-          {f.dec(goldAboveGround * TROY_OUNCE, 'billion')} oz <sup>†</sup>
-        </div>
-        <div>supply</div>
-        <div>
-          <BtcSign /> {f.btc(btcRemainTSupply)}
-        </div>
+      <h2>
+        supply percentage
+      </h2>
 
-        <div>
-          {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
-        </div>
-        <div>per person</div>
-        <div>
-          <BtcSign /> {btcPerPerson.toFixed(8)}
-        </div>
-      </div>
+      <LogBarChart fiatPurchase={fiatPurchase}
+                   btcBought={btcBought} />
 
       <h3>Broad Money</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
@@ -426,7 +348,34 @@ export default class TheForm extends Component {
         </div>
       </div>
 
-      <h2>Millionaire Median</h2>
+      <h3>Mined Gold</h3>
+      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
+        <div>
+          gold
+        </div>
+        <div></div>
+        <div>
+          bitcoin
+        </div>
+
+        <div>
+          {f.dec(goldAboveGround * TROY_OUNCE, 'billion')} oz <sup>†</sup>
+        </div>
+        <div>supply</div>
+        <div>
+          <BtcSign /> {f.btc(btcRemainTSupply)}
+        </div>
+
+        <div>
+          {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
+        </div>
+        <div>per person</div>
+        <div>
+          <BtcSign /> {btcPerPerson.toFixed(8)}
+        </div>
+      </div>
+
+      <h3>Millionaire Median</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
           money
@@ -461,7 +410,7 @@ export default class TheForm extends Component {
         </div>
       </div>  
 
-      <h2>The 1% Median</h2>
+      <h3>The 1% Median</h3>
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
         <div>
           money
@@ -499,15 +448,13 @@ export default class TheForm extends Component {
 
 
 
-      <h2>Bitcoin Stats</h2>
+      <h3>Bitcoin Stats</h3>
       <div class="text-center">
         Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
         <br/>
         Lost estimate <BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
         <br />
         Remaining supply <BtcSign /> {f.btc(btcRemainTSupply)}
-        <br />
-        BTC per person <BtcSign /> {btcPerPerson.toFixed(8)}
       </div>
 
       <hr class="m-8" />

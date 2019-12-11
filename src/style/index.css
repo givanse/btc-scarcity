@@ -35,3 +35,7 @@ h5 {
 .background-btc-orange {
   background-color: theme('colors.btc-orange');
 }
+
+.background-money {
+  background-color: theme('colors.money');
+}
