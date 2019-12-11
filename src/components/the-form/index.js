@@ -215,11 +215,13 @@ export default class TheForm extends Component {
         <h4>your amount</h4>
 
         <div>
-          1
+          1 <i class="icon-person"></i>
         </div>
-        <div class="">shares</div>
+        <div class="">
+          per person
+        </div>
         <div>
-          {f.dec(btcHodlInIndividualShares(btcHodl))}
+          {f.dec(btcHodlInIndividualShares(btcHodl))} <i class="icon-person"></i>
         </div>
 
         <div>
@@ -243,22 +245,26 @@ export default class TheForm extends Component {
 
         <div>
           {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
+          <i class="icon-person"></i>
         </div>
         <div class="">
           millionaires
         </div>
         <div>
           {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
+          <i class="icon-person"></i>
         </div>
 
         <div>
           {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+          <i class="icon-person"></i>
         </div>
         <div class="">
           1% 
         </div>
         <div>
           {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+          <i class="icon-person"></i>
         </div>
 
         <div>
@@ -312,7 +318,9 @@ export default class TheForm extends Component {
         <div>
           {f.usd(broadMoneyPerCapita)}
         </div>
-        <div>per person</div>
+        <div>
+          1<i class="icon-person"></i>
+        </div>
         <div>
           <BtcSign /> {btcPerPerson.toFixed(8)}
         </div>
@@ -339,7 +347,9 @@ export default class TheForm extends Component {
         <div>
           {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
         </div>
-        <div>per person</div>
+        <div>
+          1<i class="icon-person"></i>
+        </div>
         <div>
           <BtcSign /> {btcPerPerson.toFixed(8)}
         </div>
@@ -364,17 +374,11 @@ export default class TheForm extends Component {
         </div>
 
         <div>
-          {f.per(usaMillionaireMedianBroadPercent)}
-        </div>
-        <div>net worth</div>
-        <div>
-          {f.per(usaMillionaireMedianBroadPercent)}
-        </div>
-
-        <div>
           {f.usd(usaMillionaireMedian)}<sup>‡</sup>
         </div>
-        <div>net worth</div>
+        <div>
+          1<i class="icon-person"></i>
+        </div>
         <div>
           <BtcSign /> {f.btc(usaMillionaireMedianBroadPercentInBtc)}
         </div>
@@ -399,17 +403,11 @@ export default class TheForm extends Component {
         </div>
 
         <div>
-          {f.per(netWorth1PercentMedianBroadMoneyPercent)}
-        </div>
-        <div>net worth</div>
-        <div>
-          {f.per(netWorth1PercentMedianBroadMoneyPercent)}
-        </div>
-
-        <div>
           {f.usd(netWorth1PercentMedian)}<sup>†</sup>
         </div>
-        <div>net worth</div>
+        <div>
+          1<i class="icon-person"></i>
+        </div>
         <div>
           <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
         </div>
@@ -418,7 +416,11 @@ export default class TheForm extends Component {
 
 
 
-      <h3>Bitcoin</h3>
+      <h3 class="">
+        Bitcoin
+        <br />
+        <i class="icon-chart-pie"></i>
+      </h3>
       <div class="text-center">
         Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
         <br/>

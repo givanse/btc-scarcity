@@ -3,6 +3,8 @@ import style from './style';
 import f from '../the-form/formatter';
 import ArrSlider from '../arr-slider';
 
+const MILLION = 1000000;
+
 const FIAT_SLIDER_VALUES = [
   1,
   2,
@@ -17,21 +19,22 @@ const FIAT_SLIDER_VALUES = [
   100,
 
   150,
+  200,
   250,
   500,
   1000,
-  1500,
 
+  1500,
+  5000,
   10000,
   50000,
   100000,
+
   500000,
-  1000000, // million
-  
-  1000000000, // billion
-  50000000000,
-  100000000000,
-  1000000000000,
+  MILLION,
+  MILLION * 1000,
+  50 * MILLION * 1000,
+  100 * MILLION * 1000,
 ];
 
 export default class InputFiat extends Component {

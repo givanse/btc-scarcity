@@ -2,6 +2,7 @@ import {h, Component } from 'preact';
 import style from './style';
 import BtcSign from '../btc-sign';
 import {
+  numberToWords,
   btcToWords,
 } from '../the-form/words';
 import toWords from '../the-form/to-words';
@@ -22,12 +23,19 @@ export default class PerPerson extends Component {
 
     return (
       <div class="text-center">
+
+        <i class="icon-globe"></i>
+
         <p class="text-sm text-gray-700">
           world population
         </p>
+
         {f.dec(worldPopulation)}
+        <br />
+        <i class="icon-person"></i>
+
         <p class="text-sm text-gray-700 mb-3">
-          seven billion seven hundred million
+          {numberToWords(worldPopulation)} persons
         </p>
 
         <p class="text-sm text-gray-700">

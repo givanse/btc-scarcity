@@ -1,4 +1,6 @@
 
-footer {
-  @apply h-40 text-center p-4 pt-12 mt-8; 
+.footer {
+  @apply text-center p-4 pt-12 pb-16 mt-8;
+  height: 200px;
+  background-color: theme('colors.btc-orange');
 }
