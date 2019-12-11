@@ -5,10 +5,9 @@ import staticData from './static-data';
 import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import LogBarChart from '../log-bar-chart';
+import PerPerson from '../per-person';
 import {
-  numberToWords,
   fiatToWords,
-  btcToWords,
 } from './words';
 import { fetchBtcPrice } from './fetch-btc';
 import {
@@ -21,8 +20,6 @@ import {
   FIAT_SLIDER_VALUES
 } from './sliders-values';
 
-const P = f.PRECISION;
-
 //TODO: need a `sats` character
 const SAT_SIGN = ' sat';
 
@@ -32,7 +29,6 @@ const {
   btcLostPerc,
   btcLost,
   btcRemainTSupply,
-  worldPopulation,
   btcPerPerson,
   btcHodlInIndividualShares,
   goldAboveGround,
@@ -190,35 +186,13 @@ export default class TheForm extends Component {
         </p>
       </form>
 
-      <h2>
-        per person
-      </h2>
+      <a name="person">
+        <h2 class="bg-blue-300 text-white my-8">
+          Per Person
+        </h2>
+      </a>
 
-      <div class="text-center">
-        <p class="text-sm text-gray-700">
-          world population
-        </p>
-        {f.dec(worldPopulation)}
-        <p class="text-sm text-gray-700 mb-3">
-          seven billion seven hundred million
-        </p>
-
-        <p class="text-sm text-gray-700">
-          bitcoin supply
-        </p>
-        <BtcSign /> {f.btc(btcRemainTSupply)}
-        <p class="text-sm text-gray-700 mb-3">
-          {btcToWords(btcRemainTSupply)}
-        </p>
-
-        <p class="text-sm text-gray-700">
-          bitcoin available for each person
-          <br />
-          <BtcSign /> {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
-          &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
-        </p>
-        {toWords.btc(btcPerPerson)}
-      </div>
+      <PerPerson />
 
       <a name="bitcoin">
         <h2 class="background-btc-orange text-white my-8">
@@ -251,6 +225,14 @@ export default class TheForm extends Component {
         <h4>your amount</h4>
 
         <div>
+          1
+        </div>
+        <div class="">shares</div>
+        <div>
+          {f.dec(btcHodlInIndividualShares(btcHodl))}
+        </div>
+
+        <div>
           <BtcSign /> {f.sat(btcPerPerson)}
         </div>
         <div>
@@ -258,14 +240,6 @@ export default class TheForm extends Component {
         </div>
         <div>
           <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
-        </div>
-
-        <div>
-          1
-        </div>
-        <div class="">shares</div>
-        <div>
-          {f.dec(btcHodlInIndividualShares(btcHodl))}
         </div>
 
 
@@ -310,7 +284,7 @@ export default class TheForm extends Component {
         </div>
       </div>
 
-      <h2 class="bg-blue-300 text-white my-8">
+      <h2 class="bg-purple-500 text-white my-8">
         Supply
       </h2>
 
@@ -448,7 +422,7 @@ export default class TheForm extends Component {
 
 
 
-      <h3>Bitcoin Stats</h3>
+      <h3>Bitcoin</h3>
       <div class="text-center">
         Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
         <br/>
