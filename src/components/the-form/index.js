@@ -6,6 +6,7 @@ import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import LogBarChart from '../log-bar-chart';
 import PerPerson from '../per-person';
+import InputFiat from '../input-fiat';
 import {
   fiatToWords,
 } from './words';
@@ -17,7 +18,6 @@ import {
 import toWords from './to-words';
 import {
   BTC_SLIDER_VALUES,
-  FIAT_SLIDER_VALUES
 } from './sliders-values';
 
 //TODO: need a `sats` character
@@ -161,20 +161,11 @@ export default class TheForm extends Component {
         </h2>
       </a>
 
-      <form class="text-center"
-            onSubmit={e => e.preventDefault()}>
-        <input name="fiat-purchase"
-               value={'$' + f.dec(fiatPurchase)}
-               class={style['btc-hodl']}
-               placeholder="dollar amount"
-               onChange={e => this.updateFiatPurchase(e)} />
+      <InputFiat fiatPurchase={fiatPurchase}
+                 updateFiatPurchase={this.updateFiatPurchase.bind(this)}
+                 updateValue={this._updateFiatPurchase.bind(this)} />
 
-        <br />
-        <ArrSlider name="fiat-purchase-range"
-                   value={fiatPurchase}
-                   values={FIAT_SLIDER_VALUES}
-                   updateValue={this._updateFiatPurchase.bind(this)} />
-
+      <div class="text-center">
         <p class="text-sm text-gray-700">
           {fiatToWords(fiatPurchase)} could buy me 
         </p>
@@ -184,7 +175,7 @@ export default class TheForm extends Component {
           {f.usd(fiatPurchase)} / <span class="text-green-400">{f.usd(btcPrice)}</span> =
           &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         </p>
-      </form>
+      </div>
 
       <a name="person">
         <h2 class="bg-blue-300 text-white my-8">
@@ -214,7 +205,6 @@ export default class TheForm extends Component {
                    updateValue={this._updateBtcHodl.bind(this)} />
 
         {toWords.btc(btcHodl)}
-
       </form>
 
       <h2>comparing</h2>
@@ -284,9 +274,15 @@ export default class TheForm extends Component {
         </div>
       </div>
 
-      <h2 class="bg-purple-500 text-white my-8">
-        Supply
-      </h2>
+      <a name="supply">
+        <h2 class="bg-purple-500 text-white my-8">
+          Supply
+        </h2>
+      </a>
+
+      <InputFiat fiatPurchase={fiatPurchase}
+                 updateFiatPurchase={this.updateFiatPurchase.bind(this)}
+                 updateValue={this._updateFiatPurchase.bind(this)} />
 
       <h2>
         supply percentage
