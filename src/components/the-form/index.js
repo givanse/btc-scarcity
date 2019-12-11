@@ -67,7 +67,12 @@ const FIAT_SLIDER_VALUES = [
   50000,
   100000,
   500000,
-  1000000,
+  1000000, // million
+  
+  1000000000, // billion
+  50000000000,
+  100000000000,
+  1000000000000,
 ];
 
 //TODO: need a `sats` character

@@ -15,8 +15,8 @@ function log10(num) {
   return Math.log10(num + offset);
 }
 
-function magnitud(num) {
-  return -Math.floor( Math.log(num) / Math.log(10) + 1);
+function magnitude(num) {
+  return -Math.floor(Math.log(num) / Math.log(10));
 }
 
 function pixelsRuleOfThree(min, x) {
@@ -28,6 +28,7 @@ function pixelsRuleOfThree(min, x) {
 export default class LogBarChart extends Component {
 
   drawColumnText(ctx, colX, colY, colWidth, textArr) {
+    ctx.font = '12px monospace';
     ctx.fillStyle = 'black';
 
     const lineHeight = 18;
@@ -64,9 +65,18 @@ export default class LogBarChart extends Component {
     const btcLog = log10(btcPerc);
 
     // min & max
-    const minLog = Math.min(broadMoneyLog, goldLog, btcLog);
+    const magnitudes = [
+      magnitude(broadMoneyLog),
+      magnitude(goldLog),
+      magnitude(btcLog),
+    ];
+    let avgMag = magnitudes.reduce((acc, n) => acc + n, 0) / magnitudes.length;
     const maxLog = Math.max(broadMoneyLog, goldLog, btcLog);
-    const maxHeight = pixelsRuleOfThree(minLog, maxLog);
+    let oneHundredPercHeight = Math.pow(10, avgMag);
+    oneHundredPercHeight = oneHundredPercHeight < 600 ? 600 : oneHundredPercHeight;
+    const maxHeight = oneHundredPercHeight * maxLog;
+    console.log(magnitudes);
+    console.log('mag 100% maxH', avgMag, oneHundredPercHeight, maxHeight);
 
     const barSpace = 30;
     const barWidth = 125;
@@ -85,13 +95,8 @@ export default class LogBarChart extends Component {
     ctx.fillStyle = '#e5e5e5';
     ctx.fillRect(0, y, canvas.width, bottomAxis);
 
-    // text params
-    ctx.font = '12px monospace';
-    const yText = y - 75;
-    const lineHeight = 18;
-
     let x = 10;
-    let barHeight = pixelsRuleOfThree(minLog, broadMoneyLog);
+    let barHeight = oneHundredPercHeight * broadMoneyLog; 
     ctx.fillStyle = 'green';
     ctx.fillRect(x, y, barWidth, -barHeight);
 
@@ -102,23 +107,23 @@ export default class LogBarChart extends Component {
     ]);
 
     x += barSpace + barWidth;
-    barHeight = pixelsRuleOfThree(minLog, goldLog);
+    barHeight = oneHundredPercHeight * goldLog;
     ctx.fillStyle = '#D4AF37';
     ctx.fillRect(x, y, barWidth, -barHeight);
 
     this.drawColumnText(ctx, x, y, barWidth, [
-      f.dec(goldBoughtOz) + 'oz',
+      f.dec(goldBoughtOz) + ' oz',
       f.per(goldPerc),
       'gold',
     ]);
 
     x += barSpace + barWidth;
     ctx.fillStyle = '#f79319';
-    barHeight = pixelsRuleOfThree(minLog, btcLog);
+    barHeight = oneHundredPercHeight * btcLog; 
     ctx.fillRect(x, y, barWidth, -barHeight);
 
     this.drawColumnText(ctx, x, y, barWidth, [
-      '₿' + f.sat(btcBought),
+      '₿ ' + f.sat(btcBought),
       f.per(btcPerc),
       'bitcoin',
     ]);
