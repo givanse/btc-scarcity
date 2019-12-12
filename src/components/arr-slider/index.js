@@ -22,15 +22,21 @@ export default class ArrSlider extends Component {
   render() {
     const max = this.props.values.length - 1;
 
-    const value = this.props.value;
-    const values = this.props.values;
-    const name = this.props.name;
+    const {
+      value,
+      values,
+      name,
+    } = this.props;
     const listId = `${name}-arr-slider`;
 
     return (
       <div>
+      <label for={name} class="block w-0 h-0 overflow-hidden">
+        fiat amount
+      </label>
       <input type="range"
-             name={this.props.name}
+             id={name}
+             name={name}
              list={listId}
              min="0" max={max} step="1"
              value={values.indexOf(value)}

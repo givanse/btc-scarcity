@@ -44,18 +44,23 @@ export default class InputFiat extends Component {
       fiatPurchase,
       updateFiatPurchase,
       updateValue,
+      name,
     } = this.props;
 
     return (
       <form class="text-center" onSubmit={e => e.preventDefault()}>
-        <input name="fiat-purchase"
+        <label for={name} class="block w-0 h-0 overflow-hidden">
+          fiat amount
+        </label>
+        <input id={name}
+               name={name}
                value={'$' + f.dec(fiatPurchase)}
                class={style['btc-hodl']}
                placeholder="dollar amount"
                onChange={updateFiatPurchase} />
 
         <br />
-        <ArrSlider name="fiat-purchase-range"
+        <ArrSlider name={name + "-input-range"}
                    value={fiatPurchase}
                    values={FIAT_SLIDER_VALUES}
                    updateValue={updateValue} />

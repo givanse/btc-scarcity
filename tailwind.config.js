@@ -3,7 +3,7 @@ module.exports = {
     extend: {
       colors: {
         'btc-orange': '#f79319',
-        'money': '#85bb65',
+        'money': '#188839',
       }
     },
   },

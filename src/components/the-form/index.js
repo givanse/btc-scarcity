@@ -161,7 +161,8 @@ export default class TheForm extends Component {
         </h2>
       </a>
 
-      <InputFiat fiatPurchase={fiatPurchase}
+      <InputFiat name="fiat-purchase"
+                 fiatPurchase={fiatPurchase}
                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
                  updateValue={this._updateFiatPurchase.bind(this)} />
 
@@ -172,13 +173,13 @@ export default class TheForm extends Component {
         {toWords.btc(btcBought)}
 
         <p class="text-sm text-gray-700 italic mb-4">
-          {f.usd(fiatPurchase)} / <span class="text-green-400">{f.usd(btcPrice)}</span> =
+          {f.usd(fiatPurchase)} / <span class="bg-green-200 text-green-900 px-2 rounded">{f.usd(btcPrice)}</span> =
           &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         </p>
       </div>
 
       <a name="person">
-        <h2 class="bg-blue-300 text-white my-8">
+        <h2 class="bg-blue-600 text-white my-8">
           Per Person
         </h2>
       </a>
@@ -186,20 +187,24 @@ export default class TheForm extends Component {
       <PerPerson />
 
       <a name="bitcoin">
-        <h2 class="background-btc-orange text-white my-8">
+        <h2 class="background-btc-orange text-black font-bold my-8">
           Bitcoin
         </h2>
       </a>
 
       <form class="text-center" onSubmit={e => e.preventDefault()}>
-        <input name="btc-hodl"
+        <label for="btc-hodl" class="block w-0 h-0 overflow-hidden">
+          bitcoin amount
+        </label>
+        <input id="btc-hodl"
+               name="btc-hodl"
                value={'₿' + (btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl))}
                class={style['btc-hodl']}
                placeholder="bitcoin amount"
                onChange={e => this.updateBtcHodl(e)} />
 
         <br />
-        <ArrSlider name="btc-hodl-range"
+        <ArrSlider name="btc-hodl-slider"
                    value={btcHodl}
                    values={BTC_SLIDER_VALUES}
                    updateValue={this._updateBtcHodl.bind(this)} />
@@ -271,7 +276,7 @@ export default class TheForm extends Component {
           {f.usd(btcPerPerson * this.state.btcPrice)}
         </div>
         <div>
-          <span class="text-base font-bold text-green-400">
+          <span class="bg-green-200 text-green-900 px-2 rounded">
             {f.usd(this.state.btcPrice)}
           </span>
         </div>
@@ -281,18 +286,21 @@ export default class TheForm extends Component {
       </div>
 
       <a name="supply">
-        <h2 class="bg-purple-500 text-white my-8">
+        <h2 class="bg-purple-700 text-white my-8">
           Supply
         </h2>
       </a>
 
-      <InputFiat fiatPurchase={fiatPurchase}
+      <InputFiat name="fiat-purchase-supply"
+                 fiatPurchase={fiatPurchase}
                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
                  updateValue={this._updateFiatPurchase.bind(this)} />
 
-      <h2>
+      <h3>
+        {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
+        <br />
         supply percentage
-      </h2>
+      </h3>
 
       <LogBarChart fiatPurchase={fiatPurchase}
                    btcBought={btcBought} />
