@@ -7,6 +7,7 @@ import ArrSlider from '../arr-slider';
 import LogBarChart from '../log-bar-chart';
 import PerPerson from '../per-person';
 import InputFiat from '../input-fiat';
+import BitcoinStats from '../bitcoin-stats';
 import {
   fiatToWords,
 } from './words';
@@ -25,9 +26,6 @@ const SAT_SIGN = ' sat';
 
 const {
   UNITS,
-  btcTCap,
-  btcLostPerc,
-  btcLost,
   btcRemainTSupply,
   btcPerPerson,
   btcHodlInIndividualShares,
@@ -46,19 +44,6 @@ const {
 const {
   TROY_OUNCE,
 } = UNITS;
-
-function verboseFiatPurchase() {
-  return (
-    <div>
-      <p>
-      <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
-      </p>
-      <p class="text-sm text-gray-700 mb-3">
-        one Bitcoin = one hundred million Satoshis
-      </p>
-    </div>
-  );
-}
 
 export default class TheForm extends Component {
 
@@ -155,9 +140,9 @@ export default class TheForm extends Component {
     return (
       <div>
 
-      <a name="fiat">
+      <a name="cash">
         <h2 class="background-money text-white mb-8">
-          Purchasing Power
+          Cash
         </h2>
       </a>
 
@@ -180,7 +165,7 @@ export default class TheForm extends Component {
 
       <a name="person">
         <h2 class="bg-blue-600 text-white my-8">
-          Per Person
+          World Wide
         </h2>
       </a>
 
@@ -212,22 +197,14 @@ export default class TheForm extends Component {
         {toWords.btc(btcHodl)}
       </form>
 
-      <h2>comparing</h2>
-
       <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <h4>per person</h4>
-        <div></div>
-        <h4>your amount</h4>
-
-        <div>
+        <h4>
           1 <i class="icon-person"></i>
-        </div>
-        <div class="">
-          per person
-        </div>
-        <div>
+        </h4>
+        <div></div>
+        <h4>
           {f.dec(btcHodlInIndividualShares(btcHodl))} <i class="icon-person"></i>
-        </div>
+        </h4>
 
         <div>
           <BtcSign /> {f.sat(btcPerPerson)}
@@ -253,7 +230,7 @@ export default class TheForm extends Component {
           <i class="icon-person"></i>
         </div>
         <div class="">
-          millionaires
+          a millionaire's wealth
         </div>
         <div>
           {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
@@ -265,7 +242,7 @@ export default class TheForm extends Component {
           <i class="icon-person"></i>
         </div>
         <div class="">
-          1% 
+          a one percenter wealth
         </div>
         <div>
           {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
@@ -429,13 +406,8 @@ export default class TheForm extends Component {
         <br />
         <i class="icon-chart-pie"></i>
       </h3>
-      <div class="text-center">
-        Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
-        <br/>
-        Lost estimate <BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
-        <br />
-        Remaining supply <BtcSign /> {f.btc(btcRemainTSupply)}
-      </div>
+
+      <BitcoinStats /> 
 
       <hr class="m-8" />
 

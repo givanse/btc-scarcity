@@ -24,34 +24,38 @@ export default class PerPerson extends Component {
     return (
       <div class="text-center">
 
-        <i class="icon-globe"></i>
-
         <p class="text-sm text-gray-700">
+          <i class="icon-globe"></i>
+          <br />
           world population
         </p>
 
         {f.dec(worldPopulation)}
         <br />
-        <i class="icon-person"></i>
 
         <p class="text-sm text-gray-700 mb-3">
           {numberToWords(worldPopulation)} persons
         </p>
 
         <p class="text-sm text-gray-700">
+          <i class="icon-bitcoin"></i>
+          <br/>
           bitcoin supply
         </p>
-        <BtcSign /> {f.btc(btcRemainTSupply)}
+        {f.btc(btcRemainTSupply)}
         <p class="text-sm text-gray-700 mb-3">
           {btcToWords(btcRemainTSupply)}
         </p>
 
         <p class="text-sm text-gray-700">
+          <i class="icon-person"></i>
+          <br />
           bitcoin available for each person
           <br />
-          <BtcSign /> {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
+          {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
           &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
         </p>
+
         {toWords.btc(btcPerPerson)}
       </div>
     );
