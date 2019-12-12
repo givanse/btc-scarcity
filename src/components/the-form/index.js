@@ -129,6 +129,10 @@ export default class TheForm extends Component {
 
   componentDidMount() {
     this.fetchBtcPrice();
+    setInterval(() => {
+      this.fetchBtcPrice();
+    }, 1000 * 60);
+
     const {btc, fiatPurchase} = readQueryParams(this.state);
     this.setSearchState(btc, fiatPurchase);
   }
