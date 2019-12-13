@@ -225,6 +225,31 @@ export default class TheForm extends Component {
         </p>
       </div>
 
+      <table class="w-full text-center m-auto md:max-w-xl">
+        <tr>
+          <td class="text-xl">
+            1 <i class="icon-person"></i>
+          </td>
+          <td></td>
+          <td class="text-xl">
+            {f.dec(btcHodlInIndividualShares(btcBought))} <i class="icon-person"></i>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <BtcSign /> {f.sat(btcPerPerson)}
+          </td>
+          <td>
+            bitcoin
+          </td>
+          <td>
+            <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
+          </td>
+        </tr>
+      </table>
+
+
       <div id="bitcoin" class="block pt-4">
         <h2 class="background-btc-orange text-black font-bold">
           Bitcoin
