@@ -9,15 +9,17 @@ const SAT_SIGN = ' sat';
 function btc(btcAmount) {
   const {btc, sats} = getSats(btcAmount);
   
-  let s = `${f.btc(sats)}${SAT_SIGN}`;
+  let btcString = `${f.btc(sats)}${SAT_SIGN}`;
 
   if (btc) {
-    s = `₿${f.btc(btc)} and ${s}`;
+    btcString = `₿${f.btc(btc)} and ${btcString}`;
   }
-  
+
+  //const href = `?btc=${btcAmount.toFixed(8)}#bitcoin`;
+
   return (
     <div>
-      {s}
+      {btcString}
       <p class="text-sm text-gray-700">
         {btcToWords(btcAmount)}
       </p>

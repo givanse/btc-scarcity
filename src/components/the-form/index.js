@@ -8,21 +8,19 @@ import LogBarChart from '../log-bar-chart';
 import PerPerson from '../per-person';
 import InputFiat from '../input-fiat';
 import BitcoinStats from '../bitcoin-stats';
+import TheHeader from '../the-header';
 import {
   fiatToWords,
 } from './words';
 import { fetchBtcPrice } from './fetch-btc';
 import {
   readQueryParams,
-  updateQueryParams,
-} from './query-params';
+  historyPushState,
+} from './router';
 import toWords from './to-words';
 import {
   BTC_SLIDER_VALUES,
 } from './sliders-values';
-
-//TODO: need a `sats` character
-const SAT_SIGN = ' sat';
 
 const {
   UNITS,
@@ -34,16 +32,29 @@ const {
   broadMoneyPerCapita,
   moneySupply,
   usaMillionaireMedian,
-  usaMillionaireMedianBroadPercent,
   usaMillionaireMedianBroadPercentInBtc,
   netWorth1PercentMedian,
-  netWorth1PercentMedianBroadMoneyPercent,
   netWorth1PercentMedianBroadMoneyPercentInBtc,
 } = staticData;
 
 const {
   TROY_OUNCE,
 } = UNITS;
+
+function scrollTo(query) {
+  const el = document.querySelector(query);
+
+  if (!el) {
+    console.error(`could not find ${query}`);
+    return;
+  }
+
+  const options = {
+    top: el.getBoundingClientRect().y,
+    behavior: 'smooth',
+  };
+  window.scrollTo(options);
+}
 
 export default class TheForm extends Component {
 
@@ -58,10 +69,45 @@ export default class TheForm extends Component {
 
     if (typeof window !== 'undefined') {
       window.onpopstate = (event) => {
-        const {btc, fiatPurchase} = event.state; 
-        this.setSearchState(btc, fiatPurchase);
+        if (!event.state) {
+          return;
+        }
+
+        console.log('pop', event);
+        const {btc, fiat} = event.state; 
+        this.setSearchState(btc, fiat);
       }
     }
+
+    //this.initInternalNavigation();
+  }
+
+  initInternalNavigation() {
+    document.addEventListener('click', event => {
+      let target = event.target;
+
+      do {
+
+        if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
+          //event.preventDefault();
+
+          const location = target.href;
+          this.navigateHash(location);
+
+          return;
+        }
+
+        target = target.parentElement;
+
+      } while (target.tagName !== 'BODY');
+    });
+  }
+
+  navigateHash(location) {
+    const state = readQueryParams(location);
+    const {btc, fiat} = state; 
+    this.setSearchState(btc, fiat);
+    historyPushState(state);
   }
 
   updateFiatPurchase(e) {
@@ -75,12 +121,12 @@ export default class TheForm extends Component {
 
   _updateFiatPurchase(fiatAmount) {
     this.setState((state, props) => {
-      const s = Object.assign({}, state);
-      s.fiatPurchase = fiatAmount;
+      const newState = Object.assign({}, state);
+      newState.fiatPurchase = fiatAmount;
 
-      updateQueryParams(s);
+      historyPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
 
-      return s;
+      return newState;
     });
   }
 
@@ -94,12 +140,12 @@ export default class TheForm extends Component {
 
   _updateBtcHodl(btcAmount) {
     this.setState((state, props) => {
-      const s = Object.assign({}, state);
-      s.btcHodl = btcAmount;
+      const newState = Object.assign({}, state);
+      newState.btcHodl = btcAmount;
 
-      updateQueryParams(s);
+      historyPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
 
-      return s;
+      return newState;
     });
   }
 
@@ -112,18 +158,18 @@ export default class TheForm extends Component {
 
   updateBtcPrice(btcPrice) {
     this.setState(function(state, props) {
-      const s = Object.assign({}, state);
-      s.btcPrice = btcPrice;
-      return s;
+      const newState = Object.assign({}, state);
+      newState.btcPrice = btcPrice;
+      return newState;
     });
   }
 
   setSearchState(btc, fiat) {
     this.setState(function(state, props) {
-      const s = Object.assign({}, state);
-      s.btcHodl = btc;
-      s.fiatPurchase = fiat;
-      return s;
+      const newState = Object.assign({}, state);
+      newState.btcHodl = btc;
+      newState.fiatPurchase = fiat;
+      return newState;
     });
   }
 
@@ -133,8 +179,10 @@ export default class TheForm extends Component {
       this.fetchBtcPrice();
     }, 1000 * 60);
 
-    const {btc, fiatPurchase} = readQueryParams(this.state);
-    this.setSearchState(btc, fiatPurchase);
+    this.navigateHash();
+    if (window.location.hash) {
+      scrollTo(window.location.hash);
+    }
   }
 
   render() {
@@ -144,11 +192,13 @@ export default class TheForm extends Component {
     return (
       <div>
 
-      <a name="cash">
-        <h2 class="background-money text-white mb-8">
+      <TheHeader />
+
+      <div id="cash" class="block pt-4">
+        <h2 class="background-money text-white">
           Cash
         </h2>
-      </a>
+      </div>
 
       <InputFiat name="fiat-purchase"
                  fiatPurchase={fiatPurchase}
@@ -167,19 +217,19 @@ export default class TheForm extends Component {
         </p>
       </div>
 
-      <a name="person">
-        <h2 class="bg-blue-600 text-white my-8">
+      <div id="world" class="block pt-4">
+        <h2 class="bg-blue-600 text-white ">
           World Wide
         </h2>
-      </a>
+      </div>
 
       <PerPerson />
 
-      <a name="bitcoin">
-        <h2 class="background-btc-orange text-black font-bold my-8">
+      <div id="bitcoin" class="block pt-4">
+        <h2 class="background-btc-orange text-black font-bold">
           Bitcoin
         </h2>
-      </a>
+      </div>
 
       <form class="text-center" onSubmit={e => e.preventDefault()}>
         <label for="btc-hodl" class="block w-0 h-0 overflow-hidden">
@@ -266,11 +316,11 @@ export default class TheForm extends Component {
         </div>
       </div>
 
-      <a name="supply">
-        <h2 class="bg-purple-700 text-white my-8">
+      <div id="supply" class="block pt-4">
+        <h2 class="bg-purple-700 text-white ">
           Supply
         </h2>
-      </a>
+      </div>
 
       <InputFiat name="fiat-purchase-supply"
                  fiatPurchase={fiatPurchase}

@@ -14,7 +14,8 @@ export default class TheFooter extends Component {
         <br />
         <br />
         <br />
-        <a class="text-gray-800 text-3xl" href="https://github.com/givanse/btc-scarcity">
+        <a class="text-gray-800 text-3xl" href="https://github.com/givanse/btc-scarcity"
+           aria-label="check out the source code repository">
           <i class="icon-github"></i>
         </a>
       </footer>

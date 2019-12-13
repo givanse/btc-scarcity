@@ -25,7 +25,7 @@ export default class PerPerson extends Component {
       <div class="text-center">
 
         <p class="text-sm text-gray-700">
-          <i class="icon-globe"></i>
+          <i class="icon-globe text-2xl"></i>
           <br />
           world population
         </p>
@@ -38,9 +38,9 @@ export default class PerPerson extends Component {
         </p>
 
         <p class="text-sm text-gray-700">
-          <i class="icon-bitcoin"></i>
+          <i class="icon-bitcoin text-2xl"></i>
           <br/>
-          bitcoin supply
+          Bitcoin supply
         </p>
         {f.btc(btcRemainTSupply)}
         <p class="text-sm text-gray-700 mb-3">
@@ -48,7 +48,7 @@ export default class PerPerson extends Component {
         </p>
 
         <p class="text-sm text-gray-700">
-          <i class="icon-person"></i>
+          <i class="icon-person text-2xl"></i>
           <br />
           bitcoin available for each person
           <br />
