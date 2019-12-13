@@ -194,6 +194,14 @@ export default class TheForm extends Component {
 
       <TheHeader />
 
+      <div id="world" class="block pt-4">
+        <h2 class="bg-blue-600 text-white ">
+          World Wide
+        </h2>
+      </div>
+
+      <PerPerson />
+
       <div id="cash" class="block pt-4">
         <h2 class="background-money text-white">
           Cash
@@ -216,14 +224,6 @@ export default class TheForm extends Component {
           &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         </p>
       </div>
-
-      <div id="world" class="block pt-4">
-        <h2 class="bg-blue-600 text-white ">
-          World Wide
-        </h2>
-      </div>
-
-      <PerPerson />
 
       <div id="bitcoin" class="block pt-4">
         <h2 class="background-btc-orange text-black font-bold">
