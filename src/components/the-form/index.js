@@ -178,15 +178,26 @@ export default class TheForm extends Component {
       <TheHeader />
 
       <div class="p-2 mt-6 m-auto text-center w-9/12 leading-loose">
-        Have you ever wondered if one day you could own some Bitcoin?
+        <Text id="intro.line-1">
+          Have you ever wondered if one day you could own some Bitcoin?
+        </Text>
         <p class="text-gray-600">
-          chances are you can</p>
+          <Text id="intro.line-2">chances are you can</Text>
+        </p>
 
-        Do you know you can buy fractions of a Bitcoin?
+        <Text id="intro.line-3">
+          Do you know you can buy fractions of a Bitcoin?
+        </Text>
         <p class="text-gray-600">
-          fractions of a Bitcoin are called Satoshis</p>
+          <Text id="intro.line-4">
+            fractions of a Bitcoin are called Satoshis
+          </Text>
+        </p>
 
-        Keep scrolling :)
+        <Text id="intro.line-5">
+          learn all about it here
+        </Text>
+
       </div>
 
       <div class={style['loc-buttons']}>
