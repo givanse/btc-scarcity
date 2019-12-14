@@ -45,9 +45,8 @@ export default class TheFooter extends Component {
       <LogBarChart fiatPurchase={fiatPurchase}
                    btcBought={btcBought} />
 
-      <table class="w-11/12 text-center m-4 mt-8 mx-auto">
+      <table class={style['supply']} >
         <thead class="text-xl">
-          <td></td>
           <td>
             <i class="icon-chart-pie"></i>
           </td>
@@ -59,10 +58,9 @@ export default class TheFooter extends Component {
           </td>
         </thead>
         <tr>
-          <td class="text-left">
-            Mined Gold
-          </td>
           <td>
+            Mined Gold
+            <br/>
             {f.dec(goldAboveGroundKg * TROY_OUNCE, 'billion')} oz <sup>†</sup>
           </td>
           <td>
@@ -74,10 +72,9 @@ export default class TheFooter extends Component {
         </tr>
 
         <tr>
-          <td class="text-left">
-            Broad Money
-          </td>
           <td>
+            Broad Money
+            <br/>
             {f.usd(moneySupply.broadMoney, 'B')}<sup>*</sup>
           </td>
           <td>
@@ -89,8 +86,6 @@ export default class TheFooter extends Component {
         </tr>
 
         <tr>
-          <td class="text-left">
-          </td>
           <td>
             Millionaire Median
           </td>
@@ -103,8 +98,6 @@ export default class TheFooter extends Component {
         </tr>
 
         <tr>
-          <td class="text-left">
-          </td>
           <td>
             The 1% Median
           </td>
@@ -117,11 +110,10 @@ export default class TheFooter extends Component {
         </tr>
 
         <tr>
-          <td class="text-left">
-            Bitcoin
-          </td>
           <td>
-            <BtcSign /> {f.btc(btcRemainTSupply)}
+            Bitcoin
+            <br/>
+            {f.btc(btcRemainTSupply)}
           </td>
           <td>
             <BtcSign /> {btcPerPerson.toFixed(8)}

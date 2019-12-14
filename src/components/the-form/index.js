@@ -176,6 +176,18 @@ export default class TheForm extends Component {
 
       <TheHeader />
 
+      <div class="p-2 mt-6 m-auto text-center w-9/12 leading-loose">
+        Have you ever wondered if one day you could own some Bitcoin?
+        <p class="text-gray-600">
+          chances are you can</p>
+
+        Do you know you can buy fractions of a Bitcoin?
+        <p class="text-gray-600">
+          fractions of a Bitcoin are called Satoshis</p>
+
+        Keep scrolling :)
+      </div>
+
       <div id="world" class="block pt-4">
         <h2 class="bg-blue-600 text-white ">
           World Wide

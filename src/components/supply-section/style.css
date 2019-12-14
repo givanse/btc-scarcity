@@ -1,0 +1,12 @@
+
+.supply {
+  @apply w-11/12 text-center m-4 mt-8 mx-auto;
+}
+
+.supply tr {
+  @apply border-gray-400 border-b;
+}
+
+.supply tr td {
+  @apply align-bottom py-2;
+}
