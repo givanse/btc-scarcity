@@ -7,7 +7,7 @@ const UNITS = {
   MILLION,
   USA_BILLION,
   USA_TRILLION: USA_BILLION * 1000,
-  TROY_OUNCE: 31.10348, // g
+  TROY_OUNCE: 32.15075, // 1 kg
 };
 
 const btcTCap = 21000000;
@@ -19,8 +19,9 @@ const btcRemainTSupply = btcTCap - btcLost;
 const btcPerPerson = btcRemainTSupply / worldPopulation;
 
 // https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold
-const goldAboveGround = 190040 /* tons */ * 907.185; // kg
-const goldPerPersonKg = goldAboveGround / worldPopulation;
+const goldAboveGroundKg = 190040 /* tons */ * 907.185; // kg
+const goldAboveGroundOz = goldAboveGroundKg * 32.15075;
+const goldPerPersonKg = goldAboveGroundKg / worldPopulation;
 
 // https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
 const moneySupply = {
@@ -52,7 +53,8 @@ export default {
   btcRemainTSupply,
   worldPopulation,
   btcPerPerson,
-  goldAboveGround,
+  goldAboveGroundKg,
+  goldAboveGroundOz,
   goldPerPersonKg,
   broadMoneyPerCapita,
   moneySupply,
@@ -75,6 +77,6 @@ export default {
   fiatPercOfGold: function(fiat) {
     const boughtGoldOz = buyGoldOunces(fiat);
     const goldKilosBought = boughtGoldOz * 0.03110348;
-    return (goldKilosBought * 100) / goldAboveGround;
+    return (goldKilosBought * 100) / goldAboveGroundKg;
   }
 };
