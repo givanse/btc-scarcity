@@ -167,7 +167,9 @@ export default class TheFooter extends Component {
             </span>
           </td>
           <td>
-            {f.usd(btcHodl * btcPrice)}
+            <span class="bg-green-200 text-green-900 px-2 rounded">
+              {f.usd(btcHodl * btcPrice)}
+            </span>
           </td>
         </tr>
       </table>

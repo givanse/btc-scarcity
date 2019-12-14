@@ -10,7 +10,7 @@ const {
   UNITS,
   btcRemainTSupply,
   btcPerPerson,
-  goldAboveGround,
+  goldAboveGroundKg,
   goldPerPersonKg,
   broadMoneyPerCapita,
   moneySupply,
@@ -45,126 +45,95 @@ export default class TheFooter extends Component {
       <LogBarChart fiatPurchase={fiatPurchase}
                    btcBought={btcBought} />
 
-      <h3>Broad Money</h3>
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <div>
-          money
-        </div>
-        <div></div>
-        <div>
-          bitcoin
-        </div>
+      <table class="w-11/12 text-center m-4 mt-8 mx-auto">
+        <thead class="text-xl">
+          <td></td>
+          <td>
+            <i class="icon-chart-pie"></i>
+          </td>
+          <td>
+            1<i class="icon-person"></i>
+          </td>
+          <td>
+           ₿
+          </td>
+        </thead>
+        <tr>
+          <td class="text-left">
+            Mined Gold
+          </td>
+          <td>
+            {f.dec(goldAboveGroundKg * TROY_OUNCE, 'billion')} oz <sup>†</sup>
+          </td>
+          <td>
+            {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
+          </td>
+          <td class="text-gray-500">
+            {btcPerPerson.toFixed(8)}
+          </td>
+        </tr>
 
-        <div>
-          {f.usd(moneySupply.broadMoney, 'billion')}<sup>*</sup>
-        </div>
-        <div>supply</div>
-        <div>
-          <BtcSign /> {f.btc(btcRemainTSupply)}
-        </div>
+        <tr>
+          <td class="text-left">
+            Broad Money
+          </td>
+          <td>
+            {f.usd(moneySupply.broadMoney, 'B')}<sup>*</sup>
+          </td>
+          <td>
+            {f.usd(broadMoneyPerCapita)}
+          </td>
+          <td class="text-gray-500">
+            {btcPerPerson.toFixed(8)}
+          </td>
+        </tr>
 
-        <div>
-          {f.usd(broadMoneyPerCapita)}
-        </div>
-        <div>
-          1<i class="icon-person"></i>
-        </div>
-        <div>
-          <BtcSign /> {btcPerPerson.toFixed(8)}
-        </div>
-      </div>
-
-      <h3>Mined Gold</h3>
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <div>
-          gold
-        </div>
-        <div></div>
-        <div>
-          bitcoin
-        </div>
-
-        <div>
-          {f.dec(goldAboveGround * TROY_OUNCE, 'billion')} oz <sup>†</sup>
-        </div>
-        <div>supply</div>
-        <div>
-          <BtcSign /> {f.btc(btcRemainTSupply)}
-        </div>
-
-        <div>
-          {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
-        </div>
-        <div>
-          1<i class="icon-person"></i>
-        </div>
-        <div>
-          <BtcSign /> {btcPerPerson.toFixed(8)}
-        </div>
-      </div>
-
-      <h3>Millionaire Median</h3>
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <div>
-          money
-        </div>
-        <div></div>
-        <div>
-          bitcoin
-        </div>
-
-        <div>
-          {f.usd(moneySupply.broadMoney, 'billion')}
-        </div>
-        <div>supply</div>
-        <div>
-          <BtcSign /> {f.btc(btcRemainTSupply)}
-        </div>
-
-        <div>
-          {f.usd(usaMillionaireMedian)}<sup>‡</sup>
-        </div>
-        <div>
-          1<i class="icon-person"></i>
-        </div>
-        <div>
+        <tr>
+          <td class="text-left">
+          </td>
+          <td>
+            Millionaire Median
+          </td>
+          <td>
+            {f.usd(usaMillionaireMedian)}<sup>‡</sup>
+          </td>
+          <td>
           <BtcSign /> {f.btc(usaMillionaireMedianBroadPercentInBtc)}
-        </div>
-      </div>  
+          </td>
+        </tr>
 
-      <h3>The 1% Median</h3>
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <div>
-          money
-        </div>
-        <div></div>
-        <div>
-          bitcoin
-        </div>
+        <tr>
+          <td class="text-left">
+          </td>
+          <td>
+            The 1% Median
+          </td>
+          <td>
+            {f.usd(netWorth1PercentMedian)}<sup>†</sup>
+          </td>
+          <td>
+            <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
+          </td>
+        </tr>
 
-        <div>
-          {f.usd(moneySupply.broadMoney, 'billion')}
-        </div>
-        <div>supply</div>
-        <div>
-          <BtcSign /> {f.btc(btcRemainTSupply)}
-        </div>
-
-        <div>
-          {f.usd(netWorth1PercentMedian)}<sup>†</sup>
-        </div>
-        <div>
-          1<i class="icon-person"></i>
-        </div>
-        <div>
-          <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
-        </div>
-      </div>
+        <tr>
+          <td class="text-left">
+            Bitcoin
+          </td>
+          <td>
+            <BtcSign /> {f.btc(btcRemainTSupply)}
+          </td>
+          <td>
+            <BtcSign /> {btcPerPerson.toFixed(8)}
+          </td>
+          <td class="text-gray-500">
+            {btcPerPerson.toFixed(8)}
+          </td>
+        </tr>
+      </table>
 
       <h3 class="">
-        Bitcoin
-        <br />
-        <i class="icon-chart-pie"></i>
+        Bitcoin Stats
       </h3>
 
       <BitcoinStats /> 

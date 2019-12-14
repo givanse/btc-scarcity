@@ -222,7 +222,9 @@ export default class TheForm extends Component {
             <BtcSign /> {f.sat(btcPerPerson)}
           </td>
           <td>
-            <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
+            <span class="bg-green-200 text-green-900 px-2 rounded">
+              <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
+            </span>
           </td>
         </tr>
       </table>

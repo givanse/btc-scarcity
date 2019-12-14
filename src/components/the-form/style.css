@@ -4,7 +4,7 @@
 }
 
 .foot-note {
-  @apply italic text-gray-700 text-sm font-serif p-2 inline-block m-auto;
+  @apply italic text-gray-700 font-serif p-2 inline-block m-auto;
 }
 
 .foot-note a {
