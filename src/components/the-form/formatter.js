@@ -26,7 +26,7 @@ export default {
 
     return this._usd.format(number);
   },
-  _btc: new Intl.NumberFormat('en-US', {style: 'decimal'}),
+  _btc: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 2}),
   btc: function(number) {
     return this._btc.format(number);
   },

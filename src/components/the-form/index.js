@@ -3,12 +3,12 @@ import style from './style';
 import f from './formatter';
 import staticData from './static-data';
 import BtcSign from '../btc-sign';
-import ArrSlider from '../arr-slider';
 import LogBarChart from '../log-bar-chart';
 import PerPerson from '../per-person';
 import InputFiat from '../input-fiat';
 import BitcoinStats from '../bitcoin-stats';
 import TheHeader from '../the-header';
+import BitcoinSection from '../bitcoin-section';
 import {
   fiatToWords,
 } from './words';
@@ -18,9 +18,6 @@ import {
   historyPushState,
 } from './router';
 import toWords from './to-words';
-import {
-  BTC_SLIDER_VALUES,
-} from './sliders-values';
 
 const {
   UNITS,
@@ -225,12 +222,11 @@ export default class TheForm extends Component {
         </p>
       </div>
 
-      <table class="w-full text-center m-auto md:max-w-xl">
+      <table class="w-6/12 text-center m-auto md:max-w-xl">
         <tr>
           <td class="text-xl">
             1 <i class="icon-person"></i>
           </td>
-          <td></td>
           <td class="text-xl">
             {f.dec(btcHodlInIndividualShares(btcBought))} <i class="icon-person"></i>
           </td>
@@ -239,9 +235,6 @@ export default class TheForm extends Component {
         <tr>
           <td>
             <BtcSign /> {f.sat(btcPerPerson)}
-          </td>
-          <td>
-            bitcoin
           </td>
           <td>
             <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
@@ -256,90 +249,9 @@ export default class TheForm extends Component {
         </h2>
       </div>
 
-      <form class="text-center" onSubmit={e => e.preventDefault()}>
-        <label for="btc-hodl" class="block w-0 h-0 overflow-hidden">
-          bitcoin amount
-        </label>
-        <input id="btc-hodl"
-               name="btc-hodl"
-               value={'₿' + (btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl))}
-               class={style['btc-hodl']}
-               placeholder="bitcoin amount"
-               onChange={e => this.updateBtcHodl(e)} />
-
-        <br />
-        <ArrSlider name="btc-hodl-slider"
-                   value={btcHodl}
-                   values={BTC_SLIDER_VALUES}
-                   updateValue={this._updateBtcHodl.bind(this)} />
-
-        {toWords.btc(btcHodl)}
-      </form>
-
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <h4>
-          1 <i class="icon-person"></i>
-        </h4>
-        <div></div>
-        <h4>
-          {f.dec(btcHodlInIndividualShares(btcHodl))} <i class="icon-person"></i>
-        </h4>
-
-        <div>
-          <BtcSign /> {f.sat(btcPerPerson)}
-        </div>
-        <div>
-          bitcoin
-        </div>
-        <div>
-          <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
-        </div>
-
-
-        <div>
-          {f.dec(goldPerPersonKg * TROY_OUNCE)} oz
-        </div>
-        <div class="">gold</div>
-        <div>
-          {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
-        </div>
-
-        <div>
-          {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
-        <div class="">
-          a millionaire's wealth
-        </div>
-        <div>
-          {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
-
-        <div>
-          {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
-        <div class="">
-          a one percenter wealth
-        </div>
-        <div>
-          {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
-
-        <div>
-          {f.usd(btcPerPerson * this.state.btcPrice)}
-        </div>
-        <div>
-          <span class="bg-green-200 text-green-900 px-2 rounded">
-            {f.usd(this.state.btcPrice)}
-          </span>
-        </div>
-        <div>
-          {f.usd(btcHodl * this.state.btcPrice)}
-        </div>
-      </div>
+      <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice}
+                      onInputChange={this.updateBtcPrice.bind(this)}
+                      onSliderChange={this._updateBtcHodl.bind(this)} />
 
       <div id="supply" class="block pt-4">
         <h2 class="bg-purple-700 text-white ">
