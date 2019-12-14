@@ -8,6 +8,7 @@ import {
 import toWords from '../the-form/to-words';
 import staticData from '../the-form/static-data';
 import f from '../the-form/formatter';
+import { Text } from 'preact-i18n';
 
 const P = f.PRECISION;
 
@@ -27,7 +28,7 @@ export default class PerPerson extends Component {
         <p class="text-sm text-gray-700">
           <i class="icon-globe text-2xl"></i>
           <br />
-          world population
+          <Text id="world.world-population">world population</Text>
         </p>
 
         {f.dec(worldPopulation)}
@@ -40,7 +41,7 @@ export default class PerPerson extends Component {
         <p class="text-sm text-gray-700">
           <i class="icon-bitcoin text-2xl"></i>
           <br/>
-          Bitcoin supply
+          <Text id="world.bitcoin-supply">Bitcoin supply</Text>
         </p>
         {f.btc(btcRemainTSupply)}
         <p class="text-sm text-gray-700 mb-3">
@@ -50,7 +51,7 @@ export default class PerPerson extends Component {
         <p class="text-sm text-gray-700">
           <i class="icon-person text-2xl"></i>
           <br />
-          bitcoin available for each person
+          <Text id="world.bitcoin-for-each-person">Bitcoin for each person</Text>
           <br />
           {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
           &nbsp;<BtcSign /> {f.sat(btcPerPerson)}

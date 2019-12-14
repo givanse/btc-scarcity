@@ -3,9 +3,11 @@ import style from './style';
 import TheForm from '../../components/the-form';
 import TheFooter from '../../components/the-footer';
 
-const Home = () => (
+const Home = (props) => (
   <div>
-    <TheForm />
+    <TheForm>
+      {props.children}
+    </TheForm>
     <TheFooter />
   </div>
 );

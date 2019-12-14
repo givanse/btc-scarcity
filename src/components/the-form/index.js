@@ -17,6 +17,7 @@ import {
   historyPushState,
 } from './router';
 import toWords from './to-words';
+import { Text } from 'preact-i18n';
 
 const {
   btcPerPerson,
@@ -188,9 +189,13 @@ export default class TheForm extends Component {
         Keep scrolling :)
       </div>
 
+      <div class={style['loc-buttons']}>
+        {this.props.children}
+      </div>
+
       <div id="world" class="block pt-4">
         <h2 class="bg-blue-600 text-white ">
-          World Wide
+          <Text id="world.title">Worldwide</Text>
         </h2>
       </div>
 
