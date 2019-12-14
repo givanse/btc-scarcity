@@ -93,70 +93,82 @@ export default class TheFooter extends Component {
         {toWords.btc(btcHodl)}
       </form>
 
-      <div class="col-33-33-33 text-center m-auto md:max-w-xl">
-        <h4>
-          1 <i class="icon-person"></i>
-        </h4>
-        <div></div>
-        <h4>
-          {f.dec(btcHodlInIndividualShares(btcHodl))} <i class="icon-person"></i>
-        </h4>
+      <table class="w-full text-center m-auto md:max-w-xl">
 
-        <div>
-          <BtcSign /> {f.sat(btcPerPerson)}
-        </div>
-        <div>
-          bitcoin
-        </div>
-        <div>
-          <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
-        </div>
+        <tr>
+          <td class="text-xl">
+            1 <i class="icon-person"></i>
+          </td>
+          <tr></tr>
+          <td class="text-xl">
+            {f.dec(btcHodlInIndividualShares(btcHodl))} <i class="icon-person"></i>
+          </td>
+        </tr>
 
+        <tr>
+          <td>
+            <BtcSign /> {f.sat(btcPerPerson)}
+          </td>
+          <td>
+            bitcoin
+          </td>
+          <td>
+            <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
+          </td>
+        </tr>
 
-        <div>
-          {f.dec(goldPerPersonKg * TROY_OUNCE)} oz
-        </div>
-        <div class="">gold</div>
-        <div>
-          {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
-        </div>
+        <tr>
+          <td>
+            {f.dec(goldPerPersonKg * TROY_OUNCE)} oz
+          </td>
+          <td class="">gold</td>
+          <td>
+            {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
+          </td>
+        </tr>
 
-        <div>
-          {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
-        <div class="">
-          a millionaire's wealth
-        </div>
-        <div>
-          {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
+        <tr>
+          <td>
+            {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
+            <i class="icon-person"></i>
+          </td>
+          <td class="">
+            a millionaire's wealth
+          </td>
+          <td>
+            {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
+            <i class="icon-person"></i>
+          </td>
+        </tr>
 
-        <div>
-          {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
-        <div class="">
-          a one percenter wealth
-        </div>
-        <div>
-          {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
-          <i class="icon-person"></i>
-        </div>
+        <tr>
+          <td>
+            {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+            <i class="icon-person"></i>
+          </td>
+          <td class="">
+            a one percenter wealth
+          </td>
+          <td>
+            {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+            <i class="icon-person"></i>
+          </td>
+        </tr>
 
-        <div>
-          {f.usd(btcPerPerson * btcPrice)}
-        </div>
-        <div>
-          <span class="bg-green-200 text-green-900 px-2 rounded">
-            {f.usd(btcPrice)}
-          </span>
-        </div>
-        <div>
-          {f.usd(btcHodl * btcPrice)}
-        </div>
-      </div>
+        <tr>
+          <td>
+            {f.usd(btcPerPerson * btcPrice)}
+          </td>
+          <td>
+            <span class="bg-green-200 text-green-900 px-2 rounded">
+              {f.usd(btcPrice)}
+            </span>
+          </td>
+          <td>
+            {f.usd(btcHodl * btcPrice)}
+          </td>
+        </tr>
+      </table>
       </div>
     );
   }
