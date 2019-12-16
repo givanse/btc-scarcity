@@ -1,4 +1,8 @@
 {
+  "amount": "cantidad",
+  "gold": "oro",
+  "millionaire-wealth": "la riqueza de un millonario",
+  "percenter-wealth": "la riqueza de un one-percenter",
   "intro": {
     "line-1": "Te has preguntado si alguna vez poseeras un poco de Bitcoin?",
     "line-2": "los más seguro es que si",
@@ -11,5 +15,27 @@
     "world-population": "población mundial",
     "bitcoin-supply": "Suministro de Bitcoin",
     "bitcoin-for-each-person": "Bitcoin para cada persona"
+  },
+  "cash": {
+    "title": "Effectivo",
+    "could-buy-me": "me podría comprar"
+  },
+  "Bitcoin": {
+  },
+  "supply": {
+    "title": "Suministro",
+    "supply-percentage": "porcentaje del suministro",
+    "mined-gold": "oro minado",
+    "broad-money": "dinero en la economía",
+    "millionaire-median": "Media de los Millonarios",
+    "percenter-median": "Media del 1%",
+    "bitcoin-stats": "Estadísticas de Bitcoin"
+  },
+  "bitcoin-stats": {
+    "total-supply": "Suministro total teórico",
+    "lost-estimate": "Perdida estimada",
+    "sats-supply": "Suministro de Satoshis",
+    "one-bitcoin": "Un Bitcoin",
+    "100M-sats": "Cien millones de Satoshis"
   }
 }

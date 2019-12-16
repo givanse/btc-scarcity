@@ -42,9 +42,9 @@ export default class App extends Component {
         <div id="app">
           <Router onChange={this.handleRoute}>
             <Home path="/">
-              <button onClick={() => this.updateLocale(enUs)}>EN</button>
+              <button onClick={() => this.updateLocale(enUs)} autofocus>english</button>
               &nbsp;
-              <button onClick={() => this.updateLocale(esMx)}>ES</button>
+              <button onClick={() => this.updateLocale(esMx)}>español</button>
             </Home>
           </Router>
         </div>

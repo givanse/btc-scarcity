@@ -14,7 +14,7 @@
     "lint": "eslint src",
     "test": "jest",
     "lambda": "NODE_ENV=development netlify dev",
-    "deploy": "npm run -s production && netlify deploy -p"
+    "deploy": "npm run build && netlify deploy -p"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"

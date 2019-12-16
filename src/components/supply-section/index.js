@@ -5,6 +5,7 @@ import staticData from '../the-form/static-data';
 import BtcSign from '../btc-sign';
 import BitcoinStats from '../bitcoin-stats';
 import LogBarChart from '../log-bar-chart';
+import { Text } from 'preact-i18n';
 
 const {
   UNITS,
@@ -39,7 +40,9 @@ export default class TheFooter extends Component {
       <h3>
         {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
         <br />
-        supply percentage
+        <Text id="supply.supply-percentage">
+          supply percentage
+        </Text>
       </h3>
 
       <LogBarChart fiatPurchase={fiatPurchase}
@@ -59,7 +62,9 @@ export default class TheFooter extends Component {
         </thead>
         <tr>
           <td>
-            Mined Gold
+            <Text id="supply.mined-gold">
+              Mined Gold
+            </Text>
             <br/>
             {f.dec(goldAboveGroundKg * TROY_OUNCE, 'billion')} oz <sup>†</sup>
           </td>
@@ -73,7 +78,9 @@ export default class TheFooter extends Component {
 
         <tr>
           <td>
-            Broad Money
+            <Text id="supply.broad-money">
+              Broad Money
+            </Text>
             <br/>
             {f.usd(moneySupply.broadMoney, 'B')}<sup>*</sup>
           </td>
@@ -87,7 +94,9 @@ export default class TheFooter extends Component {
 
         <tr>
           <td>
-            Millionaire Median
+            <Text id="supply.millionaire-median">
+              Millionaire Median
+            </Text>
           </td>
           <td>
             {f.usd(usaMillionaireMedian)}<sup>‡</sup>
@@ -99,7 +108,9 @@ export default class TheFooter extends Component {
 
         <tr>
           <td>
-            The 1% Median
+            <Text id="supply.percenter-median">
+              The 1% Median
+            </Text>
           </td>
           <td>
             {f.usd(netWorth1PercentMedian)}<sup>†</sup>
@@ -125,7 +136,9 @@ export default class TheFooter extends Component {
       </table>
 
       <h3 class="">
-        Bitcoin Stats
+        <Text id="supply.bitcoin-stats">
+          Bitcoin Stats
+        </Text>
       </h3>
 
       <BitcoinStats /> 

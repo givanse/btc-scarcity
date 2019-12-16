@@ -5,6 +5,7 @@ import toWords from '../the-form/to-words';
 import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import style from './style';
+import { Text } from 'preact-i18n';
 
 const {
   UNITS,
@@ -77,7 +78,7 @@ export default class TheFooter extends Component {
       <div>
       <form class="text-center" onSubmit={e => e.preventDefault()}>
         <label for="btc-hodl" class="block w-0 h-0 overflow-hidden">
-          bitcoin amount
+          bitcoin <Text id="amount">amount</Text>
         </label>
         <input id="btc-hodl"
                name="btc-hodl"
@@ -123,7 +124,9 @@ export default class TheFooter extends Component {
           <td>
             {f.dec(goldPerPersonKg * TROY_OUNCE)} oz
           </td>
-          <td class="">gold</td>
+          <td class="">
+            <Text id="gold">gold</Text>
+          </td>
           <td>
             {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
           </td>
@@ -135,7 +138,7 @@ export default class TheFooter extends Component {
             <i class="icon-person"></i>
           </td>
           <td class="">
-            a millionaire's wealth
+            <Text id="millionaire-wealth">a millionaire's wealth</Text>
           </td>
           <td>
             {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
@@ -149,7 +152,9 @@ export default class TheFooter extends Component {
             <i class="icon-person"></i>
           </td>
           <td class="">
-            a one percenter wealth
+            <Text id="percenter-wealth">
+              a one percenter wealth
+            </Text>
           </td>
           <td>
             {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}

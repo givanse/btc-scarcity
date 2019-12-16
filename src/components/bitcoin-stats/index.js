@@ -6,6 +6,7 @@ import f from '../the-form/formatter';
 import {
   numberToWords,
 } from '../the-form/words';
+import { Text } from 'preact-i18n';
 
 const SAT_SIGN = ' sat';
 
@@ -16,20 +17,6 @@ const {
   btcRemainTSupply,
 } = staticData;
 
-function verboseFiatPurchase() {
-  return (
-    <div class="text-center">
-      <p>
-      <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
-      </p>
-      <p class="text-sm text-gray-700 mb-3">
-        one Bitcoin = one hundred million Satoshis
-      </p>
-    </div>
-  );
-}
-
-
 export default class BitcoinStats extends Component {
 
   render() {
@@ -37,18 +24,36 @@ export default class BitcoinStats extends Component {
     return (
       <div>
       <div class="text-center">
-        Theoretical total supply <BtcSign /> {f.btc(btcTCap)}
+        <Text id="bitcoin-stats.total-supply">
+          Theoretical total supply
+        </Text>
+        &nbsp;<BtcSign /> {f.btc(btcTCap)}
         <br/>
-        Lost estimate <BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
+        <Text id="bitcoin-stats.lost-estimate">
+          Lost estimate
+        </Text>
+        &nbsp;<BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
         <br />
-        Remaining supply <BtcSign /> {f.btc(btcRemainTSupply)}
+        <Text id="bitcoin-stats.remaining-supply">
+          Remaining supply
+        </Text>
+        &nbsp;<BtcSign /> {f.btc(btcRemainTSupply)}
       </div>
 
       <br />
-      {verboseFiatPurchase()}
+      <div class="text-center">
+        <p>
+        <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
+        </p>
+        <p class="text-sm text-gray-700 mb-3">
+          <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>
+        </p>
+      </div>
 
       <p class="text-center">
-        Satoshis supply
+        <Text id="bitcoin-stats.sats-supply">
+          Satoshis supply
+        </Text>
         <br />
         {f.dec(btcRemainTSupply * 100000000)}
       </p>

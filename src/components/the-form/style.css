@@ -1,6 +1,6 @@
 
 .loc-buttons {
-  @apply text-center;
+  @apply text-center mt-6;
 }
 
 .loc-buttons button {

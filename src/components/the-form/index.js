@@ -177,6 +177,10 @@ export default class TheForm extends Component {
 
       <TheHeader />
 
+      <div class={style['loc-buttons']}>
+        {this.props.children}
+      </div>
+
       <div class="p-2 mt-6 m-auto text-center w-9/12 leading-loose">
         <Text id="intro.line-1">
           Have you ever wondered if one day you could own some Bitcoin?
@@ -200,10 +204,6 @@ export default class TheForm extends Component {
 
       </div>
 
-      <div class={style['loc-buttons']}>
-        {this.props.children}
-      </div>
-
       <div id="world" class="block pt-4">
         <h2 class="bg-blue-600 text-white ">
           <Text id="world.title">Worldwide</Text>
@@ -214,7 +214,7 @@ export default class TheForm extends Component {
 
       <div id="cash" class="block pt-4">
         <h2 class="background-money text-white">
-          Cash
+          <Text id="cash.title">Cash</Text>
         </h2>
       </div>
 
@@ -225,7 +225,7 @@ export default class TheForm extends Component {
 
       <div class="text-center">
         <p class="text-sm text-gray-700">
-          {fiatToWords(fiatPurchase)} could buy me 
+          {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
         </p>
         {toWords.btc(btcBought)}
 
@@ -270,7 +270,7 @@ export default class TheForm extends Component {
 
       <div id="supply" class="block pt-4">
         <h2 class="bg-purple-700 text-white ">
-          Supply
+          <Text id="supply.title">Supply</Text>
         </h2>
       </div>
 
@@ -282,7 +282,7 @@ export default class TheForm extends Component {
       <SupplySection fiatPurchase={fiatPurchase}
                      btcBought={btcBought} />
 
-      <hr class="m-8" />
+      <hr class="mt-32 mb-16 mx-8" />
 
       <div class={style['footnotes']}>
         <p class={style['foot-note']}> 
