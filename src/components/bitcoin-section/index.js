@@ -72,6 +72,7 @@ export default class TheFooter extends Component {
     const {
       btcHodl,
       btcPrice,
+      onInputChange,
     } = this.props;
 
     return (
@@ -85,7 +86,7 @@ export default class TheFooter extends Component {
                value={'₿' + (btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl))}
                class={style['btc-hodl']}
                placeholder="bitcoin amount"
-               onChange={this.props.onInputChange} />
+               onChange={onInputChange} />
 
         <br />
         <ArrSlider name="btc-hodl-slider"

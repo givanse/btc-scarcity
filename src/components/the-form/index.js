@@ -93,12 +93,16 @@ export default class TheForm extends Component {
     historyPushState(state);
   }
 
+  parseInputAmount(value) {
+    value = value.replace(/[^0-9.]/g,'');
+    const float = Number.parseFloat(value);
+
+    return Number.isNaN(float) ? 0 : float;
+  }
+
   updateFiatPurchase(e) {
     const input = e.target;
-    const value = input.value.replace(/[^0-9]/g,'');
-    let fiatPurchase = Number.parseFloat(value);
-    fiatPurchase = Number.isNaN(fiatPurchase) ? 0 : fiatPurchase;
-
+    const fiatPurchase = this.parseInputAmount(input.value);
     this._updateFiatPurchase(fiatPurchase);
   }
 
@@ -115,9 +119,7 @@ export default class TheForm extends Component {
 
   updateBtcHodl(e) {
     const input = e.target;
-    const value = input.value.replace(/[^0-9]/g, '');
-    let number = Number.parseFloat(value);
-    number = Number.isNaN(number) ? 0 : number;
+    const number = this.parseInputAmount(input.value);
     this._updateBtcHodl(number);
   }
 
@@ -265,7 +267,7 @@ export default class TheForm extends Component {
       </div>
 
       <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice}
-                      onInputChange={this.updateBtcPrice.bind(this)}
+                      onInputChange={this.updateBtcHodl.bind(this)}
                       onSliderChange={this._updateBtcHodl.bind(this)} />
 
       <div id="supply" class="block pt-4">
