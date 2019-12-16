@@ -207,17 +207,21 @@ export default class TheForm extends Component {
       </div>
 
       <div id="world" class="block pt-4">
-        <h2 class="bg-blue-600 text-white ">
-          <Text id="world.title">Worldwide</Text>
-        </h2>
+        <a href="#world" class="cursor-pointer">
+          <h2 class="bg-blue-600 text-white ">
+            <Text id="world.title">Worldwide</Text>
+          </h2>
+        </a>
       </div>
 
       <PerPerson />
 
       <div id="cash" class="block pt-4">
-        <h2 class="background-money text-white">
-          <Text id="cash.title">Cash</Text>
-        </h2>
+        <a href="#cash" class="cursor-pointer">
+          <h2 class="background-money text-white">
+            <Text id="cash.title">Cash</Text>
+          </h2>
+        </a>
       </div>
 
       <InputFiat name="fiat-purchase"
@@ -261,9 +265,11 @@ export default class TheForm extends Component {
 
 
       <div id="bitcoin" class="block pt-4">
-        <h2 class="background-btc-orange text-black font-bold">
-          Bitcoin
-        </h2>
+        <a href="#bitcoin" class="cursor-pointer">
+          <h2 class="background-btc-orange text-black font-bold">
+            Bitcoin
+          </h2>
+        </a>
       </div>
 
       <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice}
@@ -271,9 +277,11 @@ export default class TheForm extends Component {
                       onSliderChange={this._updateBtcHodl.bind(this)} />
 
       <div id="supply" class="block pt-4">
-        <h2 class="bg-purple-700 text-white ">
-          <Text id="supply.title">Supply</Text>
-        </h2>
+        <a href="#supply" class="cursor-pointer">
+          <h2 class="bg-purple-700 text-white ">
+            <Text id="supply.title">Supply</Text>
+          </h2>
+        </a>
       </div>
 
       <InputFiat name="fiat-purchase-supply"
