@@ -35,7 +35,7 @@ export default class PerPerson extends Component {
         <br />
 
         <p class="text-sm text-gray-700 mb-3">
-          {numberToWords(worldPopulation)} persons
+          {numberToWords(worldPopulation)} <Text id="world.persons">persons</Text>
         </p>
 
         <p class="text-sm text-gray-700">

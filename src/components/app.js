@@ -3,6 +3,7 @@ import { Router } from 'preact-router';
 import { IntlProvider } from 'preact-i18n';
 import enUs from '../i18n/en-us.json';
 import esMx from '../i18n/es-mx.json';
+import { setLang } from './the-form/words';
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
@@ -26,6 +27,13 @@ export default class App extends Component {
   updateLocale(locale) {
     if (!locale) {
       return;
+    }
+
+    if (enUs === locale) {
+      setLang('en');
+    }
+    if (esMx === locale) {
+      setLang('es');
     }
 
     this.setState({

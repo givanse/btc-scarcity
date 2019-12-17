@@ -38,8 +38,11 @@ export default class TheFooter extends Component {
       <div>
 
       <h3>
-        {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
+        <span class="bg-green-200 text-green-900 px-2 rounded">
+          {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
+        </span>
         <br />
+
         <Text id="supply.supply-percentage">
           supply percentage
         </Text>

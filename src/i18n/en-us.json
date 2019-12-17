@@ -12,6 +12,7 @@
   },
   "world": {
     "title": "Worldwide",
+    "persons": "persons",
     "world-population": "world population",
     "bitcoin-supply": "Bitcoin supply",
     "bitcoin-for-each-person": "Bitcoin for each person"
