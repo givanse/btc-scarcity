@@ -3,7 +3,14 @@
 [build]
   publish = "build"
   functions = "functions"
-  command = "yarn && yarn build && cd functions/btc-usd && yarn install"
+  command = "yarn && preact build -p --template src/index.html && cd functions/btc-usd && yarn install"
 
 [context.production.environment]
   NODE_ENV = "production"
+
+# The following redirect is intended for use with most SPAs that handle
+# routing internally.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
