@@ -6,6 +6,14 @@ import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import style from './style';
 import { Text } from 'preact-i18n';
+import parseInputAmount from '../the-form/parse-input-amount';
+import getSats from '../the-form/get-sats';
+import {
+  btcToWords,
+  numberToWords,
+} from '../the-form/words';
+
+const SAT_SIGN = ' sat';
 
 const {
   UNITS,
@@ -65,7 +73,17 @@ const BTC_SLIDER_VALUES = [
   1000,
 ];
 
+const HUNDRED_M = 100000000;
+
 export default class TheFooter extends Component {
+
+  updateSatsHodl(e) {
+    const input = e.target;
+    const number = parseInputAmount(input.value);
+
+    const btc = number / HUNDRED_M;
+    this.props.onSliderChange(btc);
+  }
 
   render() {
 
@@ -74,6 +92,9 @@ export default class TheFooter extends Component {
       btcPrice,
       onInputChange,
     } = this.props;
+
+    const {btc, sats} = getSats(btcHodl); 
+    const satsHodl = (btc * HUNDRED_M) + sats;
 
     return (
       <div>
@@ -88,7 +109,24 @@ export default class TheFooter extends Component {
                placeholder="bitcoin amount"
                onChange={onInputChange} />
 
-        <br />
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcHodl)}
+        </p>
+
+        <label for="sats-hodl" class="block w-0 h-0 overflow-hidden">
+          satoshis <Text id="amount">amount</Text>
+        </label>
+        <input id="sats-hodl"
+               name="sats-hodl"
+               value={f.dec(satsHodl) + ' ' + SAT_SIGN}
+               class={style['btc-hodl']}
+               placeholder="satoshis amount"
+               onChange={(e) => this.updateSatsHodl(e)} />
+
+        <p class="text-sm text-gray-700">
+          {numberToWords(satsHodl) + ' Satoshis'}
+        </p>
+
         <ArrSlider name="btc-hodl-slider"
                    value={btcHodl}
                    values={BTC_SLIDER_VALUES}

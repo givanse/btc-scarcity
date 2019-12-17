@@ -8,7 +8,9 @@ import InputFiat from '../input-fiat';
 import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
 import SupplySection from '../supply-section';
+import parseInputAmount from './parse-input-amount';
 import {
+  btcToWords,
   fiatToWords,
 } from './words';
 import { fetchBtcPrice } from './fetch-btc';
@@ -93,16 +95,9 @@ export default class TheForm extends Component {
     historyPushState(state);
   }
 
-  parseInputAmount(value) {
-    value = value.replace(/[^0-9.]/g,'');
-    const float = Number.parseFloat(value);
-
-    return Number.isNaN(float) ? 0 : float;
-  }
-
   updateFiatPurchase(e) {
     const input = e.target;
-    const fiatPurchase = this.parseInputAmount(input.value);
+    const fiatPurchase = parseInputAmount(input.value);
     this._updateFiatPurchase(fiatPurchase);
   }
 
@@ -119,7 +114,7 @@ export default class TheForm extends Component {
 
   updateBtcHodl(e) {
     const input = e.target;
-    const number = this.parseInputAmount(input.value);
+    const number = parseInputAmount(input.value);
     this._updateBtcHodl(number);
   }
 
@@ -233,7 +228,12 @@ export default class TheForm extends Component {
         <p class="text-sm text-gray-700">
           {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
         </p>
+
         {toWords.btc(btcBought)}
+
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcBought)}
+        </p>
 
         <p class="text-sm text-gray-700 italic mb-4">
           {f.usd(fiatPurchase)} / <span class="bg-green-200 text-green-900 px-2 rounded">{f.usd(btcPrice)}</span> =

@@ -20,9 +20,6 @@ function btc(btcAmount) {
   return (
     <div>
       {btcString}
-      <p class="text-sm text-gray-700">
-        {btcToWords(btcAmount)}
-      </p>
     </div>
   );
 }

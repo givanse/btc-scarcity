@@ -58,6 +58,10 @@ export default class PerPerson extends Component {
         </p>
 
         {toWords.btc(btcPerPerson)}
+
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcPerPerson)}
+        </p>
       </div>
     );
   }
