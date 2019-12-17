@@ -1,5 +1,4 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
 import { IntlProvider } from 'preact-i18n';
 import enUs from '../i18n/en-us.json';
 import esMx from '../i18n/es-mx.json';
@@ -48,13 +47,11 @@ export default class App extends Component {
 		return (
       <IntlProvider definition={locale}>
         <div id="app">
-          <Router onChange={this.handleRoute}>
-            <Home path="/">
-              <button onClick={() => this.updateLocale(enUs)} autofocus>english</button>
-              &nbsp;
-              <button onClick={() => this.updateLocale(esMx)}>español</button>
-            </Home>
-          </Router>
+          <Home path="/">
+            <button onClick={() => this.updateLocale(enUs)} autofocus>english</button>
+            &nbsp;
+            <button onClick={() => this.updateLocale(esMx)}>español</button>
+          </Home>
         </div>
       </IntlProvider>
 		);
