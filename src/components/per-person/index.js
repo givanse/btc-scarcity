@@ -54,10 +54,13 @@ export default class PerPerson extends Component {
           <Text id="world.bitcoin-for-each-person">Bitcoin for each person</Text>
           <br />
           {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
+
           &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
         </p>
 
-        {toWords.btc(btcPerPerson)}
+        <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+          {toWords.btc(btcPerPerson)}
+        </a>
 
         <p class="text-sm text-gray-700">
           {btcToWords(btcPerPerson)}

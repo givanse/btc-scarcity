@@ -43,7 +43,10 @@ export default class BitcoinStats extends Component {
       <br />
       <div class="text-center">
         <p>
-        <BtcSign />{f.btc(1)} = {f.btc(100000000)}{SAT_SIGN}
+        <BtcSign />{f.btc(1)} = 
+        <a href={`?btc=${1}#bitcoin`} class="underline" data-navigate>
+          &nbsp;{f.btc(100000000)} {SAT_SIGN}
+        </a>
         </p>
         <p class="text-sm text-gray-700 mb-3">
           <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>

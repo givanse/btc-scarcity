@@ -130,7 +130,9 @@ export default class TheFooter extends Component {
             {f.btc(btcRemainTSupply)}
           </td>
           <td>
-            <BtcSign /> {btcPerPerson.toFixed(8)}
+            <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+              <BtcSign /> {btcPerPerson.toFixed(8)}
+            </a>
           </td>
           <td class="text-gray-500">
             {btcPerPerson.toFixed(8)}

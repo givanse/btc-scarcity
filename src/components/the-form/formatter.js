@@ -31,7 +31,7 @@ export default {
     return this._btc.format(number);
   },
 
-  _dec: new Intl.NumberFormat('en-US', {style: 'decimal', minimumSignificantDigits: 2, maximumSignificantDigits: 3}),
+  _dec: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 3}),
   dec: function(number, precisionName) {
     let p;
     switch(precisionName) {

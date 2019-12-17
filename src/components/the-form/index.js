@@ -64,6 +64,7 @@ export default class TheForm extends Component {
       }
     }
 
+    //TODO: fix
     //this.initInternalNavigation();
   }
 
@@ -74,7 +75,7 @@ export default class TheForm extends Component {
       do {
 
         if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
-          //event.preventDefault();
+          event.preventDefault();
 
           const location = target.href;
           this.navigateHash(location);
@@ -229,7 +230,9 @@ export default class TheForm extends Component {
           {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
         </p>
 
-        {toWords.btc(btcBought)}
+        <a href={`?btc=${btcBought.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+          {toWords.btc(btcBought)}
+        </a>
 
         <p class="text-sm text-gray-700">
           {btcToWords(btcBought)}
