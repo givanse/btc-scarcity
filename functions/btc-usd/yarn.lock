@@ -3,6 +3,6 @@
 
 
 ccxt@^1.20.44:
-  version "1.20.44"
-  resolved "https://registry.yarnpkg.com/ccxt/-/ccxt-1.20.44.tgz#e9ea28d885f907d472fbf2cb2e9f90ca906add52"
-  integrity sha512-fwcqJ3hRVjQyT8FhOJX5jYtB+2k2zwCF7hA4A7XOn1WMr+1u01APXKJamjqcTLedkD+PJ22GqopzhCAEnNP3RA==
+  version "1.20.92"
+  resolved "https://registry.yarnpkg.com/ccxt/-/ccxt-1.20.92.tgz#fc5b709ade3697b66b4e6e213c1e9e9633dd3af2"
+  integrity sha512-JWhOf1q7GWOWrN5ubgJ3RwKxmnrOvLIdWEMa+TmehQ41/ZQhgcNokF2EE4mJlOeKhm9yIhOWXrHg2ecFYdksCQ==
