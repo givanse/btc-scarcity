@@ -239,7 +239,10 @@ export default class TheForm extends Component {
         </p>
 
         <p class="text-sm text-gray-700 italic mb-4">
-          {f.usd(fiatPurchase)} / <span class="bg-green-200 text-green-900 px-2 rounded">{f.usd(btcPrice)}</span> =
+          {f.usd(fiatPurchase)} /
+          &nbsp;<span class="price-synced-amount">
+            {f.usd(btcPrice)}
+          </span> =
           &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
         </p>
       </div>
@@ -259,7 +262,7 @@ export default class TheForm extends Component {
             <BtcSign /> {f.sat(btcPerPerson)}
           </td>
           <td>
-            <span class="bg-green-200 text-green-900 px-2 rounded">
+            <span class="price-synced-amount">
               <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
             </span>
           </td>

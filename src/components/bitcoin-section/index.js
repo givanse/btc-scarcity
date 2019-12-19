@@ -203,15 +203,17 @@ export default class TheFooter extends Component {
 
         <tr>
           <td>
-            {f.usd(btcPerPerson * btcPrice)}
+            <span class="price-synced-amount">
+              {f.usd(btcPerPerson * btcPrice)}
+              </span>
           </td>
           <td>
-            <span class="bg-green-200 text-green-900 px-2 rounded">
+            <span class="price-synced-amount">
               {f.usd(btcPrice)}
             </span>
           </td>
           <td>
-            <span class="bg-green-200 text-green-900 px-2 rounded">
+            <span class="price-synced-amount">
               {f.usd(btcHodl * btcPrice)}
             </span>
           </td>

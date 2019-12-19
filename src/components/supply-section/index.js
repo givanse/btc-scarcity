@@ -38,7 +38,7 @@ export default class TheFooter extends Component {
       <div>
 
       <h3>
-        <span class="bg-green-200 text-green-900 px-2 rounded">
+        <span class="price-synced-amount">
           {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
         </span>
         <br />
@@ -105,7 +105,9 @@ export default class TheFooter extends Component {
             {f.usd(usaMillionaireMedian)}<sup>‡</sup>
           </td>
           <td>
-          <BtcSign /> {f.btc(usaMillionaireMedianBroadPercentInBtc)}
+          <a href={`?btc=${usaMillionaireMedianBroadPercentInBtc.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+            <BtcSign /> {f.btc(usaMillionaireMedianBroadPercentInBtc)}
+          </a>
           </td>
         </tr>
 
@@ -119,7 +121,9 @@ export default class TheFooter extends Component {
             {f.usd(netWorth1PercentMedian)}<sup>†</sup>
           </td>
           <td>
-            <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
+            <a href={`?btc=${netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+              <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
+            </a>
           </td>
         </tr>
 
