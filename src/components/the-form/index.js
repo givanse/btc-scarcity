@@ -8,7 +8,7 @@ import InputFiat from '../input-fiat';
 import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
 import SupplySection from '../supply-section';
-import parseInputAmount from './parse-input-amount';
+import parseInputAmount from '../../utils/parse-input-amount';
 import {
   btcToWords,
   fiatToWords,
