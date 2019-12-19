@@ -179,26 +179,32 @@ export default class TheForm extends Component {
         {this.props.children}
       </div>
 
-      <div class="p-2 mt-6 m-auto text-center w-9/12 leading-loose">
-        <Text id="intro.line-1">
-          Have you ever wondered if one day you could own some Bitcoin?
-        </Text>
-        <p class="text-gray-600">
-          <Text id="intro.line-2">chances are you can</Text>
+      <div class="p-2 mt-6 m-auto text-center w-11/12 leading-loose">
+        <p class="">
+          <Text id="intro.line-1">
+            Have you ever wondered if one day you could own some Bitcoin?
+          </Text>
+        </p>
+        <p class="font-bold">
+          <Text id="intro.line-2">chances are you can own some</Text>
         </p>
 
-        <Text id="intro.line-3">
-          Do you know you can buy fractions of a Bitcoin?
-        </Text>
-        <p class="text-gray-600">
+        <p class="">
+          <Text id="intro.line-3">
+            Do you know you can buy fractions of a Bitcoin?
+          </Text>
+        </p>
+        <p class="font-bold">
           <Text id="intro.line-4">
             fractions of a Bitcoin are called Satoshis
           </Text>
         </p>
 
-        <Text id="intro.line-5">
-          learn all about it here
-        </Text>
+        <p>
+          <Text id="intro.line-5">
+            learn all about it here
+          </Text>
+        </p>
 
       </div>
 
