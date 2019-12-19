@@ -1,5 +1,5 @@
 const writtenNumber = require('written-number');
-import getSats from './get-sats';
+import getSats from '../../utils/get-sats';
 
 let LANG = 'en';
 

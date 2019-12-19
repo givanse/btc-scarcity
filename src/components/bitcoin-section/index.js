@@ -6,8 +6,8 @@ import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import style from './style';
 import { Text } from 'preact-i18n';
-import parseInputAmount from '../the-form/parse-input-amount';
-import getSats from '../the-form/get-sats';
+import parseInputAmount from '../../utils/parse-input-amount';
+import getSats from '../../utils/get-sats';
 import {
   btcToWords,
   numberToWords,
