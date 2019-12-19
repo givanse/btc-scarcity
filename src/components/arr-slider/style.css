@@ -1,7 +1,4 @@
 
-.arr-slide {
-  @apply w-10/12;
-}
 
 input[type=range] {
   -webkit-appearance: none;
@@ -92,8 +89,12 @@ input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
 }
 
+.arr-slide, datalist {
+  @apply w-8/12;
+}
+
 datalist {
-  @apply m-auto w-10/12;
+  @apply m-auto;
   display: flex;
   justify-content: space-between;
   margin-top: -35px;

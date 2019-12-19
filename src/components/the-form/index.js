@@ -212,6 +212,7 @@ export default class TheForm extends Component {
 
       <PerPerson />
 
+
       <div id="cash" class="block pt-4">
         <a href="#cash" class="cursor-pointer">
           <h2 class="background-money text-white">
@@ -223,20 +224,21 @@ export default class TheForm extends Component {
       <InputFiat name="fiat-purchase"
                  fiatPurchase={fiatPurchase}
                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
-                 updateValue={this._updateFiatPurchase.bind(this)} />
+                 updateValue={this._updateFiatPurchase.bind(this)} >
+          <p class="text-sm text-gray-700">
+            {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
+          </p>
+          <a href={`?btc=${btcBought.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+            {toWords.btc(btcBought)}
+          </a>
+          <p class="text-sm text-gray-700">
+            {btcToWords(btcBought)}
+          </p>
+      </InputFiat>
 
       <div class="text-center">
-        <p class="text-sm text-gray-700">
-          {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
-        </p>
 
-        <a href={`?btc=${btcBought.toFixed(8)}#bitcoin`} class="underline" data-navigate>
-          {toWords.btc(btcBought)}
-        </a>
 
-        <p class="text-sm text-gray-700">
-          {btcToWords(btcBought)}
-        </p>
 
         <p class="text-sm text-gray-700 italic mb-4">
           {f.usd(fiatPurchase)} /
@@ -293,7 +295,12 @@ export default class TheForm extends Component {
       <InputFiat name="fiat-purchase-supply"
                  fiatPurchase={fiatPurchase}
                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
-                 updateValue={this._updateFiatPurchase.bind(this)} />
+                 updateValue={this._updateFiatPurchase.bind(this)}>
+        <br />
+        <span class="price-synced-amount text-3xl">
+          {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
+        </span>
+      </InputFiat>
 
       <SupplySection fiatPurchase={fiatPurchase}
                      btcBought={btcBought} />

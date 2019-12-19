@@ -49,6 +49,7 @@ export default class InputFiat extends Component {
 
     return (
       <form class="text-center" onSubmit={e => e.preventDefault()}>
+
         <label for={name} class="block w-0 h-0 overflow-hidden">
           fiat amount
         </label>
@@ -59,7 +60,8 @@ export default class InputFiat extends Component {
                placeholder="dollar amount"
                onChange={updateFiatPurchase} />
 
-        <br />
+        {this.props.children}
+
         <ArrSlider name={name + "-input-range"}
                    value={fiatPurchase}
                    values={FIAT_SLIDER_VALUES}

@@ -38,11 +38,6 @@ export default class TheFooter extends Component {
       <div>
 
       <h3>
-        <span class="price-synced-amount">
-          {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
-        </span>
-        <br />
-
         <Text id="supply.supply-percentage">
           supply percentage
         </Text>
