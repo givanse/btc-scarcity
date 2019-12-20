@@ -1,8 +1,11 @@
 
+.arr-slide, datalist {
+  @apply w-8/12;
+}
 
 input[type=range] {
   -webkit-appearance: none;
-  margin: 18px 0;
+  margin: 48px 0;
   /*width: 100%;*/
 }
 input[type=range]:focus {
@@ -87,10 +90,6 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
-}
-
-.arr-slide, datalist {
-  @apply w-8/12;
 }
 
 datalist {
