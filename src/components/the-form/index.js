@@ -8,6 +8,7 @@ import InputFiat from '../input-fiat';
 import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
 import SupplySection from '../supply-section';
+import ArrSlider from '../arr-slider';
 import parseInputAmount from '../../utils/parse-input-amount';
 import {
   btcToWords,
@@ -20,6 +21,7 @@ import {
 } from './router';
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
+import { FIAT_SLIDER_VALUES } from '../../utils/constants';
 
 const {
   btcPerPerson,
@@ -288,15 +290,33 @@ export default class TheForm extends Component {
         </a>
       </div>
 
-      <InputFiat name="fiat-purchase-supply"
-                 fiatPurchase={fiatPurchase}
-                 updateFiatPurchase={this.updateFiatPurchase.bind(this)}
-                 updateValue={this._updateFiatPurchase.bind(this)}>
-        <br />
-        <span class="price-synced-amount text-3xl">
-          {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
-        </span>
-      </InputFiat>
+      <form class="text-center" onSubmit={e => e.preventDefault()}>
+
+        <div class="flex text-center">
+          <div class="flex-1">
+            <label for={name} class="block w-0 h-0 overflow-hidden">
+              fiat amount
+            </label>
+            <input id="fiat-purchase-supply"
+                  name="fiat-purchase-supply"
+                  value={'$' + f.dec(fiatPurchase)}
+                  class="text-center bg-blue-100 mx-2"
+                  placeholder="dollar amount"
+                  onChange={(e) => this.updateFiatPurchase(e)} />
+          </div>
+
+          <div class="flex-1">
+            <span class="text-green-900">
+              {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
+            </span>
+          </div>
+        </div>
+
+        <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
+                   value={fiatPurchase}
+                   values={FIAT_SLIDER_VALUES}
+                   updateValue={this._updateFiatPurchase.bind(this)} />
+      </form>
 
       <SupplySection fiatPurchase={fiatPurchase}
                      btcBought={btcBought} />

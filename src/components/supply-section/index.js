@@ -37,11 +37,11 @@ export default class TheFooter extends Component {
     return (
       <div>
 
-      <h3>
+      <h4>
         <Text id="supply.supply-percentage">
           supply percentage
         </Text>
-      </h3>
+      </h4>
 
       <LogBarChart fiatPurchase={fiatPurchase}
                    btcBought={btcBought} />

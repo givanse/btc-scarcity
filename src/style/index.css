@@ -49,5 +49,5 @@ h5 {
 }
 
 .price-synced-amount {
-  @apply bg-green-100 text-green-900 px-2 rounded;
+  @apply text-green-900 px-2;
 }

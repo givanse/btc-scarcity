@@ -2,40 +2,7 @@ import {h, Component } from 'preact';
 import style from './style';
 import f from '../the-form/formatter';
 import ArrSlider from '../arr-slider';
-
-const MILLION = 1000000;
-
-const FIAT_SLIDER_VALUES = [
-  1,
-  2,
-  5,
-  10,
-  15,
-
-  20,
-  25,
-  50,
-  75,
-  100,
-
-  150,
-  200,
-  250,
-  500,
-  1000,
-
-  1500,
-  5000,
-  10000,
-  50000,
-  100000,
-
-  500000,
-  MILLION,
-  MILLION * 1000,
-  50 * MILLION * 1000,
-  100 * MILLION * 1000,
-];
+import { FIAT_SLIDER_VALUES } from '../../utils/constants';
 
 export default class InputFiat extends Component {
 
