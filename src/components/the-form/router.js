@@ -24,10 +24,7 @@ export function scheduleHistoryPushState({btc, fiat}) {
     clearTimeout(timer);
   }
 
-  console.log('schedule', btc, fiat);
-
   timer = setTimeout(function() {
-    console.log('invoke', btc, fiat);
     historyPushState({btc, fiat});
     timer = null;
   }, 100);

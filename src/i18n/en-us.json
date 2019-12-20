@@ -25,6 +25,8 @@
   "supply": {
     "title": "Supply",
     "supply-percentage": "supply percentage",
+    "qty-per-person": "quantity per person",
+    "bitcoin-equivalent": "proportional in btc",
     "mined-gold": "mined gold",
     "broad-money": "broad money",
     "millionaire-median": "Millionaire Median",

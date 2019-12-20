@@ -49,94 +49,98 @@ export default class TheFooter extends Component {
       <table class={style['supply']} >
         <thead class="text-xl">
           <td>
-            <i class="icon-chart-pie"></i>
-          </td>
-          <td>
             1<i class="icon-person"></i>
+            <br />
+            <span class="text-sm">
+              <Text id="supply.qty-per-person">quantity per person</Text>
+            </span>
           </td>
           <td>
-           ₿
+            ₿
+            <br />
+            <span class="text-sm">
+              <Text id="supply.bitcoin-equivalent">proportional bitcoin quantity</Text>
+            </span>
           </td>
         </thead>
-        <tr>
-          <td>
+
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
             <Text id="supply.mined-gold">
               Mined Gold
             </Text>
-            <br/>
-            {f.dec(goldAboveGroundKg * TROY_OUNCE, 'billion')} oz <sup>†</sup>
+            &nbsp;{f.dec(goldAboveGroundKg * TROY_OUNCE, 'B')} oz <sup>†</sup>
           </td>
+        </tr>
+
+        <tr>
           <td>
             {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
           </td>
-          <td class="text-gray-500">
-            {btcPerPerson.toFixed(8)}
+          <td class="">
+            <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+              <BtcSign/>{btcPerPerson.toFixed(8)}
+            </a>
           </td>
         </tr>
 
-        <tr>
-          <td>
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
             <Text id="supply.broad-money">
               Broad Money
             </Text>
-            <br/>
-            {f.usd(moneySupply.broadMoney, 'B')}<sup>*</sup>
-          </td>
-          <td>
-            {f.usd(broadMoneyPerCapita)}
-          </td>
-          <td class="text-gray-500">
-            {btcPerPerson.toFixed(8)}
+            &nbsp;{f.usd(moneySupply.broadMoney, 'B')}<sup>*</sup>
           </td>
         </tr>
 
         <tr>
           <td>
+            {f.usd(broadMoneyPerCapita)}
+          </td>
+          <td class="">
+            <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+              <BtcSign/>{btcPerPerson.toFixed(8)}
+            </a>
+          </td>
+        </tr>
+
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
             <Text id="supply.millionaire-median">
               Millionaire Median
             </Text>
           </td>
+        </tr>
+
+        <tr>
           <td>
             {f.usd(usaMillionaireMedian)}<sup>‡</sup>
           </td>
           <td>
           <a href={`?btc=${usaMillionaireMedianBroadPercentInBtc.toFixed(8)}#bitcoin`} class="underline" data-navigate>
-            <BtcSign /> {f.btc(usaMillionaireMedianBroadPercentInBtc)}
+            <BtcSign />{usaMillionaireMedianBroadPercentInBtc.toFixed(8)}
           </a>
           </td>
         </tr>
 
-        <tr>
-          <td>
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
             <Text id="supply.percenter-median">
               The 1% Median
             </Text>
           </td>
+        </tr>
+        <tr>
           <td>
             {f.usd(netWorth1PercentMedian)}<sup>†</sup>
           </td>
           <td>
             <a href={`?btc=${netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}#bitcoin`} class="underline" data-navigate>
-              <BtcSign /> {f.btc(netWorth1PercentMedianBroadMoneyPercentInBtc)}
+              <BtcSign />{netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}
             </a>
           </td>
         </tr>
 
-        <tr>
-          <td>
-            Bitcoin
-            <br/>
-            {f.btc(btcRemainTSupply)}
-          </td>
-          <td>
-            <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
-              <BtcSign /> {btcPerPerson.toFixed(8)}
-            </a>
-          </td>
-          <td class="text-gray-500">
-            {btcPerPerson.toFixed(8)}
-          </td>
-        </tr>
       </table>
 
       <h3 class="">

@@ -19,7 +19,7 @@ export default class App extends Component {
   
   componentDidMount() {
     this.setState({
-      locale: enUs,
+      locale: esMx,
     });
   }
 
@@ -48,9 +48,9 @@ export default class App extends Component {
       <IntlProvider definition={locale}>
         <div id="app">
           <Home path="/">
-            <button onClick={() => this.updateLocale(enUs)} autofocus>english</button>
+            <button onClick={() => this.updateLocale(enUs)}>english</button>
             &nbsp;
-            <button onClick={() => this.updateLocale(esMx)}>español</button>
+            <button onClick={() => this.updateLocale(esMx)} autofocus>español</button>
           </Home>
         </div>
       </IntlProvider>

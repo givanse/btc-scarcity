@@ -7,7 +7,7 @@
   @apply p-2 text-sm border border-gray-300 rounded;
 }
 .loc-buttons button:focus {
-  @apply bg-blue-100;
+  @apply bg-blue-200;
   outline: none;
 }
 
