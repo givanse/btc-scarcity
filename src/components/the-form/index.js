@@ -294,7 +294,7 @@ export default class TheForm extends Component {
 
         <div class="flex text-center">
           <div class="flex-1">
-            <label for={name} class="block w-0 h-0 overflow-hidden">
+            <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
               fiat amount
             </label>
             <input id="fiat-purchase-supply"
