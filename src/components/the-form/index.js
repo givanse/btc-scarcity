@@ -16,7 +16,7 @@ import {
 import { fetchBtcPrice } from './fetch-btc';
 import {
   readQueryParams,
-  historyPushState,
+  scheduleHistoryPushState,
 } from './router';
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
@@ -93,7 +93,7 @@ export default class TheForm extends Component {
     const state = readQueryParams(location);
     const {btc, fiat} = state; 
     this.setSearchState(btc, fiat);
-    historyPushState(state);
+    scheduleHistoryPushState(state);
   }
 
   updateFiatPurchase(e) {
@@ -107,7 +107,7 @@ export default class TheForm extends Component {
       const newState = Object.assign({}, state);
       newState.fiatPurchase = fiatAmount;
 
-      historyPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
+      scheduleHistoryPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
 
       return newState;
     });
@@ -124,7 +124,7 @@ export default class TheForm extends Component {
       const newState = Object.assign({}, state);
       newState.btcHodl = btcAmount;
 
-      historyPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
+      scheduleHistoryPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
 
       return newState;
     });

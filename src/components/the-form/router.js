@@ -4,7 +4,7 @@ const btcFormat = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 8,
 }).format;
 
-export function historyPushState({btc, fiat}) {
+function historyPushState({btc, fiat}) {
   btc = btcFormat(btc);
 
   const title = `₿${btc} & $${fiat}`;
@@ -15,6 +15,22 @@ export function historyPushState({btc, fiat}) {
   }
 
   window.history.pushState({btc, fiat}, title, url);
+}
+
+let timer = null;
+
+export function scheduleHistoryPushState({btc, fiat}) {
+  if (timer) {
+    clearTimeout(timer);
+  }
+
+  console.log('schedule', btc, fiat);
+
+  timer = setTimeout(function() {
+    console.log('invoke', btc, fiat);
+    historyPushState({btc, fiat});
+    timer = null;
+  }, 100);
 }
 
 export function readQueryParams(search) {
