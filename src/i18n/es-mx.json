@@ -1,8 +1,10 @@
 {
   "amount": "cantidad",
-  "gold": "oro",
+  "mined-gold": "oro minado",
   "millionaire-wealth": "la riqueza de un millonario",
   "percenter-wealth": "la riqueza de un one-percenter",
+  "qty-per-person": "cantidad por persona",
+  "persons-per-qty": "personas por cantidad",
   "intro": {
     "line-1": "Te has preguntado si alguna vez poseeras un poco de bitcoin?",
     "line-2": "Los más seguro es que puedes adquirir un poco de bitcoin.",
@@ -26,9 +28,7 @@
   "supply": {
     "title": "Suministro",
     "supply-percentage": "porcentaje del suministro",
-    "qty-per-person": "cantidad por persona",
     "bitcoin-equivalent": "proporcional en btc",
-    "mined-gold": "Oro minado",
     "broad-money": "Dinero en la economía",
     "millionaire-median": "Media de los Millonarios",
     "percenter-median": "Media del 1%",

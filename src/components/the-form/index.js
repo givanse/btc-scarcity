@@ -301,7 +301,7 @@ export default class TheForm extends Component {
       <SupplySection fiatPurchase={fiatPurchase}
                      btcBought={btcBought} />
 
-      <hr class="mt-32 mb-16 mx-8" />
+      <hr class="my-24 mx-8" />
 
       <div class={style['footnotes']}>
         <p class={style['foot-note']}> 

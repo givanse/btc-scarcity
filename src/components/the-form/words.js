@@ -1,7 +1,7 @@
 const writtenNumber = require('written-number');
 import getSats from '../../utils/get-sats';
 
-let LANG = 'en';
+let LANG = 'es';
 
 export function numberToWords(amount) {
   const lang = LANG;

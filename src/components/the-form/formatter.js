@@ -31,7 +31,7 @@ export default {
     return this._btc.format(number);
   },
 
-  _dec: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 3}),
+  _dec: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 2}),
   dec: function(number, precisionName) {
     let p;
     switch(precisionName) {
@@ -47,6 +47,10 @@ export default {
     }
 
     return this._dec.format(number);
+  },
+  decSmall: function(number) {
+    const d = new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 3});
+    return d.format(number);
   },
   _sat: new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 8}),
   sat: function(number) {

@@ -5,7 +5,7 @@ import toWords from '../the-form/to-words';
 import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';
 import style from './style';
-import { Text } from 'preact-i18n';
+import { MarkupText, Text } from 'preact-i18n';
 import parseInputAmount from '../../utils/parse-input-amount';
 import getSats from '../../utils/get-sats';
 import {
@@ -136,27 +136,55 @@ export default class TheFooter extends Component {
         {toWords.btc(btcHodl)}
       </form>
 
-      <table class="w-full text-center m-auto md:max-w-xl">
+      <table class="w-11/12 text-center md:max-w-xl m-4 mt-8 mx-auto">
 
         <tr>
           <td class="text-xl">
             1 <i class="icon-person"></i>
+            <br />
+            <span class="text-sm leading-none">
+              <MarkupText id="qty-per-person">quantity per person</MarkupText>
+            </span>
           </td>
-          <tr></tr>
           <td class="text-xl">
             {f.dec(btcHodlInIndividualShares(btcHodl))} <i class="icon-person"></i>
+            <br />
+            <span class="text-sm">
+              <Text id="persons-per-qty">persons per quantity</Text>
+            </span>
+          </td>
+        </tr>
+
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
+            bitcoin
+            <br/>
+            &nbsp;<span class="text-green-900">
+              {f.usd(btcPrice)}
+            </span>
           </td>
         </tr>
 
         <tr>
           <td>
             <BtcSign /> {f.sat(btcPerPerson)}
-          </td>
-          <td>
-            bitcoin
+            <br />
+            <span class="price-synced-amount">
+              {f.usd(btcPerPerson * btcPrice)}
+            </span>
           </td>
           <td>
             <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
+            <br />
+            <span class="price-synced-amount">
+              {f.usd(btcHodl * btcPrice)}
+            </span>
+          </td>
+        </tr>
+
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
+            <Text id="mined-gold">gold</Text>
           </td>
         </tr>
 
@@ -164,59 +192,44 @@ export default class TheFooter extends Component {
           <td>
             {f.dec(goldPerPersonKg * TROY_OUNCE)} oz
           </td>
-          <td class="">
-            <Text id="gold">gold</Text>
-          </td>
           <td>
             {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
           </td>
         </tr>
 
-        <tr>
-          <td>
-            {f.dec(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
-            <i class="icon-person"></i>
-          </td>
-          <td class="">
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
             <Text id="millionaire-wealth">a millionaire's wealth</Text>
-          </td>
-          <td>
-            {f.dec(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
-            <i class="icon-person"></i>
           </td>
         </tr>
 
         <tr>
           <td>
-            {f.dec(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+            {f.decSmall(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
             <i class="icon-person"></i>
           </td>
-          <td class="">
+          <td>
+            {f.decSmall(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
+            <i class="icon-person"></i>
+          </td>
+        </tr>
+
+        <tr class="bg-gray-300 text-sm">
+          <td colSpan="2">
             <Text id="percenter-wealth">
               a one percenter wealth
             </Text>
           </td>
-          <td>
-            {f.dec(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
-            <i class="icon-person"></i>
-          </td>
         </tr>
 
         <tr>
           <td>
-            <span class="price-synced-amount">
-              {f.usd(btcPerPerson * btcPrice)}
-              </span>
+            {f.decSmall(btcPerPerson / netWorth1PercentMedianBroadMoneyPercentInBtc, 3)}
+            <i class="icon-person"></i>
           </td>
           <td>
-            <span class="price-synced-amount">
-              {f.usd(btcPrice)}
-            </span>
-          </td>
-          <td>
-            <span class="price-synced-amount">
-              {f.usd(btcHodl * btcPrice)}
-            </span>
+            {f.decSmall(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+            <i class="icon-person"></i>
           </td>
         </tr>
       </table>

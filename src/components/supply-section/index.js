@@ -52,7 +52,7 @@ export default class TheFooter extends Component {
             1<i class="icon-person"></i>
             <br />
             <span class="text-sm">
-              <Text id="supply.qty-per-person">quantity per person</Text>
+              <Text id="qty-per-person">quantity per person</Text>
             </span>
           </td>
           <td>
@@ -66,7 +66,7 @@ export default class TheFooter extends Component {
 
         <tr class="bg-gray-300 text-sm">
           <td colSpan="2">
-            <Text id="supply.mined-gold">
+            <Text id="mined-gold">
               Mined Gold
             </Text>
             &nbsp;{f.dec(goldAboveGroundKg * TROY_OUNCE, 'B')} oz <sup>†</sup>
