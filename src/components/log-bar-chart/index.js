@@ -124,7 +124,7 @@ export default class LogBarChart extends Component {
 
     this.drawColumnText(ctx, x, y, barWidth, [
       f.per(btcPerc),
-      '₿ ' + f.sat(btcBought),
+      '₿ ' + f.btc(btcBought),
       'bitcoin supply',
     ]);
   }

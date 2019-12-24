@@ -55,7 +55,7 @@ export default class PerPerson extends Component {
           <br />
           {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
 
-          &nbsp;<BtcSign /> {f.sat(btcPerPerson)}
+          &nbsp;<BtcSign /> {f.btc(btcPerPerson)}
         </p>
 
         <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>

@@ -112,7 +112,7 @@ export default class TheFooter extends Component {
         </label>
         <input id="btc-hodl"
                name="btc-hodl"
-               value={'₿' + (btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl))}
+               value={'₿' + f.btc(btcHodl)}
                class={style['btc-hodl']}
                placeholder="bitcoin amount"
                onChange={onInputChange} />
@@ -170,14 +170,14 @@ export default class TheFooter extends Component {
 
         <tr>
           <td>
-            <BtcSign /> {f.sat(btcPerPerson)}
+            <BtcSign /> {f.btc(btcPerPerson)}
             <br />
             <span class="price-synced-amount">
               {f.usd(btcPerPerson * btcPrice)}
             </span>
           </td>
           <td>
-            <BtcSign /> {btcHodl >= 1 ? f.btc(btcHodl) : f.sat(btcHodl)}
+            <BtcSign /> {f.btc(btcHodl)}
             <br />
             <span class="price-synced-amount">
               {f.usd(btcHodl * btcPrice)}

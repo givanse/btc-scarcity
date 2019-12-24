@@ -30,10 +30,6 @@ export default {
   btc: function(number) {
     return this._btc.format(number);
   },
-  _sat: new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 8}),
-  sat: function(number) {
-    return this._sat.format(number);
-  },
 
   _dec: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 2}),
   dec: function(number, precisionName) {
