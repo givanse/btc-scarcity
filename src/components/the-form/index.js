@@ -46,9 +46,9 @@ function scrollTo(query) {
 export default class TheForm extends Component {
 
   state = {
-    btcHodl: 0.00000001,
+    btcHodl: 0,
     btcPrice: 7000,
-    fiatPurchase: 1,
+    fiatPurchase: 0,
   };
 
   constructor(props) {
@@ -93,7 +93,11 @@ export default class TheForm extends Component {
 
   navigateHash(location) {
     const state = readQueryParams(location);
-    const {btc, fiat} = state; 
+    let {btc, fiat} = state; 
+
+    btc = btc ? btc : 0.00013866;
+    fiat = fiat ? fiat : 1;
+
     this.setSearchState(btc, fiat);
     scheduleHistoryPushState(state);
   }

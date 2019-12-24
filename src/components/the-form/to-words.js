@@ -8,7 +8,7 @@ const SAT_SIGN = ' sat';
 function btc(btcAmount) {
   const {btc, sats} = getSats(btcAmount);
   
-  let btcString = `${f.btc(sats)}${SAT_SIGN}`;
+  let btcString = `${f.whole(sats)}${SAT_SIGN}`;
 
   if (btc) {
     btcString = `₿${f.btc(btc)} and ${btcString}`;

@@ -27,17 +27,20 @@ export default class BitcoinStats extends Component {
         <Text id="bitcoin-stats.total-supply">
           Theoretical total supply
         </Text>
-        &nbsp;<BtcSign /> {f.btc(btcTCap)}
+        <br />
+        <BtcSign /> {f.btc(btcTCap)}
         <br/>
         <Text id="bitcoin-stats.lost-estimate">
           Lost estimate
         </Text>
-        &nbsp;<BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
+        <br />
+        <BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
         <br />
         <Text id="bitcoin-stats.remaining-supply">
           Remaining supply
         </Text>
-        &nbsp;<BtcSign /> {f.btc(btcRemainTSupply)}
+        <br />
+        <BtcSign /> {f.btc(btcRemainTSupply)}
       </div>
 
       <br />
@@ -58,10 +61,10 @@ export default class BitcoinStats extends Component {
           Satoshis supply
         </Text>
         <br />
-        {f.dec(btcRemainTSupply * 100000000)}
+        {f.dec(btcRemainTSupply * 100000000)} {SAT_SIGN}
       </p>
       <p class="text-sm text-center text-gray-700 mb-3">
-        {numberToWords(btcRemainTSupply * 100000000)} {SAT_SIGN}
+        {numberToWords(btcRemainTSupply * 100000000)} Satoshis
       </p>
       </div>
     );

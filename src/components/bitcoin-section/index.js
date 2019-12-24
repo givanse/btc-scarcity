@@ -8,6 +8,7 @@ import style from './style';
 import { MarkupText, Text } from 'preact-i18n';
 import parseInputAmount from '../../utils/parse-input-amount';
 import getSats from '../../utils/get-sats';
+import { BTC_SLIDER_VALUES } from '../../utils/constants';
 import {
   btcToWords,
   numberToWords,
@@ -27,51 +28,6 @@ const {
 const {
   TROY_OUNCE,
 } = UNITS;
-
-const BTC_SLIDER_VALUES = [
-  0.00000001,
-  0.00000010,
-  0.00000100,
-  0.00001000,
-  0.00010000,
-
-  0.00100000,
-  0.00125000,
-  0.00150000,
-  0.00175000,
-  0.00200000,
-
-  0.00225000,
-  0.00250000,
-  0.00275000,
-  0.00300000,
-
-  0.00400000,
-  0.00500000,
-  0.00600000,
-  0.00700000,
-  0.00800000,
-  0.00900000,
-  0.01000000,
-  0.02000000,
-
-  0.10,
-  0.20,
-  0.25,
-  0.30,
-  0.50,
-  0.75,
-  1,
-
-  5,
-  6.21,
-  10,
-  50,
-  100,
-
-  250,
-  1000,
-];
 
 const HUNDRED_M = 100000000;
 

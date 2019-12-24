@@ -26,7 +26,10 @@ export default {
 
     return this._usd.format(number);
   },
-  _btc: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 8}),
+  _btc: new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 8,
+    maximumFractionDigits: 8}),
   btc: function(number) {
     return this._btc.format(number);
   },
@@ -52,6 +55,12 @@ export default {
     const d = new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 3});
     return d.format(number);
   },
+
+  whole: function(number) {
+    const d = new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 0});
+    return d.format(number);
+  },
+
   _per: new Intl.NumberFormat('en-US', {
     style: 'percent',
     //minimumFractionDigits: 8, maximumFractionDigits: 8,
