@@ -8,7 +8,8 @@ export function numberToWords(amount) {
   amount = amount && amount !== Infinity ? amount : 0;
   const whole = amount >= 1 ? Number.parseInt(amount) : 0;
 
-  let text;
+  let text = '';
+
   if (whole) {
     text = writtenNumber(whole, {lang});
   }
@@ -25,7 +26,6 @@ export function numberToWords(amount) {
   }
 
   return text;
-
 }
 
 export function fiatToWords(amount) {

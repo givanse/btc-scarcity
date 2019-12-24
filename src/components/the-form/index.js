@@ -234,17 +234,11 @@ export default class TheForm extends Component {
           </p>
       </InputFiat>
 
-      <div class="text-center">
-
-
-
-        <p class="text-sm text-gray-700 italic mb-4">
-          {f.usd(fiatPurchase)} /
-          &nbsp;<span class="price-synced-amount">
-            {f.usd(btcPrice)}
-          </span> =
-          &nbsp;<BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
-        </p>
+      <div class="text-center text-sm text-gray-700 italic mb-4">
+        {f.usd(fiatPurchase)} /
+        <span class="price-synced-amount">
+          {f.usd(btcPrice)}
+        </span> = <BtcSign />{btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
       </div>
 
       <table class="w-9/12 text-center m-auto md:max-w-xl">
@@ -259,11 +253,11 @@ export default class TheForm extends Component {
 
         <tr>
           <td>
-            <BtcSign /> {f.sat(btcPerPerson)}
+            <BtcSign />{f.sat(btcPerPerson)}
           </td>
           <td>
             <span class="price-synced-amount">
-              <BtcSign /> {btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
+              <BtcSign />{btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought)}
             </span>
           </td>
         </tr>
@@ -292,25 +286,27 @@ export default class TheForm extends Component {
 
       <form class="text-center" onSubmit={e => e.preventDefault()}>
 
-        <div class="flex text-center">
-          <div class="flex-1">
-            <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
-              fiat amount
-            </label>
-            <input id="fiat-purchase-supply"
-                  name="fiat-purchase-supply"
-                  value={'$' + f.dec(fiatPurchase)}
-                  class="text-center bg-blue-100 mx-2"
-                  placeholder="dollar amount"
-                  onChange={(e) => this.updateFiatPurchase(e)} />
-          </div>
+        <table class="w-full table-fixed">
+          <tr>
+            <td class="w-6/12 overflow-hidden">
+              <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
+                fiat amount
+              </label>
+              <input id="fiat-purchase-supply"
+                     name="fiat-purchase-supply"
+                     value={'$' + f.dec(fiatPurchase)}
+                     class="text-center bg-blue-100"
+                     placeholder="dollar amount"
+                     onChange={(e) => this.updateFiatPurchase(e)} />
+            </td>
 
-          <div class="flex-1">
-            <span class="text-green-900">
-              {'₿ ' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
-            </span>
-          </div>
-        </div>
+            <td class="w-6/12">
+              <span class="text-green-900">
+                {'₿' + (btcBought >= 1 ? f.btc(btcBought) : f.sat(btcBought))}
+              </span>
+            </td>
+          </tr>
+        </table>
 
         <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
                    value={fiatPurchase}

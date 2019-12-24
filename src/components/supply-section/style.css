@@ -7,6 +7,6 @@
   @apply border-gray-400 border-b;
 }
 
-.supply tr td {
-  @apply align-bottom py-2;
+.supply tr:nth-child(even) td {
+  @apply py-4;
 }

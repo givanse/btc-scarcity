@@ -96,6 +96,9 @@ export default class TheFooter extends Component {
     const {btc, sats} = getSats(btcHodl); 
     const satsHodl = (btc * HUNDRED_M) + sats;
 
+    const satsHodlText = satsHodl ? 
+                         numberToWords(satsHodl) + ' ' + (satsHodl === 1 ? 'Satoshi' : 'Satoshis')
+                         : '';
     return (
       <div>
       <form class="text-center" onSubmit={e => e.preventDefault()}>
@@ -115,7 +118,7 @@ export default class TheFooter extends Component {
                onChange={onInputChange} />
 
         <p class="text-sm text-gray-700">
-          {numberToWords(satsHodl) + ' ' + (satsHodl === 1 ? 'Satoshi' : 'Satoshis')}
+          {satsHodlText}
         </p>
 
         <label for="sats-hodl" class="block w-0 h-0 overflow-hidden">
@@ -136,7 +139,7 @@ export default class TheFooter extends Component {
         {toWords.btc(btcHodl)}
       </form>
 
-      <table class="w-11/12 text-center md:max-w-xl m-4 mt-8 mx-auto">
+      <table class={style["comparison"]}>
 
         <tr>
           <td class="text-xl">

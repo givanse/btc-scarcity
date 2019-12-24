@@ -8,6 +8,10 @@ import { setLang } from './the-form/words';
 import Home from '../routes/home';
 
 export default class App extends Component {
+
+  state = {
+    locale: esMx,
+  };
 	
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
@@ -17,12 +21,6 @@ export default class App extends Component {
 		this.currentUrl = e.url;
   };
   
-  componentDidMount() {
-    this.setState({
-      locale: esMx,
-    });
-  }
-
   updateLocale(locale) {
     if (!locale) {
       return;
@@ -41,6 +39,7 @@ export default class App extends Component {
   }
 
 	render() {
+    console.log('render app');
 
     const { locale } = this.state;
 

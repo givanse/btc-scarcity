@@ -1,7 +1,7 @@
 /*TODO: copy pasta from the-form/style.css */
 
 .btc-hodl {
-  @apply text-center text-2xl py-2 px-4 m-4 bg-blue-100 w-10/12;
+  @apply text-center py-2 px-4 m-2 bg-blue-100 w-10/12;
 }
 
 .btc-hodl:focus {

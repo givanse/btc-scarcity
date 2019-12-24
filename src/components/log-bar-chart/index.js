@@ -79,7 +79,7 @@ export default class LogBarChart extends Component {
 
     const barSpace = 30;
     const barWidth = 125;
-    const minHeight = 200;
+    const minHeight = 400;
     const y = maxHeight > minHeight ? maxHeight + 10 : minHeight;
     
     // set canvas dimensions

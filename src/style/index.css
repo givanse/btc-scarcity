@@ -30,14 +30,8 @@ h5 {
 	font-size: 1rem;
 }
 
-.col-50-50 {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-
-.col-33-33-33 {
-  display: grid;
-  grid-template-columns: 40% 20% 40%;
+a[data-navigate] {
+  color: blue;
 }
 
 .background-btc-orange {
