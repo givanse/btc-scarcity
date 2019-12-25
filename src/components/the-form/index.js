@@ -177,7 +177,7 @@ export default class TheForm extends Component {
     const btcBought = fiatPurchase / btcPrice;
 
     return (
-      <div>
+      <div class="max-w-2xl mx-auto">
 
       <TheHeader />
 
@@ -299,7 +299,7 @@ export default class TheForm extends Component {
               <input id="fiat-purchase-supply"
                      name="fiat-purchase-supply"
                      value={'$' + f.dec(fiatPurchase)}
-                     class="text-center bg-blue-100"
+                     class="text-center bg-blue-100 w-full"
                      placeholder="dollar amount"
                      onChange={(e) => this.updateFiatPurchase(e)} />
             </td>

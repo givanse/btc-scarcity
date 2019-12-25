@@ -28,32 +28,19 @@ export default class BitcoinStats extends Component {
           Theoretical total supply
         </Text>
         <br />
-        <BtcSign /> {f.btc(btcTCap)}
+        <BtcSign /> {f.whole(btcTCap)}
         <br/>
         <Text id="bitcoin-stats.lost-estimate">
           Lost estimate
         </Text>
         <br />
-        <BtcSign /> {f.btc(btcLost)} ({btcLostPerc * 100}%)
+        <BtcSign /> {f.whole(btcLost)} ({btcLostPerc * 100}%)
         <br />
         <Text id="bitcoin-stats.remaining-supply">
           Remaining supply
         </Text>
         <br />
         <BtcSign /> {f.btc(btcRemainTSupply)}
-      </div>
-
-      <br />
-      <div class="text-center">
-        <p>
-        <BtcSign />{f.btc(1)} = 
-        <a href={`?btc=${1}#bitcoin`} class="underline" data-navigate>
-          &nbsp;{f.btc(100000000)} {SAT_SIGN}
-        </a>
-        </p>
-        <p class="text-sm text-gray-700 mb-3">
-          <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>
-        </p>
       </div>
 
       <p class="text-center">
@@ -66,6 +53,19 @@ export default class BitcoinStats extends Component {
       <p class="text-sm text-center text-gray-700 mb-3">
         {numberToWords(btcRemainTSupply * 100000000)} Satoshis
       </p>
+
+      <br />
+      <div class="text-center">
+        <p>
+        <BtcSign />1 = 
+        <a href={`?btc=${1}#bitcoin`} class="underline" data-navigate>
+          &nbsp;{f.btc(100000000)} {SAT_SIGN}
+        </a>
+        </p>
+        <p class="text-sm text-gray-700 mb-3">
+          <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>
+        </p>
+      </div>
       </div>
     );
   }

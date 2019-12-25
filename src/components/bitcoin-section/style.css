@@ -15,33 +15,9 @@
   @apply bg-white;
 }
 
-/* Small (sm) */
-@media (min-width: 640px) {
-  .btc-hodl {
-    @apply w-8/12;
-  }
-}
-
-/* Medium (md) */
-@media (min-width: 768px) {
-  .btc-hodl {
-    @apply w-6/12;
-  }
-  .comparison {
-    @apply max-w-xl;
-  }
-}
-
-/* Large (lg) */
-@media (min-width: 1024px) {
-  .btc-hodl {
-    @apply w-4/12;
-  }
-}
-
 /* Extra Large (xl) */
 @media (min-width: 1280px) {
   .btc-hodl {
-    @apply w-3/12;
+    @apply w-8/12;
   }
 }

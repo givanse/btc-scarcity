@@ -11,7 +11,7 @@ function btc(btcAmount) {
   let btcString = `${f.whole(sats)}${SAT_SIGN}`;
 
   if (btc) {
-    btcString = `₿${f.btc(btc)} and ${btcString}`;
+    btcString = `₿${f.whole(btc)} and ${btcString}`;
   }
 
   return (
