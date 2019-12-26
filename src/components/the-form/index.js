@@ -19,7 +19,7 @@ import { fetchBtcPrice } from './fetch-btc';
 import {
   readQueryParams,
   scheduleHistoryPushState,
-} from './router';
+} from '../../utils/router';
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';

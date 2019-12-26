@@ -1,4 +1,4 @@
-import { buildSearch } from '../src/components/the-form/router';
+import { buildSearch } from '../src/utils/router';
 
 describe('buildSearch', () => {
   
