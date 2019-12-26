@@ -3,6 +3,8 @@ node_modules
 /*.log
 package-lock.json
 .DS_Store
+*.zip
+src/style/fontello
 
 # Local Netlify folder
 .netlify

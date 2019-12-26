@@ -10,6 +10,7 @@ import BitcoinSection from '../bitcoin-section';
 import SupplySection from '../supply-section';
 import ArrSlider from '../arr-slider';
 import parseInputAmount from '../../utils/parse-input-amount';
+import { parseBitcoin } from '../../utils/bitcoin-math';
 import {
   btcToWords,
   fiatToWords,
@@ -96,7 +97,7 @@ export default class TheForm extends Component {
     let {btc, fiat} = state; 
 
     btc = btc ? btc : 0.00013866;
-    fiat = fiat ? fiat : 1;
+    fiat = fiat ? fiat : 5;
 
     this.setSearchState(btc, fiat);
     scheduleHistoryPushState(state);
@@ -122,7 +123,8 @@ export default class TheForm extends Component {
   updateBtcHodl(e) {
     const input = e.target;
     const number = parseInputAmount(input.value);
-    this._updateBtcHodl(number);
+    const btcAmount = parseBitcoin(number);
+    this._updateBtcHodl(btcAmount);
   }
 
   _updateBtcHodl(btcAmount) {
@@ -162,9 +164,10 @@ export default class TheForm extends Component {
 
   componentDidMount() {
     this.fetchBtcPrice();
+    const minutes = 1000 * 60 * 5;
     setInterval(() => {
       this.fetchBtcPrice();
-    }, 1000 * 60);
+    }, minutes);
 
     this.navigateHash();
     if (window.location.hash) {

@@ -1,4 +1,4 @@
-import getSats from '../../utils/get-sats';
+import { getSats } from '../../utils/bitcoin-math';
 import f from './formatter';
 
 const SAT_SIGN = ' sat';

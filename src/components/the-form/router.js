@@ -1,15 +1,26 @@
 
-const btcFormat = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  maximumFractionDigits: 8,
-}).format;
+export function buildSearch(btc, fiat) {
+  let search = '';
+
+  if (btc) {
+    search += `btc=${btc}`;
+  }
+
+  if (fiat) {
+    search += search ? '&' : '';
+    search += `fiat=${fiat}`;
+  }
+
+  return search;
+}
 
 function historyPushState({btc, fiat}) {
-  btc = btcFormat(btc);
+  const search = buildSearch(btc, fiat);
 
   const title = `₿${btc} & $${fiat}`;
 
-  let url = `?btc=${btc}&fiat=${fiat}`;
+  let url = search ? `?${search}` : '';
+
   if (window.location.hash) {
     url += window.location.hash;
   }

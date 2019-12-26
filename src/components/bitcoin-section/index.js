@@ -7,7 +7,7 @@ import ArrSlider from '../arr-slider';
 import style from './style';
 import { MarkupText, Text } from 'preact-i18n';
 import parseInputAmount from '../../utils/parse-input-amount';
-import getSats from '../../utils/get-sats';
+import { getSats } from '../../utils/bitcoin-math';
 import { BTC_SLIDER_VALUES } from '../../utils/constants';
 import {
   btcToWords,
