@@ -1,4 +1,4 @@
-import staticData from '../src/components/the-form/static-data';
+import staticData from '../src/utils/static-data';
 // See: https://github.com/mzgoddard/preact-render-spy
 //import { shallow } from 'preact-render-spy';
 

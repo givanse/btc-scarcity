@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import style from './style';
 import f from './formatter';
-import staticData from './static-data';
+import staticData from '../../utils/static-data';
 import BtcSign from '../btc-sign';
 import PerPerson from '../per-person';
 import InputFiat from '../input-fiat';

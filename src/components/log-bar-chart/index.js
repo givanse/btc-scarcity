@@ -1,6 +1,6 @@
 import {h, Component } from 'preact';
 import style from './style';
-import staticData from '../the-form/static-data';
+import staticData from '../../utils/static-data';
 import f from '../the-form/formatter';
 
 const {

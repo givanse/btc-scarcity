@@ -1,6 +1,6 @@
 import {h, Component } from 'preact';
 import f from '../the-form/formatter';
-import staticData from '../the-form/static-data';
+import staticData from '../../utils/static-data';
 import toWords from '../the-form/to-words';
 import BtcSign from '../btc-sign';
 import ArrSlider from '../arr-slider';

@@ -6,7 +6,7 @@ import {
   btcToWords,
 } from '../the-form/words';
 import toWords from '../the-form/to-words';
-import staticData from '../the-form/static-data';
+import staticData from '../../utils/static-data';
 import f from '../the-form/formatter';
 import { Text } from 'preact-i18n';
 
