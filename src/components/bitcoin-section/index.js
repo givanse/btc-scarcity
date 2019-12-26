@@ -1,5 +1,5 @@
 import {h, Component } from 'preact';
-import f from '../the-form/formatter';
+import f from '../../utils/formatter';
 import staticData from '../../utils/static-data';
 import toWords from '../the-form/to-words';
 import BtcSign from '../btc-sign';

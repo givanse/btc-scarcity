@@ -2,7 +2,7 @@ import {h, Component } from 'preact';
 import style from './style';
 import BtcSign from '../btc-sign';
 import staticData from '../../utils/static-data';
-import f from '../the-form/formatter';
+import f from '../../utils/formatter';
 import {
   numberToWords,
 } from '../the-form/words';

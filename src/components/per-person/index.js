@@ -7,7 +7,7 @@ import {
 } from '../the-form/words';
 import toWords from '../the-form/to-words';
 import staticData from '../../utils/static-data';
-import f from '../the-form/formatter';
+import f from '../../utils/formatter';
 import { Text } from 'preact-i18n';
 
 const P = f.PRECISION;

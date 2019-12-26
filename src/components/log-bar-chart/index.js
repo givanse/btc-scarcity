@@ -1,7 +1,7 @@
 import {h, Component } from 'preact';
 import style from './style';
 import staticData from '../../utils/static-data';
-import f from '../the-form/formatter';
+import f from '../../utils/formatter';
 
 const {
   btcPercOfRemainTSupply,

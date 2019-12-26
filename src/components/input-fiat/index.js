@@ -1,6 +1,6 @@
 import {h, Component } from 'preact';
 import style from './style';
-import f from '../the-form/formatter';
+import f from '../../utils/formatter';
 import ArrSlider from '../arr-slider';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';
 

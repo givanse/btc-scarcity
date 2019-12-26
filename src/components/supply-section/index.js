@@ -1,6 +1,6 @@
 import {h, Component } from 'preact';
 import style from './style';
-import f from '../the-form/formatter';
+import f from '../../utils/formatter';
 import staticData from '../../utils/static-data';
 import BtcSign from '../btc-sign';
 import BitcoinStats from '../bitcoin-stats';
