@@ -96,23 +96,25 @@ export function handleClickForLinkWithDataNavigate(href) {
 }
 
 export function listenForDataNavigateClicks(callback) {
-  document.addEventListener('click', event => {
-    let target = event.target;
+  if (typeof window !== 'undefined') {
+    window.document.addEventListener('click', event => {
+      let target = event.target;
 
-    do {
+      do {
 
-      if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
-        event.preventDefault();
+        if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
+          event.preventDefault();
 
-        const href = target.href;
-        const obj = handleClickForLinkWithDataNavigate(href);
-        callback(obj);
-        
-        return false;
-      }
+          const href = target.href;
+          const obj = handleClickForLinkWithDataNavigate(href);
+          callback(obj);
+          
+          return false;
+        }
 
-      target = target.parentElement;
+        target = target.parentElement;
 
-    } while (target.tagName !== 'BODY');
-  });
+      } while (target.tagName !== 'BODY');
+    });
+  }
 }
