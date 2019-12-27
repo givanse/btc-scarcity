@@ -71,7 +71,7 @@ export default class TheFooter extends Component {
                value={'₿' + f.btc(btcHodl)}
                class={style['btc-hodl']}
                placeholder="bitcoin amount"
-               onChange={onInputChange} />
+               onInput={onInputChange} />
 
         <p class="text-sm text-gray-700">
           {satsHodlText}

@@ -25,7 +25,7 @@ export default class InputFiat extends Component {
                value={'$' + f.dec(fiatPurchase)}
                class={style['btc-hodl']}
                placeholder="dollar amount"
-               onChange={updateFiatPurchase} />
+               onInput={updateFiatPurchase} />
 
         {this.props.children}
 

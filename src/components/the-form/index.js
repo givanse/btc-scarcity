@@ -9,17 +9,13 @@ import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
 import SupplySection from '../supply-section';
 import ArrSlider from '../arr-slider';
+import Link from '../link';
 import parseInputAmount from '../../utils/parse-input-amount';
 import { parseBitcoin } from '../../utils/bitcoin-math';
 import {
   btcToWords,
   fiatToWords,
 } from './words';
-import { fetchBtcPrice } from './fetch-btc';
-import {
-  readQueryParams,
-  scheduleHistoryPushState,
-} from '../../utils/router';
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';
@@ -29,154 +25,23 @@ const {
   btcHodlInIndividualShares,
 } = staticData;
 
-function scrollTo(query) {
-  const el = document.querySelector(query);
-
-  if (!el) {
-    console.error(`could not find ${query}`);
-    return;
-  }
-
-  const options = {
-    top: el.getBoundingClientRect().y,
-    behavior: 'smooth',
-  };
-  window.scrollTo(options);
-}
-
 export default class TheForm extends Component {
-
-  state = {
-    btcHodl: 0,
-    btcPrice: 7000,
-    fiatPurchase: 0,
-  };
-
-  constructor(props) {
-    super(props);
-
-    if (typeof window !== 'undefined') {
-      window.onpopstate = (event) => {
-        if (!event.state) {
-          return;
-        }
-
-        console.log('pop', event);
-        const {btc, fiat} = event.state; 
-        this.setSearchState(btc, fiat);
-      }
-    }
-
-    //TODO: fix
-    //this.initInternalNavigation();
-  }
-
-  initInternalNavigation() {
-    document.addEventListener('click', event => {
-      let target = event.target;
-
-      do {
-
-        if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
-          event.preventDefault();
-
-          const location = target.href;
-          this.navigateHash(location);
-
-          return;
-        }
-
-        target = target.parentElement;
-
-      } while (target.tagName !== 'BODY');
-    });
-  }
-
-  navigateHash(location) {
-    const state = readQueryParams(location);
-    let {btc, fiat} = state; 
-
-    btc = btc ? btc : 0.00013866;
-    fiat = fiat ? fiat : 5;
-
-    this.setSearchState(btc, fiat);
-    scheduleHistoryPushState(state);
-  }
 
   updateFiatPurchase(e) {
     const input = e.target;
     const fiatPurchase = parseInputAmount(input.value);
-    this._updateFiatPurchase(fiatPurchase);
-  }
-
-  _updateFiatPurchase(fiatAmount) {
-    this.setState((state, props) => {
-      const newState = Object.assign({}, state);
-      newState.fiatPurchase = fiatAmount;
-
-      scheduleHistoryPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
-
-      return newState;
-    });
+    this.props.updateFiatPurchase(fiatPurchase);
   }
 
   updateBtcHodl(e) {
     const input = e.target;
     const number = parseInputAmount(input.value);
     const btcAmount = parseBitcoin(number);
-    this._updateBtcHodl(btcAmount);
-  }
-
-  _updateBtcHodl(btcAmount) {
-    this.setState((state, props) => {
-      const newState = Object.assign({}, state);
-      newState.btcHodl = btcAmount;
-
-      scheduleHistoryPushState({btc: newState.btcHodl, fiat: newState.fiatPurchase});
-
-      return newState;
-    });
-  }
-
-  fetchBtcPrice() {
-    fetchBtcPrice().then(btcPrice => {
-      console.log(btcPrice);
-      this.updateBtcPrice(btcPrice);
-    });
-  }
-
-  updateBtcPrice(btcPrice) {
-    this.setState(function(state, props) {
-      const newState = Object.assign({}, state);
-      newState.btcPrice = btcPrice;
-      return newState;
-    });
-  }
-
-  setSearchState(btc, fiat) {
-    this.setState(function(state, props) {
-      const newState = Object.assign({}, state);
-      newState.btcHodl = btc;
-      newState.fiatPurchase = fiat;
-      return newState;
-    });
-  }
-
-  componentDidMount() {
-    this.fetchBtcPrice();
-    const minutes = 1000 * 60 * 5;
-    setInterval(() => {
-      this.fetchBtcPrice();
-    }, minutes);
-
-    this.navigateHash();
-    if (window.location.hash) {
-      scrollTo(window.location.hash);
-    }
+    this.props.updateBtcHodl(btcAmount);
   }
 
   render() {
-    const { btcHodl, btcPrice, fiatPurchase } = this.state;
+    const {btcHodl, btcPrice, fiatPurchase} = this.props;
     const btcBought = fiatPurchase / btcPrice;
 
     return (
@@ -229,13 +94,13 @@ export default class TheForm extends Component {
       <InputFiat name="fiat-purchase"
                  fiatPurchase={fiatPurchase}
                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
-                 updateValue={this._updateFiatPurchase.bind(this)} >
+                 updateValue={this.props.updateFiatPurchase} >
           <p class="text-sm text-gray-700">
             {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
           </p>
-          <a href={`?btc=${btcBought.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+          <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
             {toWords.btc(btcBought)}
-          </a>
+          </Link>
           <p class="text-sm text-gray-700">
             {btcToWords(btcBought)}
           </p>
@@ -281,7 +146,7 @@ export default class TheForm extends Component {
 
       <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice}
                       onInputChange={this.updateBtcHodl.bind(this)}
-                      onSliderChange={this._updateBtcHodl.bind(this)} />
+                      onSliderChange={this.props.updateBtcHodl} />
 
       <div id="supply" class="block pt-4">
         <a href="#supply" class="cursor-pointer">
@@ -318,7 +183,7 @@ export default class TheForm extends Component {
         <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
                    value={fiatPurchase}
                    values={FIAT_SLIDER_VALUES}
-                   updateValue={this._updateFiatPurchase.bind(this)} />
+                   updateValue={this.props.updateFiatPurchase} />
       </form>
 
       <SupplySection fiatPurchase={fiatPurchase}

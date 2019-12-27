@@ -3,6 +3,7 @@ import style from './style';
 import BtcSign from '../btc-sign';
 import staticData from '../../utils/static-data';
 import f from '../../utils/formatter';
+import Link from '../link';
 import {
   numberToWords,
 } from '../the-form/words';
@@ -57,10 +58,10 @@ export default class BitcoinStats extends Component {
       <br />
       <div class="text-center">
         <p>
-        <BtcSign />1 = 
-        <a href={`?btc=${1}#bitcoin`} class="underline" data-navigate>
-          &nbsp;{f.btc(100000000)} {SAT_SIGN}
-        </a>
+          <BtcSign />1 = 
+          <Link queryParams={`btc=${1}`} hash='bitcoin'>
+            &nbsp;{f.btc(100000000)} {SAT_SIGN}
+          </Link>
         </p>
         <p class="text-sm text-gray-700 mb-3">
           <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>

@@ -1,5 +1,5 @@
 
-export function buildSearch(btc, fiat) {
+export function buildSearchString(btc, fiat, loc) {
   let search = '';
 
   if (btc) {
@@ -11,45 +11,108 @@ export function buildSearch(btc, fiat) {
     search += `fiat=${fiat}`;
   }
 
+  if (loc) {
+    search += search ? '&' : '';
+    search += `loc=${loc}`;
+  }
+
   return search;
 }
 
-function historyPushState({btc, fiat}) {
-  const search = buildSearch(btc, fiat);
+function historyPushState({btc, fiat, loc}, hash) {
+  const search = buildSearchString(btc, fiat, loc);
 
   const title = `₿${btc} & $${fiat}`;
 
   let url = search ? `?${search}` : '';
 
-  if (window.location.hash) {
-    url += window.location.hash;
+  if (hash) {
+    url += hash;
   }
 
-  window.history.pushState({btc, fiat}, title, url);
+  window.history.pushState({btc, fiat, loc}, title, url);
+  scrollTo(hash);
 }
 
 let timer = null;
 
-export function scheduleHistoryPushState({btc, fiat}) {
+export function scheduleHistoryPushState(search, hash) {
   if (timer) {
     clearTimeout(timer);
   }
 
   timer = setTimeout(function() {
-    historyPushState({btc, fiat});
+    historyPushState(search, hash);
     timer = null;
   }, 100);
 }
 
 export function readQueryParams(search) {
-  search = search ? search : window.location.search;
   let btc = search.match(/btc=(\d*[.]?\d*)/);
-  btc = btc && btc[1] ? btc[1] : 0;
-  btc = Number.parseFloat(btc);
+  btc = btc && btc[1] ? Number.parseFloat(btc[1]) : 0;
 
-  let fiat = location.search.match(/fiat=(\d*[.]?\d*)/);
-  fiat = fiat && fiat[1] ? fiat[1] : 0;
-  fiat = Number.parseFloat(fiat);
+  let fiat = search.match(/fiat=(\d*[.]?\d*)/);
+  fiat = fiat && fiat[1] ? Number.parseFloat(fiat[1]) : 0;
 
-  return {btc, fiat};
+  let loc = search.match(/loc=([a-z]{2})/);
+  loc = loc && loc[1] ? loc[1] : null;
+
+  return {btc, fiat, loc};
+}
+
+//TODO: better scrolling
+export function scrollTo(query) {
+  if (!query) {
+    return;
+  }
+
+  const el = document.querySelector(query);
+
+  if (!el) {
+    console.error(`could not find: ${query}`);
+    return;
+  }
+
+  const options = {
+    top: el.getBoundingClientRect().y,
+    behavior: 'smooth',
+  };
+  window.scrollTo(options);
+}
+
+export function handleClickForLinkWithDataNavigate(href) {
+  let {btc, fiat, loc} = readQueryParams(href);
+
+  btc = btc ? btc : 0;
+  fiat = fiat ? fiat : 0;
+
+  const hashIndex = href.indexOf('#');
+  let hash;
+  if (hashIndex) {
+    hash = href.substring(hashIndex);
+  }
+
+  return {btc, fiat, loc, hash};
+}
+
+export function listenForDataNavigateClicks(callback) {
+  document.addEventListener('click', event => {
+    let target = event.target;
+
+    do {
+
+      if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
+        event.preventDefault();
+
+        const href = target.href;
+        const obj = handleClickForLinkWithDataNavigate(href);
+        callback(obj);
+        
+        return false;
+      }
+
+      target = target.parentElement;
+
+    } while (target.tagName !== 'BODY');
+  });
 }

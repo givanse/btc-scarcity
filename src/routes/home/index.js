@@ -5,7 +5,11 @@ import TheFooter from '../../components/the-footer';
 
 const Home = (props) => (
   <div>
-    <TheForm>
+    <TheForm btcHodl={props.btcHodl}
+             btcPrice={props.btcPrice}
+             fiatPurchase={props.fiatPurchase}
+             updateBtcHodl={props.updateBtcHodl}
+             updateFiatPurchase={props.updateFiatPurchase} >
       {props.children}
     </TheForm>
     <TheFooter />

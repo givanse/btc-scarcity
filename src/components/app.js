@@ -3,6 +3,12 @@ import { IntlProvider } from 'preact-i18n';
 import enUs from '../i18n/en-us.json';
 import esMx from '../i18n/es-mx.json';
 import { setLang } from './the-form/words';
+import { fetchBtcPrice } from '../utils/fetch-btc';
+import {
+  listenForDataNavigateClicks,
+  readQueryParams,
+  scheduleHistoryPushState,
+} from '../utils/router';
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
@@ -10,9 +16,36 @@ import Home from '../routes/home';
 export default class App extends Component {
 
   state = {
-    locale: esMx,
+    btcHodl: 0,
+    btcPrice: 7000,
+    fiatPurchase: 0,
+    loc: 'es',
   };
-	
+
+  constructor(props) {
+    super(props);
+
+    if (typeof window !== 'undefined') {
+      window.onpopstate = (event) => {
+        if (!event.state) {
+          return;
+        }
+
+        const {btc, fiat, loc} = event.state; 
+        this.setState({
+          btcHodl: btc,
+          fiatPurchase: fiat,
+          loc,
+        });
+      }
+    }
+
+    listenForDataNavigateClicks(({btc, fiat, loc, hash}) => {
+      loc = loc ? loc : this.state.loc;
+      this.internalNavigate({btc, fiat, loc}, hash);
+    });
+  }
+
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
@@ -21,35 +54,109 @@ export default class App extends Component {
 		this.currentUrl = e.url;
   };
   
-  updateLocale(locale) {
-    if (!locale) {
-      return;
-    }
+  updateLocale(loc) {
+    setLang(loc);
 
-    if (enUs === locale) {
-      setLang('en');
-    }
-    if (esMx === locale) {
-      setLang('es');
-    }
+    this.setState(function(state) {
+      const newState = Object.assign({}, state);
+      newState.loc = loc;
+      
+      scheduleHistoryPushState({
+        btc: newState.btcHodl,
+        fiat: newState.fiatPurchase,
+        loc: newState.loc,
+      });
 
-    this.setState({
-      locale,
+      return newState;
     });
   }
 
-	render() {
-    console.log('render app');
+  updateBtcHodl(btcAmount) {
+    this.setState((state, props) => {
+      const newState = Object.assign({}, state);
+      newState.btcHodl = btcAmount;
 
-    const { locale } = this.state;
+      scheduleHistoryPushState({
+        btc: newState.btcHodl,
+        fiat: newState.fiatPurchase,
+        loc: newState.loc,
+      });
+
+      return newState;
+    });
+  }
+
+
+  updateFiatPurchase(fiatAmount) {
+    this.setState((state, props) => {
+      const newState = Object.assign({}, state);
+      newState.fiatPurchase = fiatAmount;
+
+      scheduleHistoryPushState({
+        btc: newState.btcHodl,
+        fiat: newState.fiatPurchase,
+        loc: newState.loc,
+      });
+
+      return newState;
+    });
+  }
+
+  updateBtcPrice(btcPrice) {
+    this.setState(function(state, props) {
+      const newState = Object.assign({}, state);
+      newState.btcPrice = btcPrice;
+      return newState;
+    });
+  }
+
+  internalNavigate({btc, fiat, loc}, hash) {
+    setLang(loc);
+    this.setState({btcHodl: btc, fiatPurchase: fiat, loc});
+    scheduleHistoryPushState({btc, fiat, loc}, hash);
+  }
+
+  fetchBtcPrice() {
+    fetchBtcPrice().then(btcPrice => {
+      console.log(btcPrice);
+      this.updateBtcPrice(btcPrice);
+    });
+  }
+
+  componentDidMount() {
+    this.fetchBtcPrice();
+
+    const minutes = 1000 * 60 * 5;
+    setInterval(() => {
+      this.fetchBtcPrice();
+    }, minutes);
+
+    const qpState = readQueryParams(window.location.search);
+    this.internalNavigate(qpState);
+  }
+
+	render() {
+    const {btcHodl, btcPrice, fiatPurchase, loc} = this.state;
+
+    let locale = esMx;
+    switch(loc) {
+      case 'en':
+        locale = enUs;
+        break;
+      case 'es':
+        locale = esMx;
+        break;
+    }
 
 		return (
       <IntlProvider definition={locale}>
         <div id="app">
-          <Home path="/">
-            <button onClick={() => this.updateLocale(enUs)}>english</button>
+          <Home path="/" btcHodl={btcHodl} btcPrice={btcPrice} fiatPurchase={fiatPurchase}
+                         updateBtcHodl={this.updateBtcHodl.bind(this)}
+                         updateFiatPurchase={this.updateFiatPurchase.bind(this)} >
+            <button onClick={() => this.updateLocale('en')}>english</button>
             &nbsp;
-            <button onClick={() => this.updateLocale(esMx)} autofocus>español</button>
+            <button onClick={() => this.updateLocale('es')}>español</button>
           </Home>
         </div>
       </IntlProvider>

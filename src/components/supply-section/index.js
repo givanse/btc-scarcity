@@ -5,11 +5,11 @@ import staticData from '../../utils/static-data';
 import BtcSign from '../btc-sign';
 import BitcoinStats from '../bitcoin-stats';
 import LogBarChart from '../log-bar-chart';
+import Link from '../link';
 import { Text } from 'preact-i18n';
 
 const {
   UNITS,
-  btcRemainTSupply,
   btcPerPerson,
   goldAboveGroundKg,
   goldPerPersonKg,
@@ -78,9 +78,10 @@ export default class TheFooter extends Component {
             {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
           </td>
           <td class="">
-            <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+            <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`}
+                  hash='bitcoin'>
               <BtcSign/>{btcPerPerson.toFixed(8)}
-            </a>
+            </Link>
           </td>
         </tr>
 
@@ -98,9 +99,10 @@ export default class TheFooter extends Component {
             {f.usd(broadMoneyPerCapita)}
           </td>
           <td class="">
-            <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+            <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`}
+                  hash='bitcoin'>
               <BtcSign/>{btcPerPerson.toFixed(8)}
-            </a>
+            </Link>
           </td>
         </tr>
 
@@ -117,9 +119,10 @@ export default class TheFooter extends Component {
             {f.usd(usaMillionaireMedian)}<sup>‡</sup>
           </td>
           <td>
-          <a href={`?btc=${usaMillionaireMedianBroadPercentInBtc.toFixed(8)}#bitcoin`} class="underline" data-navigate>
-            <BtcSign />{usaMillionaireMedianBroadPercentInBtc.toFixed(8)}
-          </a>
+            <Link queryParams={`btc=${usaMillionaireMedianBroadPercentInBtc.toFixed(8)}`}
+                  hash='bitcoin'>
+              <BtcSign />{usaMillionaireMedianBroadPercentInBtc.toFixed(8)}
+            </Link>
           </td>
         </tr>
 
@@ -135,9 +138,10 @@ export default class TheFooter extends Component {
             {f.usd(netWorth1PercentMedian)}<sup>†</sup>
           </td>
           <td>
-            <a href={`?btc=${netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+            <Link queryParams={`btc=${netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}`}
+                  hash='bitcoin'>
               <BtcSign />{netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}
-            </a>
+            </Link>
           </td>
         </tr>
 

@@ -11,7 +11,7 @@ const precision = {
 
 export default {
   PRECISION: precision,
-  _usd: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0}),
+  _usd: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2}),
   usd: function(number, precisionName) {
     let p;
     switch(precisionName) {

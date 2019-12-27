@@ -6,6 +6,7 @@ import {
   btcToWords,
 } from '../the-form/words';
 import toWords from '../the-form/to-words';
+import Link from '../link';
 import staticData from '../../utils/static-data';
 import f from '../../utils/formatter';
 import { Text } from 'preact-i18n';
@@ -58,9 +59,9 @@ export default class PerPerson extends Component {
           &nbsp;<BtcSign /> {f.btc(btcPerPerson)}
         </p>
 
-        <a href={`?btc=${btcPerPerson.toFixed(8)}#bitcoin`} class="underline" data-navigate>
+        <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`} hash='bitcoin'>
           {toWords.btc(btcPerPerson)}
-        </a>
+        </Link>
 
         <p class="text-sm text-gray-700">
           {btcToWords(btcPerPerson)}
