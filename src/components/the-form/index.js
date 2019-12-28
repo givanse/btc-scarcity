@@ -72,14 +72,6 @@ export default class TheForm extends Component {
 
       </div>
 
-      <div id="world" class="block pt-4">
-        <a href="#world" class="cursor-pointer">
-          <h2 class="bg-blue-600 text-white ">
-            <Text id="world.title">Worldwide</Text>
-          </h2>
-        </a>
-      </div>
-
       <PerPerson />
 
 
@@ -134,15 +126,6 @@ export default class TheForm extends Component {
           </td>
         </tr>
       </table>
-
-
-      <div id="bitcoin" class="block pt-4">
-        <a href="#bitcoin" class="cursor-pointer">
-          <h2 class="background-btc-orange text-black font-bold">
-            Bitcoin
-          </h2>
-        </a>
-      </div>
 
       <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice}
                       onInputChange={this.updateBtcHodl.bind(this)}

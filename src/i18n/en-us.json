@@ -14,8 +14,9 @@
   },
   "world": {
     "title": "Worldwide",
+    "intro": "How much Bitcoin would a person get if we gave some to every person in the world?",
     "persons": "persons",
-    "world-population": "world population",
+    "world-population": "World population",
     "bitcoin-supply": "Bitcoin supply",
     "bitcoin-for-each-person": "Bitcoin for each person"
   },

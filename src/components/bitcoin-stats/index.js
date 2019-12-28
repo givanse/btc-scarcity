@@ -39,7 +39,10 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-        <BtcSign /> {f.whole(btcLost)} ({btcLostPerc * 100}%<sup>§</sup>)
+        <Link queryParams={`btc=${btcLost}`} hash='bitcoin'>
+          <BtcSign /> {f.whole(btcLost)}
+        </Link>
+        &nbsp;({btcLostPerc * 100}%<sup>§</sup>)
 
         <p class="bg-gray-300 py-3">
           <Text id="bitcoin-stats.remaining-supply">
@@ -60,18 +63,6 @@ export default class BitcoinStats extends Component {
         </p>
       </div>
 
-      <br />
-      <div class="text-center">
-        <p>
-          <BtcSign />1 = 
-          <Link queryParams={`btc=${1}`} hash='bitcoin'>
-            &nbsp;{f.whole(100000000)} {SAT_SIGN}
-          </Link>
-        </p>
-        <p class="text-sm text-gray-700 mb-3">
-          <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>
-        </p>
-      </div>
       </div>
     );
   }

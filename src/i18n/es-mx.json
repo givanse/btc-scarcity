@@ -14,8 +14,9 @@
   },
   "world": {
     "title": "En Todo El Mundo",
+    "intro": "Cuanto Bitcoin le tocaría a una persona si le dieramos un poco a cada persona en el mundo?",
     "persons": "de personas",
-    "world-population": "población mundial",
+    "world-population": "Población mundial",
     "bitcoin-supply": "Suministro de Bitcoin",
     "bitcoin-for-each-person": "Bitcoin para cada persona"
   },

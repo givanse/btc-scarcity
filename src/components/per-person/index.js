@@ -11,6 +11,7 @@ import staticData from '../../utils/static-data';
 import f from '../../utils/formatter';
 import { Text } from 'preact-i18n';
 
+const SAT_SIGN = ' sat';
 const P = f.PRECISION;
 
 const {
@@ -26,28 +27,48 @@ export default class PerPerson extends Component {
     return (
       <div class="text-center">
 
-        <p class="text-sm text-gray-700">
-          <i class="icon-globe text-2xl"></i>
-          <br />
-          <Text id="world.world-population">world population</Text>
+        <div id="world" class="block pt-4">
+          <a href="#world" class="cursor-pointer">
+            <h2 class="bg-blue-600 text-white ">
+              <Text id="world.title">Worldwide</Text>
+            </h2>
+          </a>
+        </div>
+
+        <p>
+          <Text id="world.intro">
+            How much Bitcoin would a person get if we gave some to every person in the world?
+          </Text>
         </p>
 
-        {f.dec(worldPopulation)}
-        <br />
+        <div class="flex">
+          <div class="flex-1">
+            <p class="text-sm text-gray-700">
+              <i class="icon-bitcoin text-2xl"></i>
+              <br/>
+              <Text id="world.bitcoin-supply">Bitcoin supply</Text>
+            </p>
+            {f.whole(btcRemainTSupply)}
+            <p class="text-sm text-gray-700 mb-3">
+              {btcToWords(btcRemainTSupply)}
+            </p>
+          </div>
 
-        <p class="text-sm text-gray-700 mb-3">
-          {numberToWords(worldPopulation)} <Text id="world.persons">persons</Text>
-        </p>
+          <div class="flex-1">
+            <p class="text-sm text-gray-700">
+              <i class="icon-globe text-2xl"></i>
+              <br />
+              <Text id="world.world-population">world population</Text>
+            </p>
 
-        <p class="text-sm text-gray-700">
-          <i class="icon-bitcoin text-2xl"></i>
-          <br/>
-          <Text id="world.bitcoin-supply">Bitcoin supply</Text>
-        </p>
-        {f.whole(btcRemainTSupply)}
-        <p class="text-sm text-gray-700 mb-3">
-          {btcToWords(btcRemainTSupply)}
-        </p>
+            {f.dec(worldPopulation)}
+
+            <p class="text-sm text-gray-700 mb-3">
+              {numberToWords(7.7)} <Text id="world.persons">persons</Text>
+            </p>
+          </div>
+        </div>
+
 
         <p class="text-sm text-gray-700">
           <i class="icon-person text-2xl"></i>
@@ -66,6 +87,18 @@ export default class PerPerson extends Component {
         <p class="text-sm text-gray-700">
           {btcToWords(btcPerPerson)}
         </p>
+
+        <div class="text-center mt-12">
+          <p>
+            <BtcSign />1 =&nbsp;
+            <Link queryParams={`btc=${1}`} hash='bitcoin'>
+              {f.whole(100000000)} {SAT_SIGN}
+            </Link>
+          </p>
+          <p class="text-sm text-gray-700 mb-3">
+            <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>
+          </p>
+        </div>
       </div>
     );
   }

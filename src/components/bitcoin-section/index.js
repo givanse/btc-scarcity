@@ -57,6 +57,15 @@ export default class TheFooter extends Component {
                          : '';
     return (
       <div>
+
+      <div id="bitcoin" class="block pt-4">
+        <a href="#bitcoin" class="cursor-pointer">
+          <h2 class="background-btc-orange text-black font-bold">
+            Bitcoin
+          </h2>
+        </a>
+      </div>
+
       <form class="text-center" onSubmit={e => e.preventDefault()}>
 
         <p class="text-sm text-gray-700">
@@ -71,7 +80,7 @@ export default class TheFooter extends Component {
                value={'₿' + f.btc(btcHodl)}
                class={style['btc-hodl']}
                placeholder="bitcoin amount"
-               onInput={onInputChange} />
+               onChange={onInputChange} />
 
         <p class="text-sm text-gray-700">
           {satsHodlText}
