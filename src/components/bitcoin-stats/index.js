@@ -6,7 +6,7 @@ import f from '../../utils/formatter';
 import Link from '../link';
 import {
   numberToWords,
-} from '../the-form/words';
+} from '../../utils/words';
 import { Text } from 'preact-i18n';
 
 const SAT_SIGN = ' sat';

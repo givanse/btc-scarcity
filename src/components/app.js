@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { IntlProvider } from 'preact-i18n';
 import enUs from '../i18n/en-us.json';
 import esMx from '../i18n/es-mx.json';
-import { setLang } from './the-form/words';
+import { setLang } from '../utils/words';
 import { fetchBtcPrice } from '../utils/fetch-btc';
 import {
   listenForDataNavigateClicks,

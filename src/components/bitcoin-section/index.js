@@ -12,7 +12,7 @@ import { BTC_SLIDER_VALUES } from '../../utils/constants';
 import {
   btcToWords,
   numberToWords,
-} from '../the-form/words';
+} from '../../utils/words';
 
 const SAT_SIGN = ' sat';
 

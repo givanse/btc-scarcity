@@ -4,7 +4,7 @@ import BtcSign from '../btc-sign';
 import {
   numberToWords,
   btcToWords,
-} from '../the-form/words';
+} from '../../utils/words';
 import toWords from '../the-form/to-words';
 import Link from '../link';
 import staticData from '../../utils/static-data';

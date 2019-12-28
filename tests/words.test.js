@@ -1,4 +1,4 @@
-import { numberToWords } from '../src/components/the-form/words';
+import { numberToWords } from '../src/utils/words';
 
 describe('numberToWords', () => {
   

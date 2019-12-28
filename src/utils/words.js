@@ -1,5 +1,5 @@
 const writtenNumber = require('written-number');
-import { getSats } from '../../utils/bitcoin-math';
+import { getSats } from './bitcoin-math';
 
 let LANG = 'es';
 

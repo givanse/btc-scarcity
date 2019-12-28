@@ -15,7 +15,7 @@ import { parseBitcoin } from '../../utils/bitcoin-math';
 import {
   btcToWords,
   fiatToWords,
-} from './words';
+} from '../../utils/words';
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';
