@@ -3,22 +3,7 @@ import staticData from '../src/utils/static-data';
 //import { shallow } from 'preact-render-spy';
 
 describe('Static Data', () => {
-	test('btcHodlPercOfRemainTSupply', () => {
-		const btcHodl = 1890000;
-		const r = staticData.btcPercOfRemainTSupply(btcHodl);
-		expect(r).toBe(10);
-	});
 
-	test('btcPerPerson', () => {
-		expect(staticData.btcPerPerson).toBe(0.0024545454545454545);
-  });
-  
-  test('btcPercOfRemainTSupply', () => {
-    const amount = 4725000;
-    const r = staticData.btcPercOfRemainTSupply(amount);
-    expect(r).toBe(25);
-  });
-  
   test('fiatPercOfBroadMoney', () => {
     const amount = 22.6 * 1000000 * 1000 * 1000;
     const r = staticData.fiatPercOfBroadMoney(amount);

@@ -1,7 +1,8 @@
 import {
   buildSearchString,
   readQueryParams,
-  handleClickForLinkWithDataNavigate,
+  deconstructWindowLocation,
+  deconstructHref,
 } from '../src/utils/router';
 
 describe('buildSearchString', () => {
@@ -49,11 +50,27 @@ describe('readQueryParams', () => {
 
 });
 
-describe('handleClickForLinkWithDataNavigate', () => {
+describe('deconstructWindowLocation', () => {
+
+  test('deconstructs a window location', () => {
+    const location = {
+      hash: '#unittest',
+      search: '?fiat=500&loc=en',
+    }; 
+    const {btc, fiat, loc, hash} = deconstructWindowLocation(location); 
+    expect(btc).toBe(0);
+    expect(fiat).toBe(500);
+    expect(loc).toBe('en');
+    expect(hash).toBe('#unittest');
+  });
+
+});
+
+describe('deconstructHref', () => {
 
   test('deconstructs a local href', () => {
     const search = '?btc=100#bitcoin';
-    const {btc, fiat, loc, hash} = handleClickForLinkWithDataNavigate(search); 
+    const {btc, fiat, loc, hash} = deconstructHref(search); 
     expect(btc).toBe(100);
     expect(fiat).toBe(0);
     expect(loc).toBe(null);

@@ -77,7 +77,16 @@ export function scrollTo(query) {
   });
 }
 
-export function handleClickForLinkWithDataNavigate(href) {
+export function deconstructWindowLocation(location) {
+  location = location ? location : window.location;
+
+  const {btc, fiat, loc} = readQueryParams(location.search);
+  const hash = location.hash;
+
+  return {btc, fiat, loc, hash};
+}
+
+export function deconstructHref(href) {
   let {btc, fiat, loc} = readQueryParams(href);
 
   btc = btc ? btc : 0;
@@ -103,7 +112,7 @@ export function listenForDataNavigateClicks(callback) {
           event.preventDefault();
 
           const href = target.href;
-          const obj = handleClickForLinkWithDataNavigate(href);
+          const obj = deconstructHref(href);
           callback(obj);
           
           return false;

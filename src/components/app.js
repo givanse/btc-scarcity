@@ -5,8 +5,8 @@ import esMx from '../i18n/es-mx.json';
 import { setLang } from '../utils/words';
 import { fetchBtcPrice } from '../utils/fetch-btc';
 import {
+  deconstructWindowLocation,
   listenForDataNavigateClicks,
-  readQueryParams,
   scheduleHistoryPushState,
 } from '../utils/router';
 
@@ -40,9 +40,9 @@ export default class App extends Component {
       }
     }
 
-    listenForDataNavigateClicks(({btc, fiat, loc, hash}) => {
-      loc = loc ? loc : this.state.loc;
-      this.internalNavigate({btc, fiat, loc}, hash);
+    listenForDataNavigateClicks(locationState => {
+      locationState.loc = locationState.loc ? locationState.loc : this.state.loc;
+      this.internalNavigate(locationState);
     });
   }
 
@@ -110,7 +110,7 @@ export default class App extends Component {
     });
   }
 
-  internalNavigate({btc, fiat, loc}, hash) {
+  internalNavigate({btc, fiat, loc, hash}) {
     setLang(loc);
     this.setState({btcHodl: btc, fiatPurchase: fiat, loc});
     scheduleHistoryPushState({btc, fiat, loc}, hash);
@@ -123,16 +123,20 @@ export default class App extends Component {
     });
   }
 
-  componentDidMount() {
+  startPricePolling() {
     this.fetchBtcPrice();
 
     const minutes = 1000 * 60 * 5;
     setInterval(() => {
       this.fetchBtcPrice();
     }, minutes);
+  }
 
-    const qpState = readQueryParams(window.location.search);
-    this.internalNavigate(qpState);
+  componentDidMount() {
+    this.startPricePolling();
+
+    const locationState = deconstructWindowLocation(); 
+    this.internalNavigate(locationState);
   }
 
 	render() {
