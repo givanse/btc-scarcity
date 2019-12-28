@@ -60,7 +60,6 @@ export function readQueryParams(search) {
   return {btc, fiat, loc};
 }
 
-//TODO: better scrolling
 export function scrollTo(query) {
   if (!query) {
     return;
@@ -73,11 +72,9 @@ export function scrollTo(query) {
     return;
   }
 
-  const options = {
-    top: el.getBoundingClientRect().y,
+  el.scrollIntoView({
     behavior: 'smooth',
-  };
-  window.scrollTo(options);
+  });
 }
 
 export function handleClickForLinkWithDataNavigate(href) {
