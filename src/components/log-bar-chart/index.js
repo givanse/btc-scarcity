@@ -50,14 +50,14 @@ export default class LogBarChart extends Component {
     ctx.fillText(text, xText, colY + lineHeight);
   }
 
-  drawBars(ctx, canvas) {
+  drawBars(ctx, canvas, goldPrice) {
     const fiatPurchase = this.props.fiatPurchase;
-    const goldBoughtOz = buyGoldOunces(fiatPurchase);
+    const goldBoughtOz = buyGoldOunces(fiatPurchase, goldPrice);
     const btcBought = this.props.btcBought;
 
     // percentages
     const broadMoneyPerc = fiatPercOfBroadMoney(fiatPurchase);
-    const goldPerc = fiatPercOfGold(fiatPurchase);
+    const goldPerc = fiatPercOfGold(fiatPurchase, goldPrice);
     const btcPerc = btcPercOfRemainTSupply(btcBought);
 
     // logarithmic values
@@ -132,15 +132,15 @@ export default class LogBarChart extends Component {
   componentDidUpdate() {
     const canvas = this.base.querySelector('canvas');
     const ctx = canvas.getContext('2d');
-    this.drawBars(ctx, canvas);
+    const { goldPrice } = this.props;
+    this.drawBars(ctx, canvas, goldPrice);
   }
 
   render() {
-    const fiatPurchase = this.props.fiatPurchase;
-    const btcBought = this.props.btcBought;
+    const {fiatPurchase, btcBought, goldPrice} = this.props;
 
     const broadMoneyPerc = fiatPercOfBroadMoney(fiatPurchase);
-    const goldPerc = fiatPercOfGold(fiatPurchase);
+    const goldPerc = fiatPercOfGold(fiatPurchase, goldPrice);
     const btcPerc = btcPercOfRemainTSupply(btcBought);
 
     return (

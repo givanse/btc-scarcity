@@ -5,7 +5,7 @@ const url = `${host}/btc-usd/btc-usd`;
 // debug line
 //const url = 'https://btc-scarcity.netlify.com/.netlify/functions/btc-usd/btc-usd';
 
-export function fetchBtcPrice() {
+export function fetchPrices() {
   const fetchOptions = {
     method: 'GET',
     mode: 'cors',
@@ -19,8 +19,6 @@ export function fetchBtcPrice() {
       // TODO: 502 although the response is correct
     }
 
-    return response.json().then(function(ticker) {
-      return ticker.ask;
-    });
+    return response.json();
   });
 }

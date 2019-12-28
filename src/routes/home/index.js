@@ -7,6 +7,7 @@ const Home = (props) => (
   <div>
     <TheForm btcHodl={props.btcHodl}
              btcPrice={props.btcPrice}
+             goldPrice={props.goldPrice}
              fiatPurchase={props.fiatPurchase}
              updateBtcHodl={props.updateBtcHodl}
              updateFiatPurchase={props.updateFiatPurchase} >

@@ -39,14 +39,11 @@ const netWorth1PercentMedian = 10.7 * UNITS.MILLION;
 const netWorth1PercentMedianBroadMoneyPercent = (netWorth1PercentMedian * 100) / moneySupply.broadMoney;
 const netWorth1PercentMedianBroadMoneyPercentInBtc = (netWorth1PercentMedianBroadMoneyPercent * btcRemainTSupply) / 100;
 
-function buyGoldOunces(fiat) {
-  //TODO: fetch from a ticker
-  const goldPricePerOz = 1500;
+function buyGoldOunces(fiat, goldPricePerOz) {
   return fiat / goldPricePerOz;
 }
 
 export default {
-  UNITS,
   btcTCap,
   btcLostPerc,
   btcLost,
@@ -56,6 +53,7 @@ export default {
   goldAboveGroundKg,
   goldAboveGroundOz,
   goldPerPersonKg,
+  goldPerPersonOz: goldPerPersonKg * UNITS.TROY_OUNCE,
   broadMoneyPerCapita,
   moneySupply,
   usaMillionaireMedian,
@@ -74,8 +72,8 @@ export default {
     return (fiat * 100) / moneySupply.broadMoney;
   },
   buyGoldOunces,
-  fiatPercOfGold: function(fiat) {
-    const boughtGoldOz = buyGoldOunces(fiat);
+  fiatPercOfGold: function(fiat, goldPricePerOz) {
+    const boughtGoldOz = buyGoldOunces(fiat, goldPricePerOz);
     const goldKilosBought = boughtGoldOz * 0.03110348;
     return (goldKilosBought * 100) / goldAboveGroundKg;
   }

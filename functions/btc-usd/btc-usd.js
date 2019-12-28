@@ -26,7 +26,10 @@ exports.handler = async function(request, context) {
 
   const binance = new ccxt.binance();
   const ticker = await binance.fetchTicker('BTC/USDT');
-  const {ask} = ticker;
+  const btcPrice = ticker.ask;
+
+  //TODO: find ticker
+  const goldPrice = 1518.1;// ticker.ask;
 
   return {
     statusCode: 200,
@@ -37,6 +40,6 @@ exports.handler = async function(request, context) {
       'Access-Control-Allow-Credentials': true,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ask}),
+    body: JSON.stringify({btcPrice, goldPrice}),
   };
 }

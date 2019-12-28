@@ -3,7 +3,7 @@ import { IntlProvider } from 'preact-i18n';
 import enUs from '../i18n/en-us.json';
 import esMx from '../i18n/es-mx.json';
 import { setLang } from '../utils/words';
-import { fetchBtcPrice } from '../utils/fetch-btc';
+import { fetchPrices } from '../utils/fetch-prices';
 import {
   deconstructWindowLocation,
   listenForDataNavigateClicks,
@@ -12,12 +12,14 @@ import {
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
+import staticData from '../utils/static-data.js';
 
 export default class App extends Component {
 
   state = {
     btcHodl: 0,
     btcPrice: 7000,
+    goldPrice: 1500,
     fiatPurchase: 0,
     loc: 'es',
   };
@@ -102,10 +104,11 @@ export default class App extends Component {
     });
   }
 
-  updateBtcPrice(btcPrice) {
+  updatePrices(btcPrice, goldPrice) {
     this.setState(function(state, props) {
       const newState = Object.assign({}, state);
       newState.btcPrice = btcPrice;
+      newState.goldPrice = goldPrice;
       return newState;
     });
   }
@@ -116,19 +119,19 @@ export default class App extends Component {
     scheduleHistoryPushState({btc, fiat, loc}, hash);
   }
 
-  fetchBtcPrice() {
-    fetchBtcPrice().then(btcPrice => {
-      console.log(btcPrice);
-      this.updateBtcPrice(btcPrice);
+  fetchPrices() {
+    fetchPrices().then(({btcPrice, goldPrice}) => {
+      console.log(btcPrice, goldPrice);
+      this.updatePrices(btcPrice, goldPrice);
     });
   }
 
   startPricePolling() {
-    this.fetchBtcPrice();
+    this.fetchPrices();
 
     const minutes = 1000 * 60 * 5;
     setInterval(() => {
-      this.fetchBtcPrice();
+      this.fetchPrices();
     }, minutes);
   }
 
@@ -140,7 +143,7 @@ export default class App extends Component {
   }
 
 	render() {
-    const {btcHodl, btcPrice, fiatPurchase, loc} = this.state;
+    const {btcHodl, btcPrice, goldPrice, fiatPurchase, loc} = this.state;
 
     let locale = esMx;
     switch(loc) {
@@ -155,7 +158,8 @@ export default class App extends Component {
 		return (
       <IntlProvider definition={locale}>
         <div id="app">
-          <Home path="/" btcHodl={btcHodl} btcPrice={btcPrice} fiatPurchase={fiatPurchase}
+          <Home path="/" btcHodl={btcHodl} fiatPurchase={fiatPurchase}
+                         btcPrice={btcPrice} goldPrice={goldPrice}
                          updateBtcHodl={this.updateBtcHodl.bind(this)}
                          updateFiatPurchase={this.updateFiatPurchase.bind(this)} >
             <button onClick={() => this.updateLocale('en')}>english</button>

@@ -12,13 +12,13 @@ describe('Static Data', () => {
   
   test('buyGoldOunces', () => {
     const amount = 1000000000;
-    const r = staticData.buyGoldOunces(amount);
+    const r = staticData.buyGoldOunces(amount, 1500);
     expect(r).toBe(666666.6666666666);
   });
   
   test('fiatPercOfGold', () => {
     const amount = 1000000000;
-    const r = staticData.fiatPercOfGold(amount);
+    const r = staticData.fiatPercOfGold(amount, 1500);
     expect(r).toBe(0.012027540863956472);
   });
 

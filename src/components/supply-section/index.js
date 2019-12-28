@@ -9,10 +9,9 @@ import Link from '../link';
 import { Text } from 'preact-i18n';
 
 const {
-  UNITS,
   btcPerPerson,
-  goldAboveGroundKg,
-  goldPerPersonKg,
+  goldAboveGroundOz,
+  goldPerPersonOz,
   broadMoneyPerCapita,
   moneySupply,
   usaMillionaireMedian,
@@ -21,10 +20,6 @@ const {
   netWorth1PercentMedianBroadMoneyPercentInBtc,
 } = staticData;
 
-const {
-  TROY_OUNCE,
-} = UNITS;
-
 export default class TheFooter extends Component {
 
   render() {
@@ -32,6 +27,7 @@ export default class TheFooter extends Component {
     const {
       btcBought,
       fiatPurchase,
+      goldPrice,
     } = this.props;
 
     return (
@@ -44,6 +40,7 @@ export default class TheFooter extends Component {
       </h4>
 
       <LogBarChart fiatPurchase={fiatPurchase}
+                   goldPrice={goldPrice}
                    btcBought={btcBought} />
 
       <table class={style['supply']} >
@@ -69,13 +66,13 @@ export default class TheFooter extends Component {
             <Text id="mined-gold">
               Mined Gold
             </Text>
-            &nbsp;{f.dec(goldAboveGroundKg * TROY_OUNCE, 'B')} oz <sup>*</sup>
+            &nbsp;{f.dec(goldAboveGroundOz, 'B')} oz <sup>*</sup>
           </td>
         </tr>
 
         <tr>
           <td>
-            {(goldPerPersonKg * TROY_OUNCE).toFixed(3)} oz 
+            {(goldPerPersonOz).toFixed(3)} oz 
           </td>
           <td class="">
             <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`}

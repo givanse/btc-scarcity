@@ -17,17 +17,12 @@ import {
 const SAT_SIGN = ' sat';
 
 const {
-  UNITS,
   btcPerPerson,
   btcHodlInIndividualShares,
-  goldPerPersonKg,
+  goldPerPersonOz,
   usaMillionaireMedianBroadPercentInBtc,
   netWorth1PercentMedianBroadMoneyPercentInBtc,
 } = staticData;
-
-const {
-  TROY_OUNCE,
-} = UNITS;
 
 const HUNDRED_M = 100000000;
 
@@ -46,6 +41,7 @@ export default class TheFooter extends Component {
     const {
       btcHodl,
       btcPrice,
+      goldPrice,
       onInputChange,
     } = this.props;
 
@@ -55,6 +51,9 @@ export default class TheFooter extends Component {
     const satsHodlText = satsHodl ? 
                          numberToWords(satsHodl) + ' ' + (satsHodl === 1 ? 'Satoshi' : 'Satoshis')
                          : '';
+
+    const proportionalToBTCGoldSharesOz = btcHodlInIndividualShares(btcHodl) * goldPerPersonOz;
+
     return (
       <div>
 
@@ -127,7 +126,7 @@ export default class TheFooter extends Component {
           <td colSpan="2">
             bitcoin
             <br/>
-            &nbsp;<span class="text-green-900">
+            <span class="text-green-900">
               {f.usd(btcPrice)}
             </span>
           </td>
@@ -153,15 +152,27 @@ export default class TheFooter extends Component {
         <tr class="bg-gray-300 text-sm">
           <td colSpan="2">
             <Text id="mined-gold">gold</Text>
+            <br/>
+            <span class="text-green-900">
+              {f.usd(goldPrice)}
+            </span>
           </td>
         </tr>
 
         <tr>
           <td>
-            {f.dec(goldPerPersonKg * TROY_OUNCE)} oz
+            {f.dec(goldPerPersonOz)} oz
+            <br />
+            <span class="price-synced-amount">
+              {f.usd(goldPerPersonOz * goldPrice)}
+            </span>
           </td>
           <td>
-            {f.dec(btcHodlInIndividualShares(btcHodl) * goldPerPersonKg * TROY_OUNCE)} oz
+            {f.dec(proportionalToBTCGoldSharesOz)} oz
+            <br />
+            <span class="price-synced-amount">
+              {f.usd(proportionalToBTCGoldSharesOz * goldPrice)}
+            </span>
           </td>
         </tr>
 
