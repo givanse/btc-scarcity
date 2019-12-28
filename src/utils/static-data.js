@@ -12,8 +12,8 @@ const UNITS = {
 
 const btcTCap = 21000000;
 const worldPopulation = 7.7 * USA_BILLION;
-//TODO: back this up, 10% seems conservative
-const btcLostPerc = 0.1; // 10%
+// https://fortune.com/2017/11/25/lost-bitcoins/
+const btcLostPerc = 0.17; // 17%
 const btcLost = btcTCap * btcLostPerc;
 const btcRemainTSupply = btcTCap - btcLost;
 const btcPerPerson = btcRemainTSupply / worldPopulation;

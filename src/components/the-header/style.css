@@ -2,6 +2,7 @@
 .header {
   @apply sticky flex top-0 text-2xl w-full h-12 border-b-2 border-white;
   line-height: 3.4rem;
+  z-index: 1000;
 }
 
 .link {

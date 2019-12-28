@@ -44,7 +44,7 @@ export default class PerPerson extends Component {
           <br/>
           <Text id="world.bitcoin-supply">Bitcoin supply</Text>
         </p>
-        {f.btc(btcRemainTSupply)}
+        {f.whole(btcRemainTSupply)}
         <p class="text-sm text-gray-700 mb-3">
           {btcToWords(btcRemainTSupply)}
         </p>

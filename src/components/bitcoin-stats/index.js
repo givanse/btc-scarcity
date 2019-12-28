@@ -24,43 +24,48 @@ export default class BitcoinStats extends Component {
 
     return (
       <div>
-      <div class="text-center">
-        <Text id="bitcoin-stats.total-supply">
-          Theoretical total supply
-        </Text>
-        <br />
-        <BtcSign /> {f.whole(btcTCap)}
-        <br/>
-        <Text id="bitcoin-stats.lost-estimate">
-          Lost estimate
-        </Text>
-        <br />
-        <BtcSign /> {f.whole(btcLost)} ({btcLostPerc * 100}%)
-        <br />
-        <Text id="bitcoin-stats.remaining-supply">
-          Remaining supply
-        </Text>
-        <br />
-        <BtcSign /> {f.btc(btcRemainTSupply)}
-      </div>
+      <div class="text-center w-11/12 mx-auto">
+        <p class="bg-gray-300 py-3">
+          <Text id="bitcoin-stats.total-supply">
+            Theoretical total supply
+          </Text>
+        </p>
 
-      <p class="text-center">
-        <Text id="bitcoin-stats.sats-supply">
-          Satoshis supply
-        </Text>
-        <br />
+        <BtcSign /> {f.whole(btcTCap)}
+
+        <p class="bg-gray-300 py-3">
+          <Text id="bitcoin-stats.lost-estimate">
+            Lost estimate
+          </Text>
+        </p>
+
+        <BtcSign /> {f.whole(btcLost)} ({btcLostPerc * 100}%<sup>§</sup>)
+
+        <p class="bg-gray-300 py-3">
+          <Text id="bitcoin-stats.remaining-supply">
+            Remaining supply
+          </Text>
+        </p>
+
+        <BtcSign /> {f.btc(btcRemainTSupply)}
+
+        <p class="text-center bg-gray-300 py-3">
+          <Text id="bitcoin-stats.sats-supply">
+            Satoshis supply
+          </Text>
+        </p>
         {f.dec(btcRemainTSupply * 100000000)} {SAT_SIGN}
-      </p>
-      <p class="text-sm text-center text-gray-700 mb-3">
-        {numberToWords(btcRemainTSupply * 100000000)} Satoshis
-      </p>
+        <p class="text-sm text-center text-gray-700 mb-3">
+          {numberToWords(btcRemainTSupply * 100000000)} Satoshis
+        </p>
+      </div>
 
       <br />
       <div class="text-center">
         <p>
           <BtcSign />1 = 
           <Link queryParams={`btc=${1}`} hash='bitcoin'>
-            &nbsp;{f.btc(100000000)} {SAT_SIGN}
+            &nbsp;{f.whole(100000000)} {SAT_SIGN}
           </Link>
         </p>
         <p class="text-sm text-gray-700 mb-3">

@@ -10,3 +10,15 @@
 .supply tr:nth-child(even) td {
   @apply py-4;
 }
+
+.footnotes {
+  @apply m-auto inline-block;
+}
+
+.foot-note {
+  @apply italic text-gray-700 font-serif p-2 inline-block m-auto;
+}
+
+.foot-note a {
+  @apply underline;
+}
