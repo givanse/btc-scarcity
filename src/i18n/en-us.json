@@ -14,11 +14,12 @@
   },
   "world": {
     "title": "Worldwide",
-    "intro": "How much Bitcoin would a person get if we gave some to every person in the world?",
-    "persons": "persons",
+    "intro": "How much Bitcoin would you get if it were distributed worldwide?",
     "world-population": "World population",
     "bitcoin-supply": "Bitcoin supply",
-    "bitcoin-for-each-person": "Bitcoin for each person"
+    "explain-satoshis": "Nobody would get a whole bitcoin, only a small fraction. The smallest fraction of a bitcoin is called a satoshi. One bitcoin is equal to one hundred million satoshis.",
+    "bitcoin-for-each-person": "Bitcoin for each person",
+    "satoshis-for-each-person": "Satoshis for each person"
   },
   "cash": {
     "title": "Cash",

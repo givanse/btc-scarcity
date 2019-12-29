@@ -14,11 +14,12 @@
   },
   "world": {
     "title": "En Todo El Mundo",
-    "intro": "Cuanto Bitcoin le tocaría a una persona si le dieramos un poco a cada persona en el mundo?",
-    "persons": "de personas",
+    "intro": "Cuanto Bitcoin te tocaría si se repartiera entre todas las personas del mundo?",
     "world-population": "Población mundial",
     "bitcoin-supply": "Suministro de Bitcoin",
-    "bitcoin-for-each-person": "Bitcoin para cada persona"
+    "explain-satoshis": "A nadie le tocaría un bitcoin entero, sólo una fracción pequeña. A la fracción más pequeña de un bitcoin se le llama satoshi. Un bitcoin es igual a cien millones de satoshis.",
+    "bitcoin-for-each-person": "Bitcoin para cada persona",
+    "satoshis-for-each-person": "Satoshis para cada persona"
   },
   "cash": {
     "title": "Efectivo",

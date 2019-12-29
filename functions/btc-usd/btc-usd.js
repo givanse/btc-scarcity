@@ -16,6 +16,8 @@ function getAccessControlAllowOrigin(origin) {
       return 'https://btc.gratis';
     case 'btc.givan.se':
       return 'https://btc.givan.se';
+    case 'bitcoin.givan.se':
+      return 'https://bitcoin.givan.se';
   }
 
   return 'https://btc.gratis';

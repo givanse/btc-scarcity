@@ -35,7 +35,7 @@ export default class PerPerson extends Component {
           </a>
         </div>
 
-        <p>
+        <p class="px-4">
           <Text id="world.intro">
             How much Bitcoin would a person get if we gave some to every person in the world?
           </Text>
@@ -50,7 +50,7 @@ export default class PerPerson extends Component {
             </p>
             {f.whole(btcRemainTSupply)}
             <p class="text-sm text-gray-700 mb-3">
-              {btcToWords(btcRemainTSupply)}
+              {numberToWords(btcRemainTSupply)}
             </p>
           </div>
 
@@ -64,20 +64,42 @@ export default class PerPerson extends Component {
             {f.dec(worldPopulation)}
 
             <p class="text-sm text-gray-700 mb-3">
-              {numberToWords(7.7)} <Text id="world.persons">persons</Text>
+              {numberToWords(worldPopulation)}
             </p>
           </div>
         </div>
-
 
         <p class="text-sm text-gray-700">
           <i class="icon-person text-2xl"></i>
           <br />
           <Text id="world.bitcoin-for-each-person">Bitcoin for each person</Text>
-          <br />
-          {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} =
+        </p>
 
-          &nbsp;<BtcSign /> {f.btc(btcPerPerson)}
+        <BtcSign />{f.btc(btcPerPerson)}
+
+        <p class="text-sm text-gray-700">
+          {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)} = <BtcSign />{f.btc(btcPerPerson)}
+        </p>
+
+        <p class="px-4 mt-8">
+          <Text id="world.explain-satoshis">
+            Nobody would get a whole bitcoin, only a small fraction.
+            The smallest fraction of a bitcoin is called a satoshi.
+            One bitcoin is equal to one hundred million satoshis.
+          </Text>
+        </p>
+        <br />
+        <p class="text-center">
+          <BtcSign />1 =&nbsp;
+          <Link queryParams={`btc=${1}`} hash='bitcoin'>
+            {f.whole(100000000)} {SAT_SIGN}
+          </Link>
+        </p>
+
+        <p class="text-sm text-gray-700 mt-8">
+          <i class="icon-person text-2xl"></i>
+          <br />
+          <Text id="world.satoshis-for-each-person">Satoshis for each person</Text>
         </p>
 
         <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`} hash='bitcoin'>
@@ -87,18 +109,6 @@ export default class PerPerson extends Component {
         <p class="text-sm text-gray-700">
           {btcToWords(btcPerPerson)}
         </p>
-
-        <div class="text-center mt-12">
-          <p>
-            <BtcSign />1 =&nbsp;
-            <Link queryParams={`btc=${1}`} hash='bitcoin'>
-              {f.whole(100000000)} {SAT_SIGN}
-            </Link>
-          </p>
-          <p class="text-sm text-gray-700 mb-3">
-            <Text id="bitcoin-stats.one-bitcoin">one Bitcoin</Text> = <Text id="bitcoin-stats.100M-sats">one hundred million Satoshis</Text>
-          </p>
-        </div>
       </div>
     );
   }

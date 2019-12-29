@@ -1,6 +1,6 @@
 # btc-scarcity
 
-https://btc.givan.se/?btc=0.0025&fiat=20&loc=en
+https://bitcoin.givan.se/?btc=0.0025&fiat=20&loc=en
 
 ## CLI Commands
 
