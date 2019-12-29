@@ -133,7 +133,7 @@ export default class App extends Component {
   startPricePolling() {
     this.fetchPrices();
 
-    const minutes = 1000 * 60 * 5;
+    const minutes = 1000 * 60 * 10;
     setInterval(() => {
       this.fetchPrices();
     }, minutes);

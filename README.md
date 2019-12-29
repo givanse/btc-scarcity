@@ -1,22 +1,27 @@
 # btc-scarcity
 
+https://btc.givan.se/?btc=0.0025&fiat=20&loc=en
+
 ## CLI Commands
 
 ``` bash
 # install dependencies
-npm install
+yarn install
 
 # serve with hot reload at localhost:8080
-npm run dev
+yarn start
 
 # build for production with minification
-npm run build
+yarn build
 
 # test the production build locally
-npm run serve
+yarn serve
 
 # run tests with jest and preact-render-spy 
-npm run test
+yarn test
+
+# run the backend
+yarn lambda
 ```
 
 For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).

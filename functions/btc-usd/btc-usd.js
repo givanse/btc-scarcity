@@ -1,13 +1,32 @@
 const ccxt = require('ccxt');
 
-const accessControlAllowOrigin = process.env.NODE_ENV === 'development' ? '*' : 'https://btc.gratis';
+function getAccessControlAllowOrigin(origin) {
+
+  if (process.env.NODE_ENV === 'development') {
+    return '*';
+  }
+
+  if (!origin) {
+    return 'https://btc.gratis';
+  }
+
+  origin = origin.replace(/https:\/\/(www\.)?/, '');
+  switch(origin) {
+    case 'btc.gratis':
+      return 'https://btc.gratis';
+    case 'btc.givan.se':
+      return 'https://btc.givan.se';
+  }
+
+  return 'https://btc.gratis';
+}
 
 exports.handler = async function(request, context) {
   if (request.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': accessControlAllowOrigin,
+        'Access-Control-Allow-Origin': getAccessControlAllowOrigin(request.headers.origin),
         'Access-Control-Allow-Methods': 'GET',
         'Access-Control-Allow-Headers': 'access-control-allow-origin,Content-Type',
         'Access-Control-Max-Age': '1800',
@@ -35,7 +54,7 @@ exports.handler = async function(request, context) {
     statusCode: 200,
     headers: {
       /* Required for CORS support to work */
-      'Access-Control-Allow-Origin': accessControlAllowOrigin,
+      'Access-Control-Allow-Origin': getAccessControlAllowOrigin(request.headers.origin),
       /* Required for cookies, authorization headers with HTTPS */
       'Access-Control-Allow-Credentials': true,
       'Content-Type': 'application/json',
