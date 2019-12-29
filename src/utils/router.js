@@ -36,7 +36,7 @@ function historyPushState({btc, fiat, loc}, hash) {
 
 let timer = null;
 
-export function scheduleHistoryPushState(search, hash) {
+export function scheduleHistoryPushState(search, hash = window.location.hash) {
   if (timer) {
     clearTimeout(timer);
   }
