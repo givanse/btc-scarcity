@@ -48,10 +48,6 @@ export default class TheFooter extends Component {
     const {btc, sats} = getSats(btcHodl); 
     const satsHodl = (btc * HUNDRED_M) + sats;
 
-    const satsHodlText = satsHodl ? 
-                         numberToWords(satsHodl) + ' ' + (satsHodl === 1 ? 'Satoshi' : 'Satoshis')
-                         : '';
-
     const proportionalToBTCGoldSharesOz = btcHodlInIndividualShares(btcHodl) * goldPerPersonOz;
 
     return (
@@ -68,32 +64,22 @@ export default class TheFooter extends Component {
       <form class="text-center" onSubmit={e => e.preventDefault()}>
 
         <p class="text-sm text-gray-700">
-          {btcToWords(btcHodl)}
+          {f.dec(satsHodl) + ' ' + SAT_SIGN}
         </p>
 
         <label for="btc-hodl" class="block w-0 h-0 overflow-hidden">
           bitcoin <Text id="amount">amount</Text>
         </label>
         <input id="btc-hodl"
-               name="btc-hodl"
-               value={'₿' + f.btc(btcHodl)}
-               class={style['btc-hodl']}
-               placeholder="bitcoin amount"
-               onChange={onInputChange} />
+              name="btc-hodl"
+              value={'₿' + f.btc(btcHodl)}
+              class={style['btc-hodl']}
+              placeholder="bitcoin amount"
+              onChange={onInputChange} />
 
         <p class="text-sm text-gray-700">
-          {satsHodlText}
+          {btcToWords(btcHodl)}
         </p>
-
-        <label for="sats-hodl" class="block w-0 h-0 overflow-hidden">
-          satoshis <Text id="amount">amount</Text>
-        </label>
-        <input id="sats-hodl"
-               name="sats-hodl"
-               value={f.dec(satsHodl) + ' ' + SAT_SIGN}
-               class={style['btc-hodl']}
-               placeholder="satoshis amount"
-               onChange={(e) => this.updateSatsHodl(e)} />
 
         <ArrSlider name="btc-hodl-slider"
                    value={btcHodl}
