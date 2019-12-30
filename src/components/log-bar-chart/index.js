@@ -19,24 +19,18 @@ function magnitude(num) {
   return -Math.floor(Math.log(num) / Math.log(10));
 }
 
-function pixelsRuleOfThree(min, x) {
-  const minPixels = 1;
-  const px = (x * minPixels) / min;
-  return px;
-}
+const LINE_HEIGHT = 18;
 
 export default class LogBarChart extends Component {
 
   drawColumnText(ctx, colX, colY, colWidth, textArr) {
     ctx.fillStyle = 'black';
 
-    const lineHeight = 18;
-
     ctx.font = 'bold 13px monospace';
     let text = textArr[0]; 
     let textWidth = ctx.measureText(text).width;
     let xText = colX + (colWidth / 2) - (textWidth / 2);
-    ctx.fillText(text, xText , colY - 75 - lineHeight);
+    ctx.fillText(text, xText , colY - 75 - LINE_HEIGHT);
 
     ctx.font = '12px monospace';
     text = textArr[1];
@@ -44,10 +38,12 @@ export default class LogBarChart extends Component {
     xText = colX + (colWidth / 2) - (textWidth / 2);
     ctx.fillText(text, xText, colY - 75);
 
+    // Column label
     text = textArr[2]; 
     textWidth = ctx.measureText(text).width;
     xText = colX + (colWidth / 2) - (textWidth / 2);
-    ctx.fillText(text, xText, colY + lineHeight);
+    ctx.fillText(text, xText, colY + LINE_HEIGHT);
+    ctx.fillText(text, xText, LINE_HEIGHT * 4);
   }
 
   drawBars(ctx, canvas, goldPrice) {
@@ -95,6 +91,9 @@ export default class LogBarChart extends Component {
     ctx.fillStyle = '#e5e5e5';
     ctx.fillRect(0, y, canvas.width, bottomAxis);
 
+    // Draw columns
+
+    // Broad money
     let x = 10;
     let barHeight = oneHundredPercHeight * broadMoneyLog; 
     ctx.fillStyle = 'green';
@@ -105,6 +104,8 @@ export default class LogBarChart extends Component {
       f.usd(fiatPurchase),
       'broad money'
     ]);
+
+    // Gold
 
     x += barSpace + barWidth;
     barHeight = oneHundredPercHeight * goldLog;
@@ -117,6 +118,8 @@ export default class LogBarChart extends Component {
       'mined gold',
     ]);
 
+    // Bitcoin
+
     x += barSpace + barWidth;
     ctx.fillStyle = '#f79319';
     barHeight = oneHundredPercHeight * btcLog; 
@@ -127,6 +130,21 @@ export default class LogBarChart extends Component {
       '₿ ' + f.btc(btcBought),
       'bitcoin supply',
     ]);
+
+    // Chart header 
+    ctx.font = '14px arial';
+    let text = 'Dollar Purchasing Power Comparison'; 
+    let textWidth = ctx.measureText(text).width;
+    const canvasW = canvas.width;
+    let xText = (canvasW / 2) - (textWidth / 2);
+    let yText = LINE_HEIGHT * 1.5;
+    ctx.fillText(text, xText, yText);
+
+    ctx.font = '12px arial';
+    text = '(log scale)'; 
+    textWidth = ctx.measureText(text).width;
+    xText = (canvasW / 2) - (textWidth / 2);
+    ctx.fillText(text, xText, yText + LINE_HEIGHT);
   }
 
   componentDidUpdate() {

@@ -145,27 +145,19 @@ export default class TheForm extends Component {
 
         <form class="text-center" onSubmit={e => e.preventDefault()}>
 
-          <table class="w-full table-fixed">
-            <tr>
-              <td class="w-6/12 overflow-hidden">
-                <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
-                  fiat amount
-                </label>
-                <input id="fiat-purchase-supply"
-                      name="fiat-purchase-supply"
-                      value={'$' + f.dec(fiatPurchase)}
-                      class="text-center bg-blue-100 w-full"
-                      placeholder="dollar amount"
-                      onChange={(e) => this.updateFiatPurchase(e)} />
-              </td>
-
-              <td class="w-6/12">
-                <span class="text-green-900">
-                  {'₿' + f.btc(btcBought)}
-                </span>
-              </td>
-            </tr>
-          </table>
+          <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
+            fiat amount
+          </label>
+          <input id="fiat-purchase-supply"
+                name="fiat-purchase-supply"
+                value={'$' + f.dec(fiatPurchase)}
+                class="text-center bg-blue-100 w-full"
+                placeholder="dollar amount"
+                onChange={(e) => this.updateFiatPurchase(e)} />
+          <br />
+          <span class="text-green-900">
+            {'₿' + f.btc(btcBought)}
+          </span>
 
           <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
                     value={fiatPurchase}
