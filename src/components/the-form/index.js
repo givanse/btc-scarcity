@@ -87,12 +87,12 @@ export default class TheForm extends Component {
                  fiatPurchase={fiatPurchase}
                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
                  updateValue={this.props.updateFiatPurchase} >
-          <p class="text-sm text-gray-700">
-            {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
-          </p>
           <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
             {toWords.btc(btcBought)}
           </Link>
+          <p class="text-sm text-gray-700">
+            {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
+          </p>
           <p class="text-sm text-gray-700">
             {btcToWords(btcBought)}
           </p>
@@ -139,39 +139,41 @@ export default class TheForm extends Component {
         </a>
       </div>
 
-      <form class="text-center" onSubmit={e => e.preventDefault()}>
-
-        <table class="w-full table-fixed">
-          <tr>
-            <td class="w-6/12 overflow-hidden">
-              <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
-                fiat amount
-              </label>
-              <input id="fiat-purchase-supply"
-                     name="fiat-purchase-supply"
-                     value={'$' + f.dec(fiatPurchase)}
-                     class="text-center bg-blue-100 w-full"
-                     placeholder="dollar amount"
-                     onChange={(e) => this.updateFiatPurchase(e)} />
-            </td>
-
-            <td class="w-6/12">
-              <span class="text-green-900">
-                {'₿' + f.btc(btcBought)}
-              </span>
-            </td>
-          </tr>
-        </table>
-
-        <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
-                   value={fiatPurchase}
-                   values={FIAT_SLIDER_VALUES}
-                   updateValue={this.props.updateFiatPurchase} />
-      </form>
-
       <SupplySection fiatPurchase={fiatPurchase}
                      goldPrice={goldPrice}
-                     btcBought={btcBought} />
+                     btcBought={btcBought}>
+
+        <form class="text-center" onSubmit={e => e.preventDefault()}>
+
+          <table class="w-full table-fixed">
+            <tr>
+              <td class="w-6/12 overflow-hidden">
+                <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
+                  fiat amount
+                </label>
+                <input id="fiat-purchase-supply"
+                      name="fiat-purchase-supply"
+                      value={'$' + f.dec(fiatPurchase)}
+                      class="text-center bg-blue-100 w-full"
+                      placeholder="dollar amount"
+                      onChange={(e) => this.updateFiatPurchase(e)} />
+              </td>
+
+              <td class="w-6/12">
+                <span class="text-green-900">
+                  {'₿' + f.btc(btcBought)}
+                </span>
+              </td>
+            </tr>
+          </table>
+
+          <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
+                    value={fiatPurchase}
+                    values={FIAT_SLIDER_VALUES}
+                    updateValue={this.props.updateFiatPurchase} />
+        </form>
+
+      </SupplySection>
 
       </div>
     );

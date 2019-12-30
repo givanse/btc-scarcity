@@ -3,7 +3,6 @@ import style from './style';
 import BtcSign from '../btc-sign';
 import staticData from '../../utils/static-data';
 import f from '../../utils/formatter';
-import Link from '../link';
 import {
   numberToWords,
 } from '../../utils/words';
@@ -31,7 +30,7 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-        <BtcSign /> {f.whole(btcTCap)}
+        <BtcSign />{f.whole(btcTCap)}
 
         <p class="bg-gray-300 py-3">
           <Text id="bitcoin-stats.lost-estimate">
@@ -39,9 +38,7 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-        <Link queryParams={`btc=${btcLost}`} hash='bitcoin'>
-          <BtcSign /> {f.whole(btcLost)}
-        </Link>
+          <BtcSign />{f.whole(btcLost)}
         &nbsp;({btcLostPerc * 100}%<sup>§</sup>)
 
         <p class="bg-gray-300 py-3">
@@ -50,7 +47,7 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-        <BtcSign /> {f.btc(btcRemainTSupply)}
+        <BtcSign />{f.whole(btcRemainTSupply)}
 
         <p class="text-center bg-gray-300 py-3">
           <Text id="bitcoin-stats.sats-supply">

@@ -33,16 +33,6 @@ export default class TheFooter extends Component {
     return (
       <div>
 
-      <h4>
-        <Text id="supply.supply-percentage">
-          supply percentage
-        </Text>
-      </h4>
-
-      <LogBarChart fiatPurchase={fiatPurchase}
-                   goldPrice={goldPrice}
-                   btcBought={btcBought} />
-
       <table class={style['supply']} >
         <thead class="text-xl">
           <td>
@@ -143,6 +133,18 @@ export default class TheFooter extends Component {
         </tr>
 
       </table>
+
+      <h4 class="mt-16">
+        <Text id="supply.supply-percentage">
+          supply percentage
+        </Text>
+      </h4>
+
+      {this.props.children}
+
+      <LogBarChart fiatPurchase={fiatPurchase}
+                  goldPrice={goldPrice}
+                  btcBought={btcBought} />
 
       <h3 class="">
         <Text id="supply.bitcoin-stats">

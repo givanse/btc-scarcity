@@ -27,12 +27,15 @@ export default class InputFiat extends Component {
                placeholder="dollar amount"
                onChange={updateFiatPurchase} />
 
-        {this.props.children}
+        {this.props.children[0]}
 
         <ArrSlider name={name + "-input-range"}
                    value={fiatPurchase}
                    values={FIAT_SLIDER_VALUES}
                    updateValue={updateValue} />
+
+        {this.props.children[1]}
+        {this.props.children[2]}
       </form>
     );
   }

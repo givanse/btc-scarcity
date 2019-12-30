@@ -64,7 +64,7 @@ export default class TheFooter extends Component {
       <form class="text-center" onSubmit={e => e.preventDefault()}>
 
         <p class="text-sm text-gray-700">
-          {f.dec(satsHodl) + ' ' + SAT_SIGN}
+          {toWords.btc(btcHodl)}
         </p>
 
         <label for="btc-hodl" class="block w-0 h-0 overflow-hidden">
@@ -77,16 +77,14 @@ export default class TheFooter extends Component {
               placeholder="bitcoin amount"
               onChange={onInputChange} />
 
-        <p class="text-sm text-gray-700">
-          {btcToWords(btcHodl)}
-        </p>
-
         <ArrSlider name="btc-hodl-slider"
                    value={btcHodl}
                    values={BTC_SLIDER_VALUES}
                    updateValue={this.props.onSliderChange} />
 
-        {toWords.btc(btcHodl)}
+        <p class="text-sm text-gray-700">
+          {btcToWords(btcHodl)}
+        </p>
       </form>
 
       <table class={style["comparison"]}>
