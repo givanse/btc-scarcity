@@ -20,6 +20,12 @@ export function buildSearchString(btc, fiat, loc) {
 }
 
 function historyPushState({btc, fiat, loc}, hash) {
+  let scrollToHash = true;
+  if (!hash) {
+    hash = window.location.hash;
+    scrollToHash = false;
+  }
+
   const search = buildSearchString(btc, fiat, loc);
 
   const title = `₿${btc} & $${fiat}`;
@@ -31,12 +37,18 @@ function historyPushState({btc, fiat, loc}, hash) {
   }
 
   window.history.pushState({btc, fiat, loc}, title, url);
-  scrollTo(hash);
+
+  // Don't scroll if we are just preserving an existing hash
+  // Scroll only if a hash has been passed in explicitly, 
+  // the assumption is that explicit user action caused it.
+  if (scrollToHash) {
+    scrollTo(hash);
+  }
 }
 
 let timer = null;
 
-export function scheduleHistoryPushState(search, hash = window.location.hash) {
+export function scheduleHistoryPushState(search, hash) {
   if (timer) {
     clearTimeout(timer);
   }
