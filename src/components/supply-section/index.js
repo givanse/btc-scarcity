@@ -33,6 +33,15 @@ export default class TheFooter extends Component {
     return (
       <div>
 
+      <div id="supply" class="block pt-4">
+        <a href="#supply" class="cursor-pointer">
+          <h2 class="bg-purple-700 text-white ">
+            <Text id="supply.title">Supply</Text>
+          </h2>
+        </a>
+      </div>
+
+
       <table class={style['supply']} >
         <thead class="text-xl">
           <td>

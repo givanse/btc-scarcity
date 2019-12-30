@@ -1,12 +1,12 @@
 import { h, Component } from 'preact';
 import style from './style';
 import f from '../../utils/formatter';
-import staticData from '../../utils/static-data';
 import BtcSign from '../btc-sign';
 import PerPerson from '../per-person';
 import InputFiat from '../input-fiat';
 import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
+import CashSection from '../cash-section';
 import SupplySection from '../supply-section';
 import ArrSlider from '../arr-slider';
 import Link from '../link';
@@ -19,11 +19,6 @@ import {
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';
-
-const {
-  btcPerPerson,
-  btcHodlInIndividualShares,
-} = staticData;
 
 export default class TheForm extends Component {
 
@@ -74,70 +69,33 @@ export default class TheForm extends Component {
 
       <PerPerson />
 
+      <CashSection btcBought={btcBought} >
+        <InputFiat name="fiat-purchase"
+                  fiatPurchase={fiatPurchase}
+                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
+                  updateValue={this.props.updateFiatPurchase} >
+            <div class="text-center text-sm text-gray-700 italic mb-4">
+              {f.usd(fiatPurchase)} /
+              <span class="price-synced-amount">
+                {f.usd(btcPrice)}
+              </span> = <BtcSign />{f.btc(btcBought)}
+            </div>
+            <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
+              {toWords.btc(btcBought)}
+            </Link>
+            <p class="text-sm text-gray-700">
+              {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
+            </p>
+            <p class="text-sm text-gray-700">
+              {btcToWords(btcBought)}
+            </p>
+        </InputFiat>
 
-      <div id="cash" class="block pt-4">
-        <a href="#cash" class="cursor-pointer">
-          <h2 class="background-money text-white">
-            <Text id="cash.title">Cash</Text>
-          </h2>
-        </a>
-      </div>
-
-      <InputFiat name="fiat-purchase"
-                 fiatPurchase={fiatPurchase}
-                 updateFiatPurchase={this.updateFiatPurchase.bind(this)}
-                 updateValue={this.props.updateFiatPurchase} >
-          <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
-            {toWords.btc(btcBought)}
-          </Link>
-          <p class="text-sm text-gray-700">
-            {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
-          </p>
-          <p class="text-sm text-gray-700">
-            {btcToWords(btcBought)}
-          </p>
-      </InputFiat>
-
-      <div class="text-center text-sm text-gray-700 italic mb-4">
-        {f.usd(fiatPurchase)} /
-        <span class="price-synced-amount">
-          {f.usd(btcPrice)}
-        </span> = <BtcSign />{f.btc(btcBought)}
-      </div>
-
-      <table class="w-9/12 text-center m-auto md:max-w-xl">
-        <tr>
-          <td class="text-xl">
-            1 <i class="icon-person"></i>
-          </td>
-          <td class="text-xl">
-            {f.dec(btcHodlInIndividualShares(btcBought))} <i class="icon-person"></i>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <BtcSign />{f.btc(btcPerPerson)}
-          </td>
-          <td>
-            <span class="price-synced-amount">
-              <BtcSign />{f.btc(btcBought)}
-            </span>
-          </td>
-        </tr>
-      </table>
+      </CashSection>
 
       <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice} goldPrice={goldPrice}
                       onInputChange={this.updateBtcHodl.bind(this)}
                       onSliderChange={this.props.updateBtcHodl} />
-
-      <div id="supply" class="block pt-4">
-        <a href="#supply" class="cursor-pointer">
-          <h2 class="bg-purple-700 text-white ">
-            <Text id="supply.title">Supply</Text>
-          </h2>
-        </a>
-      </div>
 
       <SupplySection fiatPurchase={fiatPurchase}
                      goldPrice={goldPrice}
