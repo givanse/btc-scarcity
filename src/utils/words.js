@@ -1,7 +1,10 @@
 const writtenNumber = require('written-number');
 import { getSats } from './bitcoin-math';
 
-let LANG = 'es';
+export const ES = 'es';
+export const EN = 'en';
+
+let LANG = ES;
 
 export function numberToWords(amount) {
   const lang = LANG;
@@ -9,6 +12,10 @@ export function numberToWords(amount) {
   const whole = amount >= 1 ? Number.parseInt(amount) : 0;
 
   let text = '';
+
+  if (amount == 1 && lang == ES) {
+    return 'un dolar';
+  }
 
   if (whole) {
     text = writtenNumber(whole, {lang});
@@ -33,16 +40,22 @@ export function fiatToWords(amount) {
 
   let centsText; let dollarText; let dollarsText;
   switch(lang) {
-    case 'es':
+    case EN:
+      dollarText = 'dollar';
+      dollarsText = 'dollars';
+      centsText = 'cents';
+      break;
+    case ES:
+    default:
+      if (amount === 1) {
+        return 'un dolar';
+      }
       dollarText = 'dolar';
       dollarsText = 'dolares';
       centsText = 'centavos';
       break;
-    default:
-      dollarText = 'dollar';
-      dollarsText = 'dollars';
-      centsText = 'cents';
   }
+
 
   amount = amount && amount !== Infinity ? amount : 0;
   const whole = amount >= 1 ? Number.parseInt(amount) : 0;
@@ -54,17 +67,17 @@ export function fiatToWords(amount) {
   }
 
   const cents = (amount - whole).toFixed(2) * 100;
-  if (cents) {
-    const centsText = `${writtenNumber(cents, {lang})} ${centsText}`;
-
-    if (text) {
-      return `${text} and ${centsText}`;
-    }
-    
-    return centsText;
+  if (!cents) {
+    return text;
   }
 
-  return text;
+  centsText = `${writtenNumber(cents, {lang})} ${centsText}`;
+
+  if (text) {
+    return `${text} and ${centsText}`;
+  }
+  
+  return centsText;
 }
 
 export function btcToWords(amount) {
@@ -93,6 +106,8 @@ export function btcToWords(amount) {
   return text;
 }
 
-export function setLang(lang = 'en') {
+export function setLang(lang) {
+  lang = lang ? lang : ES;
+  console.log('default lang:', lang);
   LANG = lang;
 }

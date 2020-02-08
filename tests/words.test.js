@@ -1,20 +1,37 @@
-import { numberToWords } from '../src/utils/words';
+import {
+  fiatToWords,
+  numberToWords,
+  setLang,
+  ES,
+  EN,
+} from '../src/utils/words';
 
 describe('numberToWords', () => {
   
   test('accepts null', () => {
-    let r = numberToWords(null);
+    const r = numberToWords(null);
     expect(r).toBe('');
   });
   
   test('accepts 0', () => {
-    let r = numberToWords(0);
+    const r = numberToWords(0);
     expect(r).toBe('');
   });
   
-  test('accepts 1', () => {
-    let r = numberToWords(1);
-    expect(r).toBe('uno');
+  test('un dolar', () => {
+    setLang(ES);
+    const r = numberToWords(1);
+    expect(r).toBe('un dolar');
+  });
+
+});
+
+describe('fiatToWords', () => {
+
+  test('one dollar', () => {
+    setLang(EN);
+    const r = fiatToWords(1);
+    expect(r).toBe('one dollar');
   });
 
 });
