@@ -39,16 +39,25 @@ describe('getSats', () => {
 
 });
 
+describe('parseBitcoin', () => {
+
+  test('works with negative numbers', () => {
+    const r = parseBitcoin(-0.00000001999, 8);
+    expect(r).toBe(-0.00000001);
+  });
+
+  test('bugfix: truncate 1.001', () => {
+    const r = parseBitcoin(1.001);
+    expect(r).toBe(1.001);
+  });
+
+});
+
 describe('truncate', () => {
 
   test('does not round numbers', () => {
     const r = truncate(0.00000001999, 8);
     expect(r).toBe(0.00000001);
-  });
-
-  test('works with negative numbers', () => {
-    const r = parseBitcoin(-0.00000001999, 8);
-    expect(r).toBe(-0.00000001);
   });
 
   test('handles 0', () => {

@@ -5,16 +5,23 @@ const ONE_SAT = 0.00000001;
 export const TO_FIXED_MAX = 100;
 
 export function truncate(number, decimalsPrecison) {
-  number = number.toFixed(TO_FIXED_MAX);
+  let numStr = number.toFixed(TO_FIXED_MAX);
 
-  const dotIndex = number.indexOf('.');
-  number = number.substring(0, dotIndex + decimalsPrecison + 1);
+  const dotIndex = numStr.indexOf('.');
+  numStr = numStr.substring(0, dotIndex + decimalsPrecison + 1);
 
-  return Number.parseFloat(number);
+  return Number.parseFloat(numStr);
 }
 
 export function parseBitcoin(number) {
-  return truncate(number, 8);
+  const satPrecision = 8;
+
+  if (number >= ONE_SAT) {
+    const numStr = number.toFixed(satPrecision);
+    return Number.parseFloat(numStr);
+  }
+
+  return truncate(number, satPrecision);
 }
 
 export function getSats(amount) {

@@ -11,7 +11,6 @@ import { getSats } from '../../utils/bitcoin-math';
 import { BTC_SLIDER_VALUES } from '../../utils/constants';
 import {
   btcToWords,
-  numberToWords,
 } from '../../utils/words';
 
 const SAT_SIGN = ' sat';
