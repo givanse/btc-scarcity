@@ -6,6 +6,7 @@ import { setLang } from '../utils/words';
 import { fetchPrices } from '../utils/fetch-prices';
 import {
   deconstructWindowLocation,
+  internalNavigate,
   listenForDataNavigateClicks,
   scheduleHistoryPushState,
 } from '../utils/router';

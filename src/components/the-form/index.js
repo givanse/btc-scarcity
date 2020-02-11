@@ -53,11 +53,7 @@ export default class TheForm extends Component {
 
       <TheHeader />
 
-      <div class={style['loc-buttons']}>
-        {this.props.children}
-      </div>
-
-      <div class="p-2 mt-6 m-auto text-justify w-11/12 max-w-md leading-loose">
+      <div class="p-2 mt-12 m-auto text-justify w-11/12 max-w-md leading-loose">
 
         <p class="mb-6">
           <Text id="intro.line-3">
@@ -69,11 +65,17 @@ export default class TheForm extends Component {
         </p>
 
         <p class="mt-6 mb-4 font-mono text-center">
-          <Text id="intro.line-5">
-            learn all about it here
-          </Text>
+          <Link hash='world'>
+            <Text id="intro.line-5">
+              learn all about it here
+            </Text>
+          </Link>
         </p>
 
+      </div>
+
+      <div class={style['loc-buttons']}>
+        {this.props.children}
       </div>
 
       <PerPerson />
