@@ -1,3 +1,9 @@
+import { setLang } from './words';
+
+export function internalNavigate({btc, fiat, loc, hash}) {
+  setLang(loc);
+  scheduleHistoryPushState({btc, fiat, loc}, hash);
+}
 
 export function buildSearchString(btc, fiat, loc) {
   let search = '';

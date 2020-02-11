@@ -12,7 +12,6 @@ import {
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
-import staticData from '../utils/static-data.js';
 
 export default class App extends Component {
 
@@ -44,7 +43,8 @@ export default class App extends Component {
 
     listenForDataNavigateClicks(locationState => {
       locationState.loc = locationState.loc ? locationState.loc : this.state.loc;
-      this.internalNavigate(locationState);
+      this.setStateFromLocation(locationState);
+      internalNavigate(locationState);
     });
   }
 
@@ -113,10 +113,8 @@ export default class App extends Component {
     });
   }
 
-  internalNavigate({btc, fiat, loc, hash}) {
-    setLang(loc);
+  setStateFromLocation({btc, fiat, loc}) {
     this.setState({btcHodl: btc, fiatPurchase: fiat, loc});
-    scheduleHistoryPushState({btc, fiat, loc}, hash);
   }
 
   fetchPrices() {
@@ -143,7 +141,7 @@ export default class App extends Component {
     this.startPricePolling();
 
     const locationState = deconstructWindowLocation(); 
-    this.internalNavigate(locationState);
+    this.setStateFromLocation(locationState);
   }
 
 	render() {

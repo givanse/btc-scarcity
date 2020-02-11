@@ -13,6 +13,10 @@ import Link from '../link';
 import parseInputAmount from '../../utils/parse-input-amount';
 import { parseBitcoin } from '../../utils/bitcoin-math';
 import {
+  deconstructWindowLocation,
+  internalNavigate,
+} from '../../utils/router';
+import {
   btcToWords,
   fiatToWords,
 } from '../../utils/words';
@@ -33,6 +37,11 @@ export default class TheForm extends Component {
     const number = parseInputAmount(input.value);
     const btcAmount = parseBitcoin(number);
     this.props.updateBtcHodl(btcAmount);
+  }
+
+  componentDidMount() {
+    const locationState = deconstructWindowLocation(); 
+    internalNavigate(locationState);
   }
 
   render() {
