@@ -34,6 +34,10 @@ const usaMillionaireMedian = 1.87 * MILLION;
 const usaMillionaireMedianBroadPercent = (usaMillionaireMedian * 100) / moneySupply.broadMoney;
 const usaMillionaireMedianBroadPercentInBtc = (usaMillionaireMedianBroadPercent * btcRemainTSupply) / 100;
 
+const usaMillionaireAverage = 4.03 * MILLION;
+const usaMillionaireAverageBroadPercent = (usaMillionaireAverage * 100) / moneySupply.broadMoney;
+const usaMillionaireAverageBroadPercentInBtc = (usaMillionaireAverageBroadPercent * btcRemainTSupply) / 100;
+
 // https://www.financialsamurai.com/top-one-percent-net-worth-amounts-by-age/
 const netWorth1PercentMedian = 10.7 * UNITS.MILLION;
 const netWorth1PercentMedianBroadMoneyPercent = (netWorth1PercentMedian * 100) / moneySupply.broadMoney;
@@ -56,9 +60,15 @@ export default {
   goldPerPersonOz: goldPerPersonKg * UNITS.TROY_OUNCE,
   broadMoneyPerCapita,
   moneySupply,
-  usaMillionaireMedian,
-  usaMillionaireMedianBroadPercent,
-  usaMillionaireMedianBroadPercentInBtc,
+  
+  //usaMillionaireMedian,
+  //usaMillionaireMedianBroadPercent,
+  //usaMillionaireMedianBroadPercentInBtc,
+  
+  usaMillionaireAverage,
+  usaMillionaireAverageBroadPercent,
+  usaMillionaireAverageBroadPercentInBtc,
+
   netWorth1PercentMedian,
   netWorth1PercentMedianBroadMoneyPercent,
   netWorth1PercentMedianBroadMoneyPercentInBtc,

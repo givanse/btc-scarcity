@@ -14,8 +14,8 @@ const {
   goldPerPersonOz,
   broadMoneyPerCapita,
   moneySupply,
-  usaMillionaireMedian,
-  usaMillionaireMedianBroadPercentInBtc,
+  usaMillionaireAverage,
+  usaMillionaireAverageBroadPercentInBtc,
   netWorth1PercentMedian,
   netWorth1PercentMedianBroadMoneyPercentInBtc,
 } = staticData;
@@ -104,20 +104,20 @@ export default class TheFooter extends Component {
 
         <tr class="bg-gray-300 text-sm">
           <td colSpan="2">
-            <Text id="supply.millionaire-median">
-              Millionaire Median
+            <Text id="supply.millionaire-average">
+              Average Millionaire
             </Text>
           </td>
         </tr>
 
         <tr>
           <td>
-            {f.usd(usaMillionaireMedian)}<sup>‡</sup>
+            {f.usd(usaMillionaireAverage)}<sup>‡</sup>
           </td>
           <td>
-            <Link queryParams={`btc=${usaMillionaireMedianBroadPercentInBtc.toFixed(8)}`}
+            <Link queryParams={`btc=${usaMillionaireAverageBroadPercentInBtc.toFixed(8)}`}
                   hash='bitcoin'>
-              <BtcSign />{usaMillionaireMedianBroadPercentInBtc.toFixed(8)}
+              <BtcSign />{usaMillionaireAverageBroadPercentInBtc.toFixed(8)}
             </Link>
           </td>
         </tr>

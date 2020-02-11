@@ -19,7 +19,7 @@ const {
   btcPerPerson,
   btcHodlInIndividualShares,
   goldPerPersonOz,
-  usaMillionaireMedianBroadPercentInBtc,
+  usaMillionaireAverageBroadPercentInBtc,
   netWorth1PercentMedianBroadMoneyPercentInBtc,
 } = staticData;
 
@@ -167,11 +167,11 @@ export default class TheFooter extends Component {
 
         <tr>
           <td>
-            {f.decSmall(btcPerPerson / usaMillionaireMedianBroadPercentInBtc)}
+            {f.decSmall(btcPerPerson / usaMillionaireAverageBroadPercentInBtc)}
             <i class="icon-person"></i>
           </td>
           <td>
-            {f.decSmall(btcHodl / usaMillionaireMedianBroadPercentInBtc)}
+            {f.decSmall(btcHodl / usaMillionaireAverageBroadPercentInBtc)}
             <i class="icon-person"></i>
           </td>
         </tr>
