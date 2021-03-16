@@ -1,7 +1,7 @@
 {
   "amount": "cantidad",
   "mined-gold": "oro minado",
-  "millionaire-wealth": "la riqueza de un millonario",
+  "millionaire-average": "millonario promedio",
   "percenter-wealth": "la riqueza de un one-percenter",
   "qty-per-person": "cantidad por persona",
   "persons-per-qty": "personas por cantidad",
@@ -10,14 +10,13 @@
     "line-2": "Los más seguro es que puedes adquirir un poco de bitcoin.",
     "line-3": "Sabías que puedes comprar fracciones de un bitcoin?",
     "line-4": "A las fracciones de un bitcoin se les conoce como satoshis.",
-    "line-5": "aprendelo todo aquí"
+    "explain-satoshis": "Un bitcoin es igual a cien millones de satoshis."
   },
   "world": {
-    "title": "En Todo El Mundo",
+    "title": "Para cada persona",
     "intro": "Cuanto Bitcoin te tocaría si se repartiera entre todas las personas del mundo?",
     "world-population": "Población mundial",
     "bitcoin-supply": "Suministro de Bitcoin",
-    "explain-satoshis": "A nadie le tocaría un bitcoin entero, sólo una fracción pequeña. A la fracción más pequeña de un bitcoin se le llama satoshi. Un bitcoin es igual a cien millones de satoshis.",
     "bitcoin-for-each-person": "Bitcoin para cada persona",
     "satoshis-for-each-person": "Satoshis para cada persona"
   },
@@ -34,6 +33,7 @@
     "broad-money": "Dinero en la economía",
     "millionaire-median": "Media de los Millonarios",
     "millionaire-average": "Millonario Promedio",
+    "billionaire-average": "Billonario Promedio",
     "percenter-median": "Media del 1%",
     "bitcoin-stats": "Estadísticas de Bitcoin"
   },
@@ -41,7 +41,6 @@
     "total-supply": "Suministro total teórico",
     "lost-estimate": "Perdida estimada",
     "remaining-supply": "Suministro restante",
-    "sats-supply": "Suministro de Satoshis",
     "one-bitcoin": "Un Bitcoin",
     "100M-sats": "Cien millones de Satoshis"
   }

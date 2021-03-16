@@ -161,7 +161,7 @@ export default class TheFooter extends Component {
 
         <tr class="bg-gray-300 text-sm">
           <td colSpan="2">
-            <Text id="millionaire-wealth">a millionaire's wealth</Text>
+            <Text id="millionaire-average">average millionaire</Text>
           </td>
         </tr>
 

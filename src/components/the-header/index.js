@@ -10,7 +10,7 @@ export default class TheFooter extends Component {
 
         <a href="#world" class={style['link'] + ' bg-blue-600'}
            aria-label="bitcoin per person">
-          <i class="icon-globe"></i>
+          <i class="icon-person"></i>
         </a>
 
         <a href="#cash" class={`${style['link']} background-money`}

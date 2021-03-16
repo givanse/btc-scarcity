@@ -1,7 +1,7 @@
 {
   "amount": "amount",
   "mined-gold": "mined gold",
-  "millionaire-wealth": "a millionaire's wealth",
+  "millionaire-average": "average millionaire",
   "percenter-wealth": "a one percenter's wealth",
   "qty-per-person": "quantity per person",
   "persons-per-qty": "persons per quantity",
@@ -10,14 +10,13 @@
     "line-2": "Chances are you can acquire some bitcoin.",
     "line-3": "Did you know that you can buy fractions of a bitcoin?",
     "line-4": "Fractions of a bitcoin are called satoshis.",
-    "line-5": "learn it all here"
+    "explain-satoshis": "One bitcoin is equal to one hundred million satoshis."
   },
   "world": {
-    "title": "Worldwide",
+    "title": "For each person",
     "intro": "How much Bitcoin would you get if it were distributed worldwide?",
     "world-population": "World population",
     "bitcoin-supply": "Bitcoin supply",
-    "explain-satoshis": "Nobody would get a whole bitcoin, only a small fraction. The smallest fraction of a bitcoin is called a satoshi. One bitcoin is equal to one hundred million satoshis.",
     "bitcoin-for-each-person": "Bitcoin for each person",
     "satoshis-for-each-person": "Satoshis for each person"
   },
@@ -33,6 +32,7 @@
     "broad-money": "broad money",
     "millionaire-median": "Millionaire Median",
     "millionaire-average": "Average Millionaire",
+    "billionaire-average": "Average Billionaire",
     "percenter-median": "The 1% Median",
     "bitcoin-stats": "Bitcoin Stats"
   },
@@ -40,7 +40,6 @@
     "total-supply": "Theoretical total supply",
     "lost-estimate": "Lost estimate",
     "remaining-supply": "Remaining supply",
-    "sats-supply": "Satoshis supply",
     "one-bitcoin": "One Bitcoin",
     "100M-sats": "One hundred million Satoshis"
   }

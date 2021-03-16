@@ -49,15 +49,6 @@ export default class BitcoinStats extends Component {
 
         <BtcSign />{f.whole(btcRemainTSupply)}
 
-        <p class="text-center bg-gray-300 py-3">
-          <Text id="bitcoin-stats.sats-supply">
-            Satoshis supply
-          </Text>
-        </p>
-        {f.dec(btcRemainTSupply * 100000000)} {SAT_SIGN}
-        <p class="text-sm text-center text-gray-700 mb-3">
-          {numberToWords(btcRemainTSupply * 100000000)} Satoshis
-        </p>
       </div>
 
       </div>

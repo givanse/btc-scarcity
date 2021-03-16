@@ -24,6 +24,8 @@ import toWords from './to-words';
 import { Text } from 'preact-i18n';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';
 
+const SAT_SIGN = ' sat';
+
 export default class TheForm extends Component {
 
   updateFiatPurchase(e) {
@@ -55,20 +57,26 @@ export default class TheForm extends Component {
 
       <div class="p-2 mt-12 m-auto text-justify w-11/12 max-w-md leading-loose">
 
-        <p class="mb-6">
+        <p class="text-center">
           <Text id="intro.line-3">
             Do you know you can buy fractions of a Bitcoin?
           </Text>
-          &nbsp;<Text id="intro.line-4">
+        </p>
+        <p class="mb-4 text-center">
+          <Text id="intro.line-4">
             Fractions of a Bitcoin are called Satoshis.
           </Text>
         </p>
 
-        <p class="mt-6 mb-4 font-mono text-center">
-          <Link hash='world'>
-            <Text id="intro.line-5">
-              learn all about it here
-            </Text>
+        <p class="px-4 mt-8 text-center">
+          <Text id="intro.explain-satoshis">
+            One bitcoin is equal to one hundred million satoshis.
+          </Text>
+        </p>
+        <p class="text-center">
+          <BtcSign />1 =&nbsp;
+          <Link queryParams={`btc=${1}`} hash='bitcoin'>
+            {f.whole(100000000)} {SAT_SIGN}
           </Link>
         </p>
 

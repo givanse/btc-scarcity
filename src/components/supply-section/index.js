@@ -74,9 +74,9 @@ export default class TheFooter extends Component {
             {(goldPerPersonOz).toFixed(3)} oz 
           </td>
           <td class="">
-            <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`}
+            <Link queryParams={`btc=${btcPerPerson}`}
                   hash='bitcoin'>
-              <BtcSign/>{btcPerPerson.toFixed(8)}
+              <BtcSign/>{btcPerPerson}
             </Link>
           </td>
         </tr>
@@ -95,9 +95,9 @@ export default class TheFooter extends Component {
             {f.usd(broadMoneyPerCapita)}
           </td>
           <td class="">
-            <Link queryParams={`btc=${btcPerPerson.toFixed(8)}`}
+            <Link queryParams={`btc=${btcPerPerson}`}
                   hash='bitcoin'>
-              <BtcSign/>{btcPerPerson.toFixed(8)}
+              <BtcSign/>{btcPerPerson}
             </Link>
           </td>
         </tr>
