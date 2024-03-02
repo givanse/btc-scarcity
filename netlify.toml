@@ -3,7 +3,7 @@
 [build]
   publish = "build"
   functions = "functions"
-  command = "./node_modules/.bin/preact build -p --template src/index.html && cd functions/btc-usd && npm install"
+  command = "./node_modules/.bin/preact build --production --template src/index.html"
 
 [context.production.environment]
   NODE_ENV = "production"
