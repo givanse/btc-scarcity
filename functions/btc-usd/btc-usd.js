@@ -46,12 +46,22 @@ exports.handler = async function(request, context) {
   const btcusd_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
   let response = await fetch(btcusd_url); 
   response = await response.json();
-  const btcPrice = response?.bitcoin?.usd;
+  let btcPrice;
+  if (response) {
+    btcPrice = response.bitcoin ? response.bitcoin.usd : NaN;
+  } else {
+    console.log('coingecko bitcoin' + response);
+  }
 
   const gold_url = 'https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd'
   response = await fetch(gold_url);
   response = await response.json();
-  const goldPrice = response?.pax-gold?.usd;
+  let goldPrice;
+  if (response) {
+    goldPrice = response['pax-gold']? response['pax-gold'].usd : NaN;
+  } else {
+    console.log('coingecko pax-gold' + response);
+  }
 
   return {
     statusCode: 200,
