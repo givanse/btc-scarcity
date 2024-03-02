@@ -3,7 +3,7 @@
 [build]
   publish = "build"
   functions = "functions"
-  command = "yarn && preact build -p --template src/index.html && cd functions/btc-usd && yarn install"
+  command = "preact build -p --template src/index.html && cd functions/btc-usd && npm install"
 
 [context.production.environment]
   NODE_ENV = "production"

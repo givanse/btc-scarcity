@@ -1,7 +1,6 @@
 node_modules
 /build
 /*.log
-package-lock.json
 .DS_Store
 *.zip
 # Local Netlify folder
