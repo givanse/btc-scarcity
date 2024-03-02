@@ -21,6 +21,7 @@ yarn serve
 yarn test
 
 # run the backend
+yarn add global netlify-cli
 yarn lambda
 ```
 

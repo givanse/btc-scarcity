@@ -1,5 +1,3 @@
-const ccxt = require('ccxt');
-
 function getAccessControlAllowOrigin(origin) {
 
   if (process.env.NODE_ENV === 'development') {
@@ -45,12 +43,13 @@ exports.handler = async function(request, context) {
     };
   }
 
-  const binance = new ccxt.binance();
-  const ticker = await binance.fetchTicker('BTC/USDT');
-  const btcPrice = ticker.ask;
+  const btcusd_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
+  let response = await fetch(btcusd_url); 
+  const btcPrice = (await response.json()).bitcoin.usd;
 
-  //TODO: find ticker
-  const goldPrice = 1518.1;// ticker.ask;
+  const gold_url = 'https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd'
+  response = await fetch(gold_url);
+  const goldPrice = (await response.json())['pax-gold'].usd;
 
   return {
     statusCode: 200,
