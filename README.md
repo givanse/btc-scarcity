@@ -6,23 +6,23 @@ https://bitcoin.givan.se/?btc=0.0025&fiat=20&loc=en
 
 ``` bash
 # install dependencies
-yarn install
+npm install
 
 # serve with hot reload at localhost:8080
-yarn start
+npm start
 
 # build for production with minification
-yarn build
+npm build
 
 # test the production build locally
-yarn serve
+npm serve
 
 # run tests with jest and preact-render-spy 
-yarn test
+npm test
 
 # run the backend
-yarn add global netlify-cli
-yarn lambda
+npm install -g netlify-cli
+npm lambda
 ```
 
 For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
