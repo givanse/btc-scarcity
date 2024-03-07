@@ -8,17 +8,16 @@
   "intro": {
     "line-1": "Te has preguntado si alguna vez poseeras un poco de bitcoin?",
     "line-2": "Los más seguro es que puedes adquirir un poco de bitcoin.",
-    "line-3": "Sabías que puedes comprar fracciones de un bitcoin?",
     "line-4": "A las fracciones de un bitcoin se les conoce como satoshis.",
     "explain-satoshis": "Un bitcoin es igual a cien millones de satoshis."
   },
   "world": {
     "title": "Para cada persona",
-    "intro": "Cuanto Bitcoin te tocaría si se repartiera entre todas las personas del mundo?",
-    "world-population": "Población mundial",
-    "bitcoin-supply": "Suministro de Bitcoin",
-    "bitcoin-for-each-person": "Bitcoin para cada persona",
-    "satoshis-for-each-person": "Satoshis para cada persona"
+    "intro": "Cuanto Bitcoin recibirías si se repartiera a todas las personas del mundo?",
+    "world-population": "población mundial",
+    "bitcoin-supply": "suministro de bitcoin",
+    "bitcoin-for-each-person": "bitcoin para cada persona",
+    "satoshis-for-each-person": "satoshis para cada persona"
   },
   "cash": {
     "title": "Efectivo",

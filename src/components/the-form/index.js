@@ -57,11 +57,6 @@ export default class TheForm extends Component {
 
       <div class="p-2 mt-12 m-auto text-justify w-11/12 max-w-md leading-loose">
 
-        <p class="text-center">
-          <Text id="intro.line-3">
-            Do you know you can buy fractions of a Bitcoin?
-          </Text>
-        </p>
         <p class="mb-4 text-center">
           <Text id="intro.line-4">
             Fractions of a Bitcoin are called Satoshis.
@@ -74,7 +69,9 @@ export default class TheForm extends Component {
           </Text>
         </p>
         <p class="text-center">
-          <BtcSign />1 =&nbsp;
+          <span class="text-xl">1</span>
+          <i class="icon-bitcoin text-xl text-gray-700"></i>
+          =&nbsp;
           <Link queryParams={`btc=${1}`} hash='bitcoin'>
             {f.whole(100000000)} {SAT_SIGN}
           </Link>

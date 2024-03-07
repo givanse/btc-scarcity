@@ -40,41 +40,39 @@ export default class PerPerson extends Component {
           </Text>
         </p>
 
-        <p class="text-sm text-gray-700">
-          <i class="icon-person text-3xl"></i>
-          <br />
-          <span class="text-lg">
-          <Link queryParams={`btc=${btcPerPerson}`} hash='bitcoin'>
-            <BtcSign />{f.btc(btcPerPerson)}
-          </Link>
-          </span>
-          <br />
-          <Text id="world.bitcoin-for-each-person">Bitcoin for each person</Text>
-          <br />
-          
-        </p>
-        <p class="text-sm text-gray-700">
-          {f.dec(btcRemainTSupply, P.MILLION.name)} / {f.dec(worldPopulation, P.BILLION.name)}
-        </p>
-
-        <div class="flex">
-          <div class="flex-1">
-            <p class="text-sm text-gray-700">
-              <i class="icon-bitcoin text-xl"></i> {f.whole(btcRemainTSupply)}
+        <table class="w-full sm:w-full md:w-5/6 lg:w-4/5 mt-4">
+          <tr class="text-sm text-gray-700">
+            <td class="pl-4">
+              <Text id="world.bitcoin-supply">bitcoin supply</Text>
               <br/>
-              <Text id="world.bitcoin-supply">Bitcoin supply</Text>
-            </p>
-          </div>
+              <i class="icon-bitcoin text-xl"></i>
+              {f.whole(btcRemainTSupply)}
 
-          <div class="flex-1">
-            <p class="text-sm text-gray-700">
-              <i class="icon-globe text-xl"></i> {f.dec(worldPopulation)}
+              <hr class="border-1 border-slate-700 border-2"></hr>
+
+              <i class="icon-person text-xl"></i>
+              {f.dec(worldPopulation)}
               <br />
               <Text id="world.world-population">world population</Text>
-            </p>
+            </td>
 
-          </div>
-        </div>
+            <td class="px-4 text-sm">
+              <Text id="world.bitcoin-for-each-person">
+                bitcoin for each person
+              </Text>
+              <br/>
+
+              <p class="text-lg">
+                <Link queryParams={`btc=${btcPerPerson}`} hash='bitcoin'>
+                  <i class="icon-bitcoin"></i>
+                  {f.satsDecimal(btcPerPerson)}
+                </Link>
+                <br />
+                <i class="icon-person text-xl"></i>
+              </p>
+            </td>
+          </tr>
+        </table>
 
       </div>
     );

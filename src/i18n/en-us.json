@@ -8,17 +8,16 @@
   "intro": {
     "line-1": "Have you ever wondered if one day you could own some bitcoin?",
     "line-2": "Chances are you can acquire some bitcoin.",
-    "line-3": "Did you know that you can buy fractions of a bitcoin?",
     "line-4": "Fractions of a bitcoin are called satoshis.",
     "explain-satoshis": "One bitcoin is equal to one hundred million satoshis."
   },
   "world": {
     "title": "For each person",
-    "intro": "How much Bitcoin would you get if it were distributed worldwide?",
-    "world-population": "World population",
-    "bitcoin-supply": "Bitcoin supply",
-    "bitcoin-for-each-person": "Bitcoin for each person",
-    "satoshis-for-each-person": "Satoshis for each person"
+    "intro": "How much bitcoin would you get if it were distributed worldwide?",
+    "world-population": "world population",
+    "bitcoin-supply": "bitcoin supply",
+    "bitcoin-for-each-person": "bitcoin for each person",
+    "satoshis-for-each-person": "satoshis for each person"
   },
   "cash": {
     "title": "Cash",

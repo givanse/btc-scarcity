@@ -34,6 +34,30 @@ export default {
     return this._btc.format(number);
   },
 
+  satsDecimal: function(number) {
+    const oneHundredMillion = 100000000;
+    const decimals = number % 1;
+    number = decimals * oneHundredMillion;
+    number = this._dec.format(number);
+
+    const charactersTotal = 10; // 8 digits, 2 commas
+    const delta = charactersTotal - number.length;
+    switch (delta) {
+      case 10: number = '00,000,000' + number; break;
+      case 9: number = '00,000,00' + number; break; 
+      case 8: number = '00,000,0' + number; break;
+      case 7: number = '00,000,' + number; break;
+      case 6: number = '00,000' + number; break;
+      case 5: number = '00,00' + number; break;
+      case 4: number = '00,0' + number; break;
+      case 3: number = '00,' + number; break;
+      case 2: number = '00' + number; break;
+      case 1: number = '0' + number; break;
+    }
+
+    return '0.' + number;
+  },
+
   _dec: new Intl.NumberFormat('en-US', {style: 'decimal', maximumFractionDigits: 2}),
   dec: function(number, precisionName) {
     let p;
