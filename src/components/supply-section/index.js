@@ -8,8 +8,6 @@ import { Text } from 'preact-i18n';
 
 const {
   btcPerPerson,
-  goldAboveGroundOz,
-  goldPerPersonOz,
   usaMillionaireAverage,
   usaMillionaireAverageBroadPercentInBtc,
   netWorth1PercentMedian,
@@ -39,47 +37,14 @@ export default class TheFooter extends Component {
 
 
       <table class={style['supply']} >
-        <thead class="text-xl">
-          <td>
-            <i class="icon-person text-2xl"></i>
-            <br />
-            <span class="text-sm">
-              <Text id="qty-per-person">quantity per person</Text>
-            </span>
-          </td>
-          <td>
-            <i class="icon-bitcoin"></i>
-            <br />
-            <span class="text-sm">
-              <Text id="supply.bitcoin-equivalent">proportional bitcoin quantity</Text>
-            </span>
-          </td>
-        </thead>
-
-        <tr class="bg-gray-300 text-sm">
-          <td colSpan="2">
-            <Text id="mined-gold">
-              Mined Gold
-            </Text>
-            &nbsp;{f.dec(goldAboveGroundOz, 'B')} oz <sup>*</sup>
-          </td>
-        </tr>
-
         <tr>
-          <td>
-            {(goldPerPersonOz).toFixed(3)} oz 
-          </td>
-          <td class="">
-            <Link queryParams={`btc=${btcPerPerson}`}
-                  hash='bitcoin'>
-              <i class="icon-bitcoin"></i>
-              {btcPerPerson}
-            </Link>
+          <td class="text-center" colspan="2">
+            <i class="icon-person text-4xl"></i>
           </td>
         </tr>
 
         <tr class="bg-gray-300 text-sm">
-          <td colSpan="2">
+          <td colspan="2">
             <Text id="supply.millionaire-average">
               Average Millionaire
             </Text>
@@ -87,10 +52,10 @@ export default class TheFooter extends Component {
         </tr>
 
         <tr>
-          <td>
+          <td class="text-right">
             {f.usd(usaMillionaireAverage)}<sup>‡</sup>
           </td>
-          <td>
+          <td class="text-left">
             <Link queryParams={`btc=${usaMillionaireAverageBroadPercentInBtc.toFixed(8)}`}
                   hash='bitcoin'>
               <i class="icon-bitcoin"></i>
@@ -100,17 +65,17 @@ export default class TheFooter extends Component {
         </tr>
 
         <tr class="bg-gray-300 text-sm">
-          <td colSpan="2">
+          <td colspan="2">
             <Text id="supply.percenter-median">
               The 1% Median
             </Text>
           </td>
         </tr>
         <tr>
-          <td>
+          <td class="text-right">
             {f.usd(netWorth1PercentMedian)}<sup>¶</sup>
           </td>
-          <td>
+          <td class="text-left">
             <Link queryParams={`btc=${netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}`}
                   hash='bitcoin'>
               <i class="icon-bitcoin"></i>
