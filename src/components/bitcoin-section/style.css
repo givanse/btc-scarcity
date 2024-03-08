@@ -1,9 +1,10 @@
 
 .comparison {
-  @apply mt-8 mx-auto text-sm;
+  @apply mt-8 mx-auto text-sm table-fixed;
 }
 
 .comparison tr td {
+  @apply text-gray-400;
   padding: 0 0.5rem;
 }
 
@@ -16,15 +17,15 @@
 }
 
 .btc-hodl {
-  @apply text-center py-2 px-4 bg-blue-100;
-  width: 90%;
+  @apply text-center py-2 px-4 bg-blue-100 w-10/12;
+  border-radius: 5px;
+  background-color: #5d5245;
 }
 
 .btc-hodl:focus {
-  @apply bg-white;
+  background-color: #706455;
 }
 
-/* Extra Large (xl) */
 @media (min-width: 1280px) {
   .comparison {
     @apply w-8/12;

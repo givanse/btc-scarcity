@@ -35,11 +35,11 @@
     "millionaire-median": "Millionaire Median",
     "millionaire-average": "Average Millionaire",
     "billionaire-average": "Average Billionaire",
-    "percenter-median": "The 1% Median",
-    "bitcoin-stats": "Bitcoin Stats"
+    "percenter-median": "The 1% Median"
   },
   "bitcoin-stats": {
-    "total-supply": "Theoretical total supply",
+    "title": "Bitcoin supply",
+    "total-supply": "Total supply",
     "lost-estimate": "Lost estimate",
     "remaining-supply": "Remaining supply",
     "one-bitcoin": "One Bitcoin",

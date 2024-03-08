@@ -25,41 +25,47 @@ export default class BitcoinStats extends Component {
       <div>
 
       <h3 class="">
-        <Text id="supply.bitcoin-stats">
-          Bitcoin Stats
+        <Text id="bitcoin-stats.title">
+          Bitcoin supply
         </Text>
       </h3>
 
-      <div class="text-center w-11/12 mx-auto">
-        <p class="bg-gray-300 py-3">
-          <Text id="bitcoin-stats.total-supply">
-            Theoretical total supply
-          </Text>
-        </p>
-
-        <i class="icon-bitcoin text-gray-600"></i>
-        {f.whole(btcTCap)}
-
-        <p class="bg-gray-300 py-3">
-          <Text id="bitcoin-stats.lost-estimate">
-            Lost estimate
-          </Text>
-        </p>
-
-        <i class="icon-bitcoin text-gray-600"></i>
-        {f.whole(btcLost)}
-        &nbsp;({btcLostPerc * 100}%<sup>§</sup>)
-
-        <p class="bg-gray-300 py-3">
-          <Text id="bitcoin-stats.remaining-supply">
-            Remaining supply
-          </Text>
-        </p>
-
-        <i class="icon-bitcoin text-gray-600"></i>
-        {f.whole(btcRemainTSupply)}
-
-      </div>
+      <table class="w-11/12 mx-auto table-fixed">
+        <tr>
+          <td class="text-right">
+            <Text id="bitcoin-stats.total-supply">
+              Total supply
+            </Text>
+          </td>
+          <td>
+            <i class="icon-bitcoin text-gray-600"></i>
+            {f.whole(btcTCap)}
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">
+            <Text id="bitcoin-stats.lost-estimate">
+              Lost estimate
+            </Text>
+          </td>
+          <td>
+            <i class="icon-bitcoin text-gray-600"></i>
+            {f.whole(btcLost)}
+            &nbsp;({btcLostPerc * 100}%)<sup>§</sup>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">
+            <Text id="bitcoin-stats.remaining-supply">
+              Remaining supply
+            </Text>
+          </td>
+          <td>
+            <i class="icon-bitcoin text-gray-600"></i>
+            {f.whole(btcRemainTSupply)}
+          </td>
+        </tr>
+      </table>
 
       </div>
     );

@@ -1,11 +1,13 @@
 
 .header {
-  @apply sticky flex top-0 text-2xl w-full h-12 border-b-2 border-white;
+  @apply sticky flex top-0 text-2xl w-full h-12 border-b-2;
   line-height: 3.4rem;
   z-index: 1000;
 }
 
 .link {
-  @apply flex-1 text-center text-white block border border-white;
+  @apply flex-1 text-center text-white block border;
+  border-width: 0 2px 2px 0;
+  border-color: rgb(0, 0, 0);
   height: 3.5rem;
 }

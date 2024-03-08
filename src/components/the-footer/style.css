@@ -1,6 +1,11 @@
 
 .footer {
-  @apply text-center p-4 pt-12 pb-16 mt-8;
-  height: 16rem;
+  @apply text-center mt-8;
+  padding: 6rem 0;
+  height: 18rem;
   background-color: theme('colors.btc-orange');
+}
+
+.footer a {
+  @apply text-gray-700 text-6xl;
 }

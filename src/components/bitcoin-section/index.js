@@ -62,22 +62,22 @@ export default class TheFooter extends Component {
         </label>
         <input id="btc-hodl"
               name="btc-hodl"
-              value={'₿' + f.btc(btcHodl)}
+              value={f.satsDecimal(btcHodl)}
               class={style['btc-hodl']}
               placeholder="bitcoin amount"
               onChange={onInputChange} />
 
-        <p class="text-xs text-center italic text-gray-500 mt-2">
+        <p class="text-xs text-center italic text-gray-600 mt-2">
           {btcToWords(btcHodl)}
         </p>
 
-        <table class="text-sm text-gray-700 italic mb-4 mx-auto">
+        <table class="text-sm text-gray-500 italic mb-4 mx-auto">
           <tr>
             <td class="text-right">
-              {f.btc(btcHodl)} *
-              <span class="price-synced-amount">
-                {f.usd(btcPrice)}
-              </span>
+              <i class="icon-bitcoin"></i>
+              {f.satsDecimal(btcHodl)}&nbsp;
+              x
+              <span class="price-synced-amount">{f.usd(btcPrice)}</span>
               =&nbsp;&nbsp;
             </td>
 
@@ -98,8 +98,8 @@ export default class TheFooter extends Component {
             </td>
 
             <td>
-              {f.dec(btcHodlInIndividualShares(btcHodl))}
               <i class="icon-person"></i>
+              {f.dec(btcHodlInIndividualShares(btcHodl))}
             </td>
           </tr>
 
@@ -109,8 +109,8 @@ export default class TheFooter extends Component {
             </td>
 
             <td>
-              {f.decSmall(btcHodl / usaMillionaireAverageBroadPercentInBtc)}
               <i class="icon-person"></i>
+              {f.decSmall(btcHodl / usaMillionaireAverageBroadPercentInBtc)}
             </td>
           </tr>
 
@@ -122,8 +122,8 @@ export default class TheFooter extends Component {
             </td>
 
             <td>
-              {f.decSmall(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
               <i class="icon-person"></i>
+              {f.decSmall(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
             </td>
           </tr>
         </table>

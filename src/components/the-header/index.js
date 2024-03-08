@@ -18,7 +18,7 @@ export default class TheFooter extends Component {
           <i class="icon-dollar"></i>
         </a>
 
-        <a href="#bitcoin" class={style['link'] + ' background-btc-orange text-black'}
+        <a href="#bitcoin" class={style['link'] + ' background-btc-orange'}
            aria-label="compare bitcoin hold amounts">
           <i class="icon-bitcoin"></i>
         </a>

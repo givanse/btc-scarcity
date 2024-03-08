@@ -1,6 +1,7 @@
 
 .arr-slide, datalist {
   @apply w-8/12;
+  background-color: #000000;
 }
 
 input[type=range] {
@@ -95,21 +96,21 @@ datalist {
   @apply m-auto;
   display: flex;
   justify-content: space-between;
-  margin-top: -47px;
+  margin-top: -37px;
   margin-bottom: 35px;
 }
 option {
-  width: 0.5px;
+  @apply bg-gray-800;
+  width: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:rgb(209, 209, 209); 
   height: 3ex;
   background-position-x: center;
-  z-index: -1;
 }
+
 .range-start-end {
-  @apply text-xs w-8/12 mx-auto;
-  margin-top: -35px;
-  color:rgb(147, 147, 147); 
+  @apply text-xs w-8/12 mx-auto text-gray-600;
+  padding: 0 2px;
+  margin-top: -52px;
 }

@@ -8,7 +8,7 @@
   "intro": {
     "line-1": "Te has preguntado si alguna vez poseeras un poco de bitcoin?",
     "line-2": "Los más seguro es que puedes adquirir un poco de bitcoin.",
-    "line-4": "A las fracciones de un bitcoin se les conoce como satoshis.",
+    "line-4": "A las fracciones de un bitcoin se les llama satoshis.",
     "explain-satoshis": "Un bitcoin es igual a cien millones de satoshis."
   },
   "world": {
@@ -35,11 +35,11 @@
     "millionaire-median": "Media de los Millonarios",
     "millionaire-average": "Millonario Promedio",
     "billionaire-average": "Billonario Promedio",
-    "percenter-median": "Media del 1%",
-    "bitcoin-stats": "Estadísticas de Bitcoin"
+    "percenter-median": "Media del 1%"
   },
   "bitcoin-stats": {
-    "total-supply": "Suministro total teórico",
+    "title": "Suministro de bitcoin",
+    "total-supply": "Suministro total",
     "lost-estimate": "Perdida estimada",
     "remaining-supply": "Suministro restante",
     "one-bitcoin": "Un Bitcoin",

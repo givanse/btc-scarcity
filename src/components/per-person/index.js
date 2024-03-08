@@ -29,7 +29,7 @@ export default class PerPerson extends Component {
         <div id="world" class="block pt-4">
           <a href="#world" class="cursor-pointer">
             <h2 class="bg-blue-600 text-white ">
-              <Text id="world.title">Worldwide</Text>
+              <Text id="world.title">For each person</Text>
             </h2>
           </a>
         </div>
@@ -41,20 +41,20 @@ export default class PerPerson extends Component {
         </p>
 
         <table class="w-full sm:w-full md:w-5/6 lg:w-4/5 mt-4 m-auto">
-          <tr class="text-gray-700">
+          <tr class="text-gray-400">
             <td class="pl-4 flex flex-col text-right">
               <div class="text-xs">
                 <Text id="world.bitcoin-supply">bitcoin supply</Text>
               </div>
 
-              <div class="">
+              <div class="text-white">
                 {f.whole(btcRemainTSupply)}
                 <i class="icon-bitcoin"></i>
               </div>
 
-              <hr class="ml-auto w-3/5 block border-slate-400 border-2"></hr>
+              <hr class="ml-auto my-2 w-3/5 block border-gray-700 border-2"></hr>
 
-              <div>
+              <div class="text-white">
                 {f.dec(worldPopulation)}
                 <i class="icon-person"></i>
               </div>

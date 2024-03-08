@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2019 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
 <defs>
 <font id="fontello" horiz-adv-x="1000" >
 <font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -19,6 +19,8 @@
 <glyph glyph-name="bitcoin" unicode="&#xf15a;" d="M651 493q10-102-73-144 65-16 98-58t25-119q-4-40-18-70t-36-49-54-33-68-19-81-9v-142h-86v140q-45 0-68 1v-141h-86v142q-10 0-30 1t-31 0h-112l18 102h62q27 0 32 28v225h9q-4 0-9 0v161q-7 37-50 37h-62v92l119-1q35 0 54 1v141h86v-138q45 1 68 1v137h86v-141q44-4 78-13t63-25 46-43 20-64z m-120-304q0 20-8 35t-21 26-32 17-36 11-42 5-38 1-36 0-27-1v-189q5 0 21 0t27 0 29 1 33 2 32 5 31 8 26 11 22 17 14 22 5 29z m-39 265q0 19-7 33t-17 23-27 16-31 9-34 5-32 1-31 0-22-1v-171q3 0 20 0t26 0 27 1 31 3 29 6 27 10 21 15 15 22 5 28z" horiz-adv-x="714.3" />
 
 <glyph glyph-name="chart-pie" unicode="&#xf200;" d="M429 353l304-304q-59-61-138-94t-166-34q-117 0-216 58t-155 156-58 215 58 215 155 156 216 58v-426z m104-3h431q0-88-33-167t-94-138z m396 71h-429v429q117 0 215-57t156-156 58-216z" horiz-adv-x="1000" />
+
+<glyph glyph-name="twitter" unicode="&#xf304;" d="M714 510q-31-14-67-19 38 22 52 65-37-21-75-28-34 36-85 36-49 0-83-34t-35-83q0-16 3-27-72 4-135 37t-107 86q-16-28-16-59 0-64 51-98-27 1-56 15v-1q0-42 28-75t68-40q-16-5-28-5-7 0-22 3 12-36 42-59t67-23q-64-50-145-50-15 0-28 2 82-53 180-53 62 0 117 20t94 53 67 76 42 91 13 94q0 10 0 15 35 25 58 61z m143 108v-536q0-66-47-113t-114-48h-535q-67 0-114 48t-47 113v536q0 66 47 113t114 48h535q67 0 114-48t47-113z" horiz-adv-x="857.1" />
 </font>
 </defs>
 </svg>

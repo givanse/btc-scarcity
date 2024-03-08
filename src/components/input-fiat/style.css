@@ -1,9 +1,11 @@
 .btc-hodl {
   @apply text-center py-2 px-4 m-2 bg-blue-100 w-10/12;
+  border-radius: 5px;
+  background-color: #5d5245;
 }
 
 .btc-hodl:focus {
-  @apply bg-white;
+  background-color: #706455;
 }
 
 /* Extra Large (xl) */

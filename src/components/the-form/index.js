@@ -64,20 +64,14 @@ export default class TheForm extends Component {
 
       <div class="p-2 mt-6 m-auto text-justify w-11/12 max-w-md leading-loose">
 
-        <p class="text-center">
+        <p class="text-center text-gray-400">
           <Text id="intro.line-4">
-            Fractions of a Bitcoin are called Satoshis.
-          </Text>
-        </p>
-
-        <p class="text-center">
-          <Text id="intro.explain-satoshis">
-            One bitcoin is equal to one hundred million satoshis.
+          Fractions of a Bitcoin are called satoshis.
           </Text>
         </p>
 
         <div class="text-center">
-          <i class="icon-bitcoin text-xl text-gray-700"></i>
+          <i class="icon-bitcoin text-xl text-btc-orange"></i>
           <Link queryParams={`btc=${1}`} hash='bitcoin'>
             {f.satsDecimal(1)}
           </Link>
@@ -87,8 +81,17 @@ export default class TheForm extends Component {
           <Link queryParams={`btc=${1}`} hash='bitcoin'>
             {f.whole(100000000)}
           </Link>
-          &nbsp;satoshis
+          &nbsp;
+          <span class="text-btc-orange">
+            satoshis
+          </span>
         </div>
+
+        <p class="text-center">
+          <Text id="intro.explain-satoshis">
+            One bitcoin is equal to one hundred million satoshis.
+          </Text>
+        </p>
 
       </div>
 
@@ -100,11 +103,11 @@ export default class TheForm extends Component {
                   updateFiatPurchase={this.updateFiatPurchase.bind(this)}
                   updateValue={this.props.updateFiatPurchase} >
 
-            <p class="text-xs text-center italic text-gray-500">
+            <p class="text-xs text-center italic text-gray-600">
               {btcToWords(btcBought)}
             </p>
 
-            <table class="text-sm text-gray-700 italic mb-4 w-3/4 mx-auto">
+            <table class="text-sm text-gray-500 italic mb-4 w-3/4 mx-auto">
               <tr>
                 <td class="text-right">
                   {f.usd(fiatPurchase)} /

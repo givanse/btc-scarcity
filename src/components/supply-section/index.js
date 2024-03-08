@@ -43,7 +43,7 @@ export default class TheFooter extends Component {
           </td>
         </tr>
 
-        <tr class="bg-gray-300 text-sm">
+        <tr class="bg-gray-800 text-sm">
           <td colspan="2">
             <Text id="supply.millionaire-average">
               Average Millionaire
@@ -64,7 +64,7 @@ export default class TheFooter extends Component {
           </td>
         </tr>
 
-        <tr class="bg-gray-300 text-sm">
+        <tr class="bg-gray-800 text-sm">
           <td colspan="2">
             <Text id="supply.percenter-median">
               The 1% Median
@@ -87,8 +87,6 @@ export default class TheFooter extends Component {
       </table>
 
       <BitcoinStats /> 
-
-      <hr class="my-24 mx-8" />
 
       <div class={style['footnotes']}>
         <p class={style['foot-note']}>

@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 html, body {
-  font-size: 20px;
+  @apply text-base;
+  background-color: black;
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6, h7, h8 {
@@ -12,26 +14,26 @@ h1, h2, h3, h4, h5, h6, h7, h8 {
 	padding: 0.5rem;
 }
 h1 {
-	font-size: 2rem;
+  font-size: 1.8rem;
 }
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   padding: 0.75rem;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0 2.5rem 0;
 }
 h3 {
   margin-top: 2rem;
-	font-size: 1.6rem;
+	font-size: 1.3rem;
 }
 h4 {
-	font-size: 1.4rem;
+	font-size: 1.1rem;
 }
 h5 {
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 
 a[data-navigate] {
-  color: blue;
+  color: rgb(74, 119, 255);
 }
 
 .background-btc-orange {
@@ -43,5 +45,11 @@ a[data-navigate] {
 }
 
 .price-synced-amount {
-  @apply text-green-900 px-2;
+  @apply text-green-600 px-2;
+}
+
+@media (max-width: 390px) {
+  html {
+    font-size: 13px;
+  }
 }
