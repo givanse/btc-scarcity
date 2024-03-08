@@ -2,8 +2,8 @@
   "amount": "amount",
   "mined-gold": "mined gold",
   "millionaire-average": "average millionaire",
-  "percenter-wealth": "a one percenter's wealth",
-  "qty-per-person": "quantity per person",
+  "percenter-wealth": "one-percenter median",
+  "qty-per-person": "per person bitcoin share",
   "persons-per-qty": "persons per quantity",
   "intro": {
     "line-1": "Have you ever wondered if one day you could own some bitcoin?",
@@ -24,7 +24,9 @@
     "could-buy-me": "could buy me",
     "description": "What's my bitcoin haul for this cash?"
   },
-  "Bitcoin": {},
+  "bitcoin": {
+    "individual-world-share": "world share per individual"
+  },
   "supply": {
     "title": "Supply",
     "supply-percentage": "Supplies Comparison",

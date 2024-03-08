@@ -7,10 +7,6 @@
   @apply border-gray-400 border-b;
 }
 
-.supply tr td {
-  @apply text-center;
-}
-
 .supply tr:nth-child(even) td {
   @apply py-2;
 }
@@ -19,12 +15,8 @@
   @apply py-4;
 }
 
-.supply tr td:nth-child(odd) {
-  @apply pr-2;
-}
-
-.supply tr td:nth-child(even) {
-  @apply pl-2;
+.supply tr td {
+  @apply px-4;
 }
 
 .footnotes {

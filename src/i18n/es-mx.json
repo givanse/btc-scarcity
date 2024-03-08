@@ -2,8 +2,8 @@
   "amount": "cantidad",
   "mined-gold": "oro minado",
   "millionaire-average": "millonario promedio",
-  "percenter-wealth": "la riqueza de un one-percenter",
-  "qty-per-person": "cantidad por persona",
+  "percenter-wealth": "one-percenter medio",
+  "qty-per-person": "participación de bitcoin por persona",
   "persons-per-qty": "personas por cantidad",
   "intro": {
     "line-1": "Te has preguntado si alguna vez poseeras un poco de bitcoin?",
@@ -24,7 +24,8 @@
     "could-buy-me": "me podrían comprar",
     "description": "¿Cuánto bitcoin me embolso por este efectivo?"
   },
-  "Bitcoin": {
+  "bitcoin": {
+    "individual-world-share": "participación mundial por individuo"
   },
   "supply": {
     "title": "Suministro",

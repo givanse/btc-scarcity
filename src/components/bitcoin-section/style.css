@@ -1,10 +1,18 @@
 
 .comparison {
-  @apply w-11/12 text-center m-4 mt-8 mx-auto;
+  @apply mt-8 mx-auto text-sm;
 }
 
-.comparison tr:nth-child(even) td {
-  @apply py-3;
+.comparison tr td {
+  padding: 0 0.5rem;
+}
+
+.comparison tr td:nth-child(even) {
+  @apply text-left;
+}
+
+.comparison tr td:nth-child(odd) {
+  @apply text-right;
 }
 
 .btc-hodl {
@@ -18,6 +26,9 @@
 
 /* Extra Large (xl) */
 @media (min-width: 1280px) {
+  .comparison {
+    @apply w-8/12;
+  }
   .btc-hodl {
     @apply w-8/12;
   }
