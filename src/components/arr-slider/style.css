@@ -5,8 +5,7 @@
 
 input[type=range] {
   -webkit-appearance: none;
-  margin: 48px 0;
-  /*width: 100%;*/
+  margin: 20px 0 48px 0;
 }
 input[type=range]:focus {
   outline: none;
@@ -96,7 +95,7 @@ datalist {
   @apply m-auto;
   display: flex;
   justify-content: space-between;
-  margin-top: -35px;
+  margin-top: -47px;
   margin-bottom: 35px;
 }
 option {
@@ -104,8 +103,13 @@ option {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:gray; 
+  background-color:rgb(209, 209, 209); 
   height: 3ex;
   background-position-x: center;
   z-index: -1;
+}
+.range-start-end {
+  @apply text-xs w-8/12 mx-auto;
+  margin-top: -35px;
+  color:rgb(147, 147, 147); 
 }

@@ -35,8 +35,16 @@ export default {
   },
 
   satsDecimal: function(number) {
+    if (!number || number == Infinity) {
+      return '0.00,000,000';
+    }
+
+    number = Number(number);
+    number = number.toFixed(8);
+    number = Number(number);
     const oneHundredMillion = 100000000;
     const decimals = number % 1;
+    const whole = number - decimals;
     number = decimals * oneHundredMillion;
     number = this._dec.format(number);
 
@@ -53,6 +61,10 @@ export default {
       case 3: number = '00,' + number; break;
       case 2: number = '00' + number; break;
       case 1: number = '0' + number; break;
+    }
+
+    if (whole) {
+      return whole + '.' + number;
     }
 
     return '0.' + number;

@@ -1,4 +1,5 @@
 import {h, Component } from 'preact';
+import f from '../../utils/formatter';
 import style from './style';
 
 export default class ArrSlider extends Component {
@@ -34,6 +35,7 @@ export default class ArrSlider extends Component {
       <label for={name} class="block w-0 h-0 overflow-hidden">
         fiat amount
       </label>
+
       <input type="range"
              id={name}
              name={name}
@@ -50,6 +52,18 @@ export default class ArrSlider extends Component {
           }
         })}
       </datalist>
+
+      <table class={style['range-start-end']}>
+        <tr>
+          <td class="text-left">
+            {this.props.children[0]}
+          </td>
+          <td class="text-right">
+            {this.props.children[1]}
+          </td>
+        </tr>
+      </table>
+
       </div>
     );
   }

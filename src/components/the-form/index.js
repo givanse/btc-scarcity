@@ -23,6 +23,10 @@ import {
 import toWords from './to-words';
 import { Text } from 'preact-i18n';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';
+import staticData from '../../utils/static-data';
+const {
+  btcHodlInIndividualShares,
+} = staticData;
 
 const SAT_SIGN = ' sat';
 
@@ -55,32 +59,39 @@ export default class TheForm extends Component {
 
       <TheHeader />
 
-      <div class="p-2 mt-12 m-auto text-justify w-11/12 max-w-md leading-loose">
+      <br />
+      <div class={style['loc-buttons']}>
+        {this.props.children}
+      </div>
 
-        <p class="mb-4 text-center">
+      <div class="p-2 mt-6 m-auto text-justify w-11/12 max-w-md leading-loose">
+
+        <p class="text-center">
           <Text id="intro.line-4">
             Fractions of a Bitcoin are called Satoshis.
           </Text>
         </p>
 
-        <p class="px-4 mt-8 text-center">
+        <p class="text-center">
           <Text id="intro.explain-satoshis">
             One bitcoin is equal to one hundred million satoshis.
           </Text>
         </p>
-        <p class="text-center">
-          <span class="text-xl">1</span>
+
+        <div class="text-center">
           <i class="icon-bitcoin text-xl text-gray-700"></i>
-          =&nbsp;
           <Link queryParams={`btc=${1}`} hash='bitcoin'>
-            {f.whole(100000000)} {SAT_SIGN}
+            {f.satsDecimal(1)}
           </Link>
-        </p>
+          <span class="text-xl">
+            &nbsp;&nbsp;=&nbsp;&nbsp;
+          </span>
+          <Link queryParams={`btc=${1}`} hash='bitcoin'>
+            {f.whole(100000000)}
+          </Link>
+          &nbsp;satoshis
+        </div>
 
-      </div>
-
-      <div class={style['loc-buttons']}>
-        {this.props.children}
       </div>
 
       <PerPerson />
@@ -90,21 +101,35 @@ export default class TheForm extends Component {
                   fiatPurchase={fiatPurchase}
                   updateFiatPurchase={this.updateFiatPurchase.bind(this)}
                   updateValue={this.props.updateFiatPurchase} >
-            <div class="text-center text-sm text-gray-700 italic mb-4">
-              {f.usd(fiatPurchase)} /
-              <span class="price-synced-amount">
-                {f.usd(btcPrice)}
-              </span> = <BtcSign />{f.btc(btcBought)}
-            </div>
-            <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
-              {toWords.btc(btcBought)}
-            </Link>
-            <p class="text-sm text-gray-700">
-              {fiatToWords(fiatPurchase)} <Text id="cash.could-buy-me">could buy me</Text>
-            </p>
-            <p class="text-sm text-gray-700">
+
+            <p class="text-xs text-center italic text-gray-500">
               {btcToWords(btcBought)}
             </p>
+
+            <table class="text-sm text-gray-700 italic mb-4 w-3/4 mx-auto">
+              <tr>
+                <td class="text-right">
+                  {f.usd(fiatPurchase)} /
+                  <span class="price-synced-amount">
+                    {f.usd(btcPrice)}
+                  </span>
+                  =&nbsp;&nbsp;
+                </td>
+
+                <td class="text-left">
+                  <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
+                    <BtcSign />
+                    {f.satsDecimal(btcBought)}
+                  </Link>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="text-left">
+                  {f.dec(btcHodlInIndividualShares(btcBought))} <i class="icon-person"></i>
+                </td>
+              </tr>
+            </table>
         </InputFiat>
 
       </CashSection>

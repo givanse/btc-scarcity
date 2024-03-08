@@ -33,7 +33,10 @@ export default class InputFiat extends Component {
         <ArrSlider name={name + "-input-range"}
                    value={fiatPurchase}
                    values={FIAT_SLIDER_VALUES}
-                   updateValue={updateValue} />
+                   updateValue={updateValue}>
+          {f.usd(FIAT_SLIDER_VALUES[0])}
+          {f.usd(FIAT_SLIDER_VALUES[FIAT_SLIDER_VALUES.length - 1])}
+        </ArrSlider>
 
         {this.props.children[2]}
         {this.props.children[3]}

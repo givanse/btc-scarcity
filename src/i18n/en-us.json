@@ -21,7 +21,8 @@
   },
   "cash": {
     "title": "Cash",
-    "could-buy-me": "could buy me"
+    "could-buy-me": "could buy me",
+    "description": "What's my bitcoin haul for this cash?"
   },
   "Bitcoin": {},
   "supply": {

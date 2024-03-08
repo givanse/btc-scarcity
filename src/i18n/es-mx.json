@@ -21,7 +21,8 @@
   },
   "cash": {
     "title": "Efectivo",
-    "could-buy-me": "me podrían comprar"
+    "could-buy-me": "me podrían comprar",
+    "description": "¿Cuánto bitcoin me embolso por este efectivo?"
   },
   "Bitcoin": {
   },

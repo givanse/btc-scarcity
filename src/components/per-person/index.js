@@ -40,35 +40,45 @@ export default class PerPerson extends Component {
           </Text>
         </p>
 
-        <table class="w-full sm:w-full md:w-5/6 lg:w-4/5 mt-4">
-          <tr class="text-sm text-gray-700">
-            <td class="pl-4">
-              <Text id="world.bitcoin-supply">bitcoin supply</Text>
-              <br/>
-              <i class="icon-bitcoin text-xl"></i>
-              {f.whole(btcRemainTSupply)}
+        <table class="w-full sm:w-full md:w-5/6 lg:w-4/5 mt-4 m-auto">
+          <tr class="text-gray-700">
+            <td class="pl-4 flex flex-col text-right">
+              <div class="text-xs">
+                <Text id="world.bitcoin-supply">bitcoin supply</Text>
+              </div>
 
-              <hr class="border-1 border-slate-700 border-2"></hr>
+              <div class="">
+                {f.whole(btcRemainTSupply)}
+                <i class="icon-bitcoin"></i>
+              </div>
 
-              <i class="icon-person text-xl"></i>
-              {f.dec(worldPopulation)}
-              <br />
-              <Text id="world.world-population">world population</Text>
+              <hr class="ml-auto w-3/5 block border-slate-400 border-2"></hr>
+
+              <div>
+                {f.dec(worldPopulation)}
+                <i class="icon-person"></i>
+              </div>
+
+              <div class="text-xs">
+                <Text id="world.world-population">world population</Text>
+              </div>
             </td>
 
             <td class="px-4 text-sm">
-              <Text id="world.bitcoin-for-each-person">
-                bitcoin for each person
-              </Text>
+              <span class="text-xs">
+                <Text id="world.bitcoin-for-each-person">
+                  bitcoin for each person
+                </Text>
+              </span>
               <br/>
 
               <p class="text-lg">
                 <Link queryParams={`btc=${btcPerPerson}`} hash='bitcoin'>
-                  <i class="icon-bitcoin"></i>
+                  <i class="icon-bitcoin text-xl"></i>
                   {f.satsDecimal(btcPerPerson)}
                 </Link>
                 <br />
-                <i class="icon-person text-xl"></i>
+                <i class="icon-person text-2xl"></i>
               </p>
             </td>
           </tr>
