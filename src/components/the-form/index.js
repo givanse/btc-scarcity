@@ -28,8 +28,6 @@ const {
   btcHodlInIndividualShares,
 } = staticData;
 
-const SAT_SIGN = ' sat';
-
 export default class TheForm extends Component {
 
   updateFiatPurchase(e) {

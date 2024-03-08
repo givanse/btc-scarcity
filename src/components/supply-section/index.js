@@ -2,7 +2,6 @@ import {h, Component } from 'preact';
 import style from './style';
 import f from '../../utils/formatter';
 import staticData from '../../utils/static-data';
-import BtcSign from '../btc-sign';
 import BitcoinStats from '../bitcoin-stats';
 import Link from '../link';
 import { Text } from 'preact-i18n';
@@ -11,8 +10,6 @@ const {
   btcPerPerson,
   goldAboveGroundOz,
   goldPerPersonOz,
-  broadMoneyPerCapita,
-  moneySupply,
   usaMillionaireAverage,
   usaMillionaireAverageBroadPercentInBtc,
   netWorth1PercentMedian,
@@ -44,14 +41,14 @@ export default class TheFooter extends Component {
       <table class={style['supply']} >
         <thead class="text-xl">
           <td>
-            1<i class="icon-person"></i>
+            <i class="icon-person text-2xl"></i>
             <br />
             <span class="text-sm">
               <Text id="qty-per-person">quantity per person</Text>
             </span>
           </td>
           <td>
-            ₿
+            <i class="icon-bitcoin"></i>
             <br />
             <span class="text-sm">
               <Text id="supply.bitcoin-equivalent">proportional bitcoin quantity</Text>
@@ -75,28 +72,8 @@ export default class TheFooter extends Component {
           <td class="">
             <Link queryParams={`btc=${btcPerPerson}`}
                   hash='bitcoin'>
-              <BtcSign/>{btcPerPerson}
-            </Link>
-          </td>
-        </tr>
-
-        <tr class="bg-gray-300 text-sm">
-          <td colSpan="2">
-            <Text id="supply.broad-money">
-              Broad Money
-            </Text>
-            &nbsp;{f.usd(moneySupply.broadMoney, 'B')}<sup>†</sup>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            {f.usd(broadMoneyPerCapita)}
-          </td>
-          <td class="">
-            <Link queryParams={`btc=${btcPerPerson}`}
-                  hash='bitcoin'>
-              <BtcSign/>{btcPerPerson}
+              <i class="icon-bitcoin"></i>
+              {btcPerPerson}
             </Link>
           </td>
         </tr>
@@ -116,7 +93,8 @@ export default class TheFooter extends Component {
           <td>
             <Link queryParams={`btc=${usaMillionaireAverageBroadPercentInBtc.toFixed(8)}`}
                   hash='bitcoin'>
-              <BtcSign />{usaMillionaireAverageBroadPercentInBtc.toFixed(8)}
+              <i class="icon-bitcoin"></i>
+              {usaMillionaireAverageBroadPercentInBtc.toFixed(8)}
             </Link>
           </td>
         </tr>
@@ -135,7 +113,8 @@ export default class TheFooter extends Component {
           <td>
             <Link queryParams={`btc=${netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}`}
                   hash='bitcoin'>
-              <BtcSign />{netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}
+              <i class="icon-bitcoin"></i>
+              {netWorth1PercentMedianBroadMoneyPercentInBtc.toFixed(8)}
             </Link>
           </td>
         </tr>
@@ -152,13 +131,6 @@ export default class TheFooter extends Component {
           <br />
           <a href="https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold">
             How much gold has been mined? (2017, December 14). Retrieved October 30, 2019.
-          </a>
-        </p>
-        <p class={style['foot-note']}> 
-          † Broad money is the total value of the world's money. This includes coins, banknotes, money market accounts, as well as saving, checking, and time deposits.
-          <br />
-          <a href="https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/">
-            Desjardins, J. (2017, October 26). All of the World's Money and Markets in One Visualization. Retrieved October 30, 2019.
           </a>
         </p>
         <p class={style['foot-note']}>
