@@ -4,7 +4,6 @@ import f from '../../utils/formatter';
 import staticData from '../../utils/static-data';
 import BtcSign from '../btc-sign';
 import BitcoinStats from '../bitcoin-stats';
-import LogBarChart from '../log-bar-chart';
 import Link from '../link';
 import { Text } from 'preact-i18n';
 
@@ -142,24 +141,6 @@ export default class TheFooter extends Component {
         </tr>
 
       </table>
-
-      <h4 class="mt-16">
-        <Text id="supply.supply-percentage">
-          supply percentage
-        </Text>
-      </h4>
-
-      {this.props.children}
-
-      <LogBarChart fiatPurchase={fiatPurchase}
-                  goldPrice={goldPrice}
-                  btcBought={btcBought} />
-
-      <h3 class="">
-        <Text id="supply.bitcoin-stats">
-          Bitcoin Stats
-        </Text>
-      </h3>
 
       <BitcoinStats /> 
 

@@ -23,6 +23,13 @@ export default class BitcoinStats extends Component {
 
     return (
       <div>
+
+      <h3 class="">
+        <Text id="supply.bitcoin-stats">
+          Bitcoin Stats
+        </Text>
+      </h3>
+
       <div class="text-center w-11/12 mx-auto">
         <p class="bg-gray-300 py-3">
           <Text id="bitcoin-stats.total-supply">
@@ -30,7 +37,8 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-        <BtcSign />{f.whole(btcTCap)}
+        <i class="icon-bitcoin text-gray-600"></i>
+        {f.whole(btcTCap)}
 
         <p class="bg-gray-300 py-3">
           <Text id="bitcoin-stats.lost-estimate">
@@ -38,7 +46,8 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-          <BtcSign />{f.whole(btcLost)}
+        <i class="icon-bitcoin text-gray-600"></i>
+        {f.whole(btcLost)}
         &nbsp;({btcLostPerc * 100}%<sup>§</sup>)
 
         <p class="bg-gray-300 py-3">
@@ -47,7 +56,8 @@ export default class BitcoinStats extends Component {
           </Text>
         </p>
 
-        <BtcSign />{f.whole(btcRemainTSupply)}
+        <i class="icon-bitcoin text-gray-600"></i>
+        {f.whole(btcRemainTSupply)}
 
       </div>
 

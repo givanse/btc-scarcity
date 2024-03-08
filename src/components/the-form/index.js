@@ -158,10 +158,6 @@ export default class TheForm extends Component {
             {'₿' + f.btc(btcBought)}
           </span>
 
-          <ArrSlider name={"fiat-purchase-supply" + "-input-range"}
-                    value={fiatPurchase}
-                    values={FIAT_SLIDER_VALUES}
-                    updateValue={this.props.updateFiatPurchase} />
         </form>
 
       </SupplySection>
