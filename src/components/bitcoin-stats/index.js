@@ -51,7 +51,7 @@ export default class BitcoinStats extends Component {
           <td>
             <i class="icon-bitcoin text-gray-600"></i>
             {f.whole(btcLost)}
-            &nbsp;({btcLostPerc * 100}%)<sup>§</sup>
+            &nbsp;({btcLostPerc * 100}%)
           </td>
         </tr>
         <tr>

@@ -1,6 +1,9 @@
+
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 function getAccessControlAllowOrigin(origin) {
 
-  if (process.env.NODE_ENV === 'development') {
+  if (IS_DEV) {
     return '*';
   }
 
@@ -19,6 +22,21 @@ function getAccessControlAllowOrigin(origin) {
   }
 
   return 'https://btc.gratis';
+}
+
+async function getBTCUSD() {
+  const btcusd_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
+  let response = await fetch(btcusd_url); 
+  console.log(`${response.status}: ${response.statusText}`);
+
+  response = await response.json();
+  if (response) {
+    return response.bitcoin ? response.bitcoin.usd : NaN;
+  } else {
+    console.log('coingecko bitcoin' + response);
+  }
+
+  return NaN;
 }
 
 exports.handler = async function(request, context) {
@@ -43,16 +61,14 @@ exports.handler = async function(request, context) {
     };
   }
 
-  const btcusd_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
-  let response = await fetch(btcusd_url); 
-  response = await response.json();
   let btcPrice;
-  if (response) {
-    btcPrice = response.bitcoin ? response.bitcoin.usd : NaN;
+  if (IS_DEV) {
+    btcPrice = 69420;
   } else {
-    console.log('coingecko bitcoin' + response);
+    btcPrice = await getBTCUSD();
   }
 
+  /*
   const gold_url = 'https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd'
   response = await fetch(gold_url);
   response = await response.json();
@@ -62,6 +78,7 @@ exports.handler = async function(request, context) {
   } else {
     console.log('coingecko pax-gold' + response);
   }
+  */
 
   return {
     statusCode: 200,
@@ -72,6 +89,6 @@ exports.handler = async function(request, context) {
       'Access-Control-Allow-Credentials': true,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({btcPrice, goldPrice}),
+    body: JSON.stringify({btcPrice, NaN}),
   };
 }

@@ -18,8 +18,8 @@ export default class App extends Component {
 
   state = {
     btcHodl: 0,
-    btcPrice: 7000,
-    goldPrice: 1500,
+    btcPrice: 0,
+    goldPrice: 0,
     fiatPurchase: 0,
     loc: 'es',
   };

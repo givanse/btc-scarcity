@@ -11,7 +11,7 @@ const UNITS = {
 };
 
 const btcTCap = 21000000;
-const worldPopulation = 7.7 * USA_BILLION;
+const worldPopulation = 7.9 * USA_BILLION;
 // https://fortune.com/2017/11/25/lost-bitcoins/
 const btcLostPerc = 0.17; // 17%
 const btcLost = btcTCap * btcLostPerc;
@@ -52,6 +52,12 @@ function buyGoldOunces(fiat, goldPricePerOz) {
   return fiat / goldPricePerOz;
 }
 
+function fiatPercOfGold(fiat, goldPricePerOz) {
+  const boughtGoldOz = buyGoldOunces(fiat, goldPricePerOz);
+  const goldKilosBought = boughtGoldOz * 0.03110348;
+  return (goldKilosBought * 100) / goldAboveGroundKg;
+}
+
 export default {
   btcTCap,
   btcLostPerc,
@@ -59,11 +65,11 @@ export default {
   btcRemainTSupply,
   worldPopulation,
   btcPerPerson,
-  goldAboveGroundKg,
-  goldAboveGroundOz,
-  goldPerPersonKg,
-  goldPerPersonOz: goldPerPersonKg * UNITS.TROY_OUNCE,
-  broadMoneyPerCapita,
+  //goldAboveGroundKg,
+  //goldAboveGroundOz,
+  //goldPerPersonKg,
+  //goldPerPersonOz: goldPerPersonKg * UNITS.TROY_OUNCE,
+  //broadMoneyPerCapita,
   moneySupply,
   
   //usaMillionaireMedian,
@@ -91,10 +97,6 @@ export default {
   fiatPercOfBroadMoney: function(fiat) {
     return (fiat * 100) / moneySupply.broadMoney;
   },
-  buyGoldOunces,
-  fiatPercOfGold: function(fiat, goldPricePerOz) {
-    const boughtGoldOz = buyGoldOunces(fiat, goldPricePerOz);
-    const goldKilosBought = boughtGoldOz * 0.03110348;
-    return (goldKilosBought * 100) / goldAboveGroundKg;
-  }
+  //buyGoldOunces,
+  //fiatPercOfGold,
 };
