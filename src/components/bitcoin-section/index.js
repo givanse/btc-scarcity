@@ -67,10 +67,6 @@ export default class TheFooter extends Component {
               placeholder="bitcoin amount"
               onChange={onInputChange} />
 
-        <p class="text-xs text-center italic text-gray-600 mt-2">
-          {btcToWords(btcHodl)}
-        </p>
-
         <table class="text-sm text-gray-500 italic mb-4 mx-auto">
           <tr>
             <td class="text-right">
@@ -88,6 +84,10 @@ export default class TheFooter extends Component {
             </td>
           </tr>
         </table>
+
+        <p class="text-xs text-center italic text-gray-600 mt-2">
+          {btcToWords(btcHodl)}
+        </p>
 
         <table class={style["comparison"]}>
           <tr>

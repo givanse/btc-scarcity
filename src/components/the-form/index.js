@@ -103,10 +103,6 @@ export default class TheForm extends Component {
                   updateFiatPurchase={this.updateFiatPurchase.bind(this)}
                   updateValue={this.props.updateFiatPurchase} >
 
-            <p class="text-xs text-center italic text-gray-600">
-              {btcToWords(btcBought)}
-            </p>
-
             <table class="text-sm text-gray-500 italic mb-4 w-3/4 mx-auto">
               <tr>
                 <td class="text-right">
@@ -124,10 +120,23 @@ export default class TheForm extends Component {
                   </Link>
                 </td>
               </tr>
+            </table>
+
+            <p class="text-xs text-center italic text-gray-600">
+              {btcToWords(btcBought)}
+            </p>
+
+            <table class={style["comparison"]}>
               <tr>
-                <td></td>
-                <td class="text-left">
-                  {f.dec(btcHodlInIndividualShares(btcBought))} <i class="icon-person"></i>
+                <td>
+                  <Text id="bitcoin.individual-world-share">
+                    world share per individual
+                  </Text>
+                </td>
+
+                <td>
+                  <i class="icon-person"></i>
+                  {f.dec(btcHodlInIndividualShares(btcBought))}
                 </td>
               </tr>
             </table>

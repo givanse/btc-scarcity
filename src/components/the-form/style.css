@@ -10,3 +10,20 @@
   @apply bg-blue-100 border border-blue-200;
   outline: none;
 }
+
+.comparison {
+  @apply mt-8 mx-auto text-sm table-fixed;
+}
+
+.comparison tr td {
+  @apply text-gray-400;
+  padding: 0 0.5rem;
+}
+
+.comparison tr td:nth-child(even) {
+  @apply text-left;
+}
+
+.comparison tr td:nth-child(odd) {
+  @apply text-right;
+}

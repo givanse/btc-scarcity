@@ -24,7 +24,7 @@ export default class BitcoinStats extends Component {
     return (
       <div>
 
-      <h3 class="">
+      <h3 class="mt-24">
         <Text id="bitcoin-stats.title">
           Bitcoin supply
         </Text>

@@ -1,7 +1,10 @@
 
+.arr-slide {
+  background-color: #000000;
+}
+
 .arr-slide, datalist {
   @apply w-8/12;
-  background-color: #000000;
 }
 
 input[type=range] {
@@ -98,6 +101,9 @@ datalist {
   justify-content: space-between;
   margin-top: -37px;
   margin-bottom: 35px;
+  background-color: rgb(1, 1, 1);
+  padding: 0 0.33rem;
+  border-radius: 5px;
 }
 option {
   @apply bg-gray-800;
@@ -112,5 +118,5 @@ option {
 .range-start-end {
   @apply text-xs w-8/12 mx-auto text-gray-600;
   padding: 0 2px;
-  margin-top: -52px;
+  margin-top: -53px;
 }
