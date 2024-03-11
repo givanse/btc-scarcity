@@ -1,0 +1,21 @@
+.svg-pyramid {
+}
+
+.svg-pyramid text {
+  fill: white;
+}
+
+.svg-pyramid text.adults {
+  font-size: 2px;
+  fill: rgb(205, 205, 205);
+}
+
+.svg-pyramid text.percentage {
+  font-size: 2px;
+  fill: #e5e547;
+}
+
+.svg-pyramid text a,
+.svg-pyramid text a:visited {
+  fill: #f79319;
+}

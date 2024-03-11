@@ -44,5 +44,8 @@
     "remaining-supply": "Suministro restante",
     "one-bitcoin": "Un Bitcoin",
     "100M-sats": "Cien millones de Satoshis"
+  },
+  "wealth-pyramid": {
+    "title": "Wealth Pyramid"
   }
 }

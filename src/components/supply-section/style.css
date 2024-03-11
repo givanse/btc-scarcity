@@ -1,23 +1,4 @@
 
-.supply {
-  @apply w-11/12 text-center m-4 mt-8 mx-auto;
-}
-
-.supply tr {
-}
-
-.supply tr:nth-child(even) td {
-  @apply py-2;
-}
-
-.supply tr:nth-child(odd) td {
-  @apply py-4;
-}
-
-.supply tr td {
-  @apply px-4;
-}
-
 .footnotes {
   @apply border-gray-700;
   margin: 7rem 0.5rem 0 1rem;
