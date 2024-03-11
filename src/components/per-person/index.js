@@ -16,7 +16,7 @@ const P = f.PRECISION;
 const {
   btcRemainTSupply,
   btcPerPerson,
-  worldPopulation,
+  totalAdultPopulation,
 } = staticData;
 
 export default class PerPerson extends Component {
@@ -55,12 +55,12 @@ export default class PerPerson extends Component {
               <hr class="ml-auto my-2 w-3/5 block border-gray-700 border-2"></hr>
 
               <div class="text-white">
-                {f.dec(worldPopulation)}
+                {f.dec(totalAdultPopulation)}
                 <i class="icon-person"></i>
               </div>
 
               <div class="text-xs">
-                <Text id="world.world-population">world population</Text>
+                <Text id="world.adult-population">adult population</Text>
               </div>
             </td>
 

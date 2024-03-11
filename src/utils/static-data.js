@@ -10,56 +10,52 @@ const UNITS = {
   TROY_OUNCE: 32.15075, // 1 kg
 };
 
+const totalGlobalIndividualWealth = 454.4 * UNITS.USA_TRILLION;
+const totalAdultPopulation = 5.4 * UNITS.USA_BILLION;
+
 const btcTCap = 21000000;
-const worldPopulation = 7.9 * USA_BILLION;
+//const worldPopulation = 7.9 * USA_BILLION;
 // https://fortune.com/2017/11/25/lost-bitcoins/
 const btcLostPerc = 0.17; // 17%
 const btcLost = btcTCap * btcLostPerc;
 const btcRemainTSupply = btcTCap - btcLost;
-const btcPerPerson = (btcRemainTSupply / worldPopulation).toFixed(8);
-
-// https://www.gold.org/about-gold/gold-supply/gold-mining/how-much-gold
-const goldAboveGroundKg = 190040 /* tons */ * 907.185; // kg
-const goldAboveGroundOz = goldAboveGroundKg * 32.15075;
-const goldPerPersonKg = goldAboveGroundKg / worldPopulation;
+const btcPerPerson = (btcRemainTSupply / totalAdultPopulation).toFixed(8);
 
 // https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
-const moneySupply = {
-  broadMoney: 90.4 * UNITS.USA_TRILLION,
-};
-const broadMoneyPerCapita = moneySupply.broadMoney / worldPopulation;
+//const moneySupply = {
+//  Wealth: 90.4 * UNITS.USA_TRILLION,
+//};
 
 // https://www.fool.com/investing/general/2016/01/24/how-does-your-net-worth-compare-to-the-average-ame.aspx
-const usaMillionaireMedian = 1.87 * MILLION;
-const usaMillionaireMedianBroadPercent = (usaMillionaireMedian * 100) / moneySupply.broadMoney;
-const usaMillionaireMedianBroadPercentInBtc = (usaMillionaireMedianBroadPercent * btcRemainTSupply) / 100;
+//const usaMillionaireMedian = 1.87 * MILLION;
+//const usaMillionaireMedianBroadPercent = (usaMillionaireMedian * 100) / moneySupply.Wealth;
+//const usaMillionaireMedianBroadPercentInBtc = (usaMillionaireMedianBroadPercent * btcRemainTSupply) / 100;
 
-const usaMillionaireAverage = 4.03 * MILLION;
-const usaMillionaireAverageBroadPercent = (usaMillionaireAverage * 100) / moneySupply.broadMoney;
-const usaMillionaireAverageBroadPercentInBtc = (usaMillionaireAverageBroadPercent * btcRemainTSupply) / 100;
+const mMillionaire = 2 * MILLION;
+const mMillionaireBroadPercent = (mMillionaire * 100) / totalGlobalIndividualWealth;
+const mMillionaireBroadPercentInBtc = (mMillionaireBroadPercent * btcRemainTSupply) / 100;
 
 // https://www.forbes.com/billionaires/#6425b8a251c7
-const usaBillionaireAverage = 1 * UNITS.USA_BILLION; //(8.7 * UNITS.USA_TRILLION) / 2153;
-const usaBillionaireAverageBroadPercent = (usaBillionaireAverage * 100) / moneySupply.broadMoney;
-const usaBillionaireAverageBroadPercentInBtc = (usaBillionaireAverageBroadPercent * btcRemainTSupply) / 100;
+//const usaBillionaireAverage = 1 * UNITS.USA_BILLION; //(8.7 * UNITS.USA_TRILLION) / 2153;
+//const usaBillionaireAverageBroadPercent = (usaBillionaireAverage * 100) / totalGlobalIndividualWealth;
+//const usaBillionaireAverageBroadPercentInBtc = (usaBillionaireAverageBroadPercent * btcRemainTSupply) / 100;
 
 // https://www.financialsamurai.com/top-one-percent-net-worth-amounts-by-age/
-const netWorth1PercentMedian = 10.7 * UNITS.MILLION;
-const netWorth1PercentMedianBroadMoneyPercent = (netWorth1PercentMedian * 100) / moneySupply.broadMoney;
-const netWorth1PercentMedianBroadMoneyPercentInBtc = (netWorth1PercentMedianBroadMoneyPercent * btcRemainTSupply) / 100;
-
-const totalGlobalIndividualWealth = 454.4 * UNITS.USA_TRILLION;
-const totalAdultPopulation = 5.4 * UNITS.USA_BILLION;
+const pointOnePercenter = 5 * UNITS.MILLION;
+const pointOnePercenterWealthPercent = (pointOnePercenter * 100) / totalGlobalIndividualWealth;
+const pointOnePercenterWealthPercentInBtc = (pointOnePercenterWealthPercent * btcRemainTSupply) / 100;
 
 function buyGoldOunces(fiat, goldPricePerOz) {
   return fiat / goldPricePerOz;
 }
 
+/*
 function fiatPercOfGold(fiat, goldPricePerOz) {
   const boughtGoldOz = buyGoldOunces(fiat, goldPricePerOz);
   const goldKilosBought = boughtGoldOz * 0.03110348;
   return (goldKilosBought * 100) / goldAboveGroundKg;
 }
+*/
 
 function calcPyramidLevel(adults, usd) {
 
@@ -99,30 +95,29 @@ export default {
   btcLostPerc,
   btcLost,
   btcRemainTSupply,
-  worldPopulation,
+  totalAdultPopulation,
   btcPerPerson,
   //goldAboveGroundKg,
   //goldAboveGroundOz,
   //goldPerPersonKg,
   //goldPerPersonOz: goldPerPersonKg * UNITS.TROY_OUNCE,
-  //broadMoneyPerCapita,
-  moneySupply,
+  //WealthPerCapita,
   
   //usaMillionaireMedian,
   //usaMillionaireMedianBroadPercent,
   //usaMillionaireMedianBroadPercentInBtc,
   
-  usaMillionaireAverage,
-  usaMillionaireAverageBroadPercent,
-  usaMillionaireAverageBroadPercentInBtc,
+  mMillionaire,
+  mMillionaireBroadPercent,
+  mMillionaireBroadPercentInBtc,
 
-  usaBillionaireAverage,
-  usaBillionaireAverageBroadPercent,
-  usaBillionaireAverageBroadPercentInBtc,
+  //usaBillionaireAverage,
+  //usaBillionaireAverageBroadPercent,
+  //usaBillionaireAverageBroadPercentInBtc,
 
-  netWorth1PercentMedian,
-  netWorth1PercentMedianBroadMoneyPercent,
-  netWorth1PercentMedianBroadMoneyPercentInBtc,
+  pointOnePercenter,
+  pointOnePercenterWealthPercent,
+  pointOnePercenterWealthPercentInBtc,
 
   btcHodlInIndividualShares: function(btcHodl) {
     return btcHodl / btcPerPerson;
@@ -130,8 +125,8 @@ export default {
   btcPercOfRemainTSupply: function(btc) {
     return (btc * 100) / btcRemainTSupply;
   },
-  fiatPercOfBroadMoney: function(fiat) {
-    return (fiat * 100) / moneySupply.broadMoney;
+  fiatPercOfWealth: function(fiat) {
+    return (fiat * 100) / moneySupply.Wealth;
   },
   //buyGoldOunces,
   //fiatPercOfGold,

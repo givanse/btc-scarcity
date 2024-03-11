@@ -9,10 +9,10 @@ import { Text } from 'preact-i18n';
 
 const {
   btcPerPerson,
-  usaMillionaireAverage,
-  usaMillionaireAverageBroadPercentInBtc,
-  netWorth1PercentMedian,
-  netWorth1PercentMedianBroadMoneyPercentInBtc,
+  mMillionaire,
+  mMillionaireBroadPercentInBtc,
+  pointOnePercenter,
+  pointOnePercenterWealthPercentInBtc,
 } = staticData;
 
 export default class TheFooter extends Component {

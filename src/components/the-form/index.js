@@ -8,7 +8,6 @@ import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
 import CashSection from '../cash-section';
 import SupplySection from '../supply-section';
-import ArrSlider from '../arr-slider';
 import Link from '../link';
 import parseInputAmount from '../../utils/parse-input-amount';
 import { parseBitcoin } from '../../utils/bitcoin-math';
@@ -18,7 +17,6 @@ import {
 } from '../../utils/router';
 import {
   btcToWords,
-  fiatToWords,
 } from '../../utils/words';
 import toWords from './to-words';
 import { Text } from 'preact-i18n';

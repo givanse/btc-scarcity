@@ -4,9 +4,9 @@ import staticData from '../src/utils/static-data';
 
 describe('Static Data', () => {
 
-  test('fiatPercOfBroadMoney', () => {
+  test('fiatPercOfWealth', () => {
     const amount = 22.6 * 1000000 * 1000 * 1000;
-    const r = staticData.fiatPercOfBroadMoney(amount);
+    const r = staticData.fiatPercOfWealth(amount);
     expect(r).toBe(25);
   });
   

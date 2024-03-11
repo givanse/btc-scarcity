@@ -2,10 +2,9 @@ import {h, Component } from 'preact';
 import f from '../../utils/formatter';
 import staticData from '../../utils/static-data';
 import Link from '../link';
-import toWords from '../the-form/to-words';
 import ArrSlider from '../arr-slider';
 import style from './style';
-import { MarkupText, Text } from 'preact-i18n';
+import { Text } from 'preact-i18n';
 import parseInputAmount from '../../utils/parse-input-amount';
 import { getSats } from '../../utils/bitcoin-math';
 import { BTC_SLIDER_VALUES } from '../../utils/constants';
@@ -14,11 +13,9 @@ import {
 } from '../../utils/words';
 
 const {
-  btcPerPerson,
   btcHodlInIndividualShares,
-  goldPerPersonOz,
-  usaMillionaireAverageBroadPercentInBtc,
-  netWorth1PercentMedianBroadMoneyPercentInBtc,
+  mMillionaireBroadPercentInBtc,
+  pointOnePercenterWealthPercentInBtc,
 } = staticData;
 
 const HUNDRED_M = 100000000;
@@ -93,7 +90,7 @@ export default class TheFooter extends Component {
           <tr>
             <td>
               <Text id="bitcoin.individual-world-share">
-                world share per individual
+                adult share
               </Text>
             </td>
 
@@ -105,25 +102,25 @@ export default class TheFooter extends Component {
 
           <tr>
             <td>
-              <Text id="millionaire-average">average millionaire</Text>
+              <Text id="millionaire-average">millionaire share</Text>
             </td>
 
             <td>
               <i class="icon-person"></i>
-              {f.decSmall(btcHodl / usaMillionaireAverageBroadPercentInBtc)}
+              {f.decSmall(btcHodl / mMillionaireBroadPercentInBtc)}
             </td>
           </tr>
 
           <tr>
             <td>
               <Text id="percenter-wealth">
-                a one percenter wealth
+                one-percenter share 
               </Text>
             </td>
 
             <td>
               <i class="icon-person"></i>
-              {f.decSmall(btcHodl / netWorth1PercentMedianBroadMoneyPercentInBtc)}
+              {f.decSmall(btcHodl / pointOnePercenterWealthPercentInBtc)}
             </td>
           </tr>
         </table>

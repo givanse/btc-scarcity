@@ -50,7 +50,6 @@ export default {
     number = decimals * precisionMillion;
 
     number = this._dec.format(number);
-    console.log(number);
 
     let charactersTotal = 10; // 8 + 2 commas
 

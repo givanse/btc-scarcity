@@ -1,10 +1,8 @@
 {
   "amount": "amount",
   "mined-gold": "mined gold",
-  "millionaire-average": "average millionaire",
-  "percenter-wealth": "one-percenter median",
-  "qty-per-person": "per person bitcoin share",
-  "persons-per-qty": "persons per quantity",
+  "millionaire-average": "multimillionaire shares",
+  "percenter-wealth": "0.1 percenter shares",
   "intro": {
     "line-1": "Have you ever wondered if one day you could own some bitcoin?",
     "line-2": "Chances are you can acquire some bitcoin.",
@@ -14,7 +12,7 @@
   "world": {
     "title": "For each person",
     "intro": "How much bitcoin would you get if it were distributed worldwide?",
-    "world-population": "world population",
+    "adult-population": "adult population",
     "bitcoin-supply": "bitcoin supply",
     "bitcoin-for-each-person": "bitcoin for each person",
     "satoshis-for-each-person": "satoshis for each person"
@@ -25,7 +23,7 @@
     "description": "What's my bitcoin haul for this cash?"
   },
   "bitcoin": {
-    "individual-world-share": "world share per individual"
+    "individual-world-share": "adult shares"
   },
   "supply": {
     "title": "Supply",
