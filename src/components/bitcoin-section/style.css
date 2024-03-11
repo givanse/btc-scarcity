@@ -25,6 +25,11 @@
   background-color: #706455;
 }
 
+.to-words {
+  @apply text-xs text-center italic text-gray-600 mt-2 w-11/12 mx-auto px-4;
+  min-height: 2.25rem;
+}
+
 @media (min-width: 1280px) {
   .comparison {
     @apply w-8/12;

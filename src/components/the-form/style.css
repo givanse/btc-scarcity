@@ -27,3 +27,8 @@
 .comparison tr td:nth-child(odd) {
   @apply text-right;
 }
+
+.to-words {
+  @apply text-xs text-center italic text-gray-600 w-11/12 mx-auto px-4;
+  min-height: 2.25rem;
+}

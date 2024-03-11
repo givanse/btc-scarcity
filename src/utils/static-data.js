@@ -48,6 +48,9 @@ const netWorth1PercentMedian = 10.7 * UNITS.MILLION;
 const netWorth1PercentMedianBroadMoneyPercent = (netWorth1PercentMedian * 100) / moneySupply.broadMoney;
 const netWorth1PercentMedianBroadMoneyPercentInBtc = (netWorth1PercentMedianBroadMoneyPercent * btcRemainTSupply) / 100;
 
+const totalGlobalIndividualWealth = 454.4 * UNITS.USA_TRILLION;
+const totalAdultPopulation = 5.4 * UNITS.USA_BILLION;
+
 function buyGoldOunces(fiat, goldPricePerOz) {
   return fiat / goldPricePerOz;
 }
@@ -56,6 +59,39 @@ function fiatPercOfGold(fiat, goldPricePerOz) {
   const boughtGoldOz = buyGoldOunces(fiat, goldPricePerOz);
   const goldKilosBought = boughtGoldOz * 0.03110348;
   return (goldKilosBought * 100) / goldAboveGroundKg;
+}
+
+function calcPyramidLevel(adults, usd) {
+
+  const popPercent = ((adults * 100) / totalAdultPopulation);
+
+  const totalWealthPercent = (usd * 100) / totalGlobalIndividualWealth;
+  // Supply - 100%
+  //    BTC - percent
+  const btc = (totalWealthPercent * btcRemainTSupply) / 100;
+
+  return {
+    adults,
+    popPercent,
+    wealth: {
+      usd,
+      btc,
+    }
+  }
+}
+
+function pyramid() {
+  return [
+    calcPyramidLevel(2818118000, 10 * UNITS.KILO),
+    calcPyramidLevel(1844084000, 10 * UNITS.KILO),
+    calcPyramidLevel(641673000,	100 * UNITS.KILO),
+    calcPyramidLevel(51549760, UNITS.MILLION),
+    calcPyramidLevel(5087934,	5 * UNITS.MILLION),
+    calcPyramidLevel(2510318,	10 * UNITS.MILLION),
+    calcPyramidLevel(163572, 50 * UNITS.MILLION),
+    calcPyramidLevel(72474, 100 * UNITS.MILLION),
+    calcPyramidLevel(7016, 500 * UNITS.MILLION),
+  ];
 }
 
 export default {
@@ -99,4 +135,9 @@ export default {
   },
   //buyGoldOunces,
   //fiatPercOfGold,
+  UNITS,
+  totalAdultPopulation,
+  totalGlobalIndividualWealth,
+  calcPyramidLevel,
+  pyramid: pyramid(),
 };

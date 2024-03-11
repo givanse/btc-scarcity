@@ -85,7 +85,7 @@ export default class TheFooter extends Component {
           </tr>
         </table>
 
-        <p class="text-xs text-center italic text-gray-600 mt-2">
+        <p class={style['to-words']}>
           {btcToWords(btcHodl)}
         </p>
 

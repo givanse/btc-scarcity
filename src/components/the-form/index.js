@@ -122,7 +122,7 @@ export default class TheForm extends Component {
               </tr>
             </table>
 
-            <p class="text-xs text-center italic text-gray-600">
+            <p class={style['to-words']}>
               {btcToWords(btcBought)}
             </p>
 

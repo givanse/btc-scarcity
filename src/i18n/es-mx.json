@@ -38,7 +38,8 @@
     "percenter-median": "Media del 1%"
   },
   "bitcoin-stats": {
-    "title": "Suministro de bitcoin",
+    "total-adults": "Adultos totales",
+    "total-wealth": "Riqueza total",
     "total-supply": "Suministro total",
     "lost-estimate": "Perdida estimada",
     "remaining-supply": "Suministro restante",

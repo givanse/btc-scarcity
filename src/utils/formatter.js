@@ -34,7 +34,7 @@ export default {
     return this._btc.format(number);
   },
 
-  satsDecimal: function(number) {
+  satsDecimal: function(number, precision = null) {
     if (!number || number == Infinity) {
       return '0.00,000,000';
     }
@@ -42,13 +42,18 @@ export default {
     number = Number(number);
     number = number.toFixed(8);
     number = Number(number);
-    const oneHundredMillion = 100000000;
-    const decimals = number % 1;
-    const whole = number - decimals;
-    number = decimals * oneHundredMillion;
-    number = this._dec.format(number);
 
-    const charactersTotal = 10; // 8 digits, 2 commas
+    let decimals = number % 1;
+    const whole = number - decimals;
+
+    const precisionMillion = Math.pow(10, 8);
+    number = decimals * precisionMillion;
+
+    number = this._dec.format(number);
+    console.log(number);
+
+    let charactersTotal = 10; // 8 + 2 commas
+
     const delta = charactersTotal - number.length;
     switch (delta) {
       case 10: number = '00,000,000' + number; break;
@@ -61,6 +66,16 @@ export default {
       case 3: number = '00,' + number; break;
       case 2: number = '00' + number; break;
       case 1: number = '0' + number; break;
+    }
+
+    // Sats precision
+    if (precision) {
+      const pIndex = number.indexOf('.');
+      if (precision >= 3) { // keep 1 comma
+        number = number.slice(0, (pIndex + 1) + precision + 1);
+      } else if (precision >= 6) { // keep 2 commas
+        number = number.slice(0, (pIndex + 1) + precision + 2);
+      }
     }
 
     if (whole) {

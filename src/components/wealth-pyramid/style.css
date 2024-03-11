@@ -1,18 +1,23 @@
+
 .svg-pyramid {
+  padding: 0 5px;
+}
+
+.svg-pyramid polygon {
+  border: 0;
 }
 
 .svg-pyramid text {
+  font-size: 3px;
   fill: white;
 }
 
 .svg-pyramid text.adults {
-  font-size: 2px;
-  fill: rgb(205, 205, 205);
+  fill: rgb(190, 190, 190);
 }
 
 .svg-pyramid text.percentage {
-  font-size: 2px;
-  fill: #e5e547;
+  fill: rgb(224, 224, 224);
 }
 
 .svg-pyramid text a,

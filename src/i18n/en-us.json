@@ -38,7 +38,8 @@
     "percenter-median": "The 1% Median"
   },
   "bitcoin-stats": {
-    "title": "Bitcoin supply",
+    "total-adults": "Total adults",
+    "total-wealth": "Total wealth",
     "total-supply": "Total supply",
     "lost-estimate": "Lost estimate",
     "remaining-supply": "Remaining supply",
