@@ -36,6 +36,14 @@ a[data-navigate] {
   color: rgb(74, 119, 255);
 }
 
+a.btc[data-navigate] {
+  color: theme('colors.btc-orange');
+}
+
+a.fiat[data-navigate] {
+  color: theme('colors.money');
+}
+
 .background-btc-orange {
   background-color: theme('colors.btc-orange');
 }

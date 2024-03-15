@@ -65,7 +65,7 @@ export default class PerPerson extends Component {
               <br/>
 
               <p class="text-lg">
-                <Link queryParams={`btc=${btcPerPerson}`} hash='bitcoin'>
+                <Link queryParams={`btc=${btcPerPerson}`} hash='bitcoin' classNames='btc'>
                   <i class="icon-bitcoin text-xl"></i>
                   {f.satsDecimal(btcPerPerson)}
                 </Link>

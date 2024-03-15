@@ -50,7 +50,7 @@ export default class InputFiat extends Component {
             </td>
 
             <td class="text-left">
-              <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
+              <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin' classNames='btc'>
                 <i class="icon-bitcoin"></i>
                 {f.satsDecimal(btcBought)}
               </Link>

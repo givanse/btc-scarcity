@@ -135,7 +135,7 @@ export default class WealthPyramid extends Component {
         <text x="85" y="55" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[3].wealth.btc.toFixed(8)}`} hash='bitcoin'>
-            {f.satsDecimal(pyramid[3].wealth.btc, 5)}
+            {f.satsDecimal(pyramid[3].wealth.btc, 4)}
           </Link>
         </text>
 
@@ -149,37 +149,41 @@ export default class WealthPyramid extends Component {
         <text x="85" y="65" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[2].wealth.btc.toFixed(8)}`} hash='bitcoin'>
-            {f.satsDecimal(pyramid[2].wealth.btc, 5)}
+            {f.satsDecimal(pyramid[2].wealth.btc, 4)}
           </Link>
         </text>
 
-        <polygon points="5,80 85,80 80,70 10,70" fill="rgb(150,144,127)"/>
-        <text x="5" y="75" text-anchor="start" font-size="2">
-          &gt; ${pyramid[1].wealth.usd/staticData.UNITS.KILO}K</text>
-        <text x="45" y="75" text-anchor="middle" class={style['adults']}>
-          {(pyramid[1].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
-        <text x="45" y="78" text-anchor="middle" class={style['percentage']}>
-          {pyramid[1].popPercent.toFixed(0)}%</text>
-        <text x="85" y="75" text-anchor="end" font-size="2">
-          &gt;&nbsp;
-          <Link queryParams={`btc=${pyramid[1].wealth.btc.toFixed(8)}`} hash='bitcoin'>
-            {f.satsDecimal(pyramid[1].wealth.btc, 5)}
-          </Link>
-        </text>
+        <g class={style['level-8']}>
+          <polygon points="5,80 85,80 80,70 10,70" fill="rgb(150,144,127)"/>
+          <text x="5" y="75" text-anchor="start" font-size="2">
+            &gt; ${pyramid[1].wealth.usd/staticData.UNITS.KILO}K</text>
+          <text x="45" y="75" text-anchor="middle" class={style['adults']}>
+            {(pyramid[1].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
+          <text x="45" y="78" text-anchor="middle" class={style['percentage']}>
+            {pyramid[1].popPercent.toFixed(0)}%</text>
+          <text x="85" y="75" text-anchor="end" font-size="2">
+            &gt;&nbsp;
+            <Link queryParams={`btc=${pyramid[1].wealth.btc.toFixed(8)}`} hash='bitcoin'>
+              {f.satsDecimal(pyramid[1].wealth.btc, 4)}
+            </Link>
+          </text>
+        </g>
 
-        <polygon points="0,90 90,90 85,80 5,80" fill="rgb(162,156,139)"/>
-        <text x="5" y="85" text-anchor="start" font-size="2">
-          &lt; ${pyramid[0].wealth.usd/staticData.UNITS.KILO}K</text>
-        <text x="45" y="85" text-anchor="middle" class={style['adults']} fill="black">
-          {(pyramid[0].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
-        <text x="45" y="88" text-anchor="middle" class={style['percentage']}>
-          {pyramid[0].popPercent.toFixed(0)}%</text>
-        <text x="85" y="85" text-anchor="end" font-size="2">
-          &lt;&nbsp;
-          <Link queryParams={`btc=${pyramid[0].wealth.btc.toFixed(8)}`} hash='bitcoin'>
-            {f.satsDecimal(pyramid[0].wealth.btc, 5)}
-          </Link>
-        </text>
+        <g class={style['level-9']}>
+          <polygon points="0,90 90,90 85,80 5,80" fill="rgb(162,156,139)"/>
+          <text x="5" y="85" text-anchor="start" font-size="2">
+            &lt; ${pyramid[0].wealth.usd/staticData.UNITS.KILO}K</text>
+          <text x="45" y="85" text-anchor="middle" class={style['adults']} fill="black">
+            {(pyramid[0].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
+          <text x="45" y="88" text-anchor="middle" class={style['percentage']}>
+            {pyramid[0].popPercent.toFixed(0)}%</text>
+          <text x="85" y="85" text-anchor="end" font-size="2">
+            &lt;&nbsp;
+            <Link queryParams={`btc=${pyramid[0].wealth.btc.toFixed(8)}`} hash='bitcoin'>
+              {f.satsDecimal(pyramid[0].wealth.btc, 4)}
+            </Link>
+          </text>
+        </g>
       </svg>
 
       <table class="table-fixed w-full my-4 text-gray-400">

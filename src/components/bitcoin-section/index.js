@@ -75,7 +75,7 @@ export default class TheFooter extends Component {
             </td>
 
             <td class="text-left">
-              <Link queryParams={`fiat=${(btcHodl * btcPrice).toFixed(2)}`} hash='cash'>
+              <Link queryParams={`fiat=${(btcHodl * btcPrice).toFixed(2)}`} hash='cash' classNames='fiat'>
                 {f.usd(btcHodl * btcPrice)}
               </Link>
             </td>

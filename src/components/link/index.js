@@ -10,8 +10,10 @@ export default class Link extends Component {
 
     href += hash ? `#${hash}` : '';
 
+    const classNames = `${this.props.classNames} underline`;
+
     return (
-      <a href={href} class="underline" data-navigate>
+      <a href={href} class={classNames} data-navigate>
         {this.props.children}
       </a>
     );

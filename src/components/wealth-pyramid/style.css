@@ -24,3 +24,16 @@
 .svg-pyramid text a:visited {
   fill: #f79319;
 }
+
+.level-8 text a, 
+.level-8 text a:visited {
+  fill: #ffa940;
+}
+
+.level-9 text.adults {
+  fill: rgb(201, 201, 201);
+}
+.level-9 text a, 
+.level-9 text a:visited {
+  fill: #ffa940;
+}

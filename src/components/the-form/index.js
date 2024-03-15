@@ -59,13 +59,13 @@ export default class TheForm extends Component {
 
         <div class="text-center">
           <i class="icon-bitcoin text-xl text-btc-orange"></i>
-          <Link queryParams={`btc=${1}`} hash='bitcoin'>
+          <Link queryParams={`btc=${1}`} hash='bitcoin' classNames='btc'>
             {f.satsDecimal(1)}
           </Link>
           <span class="text-xl">
             &nbsp;&nbsp;=&nbsp;&nbsp;
           </span>
-          <Link queryParams={`btc=${1}`} hash='bitcoin'>
+          <Link queryParams={`btc=${1}`} hash='bitcoin' classNames='btc'>
             {f.whole(100000000)}
           </Link>
           &nbsp;
