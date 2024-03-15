@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import style from './style';
 import f from '../../utils/formatter';
-import BtcSign from '../btc-sign';
 import PerPerson from '../per-person';
 import InputFiat from '../input-fiat';
 import TheHeader from '../the-header';
@@ -113,7 +112,7 @@ export default class TheForm extends Component {
 
                 <td class="text-left">
                   <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
-                    <BtcSign />
+                    <i class="icon-bitcoin"></i>
                     {f.satsDecimal(btcBought)}
                   </Link>
                 </td>

@@ -1,6 +1,5 @@
 import {h, Component } from 'preact';
 import style from './style';
-import BtcSign from '../btc-sign';
 import {
   numberToWords,
   btcToWords,
