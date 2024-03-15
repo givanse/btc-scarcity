@@ -121,7 +121,6 @@ export default class App extends Component {
   fetchPrices() {
     fetchPrices()
     .then(({btcPrice, goldPrice}) => {
-      console.log(btcPrice, goldPrice);
       this.updatePrices(btcPrice, goldPrice);
     })
     .catch(function(error) {

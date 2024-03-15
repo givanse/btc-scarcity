@@ -27,7 +27,6 @@ function getAccessControlAllowOrigin(origin) {
 async function getBTCUSD() {
   const btcusd_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
   let response = await fetch(btcusd_url); 
-  console.log(`${response.status}: ${response.statusText}`);
 
   response = await response.json();
   if (response) {
