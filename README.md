@@ -22,7 +22,7 @@ npm test
 
 # run the backend
 npm install -g netlify-cli
-npm lambda
+npm run lambda
 ```
 
 For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).

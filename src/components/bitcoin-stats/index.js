@@ -61,7 +61,7 @@ export default class BitcoinStats extends Component {
           </td>
           <td>
             <i class="icon-person text-gray-700"></i>
-            {f.dec(staticData.totalAdultPopulation)}
+            {f.dec(staticData.totalAdultPopulation, f.PRECISION.BILLION.name)}
           </td>
         </tr>
         <tr>
@@ -72,7 +72,7 @@ export default class BitcoinStats extends Component {
           </td>
           <td>
             <i class="icon-dollar text-gray-700"></i>
-            {f.dec(staticData.totalGlobalIndividualWealth)}
+            {f.dec(staticData.totalGlobalIndividualWealth, f.PRECISION.TRILLION.name)}
           </td>
         </tr>
       </table>

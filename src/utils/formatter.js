@@ -1,11 +1,20 @@
+
+const million = 1000000;
+const billion = million * 1000;
+const trillion = billion * 1000;
+
 const precision = {
   MILLION: {
-    unit: 1000000,
-    name: 'M',
+    unit: million,
+    name: 'Million',
   },
   BILLION: {
-    unit: 1000000000,
-    name: 'B',
+    unit: billion,
+    name: 'Billion',
+  },
+  TRILLION: {
+    unit: trillion,
+    name: 'Trillion',
   },
 };
 
@@ -92,6 +101,8 @@ export default {
         p = precision.BILLION; break;
       case precision.MILLION.name:
         p = precision.MILLION; break;
+      case precision.TRILLION.name:
+        p = precision.TRILLION; break;
     }
 
     if (p) {

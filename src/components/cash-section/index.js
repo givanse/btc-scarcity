@@ -1,12 +1,19 @@
 import {h, Component } from 'preact';
 import style from './style';
 import { Text } from 'preact-i18n';
+import InputFiat from '../input-fiat';
 
 export default class TheFooter extends Component {
 
   render() {
 
-    const { btcBought } = this.props;
+    const {
+      onFiatPurchase,
+      updateFiatPurchase,
+      fiatPurchase,
+      btcBought,
+      btcPrice,
+    } = this.props;
 
     return (
       <div>
@@ -25,8 +32,12 @@ export default class TheFooter extends Component {
         </Text>
       </p>
 
-      {this.props.children}
-
+      <InputFiat name="fiat-purchase"
+                 fiatPurchase={fiatPurchase}
+                 updateFiatPurchase={onFiatPurchase}
+                 updateValue={updateFiatPurchase}
+                 btcBought={btcBought}
+                 btcPrice={btcPrice} />
       </div>
     );
   }

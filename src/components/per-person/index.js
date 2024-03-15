@@ -1,16 +1,9 @@
 import {h, Component } from 'preact';
 import style from './style';
-import {
-  numberToWords,
-  btcToWords,
-} from '../../utils/words';
-import toWords from '../the-form/to-words';
 import Link from '../link';
 import staticData from '../../utils/static-data';
 import f from '../../utils/formatter';
 import { Text } from 'preact-i18n';
-
-const P = f.PRECISION;
 
 const {
   btcRemainTSupply,

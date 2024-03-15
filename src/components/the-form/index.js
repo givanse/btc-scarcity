@@ -2,7 +2,6 @@ import { h, Component } from 'preact';
 import style from './style';
 import f from '../../utils/formatter';
 import PerPerson from '../per-person';
-import InputFiat from '../input-fiat';
 import TheHeader from '../the-header';
 import BitcoinSection from '../bitcoin-section';
 import CashSection from '../cash-section';
@@ -14,20 +13,11 @@ import {
   deconstructWindowLocation,
   internalNavigate,
 } from '../../utils/router';
-import {
-  btcToWords,
-} from '../../utils/words';
-import toWords from './to-words';
 import { Text } from 'preact-i18n';
-import { FIAT_SLIDER_VALUES } from '../../utils/constants';
-import staticData from '../../utils/static-data';
-const {
-  btcHodlInIndividualShares,
-} = staticData;
 
 export default class TheForm extends Component {
 
-  updateFiatPurchase(e) {
+  onFiatPurchase(e) {
     const input = e.target;
     const fiatPurchase = parseInputAmount(input.value);
     this.props.updateFiatPurchase(fiatPurchase);
@@ -94,52 +84,11 @@ export default class TheForm extends Component {
 
       <PerPerson />
 
-      <CashSection btcBought={btcBought} >
-        <InputFiat name="fiat-purchase"
-                  fiatPurchase={fiatPurchase}
-                  updateFiatPurchase={this.updateFiatPurchase.bind(this)}
-                  updateValue={this.props.updateFiatPurchase} >
-
-            <table class="text-sm text-gray-500 italic mb-4 w-3/4 mx-auto">
-              <tr>
-                <td class="text-right">
-                  {f.usd(fiatPurchase)} /
-                  <span class="price-synced-amount">
-                    {f.usd(btcPrice)}
-                  </span>
-                  =&nbsp;&nbsp;
-                </td>
-
-                <td class="text-left">
-                  <Link queryParams={`btc=${btcBought.toFixed(8)}`} hash='bitcoin'>
-                    <i class="icon-bitcoin"></i>
-                    {f.satsDecimal(btcBought)}
-                  </Link>
-                </td>
-              </tr>
-            </table>
-
-            <p class={style['to-words']}>
-              {btcToWords(btcBought)}
-            </p>
-
-            <table class={style["comparison"]}>
-              <tr>
-                <td>
-                  <Text id="bitcoin.individual-world-share">
-                    world share per individual
-                  </Text>
-                </td>
-
-                <td>
-                  <i class="icon-person"></i>
-                  {f.dec(btcHodlInIndividualShares(btcBought))}
-                </td>
-              </tr>
-            </table>
-        </InputFiat>
-
-      </CashSection>
+      <CashSection onFiatPurchase={this.onFiatPurchase}
+                   updateFiatPurchase={this.props.updateFiatPurchase}
+                   fiatPurchase={fiatPurchase}
+                   btcBought={btcBought}
+                   btcPrice={btcPrice} />
 
       <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice} goldPrice={goldPrice}
                       onInputChange={this.updateBtcHodl.bind(this)}
@@ -147,27 +96,7 @@ export default class TheForm extends Component {
 
       <SupplySection fiatPurchase={fiatPurchase}
                      goldPrice={goldPrice}
-                     btcBought={btcBought}>
-
-        <form class="text-center" onSubmit={e => e.preventDefault()}>
-
-          <label for="fiat-purchase-supply" class="block w-0 h-0 overflow-hidden">
-            fiat amount
-          </label>
-          <input id="fiat-purchase-supply"
-                name="fiat-purchase-supply"
-                value={'$' + f.dec(fiatPurchase)}
-                class="text-center bg-blue-100 w-full"
-                placeholder="dollar amount"
-                onChange={(e) => this.updateFiatPurchase(e)} />
-          <br />
-          <span class="text-green-900">
-            {'₿' + f.btc(btcBought)}
-          </span>
-
-        </form>
-
-      </SupplySection>
+                     btcBought={btcBought} />
 
       </div>
     );
