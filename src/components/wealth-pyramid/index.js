@@ -199,6 +199,66 @@ export default class WealthPyramid extends Component {
           </td>
         </tr>
       </table>
+
+      <p class="mx-auto mt-16 w-11/12 font-serif">
+        {pyramid[2].popPercent.toFixed(0)}%
+        of adults enjoy a net worth of
+        &nbsp;
+        {f.usd(pyramid[2].wealth.usd)}
+        &nbsp;to&nbsp;
+        {f.usd(pyramid[3].wealth.usd)}.
+        In proportional Bitcoin terms, acquiring between
+        &nbsp;
+        <Link queryParams={`btc=${pyramid[2].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
+          {f.satsDecimal(pyramid[2].wealth.btc)}
+        </Link>
+        &nbsp;and&nbsp;
+        <Link queryParams={`btc=${pyramid[3].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
+          {f.satsDecimal(pyramid[3].wealth.btc)}
+        </Link>
+        &nbsp;
+        lands you in the top 13% of global wealth.
+      </p>
+
+      <p class="mx-auto mt-8 w-11/12 font-serif">
+        {pyramid[3].popPercent.toFixed(2)}%
+        of adults enjoy a net worth of
+        &nbsp;
+        {f.usd(pyramid[3].wealth.usd)}
+        &nbsp;to&nbsp;
+        {f.usd(pyramid[4].wealth.usd)}.
+        In proportional Bitcoin terms, acquiring between
+        &nbsp;
+        <Link queryParams={`btc=${pyramid[3].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
+          {f.satsDecimal(pyramid[3].wealth.btc)}
+        </Link>
+        &nbsp;and&nbsp;
+        <Link queryParams={`btc=${pyramid[4].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
+          {f.satsDecimal(pyramid[4].wealth.btc)}
+        </Link>
+        &nbsp;
+        lands you in the top 1% of global wealth.
+      </p>
+
+      <p class="mx-auto mt-8 w-11/12 font-serif">
+        {pyramid[4].popPercent.toFixed(2)}%
+        of adults enjoy a net worth of
+        &nbsp;
+        {f.usd(pyramid[4].wealth.usd)}
+        &nbsp;to&nbsp;
+        {f.usd(pyramid[5].wealth.usd)}.
+        In proportional Bitcoin terms, acquiring between
+        &nbsp;
+        <Link queryParams={`btc=${pyramid[4].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
+          {f.satsDecimal(pyramid[4].wealth.btc)}
+        </Link>
+        &nbsp;and&nbsp;
+        <Link queryParams={`btc=${pyramid[5].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
+          {f.satsDecimal(pyramid[5].wealth.btc)}
+        </Link>
+        &nbsp;
+        lands you in the top 0.1% of global wealth.
+      </p>
     </div>
     );
   }
