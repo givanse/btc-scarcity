@@ -11,7 +11,7 @@ const UNITS = {
 };
 
 const totalGlobalIndividualWealth = 454.4 * UNITS.USA_TRILLION;
-const totalAdultPopulation = 5.4 * UNITS.USA_BILLION;
+const totalAdultPopulation = 5.363266074 * UNITS.USA_BILLION;
 
 const btcTCap = 21000000;
 //const worldPopulation = 7.9 * USA_BILLION;
@@ -60,6 +60,7 @@ function fiatPercOfGold(fiat, goldPricePerOz) {
 function calcPyramidLevel(adults, usd) {
 
   const popPercent = ((adults * 100) / totalAdultPopulation);
+  console.log('pop ', popPercent);
 
   const totalWealthPercent = (usd * 100) / totalGlobalIndividualWealth;
   // Supply - 100%
@@ -76,7 +77,7 @@ function calcPyramidLevel(adults, usd) {
   }
 }
 
-function pyramid() {
+function buildPyramid() {
   return [
     calcPyramidLevel(2818118000, 10 * UNITS.KILO),
     calcPyramidLevel(1844084000, 10 * UNITS.KILO),
@@ -88,6 +89,14 @@ function pyramid() {
     calcPyramidLevel(72474, 100 * UNITS.MILLION),
     calcPyramidLevel(7016, 500 * UNITS.MILLION),
   ];
+}
+const pyramid = buildPyramid();
+pyramid[0].topPercent = 100.0;
+for (let i = 1; i < pyramid.length; i++) {
+  const level = pyramid[i];
+  const prevLevel = pyramid[i - 1];
+  console.log(prevLevel.topPercent + ' - ' +prevLevel.popPercent);
+  level.topPercent = prevLevel.topPercent - prevLevel.popPercent;
 }
 
 export default {
@@ -134,5 +143,5 @@ export default {
   totalAdultPopulation,
   totalGlobalIndividualWealth,
   calcPyramidLevel,
-  pyramid: pyramid(),
+  pyramid,
 };

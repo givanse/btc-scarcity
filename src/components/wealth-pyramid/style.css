@@ -14,6 +14,7 @@
 
 .svg-pyramid text.adults {
   fill: rgb(190, 190, 190);
+  font-size: 2.25px;
 }
 
 .svg-pyramid text.percentage {
@@ -32,6 +33,7 @@
 
 .level-9 text.adults {
   fill: rgb(201, 201, 201);
+  font-size: 3px;
 }
 .level-9 text a, 
 .level-9 text a:visited {

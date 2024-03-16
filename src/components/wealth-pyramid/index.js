@@ -3,6 +3,7 @@ import style from './style';
 import f from '../../utils/formatter';
 import Link from '../link';
 import staticData from '../../utils/static-data';
+import { Text } from 'preact-i18n';
 
 const {pyramid} = staticData;
 
@@ -37,7 +38,9 @@ export default class WealthPyramid extends Component {
     <div ref={el => this.rootElement = el}>
 
       <p class="text-center mt-4 text-gray-400">
-        global wealth range per adult
+        <Text id="wealth-pyramid.global-wealth">
+          global wealth
+        </Text>
       </p>
 
       <table class="table-fixed w-full text-center my-4 text-gray-700">
@@ -58,10 +61,10 @@ export default class WealthPyramid extends Component {
         <polygon points="40,10 50,10 45,0 45,0" fill="rgb(66,60,43)"/>
         <text x="5" y="5" text-anchor="start" font-size="2">
           &gt; ${pyramid[8].wealth.usd/staticData.UNITS.MILLION}M</text>
-        <text x="45" y="5" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="5" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[8].topPercent.toFixed(4)}%</text>
+        <text x="45" y="8.5" text-anchor="middle" class={style['adults']}>
           {f.dec(pyramid[8].adults)}</text>
-        <text x="45" y="8" text-anchor="middle" class={style['percentage']}>
-          {pyramid[8].popPercent.toFixed(4)}%</text>
         <text x="85" y="5" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[8].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -72,10 +75,10 @@ export default class WealthPyramid extends Component {
         <polygon points="35,20 55,20 50,10 40,10" fill="rgb(78,72,55)"/>
         <text x="5" y="15" text-anchor="start" font-size="2">
           &gt; ${pyramid[7].wealth.usd/staticData.UNITS.MILLION}M</text>
-        <text x="45" y="15" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="15" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[7].topPercent.toFixed(3)}%</text>
+        <text x="45" y="18.5" text-anchor="middle" class={style['adults']}>
           {f.dec(pyramid[7].adults)}</text>
-        <text x="45" y="18" text-anchor="middle" class={style['percentage']}>
-          {pyramid[7].popPercent.toFixed(3)}%</text>
         <text x="85" y="15" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[7].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -86,10 +89,10 @@ export default class WealthPyramid extends Component {
         <polygon points="30,30 60,30 55,20 35,20" fill="rgb(90,84,67)"/>
         <text x="5" y="25" text-anchor="start" font-size="2">
           &gt; ${pyramid[6].wealth.usd/staticData.UNITS.MILLION}M</text>
-        <text x="45" y="25" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="25" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[6].topPercent.toFixed(3)}%</text>
+        <text x="45" y="28.5" text-anchor="middle" class={style['adults']}>
           {f.dec(pyramid[6].adults)}</text>
-        <text x="45" y="28" text-anchor="middle" class={style['percentage']}>
-          {pyramid[6].popPercent.toFixed(3)}%</text>
         <text x="85" y="25" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[6].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -100,10 +103,10 @@ export default class WealthPyramid extends Component {
         <polygon points="25,40 65,40 60,30 30,30" fill="rgb(102,96,79)"/>
         <text x="5" y="35" text-anchor="start" font-size="2">
           &gt; ${pyramid[5].wealth.usd/staticData.UNITS.MILLION}M</text>
-        <text x="45" y="35" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="35" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[5].topPercent.toFixed(2)}%</text>
+        <text x="45" y="38.5" text-anchor="middle" class={style['adults']}>
           {(pyramid[5].adults/staticData.UNITS.MILLION).toFixed(1)}M</text>
-        <text x="45" y="38" text-anchor="middle" class={style['percentage']}>
-          {pyramid[5].popPercent.toFixed(2)}%</text>
         <text x="85" y="35" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[5].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -114,10 +117,10 @@ export default class WealthPyramid extends Component {
         <polygon points="20,50 70,50 65,40 25,40" fill="rgb(114,108,91)"/>
         <text x="5" y="45" text-anchor="start" font-size="2">
           &gt; ${pyramid[4].wealth.usd/staticData.UNITS.MILLION}M</text>
-        <text x="45" y="45" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="45" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[4].topPercent.toFixed(2)}%</text>
+        <text x="45" y="48.5" text-anchor="middle" class={style['adults']}>
           {(pyramid[4].adults/staticData.UNITS.MILLION).toFixed(0)}M</text>
-        <text x="45" y="48" text-anchor="middle" class={style['percentage']}>
-          {pyramid[4].popPercent.toFixed(2)}%</text>
         <text x="85" y="45" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[4].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -128,10 +131,10 @@ export default class WealthPyramid extends Component {
         <polygon points="15,60 75,60 70,50 20,50" fill="rgb(126,120,103)"/>
         <text x="5" y="55" text-anchor="start" font-size="2">
           &gt; ${pyramid[3].wealth.usd/staticData.UNITS.MILLION}M</text>
-        <text x="45" y="55" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="55" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[3].topPercent.toFixed(2)}%</text>
+        <text x="45" y="58.5" text-anchor="middle" class={style['adults']}>
           {(pyramid[3].adults/staticData.UNITS.MILLION).toFixed(0)}M</text>
-        <text x="45" y="58" text-anchor="middle" class={style['percentage']}>
-          {pyramid[3].popPercent.toFixed(2)}%</text>
         <text x="85" y="55" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[3].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -142,10 +145,10 @@ export default class WealthPyramid extends Component {
         <polygon points="10,70 80,70 75,60 15,60" fill="rgb(138,132,115)"/>
         <text x="5" y="65" text-anchor="start" font-size="2">
           &gt; ${pyramid[2].wealth.usd/staticData.UNITS.KILO}K</text>
-        <text x="45" y="65" text-anchor="middle" class={style['adults']}>
+        <text x="45" y="65" text-anchor="middle" class={style['percentage']}>
+          top {pyramid[2].topPercent.toFixed(0)}%</text>
+        <text x="45" y="68.5" text-anchor="middle" class={style['adults']}>
           {(pyramid[2].adults/staticData.UNITS.MILLION).toFixed(0)}M</text>
-        <text x="45" y="68" text-anchor="middle" class={style['percentage']}>
-          {pyramid[2].popPercent.toFixed(0)}%</text>
         <text x="85" y="65" text-anchor="end" font-size="2">
           &gt;&nbsp;
           <Link queryParams={`btc=${pyramid[2].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -157,10 +160,10 @@ export default class WealthPyramid extends Component {
           <polygon points="5,80 85,80 80,70 10,70" fill="rgb(150,144,127)"/>
           <text x="5" y="75" text-anchor="start" font-size="2">
             &gt; ${pyramid[1].wealth.usd/staticData.UNITS.KILO}K</text>
-          <text x="45" y="75" text-anchor="middle" class={style['adults']}>
+          <text x="45" y="75" text-anchor="middle" class={style['percentage']}>
+            top {pyramid[1].topPercent.toFixed(0)}%</text>
+          <text x="45" y="78.5" text-anchor="middle" class={style['adults']}>
             {(pyramid[1].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
-          <text x="45" y="78" text-anchor="middle" class={style['percentage']}>
-            {pyramid[1].popPercent.toFixed(0)}%</text>
           <text x="85" y="75" text-anchor="end" font-size="2">
             &gt;&nbsp;
             <Link queryParams={`btc=${pyramid[1].wealth.btc.toFixed(8)}`} hash='bitcoin'>
@@ -171,13 +174,11 @@ export default class WealthPyramid extends Component {
 
         <g class={style['level-9']}>
           <polygon points="0,90 90,90 85,80 5,80" fill="rgb(162,156,139)"/>
-          <text x="5" y="85" text-anchor="start" font-size="2">
+          <text x="5" y="86.5" text-anchor="start" font-size="2">
             &lt; ${pyramid[0].wealth.usd/staticData.UNITS.KILO}K</text>
-          <text x="45" y="85" text-anchor="middle" class={style['adults']} fill="black">
+          <text x="45" y="86.5" text-anchor="middle" class={style['adults']} fill="black">
             {(pyramid[0].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
-          <text x="45" y="88" text-anchor="middle" class={style['percentage']}>
-            {pyramid[0].popPercent.toFixed(0)}%</text>
-          <text x="85" y="85" text-anchor="end" font-size="2">
+          <text x="85" y="86.5" text-anchor="end" font-size="2">
             &lt;&nbsp;
             <Link queryParams={`btc=${pyramid[0].wealth.btc.toFixed(8)}`} hash='bitcoin'>
               {f.satsDecimal(pyramid[0].wealth.btc, 4)}
@@ -201,63 +202,31 @@ export default class WealthPyramid extends Component {
       </table>
 
       <p class="mx-auto mt-16 w-11/12 font-serif">
-        {pyramid[2].popPercent.toFixed(0)}%
-        of adults enjoy a net worth of
+        To be in the top {pyramid[2].topPercent.toFixed(0)}%
+        of net worth requires at least
         &nbsp;
         {f.usd(pyramid[2].wealth.usd)}
-        &nbsp;to&nbsp;
-        {f.usd(pyramid[3].wealth.usd)}.
-        In proportional Bitcoin terms, acquiring between
+        &nbsp;
+        Proportionaly in Bitcoin, that's
         &nbsp;
         <Link queryParams={`btc=${pyramid[2].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
           {f.satsDecimal(pyramid[2].wealth.btc)}
         </Link>
-        &nbsp;and&nbsp;
-        <Link queryParams={`btc=${pyramid[3].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
-          {f.satsDecimal(pyramid[3].wealth.btc)}
-        </Link>
-        &nbsp;
-        lands you in the top 13% of global wealth.
       </p>
 
       <p class="mx-auto mt-8 w-11/12 font-serif">
-        {pyramid[3].popPercent.toFixed(2)}%
-        of adults enjoy a net worth of
+        To roll with the top
+        &nbsp;
+        {pyramid[3].topPercent.toFixed(2)}%
+        in net worth, aim for at least
         &nbsp;
         {f.usd(pyramid[3].wealth.usd)}
-        &nbsp;to&nbsp;
-        {f.usd(pyramid[4].wealth.usd)}.
-        In proportional Bitcoin terms, acquiring between
+        &nbsp;
+        Correspondingly in Bitcoin, that's about
         &nbsp;
         <Link queryParams={`btc=${pyramid[3].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
           {f.satsDecimal(pyramid[3].wealth.btc)}
         </Link>
-        &nbsp;and&nbsp;
-        <Link queryParams={`btc=${pyramid[4].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
-          {f.satsDecimal(pyramid[4].wealth.btc)}
-        </Link>
-        &nbsp;
-        lands you in the top 1% of global wealth.
-      </p>
-
-      <p class="mx-auto mt-8 w-11/12 font-serif">
-        {pyramid[4].popPercent.toFixed(2)}%
-        of adults enjoy a net worth of
-        &nbsp;
-        {f.usd(pyramid[4].wealth.usd)}
-        &nbsp;to&nbsp;
-        {f.usd(pyramid[5].wealth.usd)}.
-        In proportional Bitcoin terms, acquiring between
-        &nbsp;
-        <Link queryParams={`btc=${pyramid[4].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
-          {f.satsDecimal(pyramid[4].wealth.btc)}
-        </Link>
-        &nbsp;and&nbsp;
-        <Link queryParams={`btc=${pyramid[5].wealth.btc.toFixed(8)}`} hash='bitcoin' classNames='btc'>
-          {f.satsDecimal(pyramid[5].wealth.btc)}
-        </Link>
-        &nbsp;
-        lands you in the top 0.1% of global wealth.
       </p>
     </div>
     );

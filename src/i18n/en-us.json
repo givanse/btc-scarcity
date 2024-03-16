@@ -45,6 +45,7 @@
     "100M-sats": "One hundred million Satoshis"
   },
   "wealth-pyramid": {
-    "title": "Wealth Pyramid"
+    "title": "Wealth Pyramid",
+    "global-wealth": "Global Wealth"
   }
 }
