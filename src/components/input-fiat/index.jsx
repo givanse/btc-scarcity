@@ -1,5 +1,6 @@
+/** @jsx h */
 import {h, Component } from 'preact';
-import style from './style';
+import style from './style.module.css';
 import f from '../../utils/formatter';
 import ArrSlider from '../arr-slider';
 import { FIAT_SLIDER_VALUES } from '../../utils/constants';

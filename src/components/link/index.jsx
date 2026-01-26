@@ -1,5 +1,6 @@
+/** @jsx h */
 import {h, Component } from 'preact';
-import style from './style';
+import style from './style.module.css';
 
 export default class Link extends Component {
 

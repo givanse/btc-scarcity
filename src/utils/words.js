@@ -1,4 +1,4 @@
-const writtenNumber = require('written-number');
+import writtenNumber from 'written-number';
 import { getSats } from './bitcoin-math';
 
 export const ES = 'es';

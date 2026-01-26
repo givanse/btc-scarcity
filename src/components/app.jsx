@@ -1,3 +1,4 @@
+/** @jsx h */
 import { h, Component } from 'preact';
 import { IntlProvider } from 'preact-i18n';
 import enUs from '../i18n/en-us.json';
@@ -12,7 +13,7 @@ import {
 } from '../utils/router';
 
 // Code-splitting is automated for routes
-import Home from '../routes/home';
+import Home from '../routes/home/index.jsx';
 
 export default class App extends Component {
 

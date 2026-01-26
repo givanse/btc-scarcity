@@ -8,18 +8,19 @@
       "type": "node",
       "request": "launch",
       "name": "build",
-      "program": "${workspaceFolder}/node_modules/.bin/preact",
+      "runtimeExecutable": "/Users/gaston/.nvm/versions/node/v24.13.0/bin/node",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": ["build"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Jest All",
+      "runtimeExecutable": "/Users/gaston/.nvm/versions/node/v24.13.0/bin/node",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": ["--runInBand"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/node_modules/jest/bin/jest",
       }

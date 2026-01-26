@@ -1,5 +1,6 @@
+/** @jsx h */
 import {h, Component } from 'preact';
-import style from './style';
+import style from './style.module.css';
 import { Text } from 'preact-i18n';
 import InputFiat from '../input-fiat';
 

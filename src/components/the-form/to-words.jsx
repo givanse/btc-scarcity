@@ -1,3 +1,4 @@
+/** @jsx h */
 import { getSats } from '../../utils/bitcoin-math';
 import f from '../../utils/formatter';
 

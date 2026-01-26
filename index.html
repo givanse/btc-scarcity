@@ -50,27 +50,12 @@
     <meta name="article:expiration_time" content="2019-12-14T00:00:00+00:00">
     <meta name="article:modified_time" content="2019-12-14T00:00:00+00:00">
 
-		<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
-		<% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
-			<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
-		<% } %>
-		<% for (var chunk of webpack.chunks) { %>
-		 <% if (chunk.names.length === 1 && chunk.names[0] === 'polyfills') continue; %>
-			<% for (var file of chunk.files) { %>
-				<% if (htmlWebpackPlugin.options.preload && file.match(/\.(js|css)$/)) { %>
-					<link rel="preload" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
-				<% } else if (file.match(/manifest\.json$/)) { %>
-					<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath + file %>">
-				<% } %>
-			<% } %>
-		<% } %>
+		<link rel="manifest" href="/manifest.json">
+		<meta name="theme-color" content="#000000">
 		<link rel="shortcut icon" type="image/png" href="https://github.com/bitcoin/bitcoin/blob/976cc766c42889b6d1042e4cda39045d5001f406/src/qt/res/icons/bitcoin.ico"/>
 	</head>
 	<body>
-		<%= htmlWebpackPlugin.options.ssr({
-			url: '/'
-		}) %>
-		<script defer src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
-		<script>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
+		<div id="app"></div>
+		<script type="module" src="./src/index.jsx"></script>
 	</body>
 </html>

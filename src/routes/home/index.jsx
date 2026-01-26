@@ -1,5 +1,7 @@
+/** @jsx h */
+/** @jsx h */
 import { h } from 'preact';
-import style from './style';
+import style from './style.module.css';
 import TheForm from '../../components/the-form';
 import TheFooter from '../../components/the-footer';
 

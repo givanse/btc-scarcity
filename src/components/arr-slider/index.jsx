@@ -1,6 +1,7 @@
+/** @jsx h */
 import {h, Component } from 'preact';
 import f from '../../utils/formatter';
-import style from './style';
+import style from './style.module.css';
 
 export default class ArrSlider extends Component {
 

@@ -1,9 +1,10 @@
+/** @jsx h */
 import {h, Component } from 'preact';
 import f from '../../utils/formatter';
 import staticData from '../../utils/static-data';
 import Link from '../link';
 import ArrSlider from '../arr-slider';
-import style from './style';
+import style from './style.module.css';
 import { Text } from 'preact-i18n';
 import parseInputAmount from '../../utils/parse-input-amount';
 import { getSats } from '../../utils/bitcoin-math';
