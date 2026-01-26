@@ -1,9 +1,9 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/#sample-file
 
 [build]
-  publish = "build"
+  publish = "dist"
   functions = "functions"
-  command = "./node_modules/.bin/preact build --production --template src/index.html"
+  command = "vite build"
 
 [context.production.environment]
   NODE_ENV = "production"
