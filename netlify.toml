@@ -8,6 +8,16 @@
 [context.production.environment]
   NODE_ENV = "production"
 
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+
 # The following redirect is intended for use with most SPAs that handle
 # routing internally.
 [[redirects]]
