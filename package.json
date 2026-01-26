@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "babel-jest": "22.4.3",
-    "eslint": "^4.9.0",
+    "eslint": "^9.39.2",
     "eslint-config-synacor": "^2.0.2",
     "postcss-custom-media": "^7.0.8",
     "preact": "^8.5.3",
