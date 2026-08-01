@@ -20,10 +20,12 @@ export default class App extends Component {
   state = {
     btcHodl: 0,
     btcPrice: 0,
-    goldPrice: 0,
     fiatPurchase: 0,
     loc: 'es',
+    priceError: false,
   };
+
+  pricePollTimer = null;
 
   constructor(props) {
     super(props);
@@ -106,11 +108,11 @@ export default class App extends Component {
     });
   }
 
-  updatePrices(btcPrice, goldPrice) {
+  updatePrices(btcPrice) {
     this.setState(function(state, props) {
       const newState = Object.assign({}, state);
       newState.btcPrice = btcPrice;
-      newState.goldPrice = goldPrice;
+      newState.priceError = false;
       return newState;
     });
   }
@@ -121,11 +123,15 @@ export default class App extends Component {
 
   fetchPrices() {
     fetchPrices()
-    .then(({btcPrice, goldPrice}) => {
-      this.updatePrices(btcPrice, goldPrice);
+    .then(({btcPrice}) => {
+      if (!btcPrice || Number.isNaN(btcPrice)) {
+        throw new Error('invalid btcPrice');
+      }
+      this.updatePrices(btcPrice);
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.error(error);
+      this.setState({ priceError: true });
     });
   }
 
@@ -134,7 +140,7 @@ export default class App extends Component {
 
     const oneMinute = 1000 * 60;
     const minutes = oneMinute * 10;
-    setInterval(() => {
+    this.pricePollTimer = setInterval(() => {
       this.fetchPrices();
     }, minutes);
   }
@@ -146,8 +152,15 @@ export default class App extends Component {
     this.setStateFromLocation(locationState);
   }
 
+  componentWillUnmount() {
+    if (this.pricePollTimer) {
+      clearInterval(this.pricePollTimer);
+      this.pricePollTimer = null;
+    }
+  }
+
 	render() {
-    const {btcHodl, btcPrice, goldPrice, fiatPurchase, loc} = this.state;
+    const {btcHodl, btcPrice, fiatPurchase, loc, priceError} = this.state;
 
     let locale = esMx;
     switch(loc) {
@@ -162,8 +175,13 @@ export default class App extends Component {
 		return (
       <IntlProvider definition={locale}>
         <div id="app">
+          {priceError && (
+            <p class="text-center text-red-600 text-sm py-2">
+              Could not load BTC price. Values may be outdated.
+            </p>
+          )}
           <Home path="/" btcHodl={btcHodl} fiatPurchase={fiatPurchase}
-                         btcPrice={btcPrice} goldPrice={goldPrice}
+                         btcPrice={btcPrice}
                          updateBtcHodl={this.updateBtcHodl.bind(this)}
                          updateFiatPurchase={this.updateFiatPurchase.bind(this)} >
             <button onClick={() => this.updateLocale('en')}>english</button>

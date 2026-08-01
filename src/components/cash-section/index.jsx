@@ -4,7 +4,7 @@ import style from './style.module.css';
 import { Text } from 'preact-i18n';
 import InputFiat from '../input-fiat';
 
-export default class TheFooter extends Component {
+export default class CashSection extends Component {
 
   render() {
 
@@ -35,7 +35,7 @@ export default class TheFooter extends Component {
 
       <InputFiat name="fiat-purchase"
                  fiatPurchase={fiatPurchase}
-                 updateFiatPurchase={onFiatPurchase}
+                 onFiatPurchase={onFiatPurchase}
                  updateValue={updateFiatPurchase}
                  btcBought={btcBought}
                  btcPrice={btcPrice} />

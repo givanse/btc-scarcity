@@ -112,7 +112,7 @@ export function deconstructHref(href) {
 
   const hashIndex = href.indexOf('#');
   let hash;
-  if (hashIndex) {
+  if (hashIndex >= 0) {
     hash = href.substring(hashIndex);
   }
 
@@ -125,6 +125,9 @@ export function listenForDataNavigateClicks(callback) {
       let target = event.target;
 
       do {
+        if (!target) {
+          return;
+        }
 
         if (target.tagName === 'A' && target.dataset.navigate !== undefined) {
           event.preventDefault();
@@ -138,7 +141,7 @@ export function listenForDataNavigateClicks(callback) {
 
         target = target.parentElement;
 
-      } while (target.tagName !== 'BODY');
+      } while (target && target.tagName !== 'BODY');
     });
   }
 }

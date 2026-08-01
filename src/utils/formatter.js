@@ -79,10 +79,10 @@ export default {
     // Sats precision
     if (precision) {
       const pIndex = number.indexOf('.');
-      if (precision >= 3) { // keep 1 comma
-        number = number.slice(0, (pIndex + 1) + precision + 1);
-      } else if (precision >= 6) { // keep 2 commas
+      if (precision >= 6) { // keep 2 commas
         number = number.slice(0, (pIndex + 1) + precision + 2);
+      } else if (precision >= 3) { // keep 1 comma
+        number = number.slice(0, (pIndex + 1) + precision + 1);
       }
     }
 

@@ -108,6 +108,5 @@ export function btcToWords(amount) {
 
 export function setLang(lang) {
   lang = lang ? lang : ES;
-  console.log('default lang:', lang);
   LANG = lang;
 }

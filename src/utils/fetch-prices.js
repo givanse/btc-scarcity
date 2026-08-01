@@ -16,7 +16,7 @@ export function fetchPrices() {
 
   return fetch(url, fetchOptions).then(response => {
     if (!response.ok) {
-      // TODO: 502 although the response is correct
+      throw new Error(`btc-usd request failed: ${response.status}`);
     }
 
     return response.json();

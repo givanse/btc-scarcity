@@ -1,10 +1,28 @@
 /** @jsx h */
 import {h, Component } from 'preact';
-import f from '../../utils/formatter';
 import style from './style.module.css';
+
+function nearestIndex(values, value) {
+  const exact = values.indexOf(value);
+  if (exact !== -1) {
+    return exact;
+  }
+
+  let best = 0;
+  let bestDelta = Math.abs(values[0] - value);
+  for (let i = 1; i < values.length; i++) {
+    const delta = Math.abs(values[i] - value);
+    if (delta < bestDelta) {
+      best = i;
+      bestDelta = delta;
+    }
+  }
+  return best;
+}
 
 export default class ArrSlider extends Component {
 
+  // Placeholder for optional datalist labels derived from values.
   buildOptions(values) {
     for (let i = 1; i < values.length; i++) {
       return 
@@ -30,6 +48,7 @@ export default class ArrSlider extends Component {
       name,
     } = this.props;
     const listId = `${name}-arr-slider`;
+    const sliderIndex = nearestIndex(values, value);
 
     return (
       <div>
@@ -42,7 +61,7 @@ export default class ArrSlider extends Component {
              name={name}
              list={listId}
              min="0" max={max} step="1"
-             value={values.indexOf(value)}
+             value={sliderIndex}
              onInput={(e) => this.onChangeHandler(e)}
              class={style['arr-slide']} />
 

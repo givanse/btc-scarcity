@@ -16,14 +16,13 @@ const {
   pointOnePercenterWealthPercentInBtc,
 } = staticData;
 
-export default class TheFooter extends Component {
+export default class SupplySection extends Component {
 
   render() {
 
     const {
       btcBought,
       fiatPurchase,
-      goldPrice,
     } = this.props;
 
     return (

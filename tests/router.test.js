@@ -77,4 +77,11 @@ describe('deconstructHref', () => {
     expect(hash).toBe('#bitcoin');
   });
 
+  test('reads hash when it is the first character', () => {
+    const {btc, fiat, hash} = deconstructHref('#cash');
+    expect(btc).toBe(0);
+    expect(fiat).toBe(0);
+    expect(hash).toBe('#cash');
+  });
+
 });

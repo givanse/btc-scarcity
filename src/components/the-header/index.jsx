@@ -2,7 +2,7 @@
 import {h, Component } from 'preact';
 import style from './style.module.css';
 
-export default class TheFooter extends Component {
+export default class TheHeader extends Component {
 
   render() {
 

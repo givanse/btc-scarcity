@@ -21,8 +21,9 @@ const {
 
 const HUNDRED_M = 100000000;
 
-export default class TheFooter extends Component {
+export default class BitcoinSection extends Component {
 
+  // Kept for potential sats-denominated input; wired via onSliderChange.
   updateSatsHodl(e) {
     const input = e.target;
     const number = parseInputAmount(input.value);
@@ -39,6 +40,7 @@ export default class TheFooter extends Component {
       onInputChange,
     } = this.props;
 
+    const fiatValue = btcPrice > 0 ? btcHodl * btcPrice : 0;
     const {btc, sats} = getSats(btcHodl); 
     const satsHodl = (btc * HUNDRED_M) + sats;
 
@@ -76,8 +78,8 @@ export default class TheFooter extends Component {
             </td>
 
             <td class="text-left">
-              <Link queryParams={`fiat=${(btcHodl * btcPrice).toFixed(2)}`} hash='cash' classNames='fiat'>
-                {f.usd(btcHodl * btcPrice)}
+              <Link queryParams={`fiat=${fiatValue.toFixed(2)}`} hash='cash' classNames='fiat'>
+                {f.usd(fiatValue)}
               </Link>
             </td>
           </tr>

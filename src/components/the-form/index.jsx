@@ -37,8 +37,8 @@ export default class TheForm extends Component {
   }
 
   render() {
-    const {btcHodl, btcPrice, goldPrice, fiatPurchase} = this.props;
-    const btcBought = fiatPurchase / btcPrice;
+    const {btcHodl, btcPrice, fiatPurchase} = this.props;
+    const btcBought = btcPrice > 0 ? fiatPurchase / btcPrice : 0;
 
     return (
       <div class="max-w-2xl mx-auto">
@@ -91,12 +91,11 @@ export default class TheForm extends Component {
                    btcBought={btcBought}
                    btcPrice={btcPrice} />
 
-      <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice} goldPrice={goldPrice}
+      <BitcoinSection btcHodl={btcHodl} btcPrice={btcPrice}
                       onInputChange={this.updateBtcHodl.bind(this)}
                       onSliderChange={this.props.updateBtcHodl} />
 
       <SupplySection fiatPurchase={fiatPurchase}
-                     goldPrice={goldPrice}
                      btcBought={btcBought} />
 
       </div>

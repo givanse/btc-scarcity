@@ -8,21 +8,21 @@ https://bitcoin.givan.se/?btc=0.0025&fiat=20&loc=en
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload
 npm start
 
 # build for production with minification
-npm build
+npm run build
 
 # test the production build locally
-npm serve
+npm run preview
 
-# run tests with jest and preact-render-spy 
+# run tests with jest
 npm test
 
-# run the backend
+# run the backend (Netlify functions + frontend)
 npm install -g netlify-cli
 npm run lambda
 ```
 
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
+Vite + Preact SPA with a Netlify Function that proxies BTC/USD from CoinGecko.

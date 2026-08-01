@@ -1,4 +1,3 @@
-
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 // Cache BTC price in the warm function instance so CoinGecko is not hit on every invoke.
@@ -30,14 +29,21 @@ function getAccessControlAllowOrigin(origin) {
 }
 
 function corsHeaders(origin) {
-  return {
+  const headers = {
     /* Required for CORS support to work */
     'Access-Control-Allow-Origin': getAccessControlAllowOrigin(origin),
-    /* Required for cookies, authorization headers with HTTPS */
-    'Access-Control-Allow-Credentials': 'true',
     /* Distinct CORS origins must not share one CDN entry */
     'Vary': 'Origin',
   };
+
+  // Credentials + wildcard Origin is an invalid CORS combination; only set
+  // credentials when we reflect a concrete allowlisted origin.
+  if (!IS_DEV) {
+    /* Required for cookies, authorization headers with HTTPS */
+    headers['Access-Control-Allow-Credentials'] = 'true';
+  }
+
+  return headers;
 }
 
 function cacheHeaders() {
@@ -55,20 +61,24 @@ async function getBTCUSD() {
   }
 
   const btcusd_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
-  let response = await fetch(btcusd_url); 
+  const response = await fetch(btcusd_url);
 
-  response = await response.json();
-  if (response) {
-    const price = response.bitcoin ? response.bitcoin.usd : NaN;
+  if (!response.ok) {
+    console.error('coingecko bitcoin HTTP ' + response.status);
+    return Number.isNaN(cachedPrice) || cachedPrice == null ? NaN : cachedPrice;
+  }
+
+  const body = await response.json();
+  if (body) {
+    const price = body.bitcoin ? body.bitcoin.usd : NaN;
     if (!Number.isNaN(price)) {
       cachedPrice = price;
       cachedAt = now;
     }
     return price;
-  } else {
-    console.log('coingecko bitcoin' + response);
   }
 
+  console.error('coingecko bitcoin empty body');
   return NaN;
 }
 
@@ -100,18 +110,29 @@ export default async (request) => {
   }
 
   /*
-  const gold_url = 'https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd'
-  response = await fetch(gold_url);
-  response = await response.json();
-  let goldPrice;
-  if (response) {
-    goldPrice = response['pax-gold']? response['pax-gold'].usd : NaN;
-  } else {
-    console.log('coingecko pax-gold' + response);
-  }
+  // Gold price fetch kept for possible future re-enable:
+  // const gold_url = 'https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd'
+  // response = await fetch(gold_url);
+  // response = await response.json();
+  // let goldPrice;
+  // if (response) {
+  //   goldPrice = response['pax-gold']? response['pax-gold'].usd : NaN;
+  // } else {
+  //   console.log('coingecko pax-gold' + response);
+  // }
   */
 
-  return new Response(JSON.stringify({btcPrice, NaN}), {
+  if (Number.isNaN(btcPrice)) {
+    return new Response(JSON.stringify({ error: 'btc price unavailable' }), {
+      status: 502,
+      headers: {
+        ...corsHeaders(origin),
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  return new Response(JSON.stringify({ btcPrice }), {
     status: 200,
     headers: {
       ...corsHeaders(origin),

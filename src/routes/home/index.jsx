@@ -1,7 +1,5 @@
 /** @jsx h */
-/** @jsx h */
 import { h } from 'preact';
-import style from './style.module.css';
 import TheForm from '../../components/the-form';
 import TheFooter from '../../components/the-footer';
 
@@ -9,7 +7,6 @@ const Home = (props) => (
   <div>
     <TheForm btcHodl={props.btcHodl}
              btcPrice={props.btcPrice}
-             goldPrice={props.goldPrice}
              fiatPurchase={props.fiatPurchase}
              updateBtcHodl={props.updateBtcHodl}
              updateFiatPurchase={props.updateFiatPurchase} >

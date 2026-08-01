@@ -19,7 +19,7 @@ const btcTCap = 21000000;
 const btcLostPerc = 0.17; // 17%
 const btcLost = btcTCap * btcLostPerc;
 const btcRemainTSupply = btcTCap - btcLost;
-const btcPerPerson = (btcRemainTSupply / totalAdultPopulation).toFixed(8);
+const btcPerPerson = Number((btcRemainTSupply / totalAdultPopulation).toFixed(8));
 
 // https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/
 //const moneySupply = {
@@ -60,7 +60,6 @@ function fiatPercOfGold(fiat, goldPricePerOz) {
 function calcPyramidLevel(adults, usd) {
 
   const popPercent = ((adults * 100) / totalAdultPopulation);
-  console.log('pop ', popPercent);
 
   const totalWealthPercent = (usd * 100) / totalGlobalIndividualWealth;
   // Supply - 100%
@@ -95,7 +94,6 @@ pyramid[0].topPercent = 100.0;
 for (let i = 1; i < pyramid.length; i++) {
   const level = pyramid[i];
   const prevLevel = pyramid[i - 1];
-  console.log(prevLevel.topPercent + ' - ' +prevLevel.popPercent);
   level.topPercent = prevLevel.topPercent - prevLevel.popPercent;
 }
 
@@ -135,12 +133,11 @@ export default {
     return (btc * 100) / btcRemainTSupply;
   },
   fiatPercOfWealth: function(fiat) {
-    return (fiat * 100) / moneySupply.Wealth;
+    return (fiat * 100) / totalGlobalIndividualWealth;
   },
   //buyGoldOunces,
   //fiatPercOfGold,
   UNITS,
-  totalAdultPopulation,
   totalGlobalIndividualWealth,
   calcPyramidLevel,
   pyramid,

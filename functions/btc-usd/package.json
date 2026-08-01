@@ -7,6 +7,5 @@
   "author": "@givanse",
   "license": "MIT",
   "dependencies": {
-    "ccxt": "^1.20.44"
   }
 }

@@ -10,18 +10,7 @@ const {pyramid} = staticData;
 
 export default class WealthPyramid extends Component {
 
-  constructor(props) {
-    super(props);
-    // Create a ref object
-    this.rootElement = null;
-  }
-
-  componentDidMount() {
-    this.rootElement.querySelectorAll('svg > g').forEach(level => {
-      level.addEventListener('mouseclick', () => {
-      });
-    });
-  }
+  // Hover/click affordance for pyramid levels reserved for a future interaction.
 
   render() {
 
@@ -36,7 +25,7 @@ export default class WealthPyramid extends Component {
         - fill the elements with a solid color starting with rgb(162,156,139) and using darker colors until it ends with rgb(66,60,43)
      */
     return (
-    <div ref={el => this.rootElement = el}>
+    <div>
 
       <p class="text-center mt-4 text-gray-400">
         <Text id="wealth-pyramid.global-wealth">
