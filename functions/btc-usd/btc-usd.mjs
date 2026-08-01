@@ -1,7 +1,7 @@
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 // Cache BTC price in the warm function instance so CoinGecko is not hit on every invoke.
-const CACHE_TTL_MS = 60 * 1000;
+const CACHE_TTL_MS = 30 * 60 * 1000;
 let cachedPrice = null;
 let cachedAt = 0;
 
@@ -48,9 +48,9 @@ function corsHeaders(origin) {
 
 function cacheHeaders() {
   return {
-    // Browser: short freshness; CDN: durable shared cache so scrapers rarely invoke the function.
-    'Cache-Control': 'public, max-age=60',
-    'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=60, stale-while-revalidate=300',
+    // Browser + CDN: 30 min freshness (matches client poll); SWR serves stale while revalidating.
+    'Cache-Control': 'public, max-age=1800',
+    'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=1800, stale-while-revalidate=3600',
   };
 }
 
@@ -142,7 +142,7 @@ export default async (request) => {
   });
 };
 
-// Custom paths + per-IP rate limit (all Netlify plans). Humans poll every 10 min; scrapers get 429.
+// Custom paths + per-IP rate limit (all Netlify plans). Humans poll every 30 min; scrapers get 429.
 export const config = {
   path: ['/api/btc-usd', '/.netlify/functions/btc-usd/btc-usd'],
   rateLimit: {
