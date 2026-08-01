@@ -20,6 +20,7 @@
 
 # The following redirect is intended for use with most SPAs that handle
 # routing internally.
+# Do not force this rewrite: /api/* and function routes must stay shadowed.
 [[redirects]]
   from = "/*"
   to = "/index.html"
