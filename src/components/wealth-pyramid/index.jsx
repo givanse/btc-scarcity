@@ -22,7 +22,7 @@ export default class WealthPyramid extends Component {
         - the pyramid has a total of 9 levels, including the base element
         - add the element number, from 1 to 9 for each level
         - don't add HTML comments
-        - fill the elements with a solid color starting with rgb(162,156,139) and using darker colors until it ends with rgb(66,60,43)
+        - fill the elements with a solid color starting with rgb(120,116,104) and using darker colors until it ends with rgb(48,44,32)
      */
     return (
     <div>
@@ -48,7 +48,7 @@ export default class WealthPyramid extends Component {
       </table>
 
       <svg class={style['svg-pyramid']} width="100%" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="40,10 50,10 45,0 45,0" fill="rgb(66,60,43)"/>
+        <polygon points="40,10 50,10 45,0 45,0" fill="rgb(48,44,32)"/>
         <text x="5" y="5" text-anchor="start" font-size="2">
           &gt; ${pyramid[8].wealth.usd/staticData.UNITS.MILLION}M</text>
         <text x="45" y="5" text-anchor="middle" class={style['percentage']}>
@@ -62,7 +62,7 @@ export default class WealthPyramid extends Component {
           </Link>
         </text>
 
-        <polygon points="35,20 55,20 50,10 40,10" fill="rgb(78,72,55)"/>
+        <polygon points="35,20 55,20 50,10 40,10" fill="rgb(57,53,41)"/>
         <text x="5" y="15" text-anchor="start" font-size="2">
           &gt; ${pyramid[7].wealth.usd/staticData.UNITS.MILLION}M</text>
         <text x="45" y="15" text-anchor="middle" class={style['percentage']}>
@@ -76,7 +76,7 @@ export default class WealthPyramid extends Component {
           </Link>
         </text>
 
-        <polygon points="30,30 60,30 55,20 35,20" fill="rgb(90,84,67)"/>
+        <polygon points="30,30 60,30 55,20 35,20" fill="rgb(66,62,50)"/>
         <text x="5" y="25" text-anchor="start" font-size="2">
           &gt; ${pyramid[6].wealth.usd/staticData.UNITS.MILLION}M</text>
         <text x="45" y="25" text-anchor="middle" class={style['percentage']}>
@@ -90,7 +90,7 @@ export default class WealthPyramid extends Component {
           </Link>
         </text>
 
-        <polygon points="25,40 65,40 60,30 30,30" fill="rgb(102,96,79)"/>
+        <polygon points="25,40 65,40 60,30 30,30" fill="rgb(75,71,59)"/>
         <text x="5" y="35" text-anchor="start" font-size="2">
           &gt; ${pyramid[5].wealth.usd/staticData.UNITS.MILLION}M</text>
         <text x="45" y="35" text-anchor="middle" class={style['percentage']}>
@@ -104,7 +104,7 @@ export default class WealthPyramid extends Component {
           </Link>
         </text>
 
-        <polygon points="20,50 70,50 65,40 25,40" fill="rgb(114,108,91)"/>
+        <polygon points="20,50 70,50 65,40 25,40" fill="rgb(84,80,68)"/>
         <text x="5" y="45" text-anchor="start" font-size="2">
           &gt; ${pyramid[4].wealth.usd/staticData.UNITS.MILLION}M</text>
         <text x="45" y="45" text-anchor="middle" class={style['percentage']}>
@@ -118,7 +118,7 @@ export default class WealthPyramid extends Component {
           </Link>
         </text>
 
-        <polygon points="15,60 75,60 70,50 20,50" fill="rgb(126,120,103)"/>
+        <polygon points="15,60 75,60 70,50 20,50" fill="rgb(93,89,77)"/>
         <text x="5" y="55" text-anchor="start" font-size="2">
           &gt; ${pyramid[3].wealth.usd/staticData.UNITS.MILLION}M</text>
         <text x="45" y="55" text-anchor="middle" class={style['percentage']}>
@@ -132,7 +132,7 @@ export default class WealthPyramid extends Component {
           </Link>
         </text>
 
-        <polygon points="10,70 80,70 75,60 15,60" fill="rgb(138,132,115)"/>
+        <polygon points="10,70 80,70 75,60 15,60" fill="rgb(102,98,86)"/>
         <text x="5" y="65" text-anchor="start" font-size="2">
           &gt; ${pyramid[2].wealth.usd/staticData.UNITS.KILO}K</text>
         <text x="45" y="65" text-anchor="middle" class={style['percentage']}>
@@ -147,7 +147,7 @@ export default class WealthPyramid extends Component {
         </text>
 
         <g class={style['level-8']}>
-          <polygon points="5,80 85,80 80,70 10,70" fill="rgb(150,144,127)"/>
+          <polygon points="5,80 85,80 80,70 10,70" fill="rgb(111,107,95)"/>
           <text x="5" y="75" text-anchor="start" font-size="2">
             &gt; ${pyramid[1].wealth.usd/staticData.UNITS.KILO}K</text>
           <text x="45" y="75" text-anchor="middle" class={style['percentage']}>
@@ -163,10 +163,10 @@ export default class WealthPyramid extends Component {
         </g>
 
         <g class={style['level-9']}>
-          <polygon points="0,90 90,90 85,80 5,80" fill="rgb(162,156,139)"/>
+          <polygon points="0,90 90,90 85,80 5,80" fill="rgb(120,116,104)"/>
           <text x="5" y="86.5" text-anchor="start" font-size="2">
             &lt; ${pyramid[0].wealth.usd/staticData.UNITS.KILO}K</text>
-          <text x="45" y="86.5" text-anchor="middle" class={style['adults']} fill="black">
+          <text x="45" y="86.5" text-anchor="middle" class={style['adults']}>
             {(pyramid[0].adults/staticData.UNITS.USA_BILLION).toFixed(1)}B</text>
           <text x="85" y="86.5" text-anchor="end" font-size="2">
             &lt;&nbsp;

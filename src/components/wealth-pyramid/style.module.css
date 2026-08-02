@@ -13,12 +13,12 @@
 }
 
 .svg-pyramid text.adults {
-  fill: rgb(190, 190, 190);
+  fill: rgba(255, 255, 255, 0.75);
   font-size: 2.25px;
 }
 
 .svg-pyramid text.percentage {
-  fill: rgb(224, 224, 224);
+  fill: rgba(255, 255, 255, 0.92);
 }
 
 .svg-pyramid text a,
@@ -28,14 +28,14 @@
 
 .level-8 text a, 
 .level-8 text a:visited {
-  fill: #ffa940;
+  fill: #ffb347;
 }
 
 .level-9 text.adults {
-  fill: rgb(201, 201, 201);
+  fill: rgba(255, 255, 255, 0.75);
   font-size: 3px;
 }
 .level-9 text a, 
 .level-9 text a:visited {
-  fill: #ffa940;
+  fill: #ffb347;
 }
