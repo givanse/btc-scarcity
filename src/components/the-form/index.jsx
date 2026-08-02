@@ -52,34 +52,24 @@ export default class TheForm extends Component {
 
       <div class="p-2 mt-6 m-auto text-justify w-11/12 max-w-md leading-loose">
 
-        <p class="text-center text-gray-400">
-          <Text id="intro.line-4">
-          Fractions of a Bitcoin are called satoshis.
+        <p class="text-center">
+          <Text id="intro.explain">
+            One bitcoin can be divided into one hundred million units.
           </Text>
         </p>
 
         <div class="text-center">
-          <i class="icon-bitcoin text-xl text-btc-orange"></i>
           <Link queryParams={`btc=${1}`} hash='bitcoin' classNames='btc'>
-            {f.satsDecimal(1)}
+            {f.dec(1)} bitcoin
           </Link>
           <span class="text-xl">
             &nbsp;&nbsp;=&nbsp;&nbsp;
           </span>
+          <i class="icon-bitcoin text-xl text-btc-orange"></i>
           <Link queryParams={`btc=${1}`} hash='bitcoin' classNames='btc'>
             {f.whole(100000000)}
           </Link>
-          &nbsp;
-          <span class="text-btc-orange">
-            satoshis
-          </span>
         </div>
-
-        <p class="text-center">
-          <Text id="intro.explain-satoshis">
-            One bitcoin is equal to one hundred million satoshis.
-          </Text>
-        </p>
 
       </div>
 

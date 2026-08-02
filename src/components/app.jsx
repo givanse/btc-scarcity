@@ -21,7 +21,7 @@ export default class App extends Component {
     btcHodl: 0,
     btcPrice: 0,
     fiatPurchase: 0,
-    loc: 'es',
+    loc: 'en',
     priceError: false,
   };
 
@@ -162,7 +162,7 @@ export default class App extends Component {
 	render() {
     const {btcHodl, btcPrice, fiatPurchase, loc, priceError} = this.state;
 
-    let locale = esMx;
+    let locale = enUs;
     switch(loc) {
       case 'en':
         locale = enUs;

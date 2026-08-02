@@ -10,8 +10,12 @@ const UNITS = {
   TROY_OUNCE: 32.15075, // 1 kg
 };
 
-const totalGlobalIndividualWealth = 454.4 * UNITS.USA_TRILLION;
-const totalAdultPopulation = 5.363266074 * UNITS.USA_BILLION;
+// UBS Global Wealth Report 2026 (year-end 2025), 56-market sample (~92% of world wealth).
+// Total wealth = sum of pyramid band wealth: 3.22 + 63.16 + 200.72 + 250.59 tn.
+// Adult population = sum of pyramid band adults: 1.62 + 1.58 + 0.588 + 0.058 bn.
+// https://www.ubs.com/content/dam/assets/wm/static/gwr/global-wealth-report-en-2026.pdf
+const totalGlobalIndividualWealth = 517.69 * UNITS.USA_TRILLION;
+const totalAdultPopulation = 3.846 * UNITS.USA_BILLION;
 
 const btcTCap = 21000000;
 //const worldPopulation = 7.9 * USA_BILLION;
@@ -77,16 +81,19 @@ function calcPyramidLevel(adults, usd) {
 }
 
 function buildPyramid() {
+  // Main four bands from UBS GWR 2026 p.23. UHNW splits above $5m: $5–100m total
+  // is 7,004,000 (p.32); band shares within that range and $100m+ are estimated
+  // from prior databook proportions scaled to the 2026 millionaire total (58m).
   return [
-    calcPyramidLevel(2818118000, 10 * UNITS.KILO),
-    calcPyramidLevel(1844084000, 10 * UNITS.KILO),
-    calcPyramidLevel(641673000,	100 * UNITS.KILO),
-    calcPyramidLevel(51549760, UNITS.MILLION),
-    calcPyramidLevel(5087934,	5 * UNITS.MILLION),
-    calcPyramidLevel(2510318,	10 * UNITS.MILLION),
-    calcPyramidLevel(163572, 50 * UNITS.MILLION),
-    calcPyramidLevel(72474, 100 * UNITS.MILLION),
-    calcPyramidLevel(7016, 500 * UNITS.MILLION),
+    calcPyramidLevel(1620000000, 10 * UNITS.KILO),
+    calcPyramidLevel(1580000000, 10 * UNITS.KILO),
+    calcPyramidLevel(588000000, 100 * UNITS.KILO),
+    calcPyramidLevel(50918500, UNITS.MILLION),
+    calcPyramidLevel(4591473, 5 * UNITS.MILLION),
+    calcPyramidLevel(2265034, 10 * UNITS.MILLION),
+    calcPyramidLevel(147493, 50 * UNITS.MILLION),
+    calcPyramidLevel(70659, 100 * UNITS.MILLION),
+    calcPyramidLevel(6841, 500 * UNITS.MILLION),
   ];
 }
 const pyramid = buildPyramid();

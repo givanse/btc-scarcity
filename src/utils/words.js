@@ -4,7 +4,7 @@ import { getSats } from './bitcoin-math';
 export const ES = 'es';
 export const EN = 'en';
 
-let LANG = ES;
+let LANG = EN;
 
 export function numberToWords(amount) {
   const lang = LANG;
@@ -107,6 +107,6 @@ export function btcToWords(amount) {
 }
 
 export function setLang(lang) {
-  lang = lang ? lang : ES;
+  lang = lang ? lang : EN;
   LANG = lang;
 }

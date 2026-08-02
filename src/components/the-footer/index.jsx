@@ -12,7 +12,7 @@ export default class TheFooter extends Component {
            aria-label="check out the source code repository">
           <i class="icon-github"></i>
         </a>
-        <a href="https://twitter.com/givanse"
+        <a href="https://twitter.com/gaston_this_is"
            aria-label="author's twitter account">
           <i class="icon-twitter"></i>
         </a>

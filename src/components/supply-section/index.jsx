@@ -44,10 +44,10 @@ export default class SupplySection extends Component {
 
       <div class={style['footnotes']}>
         <p class={style['foot-note']}>
-          The vast majority of the 59.4 million millionaires in 2022 have wealth between USD 1 million and USD 5 million.
+          As of end-2025, about 57.5–58 million adults in the UBS sample are US-dollar millionaires (1.5%), and the vast majority own between USD 1 million and USD 5 million. Figures cover 56 markets representing over 92% of world wealth.
           <br />
-          <a href="https://www.ubs.com/global/en/family-office-uhnw/reports/global-wealth-report-2023/_jcr_content/mainpar/toplevelgrid_5684475/col2/linklistnewlook/link_copy.0557094298.file/PS9jb250ZW50L2RhbS9hc3NldHMvd20vZ2xvYmFsL2ltZy9nbG9iYWwtZmFtaWx5LW9mZmljZS9kb2NzL2RhdGFib29rLWdsb2JhbC13ZWFsdGgtcmVwb3J0LTIwMjMtZW4tMi5wZGY=/databook-global-wealth-report-2023-en-2.pdf">
-            Credit Suisse / UBS Group AG. (2023, August 22). Global Wealth Databook, Leading Perspectives To Navigate The Future. Retrieved March 10, 2024.
+          <a href="https://www.ubs.com/content/dam/assets/wm/static/gwr/global-wealth-report-en-2026.pdf">
+            UBS Group AG. (2026). Global Wealth Report 2026. Retrieved August 2, 2026.
           </a>
         </p>
         <p class={style['foot-note']}>

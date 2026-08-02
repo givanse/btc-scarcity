@@ -5,9 +5,7 @@
   "percenter-wealth": "0.1 percenter shares",
   "intro": {
     "line-1": "Have you ever wondered if one day you could own some bitcoin?",
-    "line-2": "Chances are you can acquire some bitcoin.",
-    "line-4": "Fractions of a bitcoin are called satoshis.",
-    "explain-satoshis": "One bitcoin is equal to one hundred million satoshis."
+    "explain": "One bitcoin can be divided into one hundred million units."
   },
   "world": {
     "title": "For each person",
@@ -20,7 +18,7 @@
   "cash": {
     "title": "Cash",
     "could-buy-me": "could buy me",
-    "description": "What's my bitcoin haul for this cash?"
+    "description": "How much bitcoin is this cash worth?"
   },
   "bitcoin": {
     "individual-world-share": "adult shares"
