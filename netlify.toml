@@ -4,6 +4,13 @@
   functions = "functions"
   command = "npm ci && npm run build"
   publish = "dist"
+  # Path safety net if auto-prod remains. Fail-open script; not `exit 0`.
+  # Resolves from NETLIFY_REPO_PATH / git root so a leftover UI base dir still works.
+  ignore = "bash \"${NETLIFY_REPO_PATH:-$(git rev-parse --show-toplevel)}/scripts/netlify-ignore.sh\""
+
+# skip_prs is already true in the Netlify UI. Belt-and-suspenders: never DP.
+[context.deploy-preview]
+  ignore = "exit 0"
 
 [context.production.environment]
   NODE_ENV = "production"
