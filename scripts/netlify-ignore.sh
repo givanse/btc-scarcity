@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Production path ignore. Exit 0 = skip the build; anything else = build.
-# Fail open: missing refs, UI retry (equal refs), or git errors continue the build.
-# Do not use `exit 0` here — that always-skips Trigger deploy in the Netlify UI.
-# Build hooks skip this command entirely.
+# Fail open: missing refs, equal refs (empty cache), or git errors continue the build.
+# Do not use `exit 0` here. Ship with `netlify deploy --prod` or a build hook.
+# Build hooks skip this command. Squash-merge with [skip netlify] unless shipping.
 
 if [ -z "${CACHED_COMMIT_REF:-}" ] || [ -z "${COMMIT_REF:-}" ] || [ "$CACHED_COMMIT_REF" = "$COMMIT_REF" ]; then
   exit 1
 fi
 
 # Ignore runs from the site base directory. Honor NETLIFY_REPO_PATH / git root
-# so pathspecs resolve from the repo even when a UI leftover base is set.
+# so pathspecs resolve from the repo when a base directory is set.
 root="${NETLIFY_REPO_PATH:-}"
 if [ -z "$root" ] || [ ! -d "$root" ]; then
   root="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 1
