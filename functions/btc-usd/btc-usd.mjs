@@ -29,19 +29,16 @@ function getAccessControlAllowOrigin(origin) {
 }
 
 function corsHeaders(origin) {
+  // Production client is same-origin `/api/btc-usd`. Sending ACAO + Vary: Origin
+  // splits the CDN cache on every unique Origin (scrapers cache-bust that way).
+  if (!IS_DEV) {
+    return {};
+  }
+
   const headers = {
     /* Required for CORS support to work */
     'Access-Control-Allow-Origin': getAccessControlAllowOrigin(origin),
-    /* Distinct CORS origins must not share one CDN entry */
-    'Vary': 'Origin',
   };
-
-  // Credentials + wildcard Origin is an invalid CORS combination; only set
-  // credentials when we reflect a concrete allowlisted origin.
-  if (!IS_DEV) {
-    /* Required for cookies, authorization headers with HTTPS */
-    headers['Access-Control-Allow-Credentials'] = 'true';
-  }
 
   return headers;
 }
@@ -51,6 +48,9 @@ function cacheHeaders() {
     // Browser + CDN: 30 min freshness (matches client poll); SWR serves stale while revalidating.
     'Cache-Control': 'public, max-age=1800',
     'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=1800, stale-while-revalidate=3600',
+    // Functions vary on all query params by default. `__n` is never sent, so
+    // `?t=` cache-busters share one CDN object with the clean URL.
+    'Netlify-Vary': 'query=__n',
   };
 }
 
@@ -86,6 +86,11 @@ export default async (request) => {
   const origin = request.headers.get('origin');
 
   if (request.method === 'OPTIONS') {
+    // Production is same-origin GET only; preflight is unused and still billed.
+    if (!IS_DEV) {
+      return new Response('', { status: 404 });
+    }
+
     return new Response('', {
       status: 200,
       headers: {
@@ -142,12 +147,14 @@ export default async (request) => {
   });
 };
 
-// Custom paths + per-IP rate limit (all Netlify plans). Humans poll every 30 min; scrapers get 429.
+// Only `/api/btc-usd` invokes the function. Legacy `/.netlify/functions/...`
+// paths are not registered, so scrapers there get the SPA HTML instead of a billed call.
+// Humans poll every 30 min; remaining cache-miss scrapers get 429.
 export const config = {
-  path: ['/api/btc-usd', '/.netlify/functions/btc-usd/btc-usd'],
+  path: '/api/btc-usd',
   rateLimit: {
-    windowLimit: 20,
-    windowSize: 60,
+    windowLimit: 6,
+    windowSize: 180,
     aggregateBy: ['ip', 'domain'],
   },
 };
