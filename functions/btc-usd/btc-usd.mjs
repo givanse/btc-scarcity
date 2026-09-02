@@ -1,7 +1,7 @@
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 // Cache BTC price in the warm function instance so CoinGecko is not hit on every invoke.
-const CACHE_TTL_MS = 30 * 60 * 1000;
+const CACHE_TTL_MS = 4 * 60 * 60 * 1000;
 let cachedPrice = null;
 let cachedAt = 0;
 
@@ -45,9 +45,12 @@ function corsHeaders(origin) {
 
 function cacheHeaders() {
   return {
-    // Browser + CDN: 30 min freshness (matches client poll); SWR serves stale while revalidating.
-    'Cache-Control': 'public, max-age=1800',
-    'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=1800, stale-while-revalidate=3600',
+    // Browser holds no copy of its own, so a refresh always shows the newest cached price.
+    // Revalidating costs an edge hit, not a function invoke, because the CDN answers it.
+    'Cache-Control': 'public, max-age=0, must-revalidate',
+    // CDN absorbs those hits: 4 hour freshness, then SWR serves stale while revalidating.
+    // `durable` shares one cached response across edge nodes, so CoinGecko sees ~1 call per window.
+    'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=14400, stale-while-revalidate=28800',
     // Functions vary on all query params by default. `__n` is never sent, so
     // `?t=` cache-busters share one CDN object with the clean URL.
     'Netlify-Vary': 'query=__n',
@@ -149,11 +152,13 @@ export default async (request) => {
 
 // Only `/api/btc-usd` invokes the function. Legacy `/.netlify/functions/...`
 // paths are not registered, so scrapers there get the SPA HTML instead of a billed call.
-// Humans poll every 30 min; remaining cache-miss scrapers get 429.
+// Rate limiting runs before the CDN cache, so cache hits are counted too. Browsers now
+// revalidate on every load, and CGNAT puts many phones behind one IP, so the limit has to
+// clear real traffic; function invokes are already capped by the 4 hour durable cache.
 export const config = {
   path: '/api/btc-usd',
   rateLimit: {
-    windowLimit: 6,
+    windowLimit: 60,
     windowSize: 180,
     aggregateBy: ['ip', 'domain'],
   },
