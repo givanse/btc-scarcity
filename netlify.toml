@@ -15,6 +15,13 @@
 [context.production.environment]
   NODE_ENV = "production"
 
+# Vite fingerprints files in /assets/ (index-AfPekQZn.js). Immutable is safe
+# because a content change produces a new URL; HTML keeps pointing at the new hash.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/assets/*.css"
   [headers.values]
@@ -24,6 +31,12 @@
   for = "/assets/*.js"
   [headers.values]
     Content-Type = "text/javascript; charset=utf-8"
+
+# Repeat probes to missing paths reuse this tiny 404 body from the CDN.
+[[headers]]
+  for = "/404.html"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # The following redirect is intended for use with most SPAs that handle
 # routing internally. This app does not: state lives in query strings

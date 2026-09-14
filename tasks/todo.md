@@ -1,25 +1,13 @@
-# 404 scanner probe paths
+# Long-cache hashed assets
 
 ## Plan
-- [x] Remove the `/*` → `/index.html` 200 SPA rewrite so unknown paths are not counted as visits
-- [x] Add a tiny `public/404.html` for Netlify's default missing-file response
-- [x] Keep comments in `netlify.toml` (update, do not delete): routing is query-string only; scanners must 404
-- [x] Confirm real URLs still work: `/`, `/?btc=`, `/assets/*`, `/robots.txt`, `/api/btc-usd`
-- [x] Confirm probe paths 404: `/wp-admin/`, `/.git/config`, `/blog/`, `/wp/`, `/wp-login.php`, `/wordpress/`, `/wp-json/batch/v1`
+- [x] Add `Cache-Control: public, max-age=31536000, immutable` for `/assets/*`
+- [x] Keep existing CSS/JS `Content-Type` header rules
+- [x] Comment why immutable is safe (Vite content hashes)
 
 ## Review
-Scanner "top pages" were 200s because `/*` rewrote to `index.html`. The app only uses query-string state, so that rewrite was unused.
-
-- Removed the SPA 200 rewrite in `netlify.toml` (comments kept and updated)
-- Added `public/404.html` ("Not found"); Vite copies it to `dist/`
-- Local smoke test against `dist` (Netlify-style: file exists → 200, else 404 page):
-  - 200 APP `/` and `/?btc=1&fiat=100`
-  - 200 `/robots.txt`, `/manifest.json`
-  - 404 404-PAGE `/wp-admin/index.php`, `/.git/config`, `/blog/`, `/wp/`, `/wp-login.php`, `/wordpress/`, `/wp-json/batch/v1`
-- `/api/btc-usd` is unchanged (function path, not the catch-all)
-- After deploy, those paths should drop off Netlify "top pages" as new traffic replaces the old 200s
+Vite already fingerprints files under `/assets/`. Netlify now sends `Cache-Control: public, max-age=31536000, immutable` for that path so browsers and the CDN can keep JS, CSS, and hashed fonts for a year. Content-Type rules for `*.css` / `*.js` are unchanged. Takes effect on the next deploy; confirm in response headers on `/assets/index-*.js`.
 
 ## Files to edit or create
 - `netlify.toml`
-- `public/404.html` (create)
 - `tasks/todo.md`
