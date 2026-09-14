@@ -1,18 +1,19 @@
 {
   "amount": "amount",
   "mined-gold": "mined gold",
-  "millionaire-average": "multimillionaire shares",
-  "percenter-wealth": "0.1 percenter shares",
+  "millionaire-average": "of a $2M fortune",
+  "percenter-wealth": "of a $5M fortune",
   "intro": {
     "line-1": "Have you ever wondered if one day you could own some bitcoin?",
     "explain": "One bitcoin can be divided into one hundred million units."
   },
   "world": {
-    "title": "For each person",
-    "intro": "How much bitcoin would you get if it were distributed worldwide?",
+    "title": "If it were split evenly",
+    "intro": "How much bitcoin would each person get if the remaining supply were split evenly?",
     "adult-population": "adult population",
+    "adult-note": "The split uses the UBS adult population. Children are not in the count.",
     "bitcoin-supply": "bitcoin supply",
-    "bitcoin-for-each-person": "bitcoin for each person",
+    "bitcoin-for-each-person": "one person's bitcoin",
     "satoshis-for-each-person": "satoshis for each person"
   },
   "cash": {
@@ -21,7 +22,7 @@
     "description": "How much bitcoin is this cash worth?"
   },
   "bitcoin": {
-    "individual-world-share": "adult shares"
+    "individual-world-share": "one person's bitcoin"
   },
   "supply": {
     "title": "Supply",

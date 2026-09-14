@@ -1,21 +1,23 @@
-# Mute the beach-ball palette
+# Name the per-person unit
 
 ## Plan
-- [x] Keep the pyramid taupe fills and official Bitcoin orange
-- [x] Replace bright blue / kelly green with muted steel and sage
-- [x] Keep purple for the wealth section, but dusty instead of neon
-- [x] Soften leftover toy blues/greens (links, sliders, price, locale focus)
-- [x] Verify the header and each section in the browser
+- [x] World section names the unit: "If it were split evenly" / "one person's bitcoin"
+- [x] Move "adult" to a footnote; keep adults as the math denominator
+- [x] Cash and Bitcoin count that unit as N×, same label
+- [x] Wealth rows stop saying "shares" ("of a $2M fortune", "of a $5M fortune")
+- [x] Echo the unit on the stats table
+- [x] Update English and Spanish copy
+- [x] Verify World, Cash, Bitcoin, and stats in the browser
 
 ## Review
-The sticky header and section bars were four saturated primaries (bright blue, kelly green, bitcoin orange, neon purple). Orange stays `#f79319`. World/person is muted steel `#4a5c70`. Cash is muted sage `#5c7a60`. Wealth/supply is dusty purple `#6e4f80` (nudged more purple from `#5a4e6e`). Generic links, slider tracks, live price text, and locale-button focus follow the same muted set. The pyramid fills were left alone. Browser check of the full page: orange is the only loud color, purple still reads as purple, and the toy/beach-ball feel is gone.
+World now defines the unit: remaining supply split evenly is **one person's bitcoin** (shown as 1×). Cash and Bitcoin reuse that label and show how many of those units you hold (1 BTC = 220.65×). Wealth comparisons are "of a $2M fortune" / "of a $5M fortune", so "share" is no longer doing two jobs. Adults stay in the denominator and a UBS footnote. Headless pass of `/?btc=1` in English and Spanish: no leftover "adult shares", and the stats table repeats the unit.
 
 ## Files to edit or create
-- `tailwind.config.js`
-- `src/style/index.css`
-- `src/components/the-header/index.jsx`
+- `src/i18n/en-us.json`
+- `src/i18n/es-mx.json`
 - `src/components/per-person/index.jsx`
-- `src/components/supply-section/index.jsx`
-- `src/components/the-form/style.module.css`
-- `src/components/arr-slider/style.module.css`
+- `src/components/input-fiat/index.jsx`
+- `src/components/bitcoin-section/index.jsx`
+- `src/components/bitcoin-stats/index.jsx`
+- `src/components/the-header/index.jsx`
 - `tasks/todo.md`

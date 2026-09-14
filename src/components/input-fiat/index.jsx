@@ -66,14 +66,14 @@ export default class InputFiat extends Component {
         <table class={style["comparison"]}>
           <tr>
             <td>
-              <Text id="bitcoin.individual-world-share">
-                world share per individual
+              <Text id="world.bitcoin-for-each-person">
+                one person's bitcoin
               </Text>
             </td>
 
             <td>
               <i class="icon-person"></i>
-              {f.dec(btcHodlInIndividualShares(btcBought))}
+              {f.dec(btcHodlInIndividualShares(btcBought))}×
             </td>
           </tr>
         </table>

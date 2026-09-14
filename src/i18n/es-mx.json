@@ -1,18 +1,19 @@
 {
   "amount": "cantidad",
   "mined-gold": "oro minado",
-  "millionaire-average": "acciones por multimillonario",
-  "percenter-wealth": "acciones por 0.1-percenter",
+  "millionaire-average": "de una fortuna de US$2M",
+  "percenter-wealth": "de una fortuna de US$5M",
   "intro": {
     "line-1": "Te has preguntado si alguna vez poseeras un poco de bitcoin?",
     "explain": "Un bitcoin puede ser dividido en cien millones de unidades."
   },
   "world": {
-    "title": "Para cada persona",
-    "intro": "Cuanto Bitcoin recibirías si se repartiera a todas las personas del mundo?",
+    "title": "Si se repartiera por igual",
+    "intro": "¿Cuánto bitcoin le tocaría a cada persona si el suministro restante se repartiera por igual?",
     "adult-population": "población adulta",
+    "adult-note": "El reparto usa la población adulta de UBS. Los niños no entran en la cuenta.",
     "bitcoin-supply": "suministro de bitcoin",
-    "bitcoin-for-each-person": "bitcoin para cada persona",
+    "bitcoin-for-each-person": "el bitcoin de una persona",
     "satoshis-for-each-person": "satoshis para cada persona"
   },
   "cash": {
@@ -21,7 +22,7 @@
     "description": "¿Cuánto bitcoin vale este efectivo?"
   },
   "bitcoin": {
-    "individual-world-share": "acciones por adulto"
+    "individual-world-share": "el bitcoin de una persona"
   },
   "supply": {
     "title": "Suministro",

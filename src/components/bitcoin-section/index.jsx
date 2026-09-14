@@ -92,20 +92,20 @@ export default class BitcoinSection extends Component {
         <table class={style["comparison"]}>
           <tr>
             <td>
-              <Text id="bitcoin.individual-world-share">
-                adult share
+              <Text id="world.bitcoin-for-each-person">
+                one person's bitcoin
               </Text>
             </td>
 
             <td>
               <i class="icon-person"></i>
-              {f.dec(btcHodlInIndividualShares(btcHodl))}
+              {f.dec(btcHodlInIndividualShares(btcHodl))}×
             </td>
           </tr>
 
           <tr>
             <td>
-              <Text id="millionaire-average">millionaire share</Text>
+              <Text id="millionaire-average">of a $2M fortune</Text>
             </td>
 
             <td>
@@ -117,7 +117,7 @@ export default class BitcoinSection extends Component {
           <tr>
             <td>
               <Text id="percenter-wealth">
-                one-percenter share 
+                of a $5M fortune
               </Text>
             </td>
 

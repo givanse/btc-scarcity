@@ -67,6 +67,17 @@ export default class BitcoinStats extends Component {
         </tr>
         <tr>
           <td class="text-right">
+            <Text id="world.bitcoin-for-each-person">
+              one person's bitcoin
+            </Text>
+          </td>
+          <td>
+            <i class="icon-bitcoin text-gray-700"></i>
+            {f.satsDecimal(staticData.btcPerPerson)}
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">
             <Text id="bitcoin-stats.total-wealth">
               Total wealth
             </Text>

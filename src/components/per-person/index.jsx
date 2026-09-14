@@ -22,14 +22,14 @@ export default class PerPerson extends Component {
         <div id="world" class="block pt-4">
           <a href="#world" class="cursor-pointer">
             <h2 class="bg-world text-white ">
-              <Text id="world.title">For each person</Text>
+              <Text id="world.title">If it were split evenly</Text>
             </h2>
           </a>
         </div>
 
         <p class="px-4">
           <Text id="world.intro">
-            How much Bitcoin would a person get if we gave some to every person in the world?
+            How much bitcoin would each person get if the remaining supply were split evenly?
           </Text>
         </p>
 
@@ -60,7 +60,7 @@ export default class PerPerson extends Component {
             <td class="px-4 text-sm">
               <span class="text-xs">
                 <Text id="world.bitcoin-for-each-person">
-                  bitcoin for each person
+                  one person's bitcoin
                 </Text>
               </span>
               <br/>
@@ -72,10 +72,17 @@ export default class PerPerson extends Component {
                 </Link>
                 <br />
                 <i class="icon-person text-2xl"></i>
+                1×
               </p>
             </td>
           </tr>
         </table>
+
+        <p class="px-4 mt-4 text-xs text-gray-500">
+          <Text id="world.adult-note">
+            The split uses the UBS adult population. Children are not in the count.
+          </Text>
+        </p>
 
       </div>
     );

@@ -10,7 +10,7 @@ export default class TheHeader extends Component {
       <header class={style['header']}>
 
         <a href="#world" class={style['link'] + ' bg-world'}
-           aria-label="bitcoin per person">
+           aria-label="if bitcoin were split evenly">
           <i class="icon-person"></i>
         </a>
 
