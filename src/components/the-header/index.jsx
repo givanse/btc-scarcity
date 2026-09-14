@@ -9,7 +9,7 @@ export default class TheHeader extends Component {
     return (
       <header class={style['header']}>
 
-        <a href="#world" class={style['link'] + ' bg-blue-600'}
+        <a href="#world" class={style['link'] + ' bg-world'}
            aria-label="bitcoin per person">
           <i class="icon-person"></i>
         </a>
@@ -24,7 +24,7 @@ export default class TheHeader extends Component {
           <i class="icon-bitcoin"></i>
         </a>
 
-        <a href="#supply" class={style['link'] + ' bg-purple-600'}
+        <a href="#supply" class={style['link'] + ' bg-supply'}
            aria-label="assets supply comparisons">
           <i class="icon-chart-pie"></i>
         </a>

@@ -21,7 +21,7 @@ export default class PerPerson extends Component {
 
         <div id="world" class="block pt-4">
           <a href="#world" class="cursor-pointer">
-            <h2 class="bg-blue-600 text-white ">
+            <h2 class="bg-world text-white ">
               <Text id="world.title">For each person</Text>
             </h2>
           </a>

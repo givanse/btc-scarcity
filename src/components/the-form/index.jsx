@@ -41,7 +41,7 @@ export default class TheForm extends Component {
     const btcBought = btcPrice > 0 ? fiatPurchase / btcPrice : 0;
 
     return (
-      <div class="max-w-2xl mx-auto">
+      <div class={style['column']}>
 
       <TheHeader />
 

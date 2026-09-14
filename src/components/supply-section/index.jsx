@@ -30,7 +30,7 @@ export default class SupplySection extends Component {
 
       <div id="supply" class="block pt-4">
         <a href="#supply" class="cursor-pointer">
-          <h2 class="bg-purple-700 text-white ">
+          <h2 class="bg-supply text-white ">
             <Text id="wealth-pyramid.title">
               Wealth Pyramid
             </Text>

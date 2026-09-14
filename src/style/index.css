@@ -4,7 +4,7 @@
 
 html, body {
   @apply text-base;
-  background-color: black;
+  background-color: theme('colors.matte');
   color: white;
 }
 
@@ -33,7 +33,7 @@ h5 {
 }
 
 a[data-navigate] {
-  color: rgb(74, 119, 255);
+  color: theme('colors.link');
 }
 
 a.btc[data-navigate] {
@@ -53,7 +53,7 @@ a.fiat[data-navigate] {
 }
 
 .price-synced-amount {
-  @apply text-green-600 px-2;
+  @apply text-money px-2;
 }
 
 @media (max-width: 390px) {
