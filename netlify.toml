@@ -26,9 +26,8 @@
     Content-Type = "text/javascript; charset=utf-8"
 
 # The following redirect is intended for use with most SPAs that handle
-# routing internally.
+# routing internally. This app does not: state lives in query strings
+# (`?btc=&fiat=&loc=`), so a `/*` → `/index.html` 200 rewrite is unused.
 # Do not force this rewrite: /api/* and function routes must stay shadowed.
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Without it, scanner paths (wp-admin, wp-login.php, wordpress, wp-json,
+# .git/config, /blog/, /wp/) get a real 404 instead of the app as a page view.
